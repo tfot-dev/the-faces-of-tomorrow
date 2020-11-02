@@ -38,7 +38,7 @@ export const Api = () => {
         };
 
         getToken();
-    }, []);
+    }, [getAccessTokenSilently]);
 
     return client ?
         <ApolloProvider client={client}>
