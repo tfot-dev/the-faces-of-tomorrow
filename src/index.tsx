@@ -2,19 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
 import {App} from "./App";
+import {Auth0Provider} from "@auth0/auth0-react";
+import {Auth} from "./constants/Auth";
+import {AppState} from "@auth0/auth0-react/dist/auth0-provider";
+import {history} from "./utils/history";
 
-const client = new ApolloClient({
-    uri: 'https://holy-mammal-41.hasura.app/v1/graphql',
-    cache: new InMemoryCache()
-});
+const onRedirectCallback = (appState: AppState) => {
+    history.push(
+        appState && appState.returnTo
+            ? appState.returnTo
+            : window.location.pathname
+    );
+};
 
 ReactDOM.render(
     <React.StrictMode>
-        <ApolloProvider client={client}>
-            <App/>
-        </ApolloProvider>
+        <Auth0Provider
+            domain={Auth.domain}
+            clientId={Auth.clientId}
+            audience={Auth.audience}
+            redirectUri={window.location.origin}
+            onRedirectCallback={onRedirectCallback}
+        >
+                <App/>
+        </Auth0Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );
