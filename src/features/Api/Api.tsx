@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, NormalizedCacheObject} from "@apollo/client";
-import {useAuth0} from "@auth0/auth0-react";
-import {setContext} from "@apollo/client/link/context";
-import {User} from "../User/User";
+import React, { useEffect, useState } from 'react';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { useAuth0 } from '@auth0/auth0-react';
+import { setContext } from '@apollo/client/link/context';
+import { User } from '../User/User';
 
 export const Api = () => {
     const { getAccessTokenSilently } = useAuth0();
@@ -17,21 +17,23 @@ export const Api = () => {
                     uri: 'https://holy-mammal-41.hasura.app/v1/graphql',
                 });
 
-                const authLink = setContext((_, {headers}) => {
+                const authLink = setContext((_, { headers }) => {
                     return {
                         headers: {
                             ...headers,
-                            authorization: accessToken ? `Bearer ${accessToken}` : "",
-                        }
-                    }
+                            authorization: accessToken ? `Bearer ${accessToken}` : '',
+                        },
+                    };
                 });
 
-                setClient(new ApolloClient({
-                    link: authLink.concat(httpLink),
-                    cache: new InMemoryCache({
-                        addTypename: false
-                    })
-                }));
+                setClient(
+                    new ApolloClient({
+                        link: authLink.concat(httpLink),
+                        cache: new InMemoryCache({
+                            addTypename: false,
+                        }),
+                    }),
+                );
             } catch (e) {
                 console.log(e.message);
             }
@@ -40,9 +42,11 @@ export const Api = () => {
         getToken();
     }, [getAccessTokenSilently]);
 
-    return client ?
+    return client ? (
         <ApolloProvider client={client}>
             <User />
-        </ApolloProvider> : <div/>
-    ;
+        </ApolloProvider>
+    ) : (
+        <div />
+    );
 };

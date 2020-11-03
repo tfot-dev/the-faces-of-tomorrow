@@ -1,13 +1,9 @@
 import React from 'react';
 import './App.css';
-import {Authentication} from "./features/Auth/Authentication";
+import { Header } from './features/Header/Header';
 
-export const App = () => {
-    return (
-
-            <div className="App">
-                The faces of tomorrow
-                <Authentication/>
-            </div>
-    );
-}
+export const App = () => (
+    <div className="App">
+        <Header />
+    </div>
+);
