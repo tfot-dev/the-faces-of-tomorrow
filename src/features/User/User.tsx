@@ -12,7 +12,7 @@ const Users = gql`
     }
 `;
 
-export const User = () => {
+export const User: React.FC = () => {
     const { loading, error, data } = useQuery(Users);
     const { logout } = useAuth0();
 

@@ -1,16 +1,16 @@
 import React from 'react';
-import { AppBar, createStyles, Theme, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, createStyles, Toolbar, Typography } from '@material-ui/core';
 import { Authentication } from '../Authentication/Authentication';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         title: {
             flexGrow: 1,
         },
     }),
 );
-export const Header = () => {
+export const Header: React.FC = () => {
     const classes = useStyles();
 
     return (

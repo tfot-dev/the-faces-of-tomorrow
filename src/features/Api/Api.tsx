@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { setContext } from '@apollo/client/link/context';
 import { User } from '../User/User';
 
-export const Api = () => {
+export const Api: React.FC = () => {
     const { getAccessTokenSilently } = useAuth0();
     const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
 
