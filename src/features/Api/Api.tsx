@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
 import { setContext } from '@apollo/client/link/context';
-import { User } from '../User/User';
 
-export const Api: React.FC = () => {
+interface IApiProps {
+    children: React.ReactElement | React.ReactElement[];
+}
+
+export const Api = ({ children }: IApiProps) => {
     const { getAccessTokenSilently } = useAuth0();
     const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
 
@@ -42,11 +45,5 @@ export const Api: React.FC = () => {
         getToken();
     }, [getAccessTokenSilently]);
 
-    return client ? (
-        <ApolloProvider client={client}>
-            <User />
-        </ApolloProvider>
-    ) : (
-        <div />
-    );
+    return client ? <ApolloProvider client={client}>{children}</ApolloProvider> : <div />;
 };
