@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 
-interface IPostProps {
+export interface IPostProps {
     id: string;
     caption: string;
     mediaUrl: string;
@@ -19,7 +19,7 @@ export const Post = ({ id, caption, mediaUrl }: IPostProps) => {
 
     return (
         <Grid item>
-            <Card className={classes.root} key={id}>
+            <Card className={classes.root}>
                 <CardMedia component="img" height="600" image={mediaUrl} />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">

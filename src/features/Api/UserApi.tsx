@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
 import { setContext } from '@apollo/client/link/context';
+import { GraphqlEndpoints } from '../../constants/GraphqlEndpoints';
 
 interface IApiProps {
     children: React.ReactElement | React.ReactElement[];
 }
 
-export const Api = ({ children }: IApiProps) => {
+export const UserApi = ({ children }: IApiProps) => {
     const { getAccessTokenSilently } = useAuth0();
     const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
 
@@ -17,7 +18,7 @@ export const Api = ({ children }: IApiProps) => {
                 const accessToken = await getAccessTokenSilently();
 
                 const httpLink = createHttpLink({
-                    uri: 'https://holy-mammal-41.hasura.app/v1/graphql',
+                    uri: GraphqlEndpoints.Hasura,
                 });
 
                 const authLink = setContext((_, { headers }) => {

@@ -14,10 +14,10 @@ export const Header: React.FC = () => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
-                    The faces of tomorrow
+                    The Faces of Tomorrow
                 </Typography>
                 <Authentication />
             </Toolbar>

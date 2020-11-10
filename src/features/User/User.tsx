@@ -23,7 +23,7 @@ export const User: React.FC = () => {
 
     return (
         <div>
-            <Button onClick={() => logout()} color="primary">
+            <Button onClick={() => logout()} color="inherit">
                 Logout
             </Button>
         </div>

@@ -1,14 +1,27 @@
 import React from 'react';
 import './App.css';
 import { Header } from './features/Header/Header';
-import { Api } from './features/Api/Api';
-import { Post } from './features/Post/Post';
+import { PostContainer } from './features/Post/PostContainer';
+import { InstagramApi } from './features/Api/InstagramApi';
+import { Container, makeStyles } from '@material-ui/core';
 
-export const App: React.FC = () => (
-    <div className="App">
-        <Api>
+const useStyles = makeStyles({
+    container: {
+        marginTop: 80,
+    },
+});
+
+export const App: React.FC = () => {
+    const classes = useStyles();
+
+    return (
+        <div className="App">
             <Header />
-            <Post />
-        </Api>
-    </div>
-);
+            <Container className={classes.container}>
+                <InstagramApi>
+                    <PostContainer />
+                </InstagramApi>
+            </Container>
+        </div>
+    );
+};
