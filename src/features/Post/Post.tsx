@@ -18,7 +18,7 @@ export const Post = ({ caption, mediaUrl }: IPostProps) => {
     const classes = useStyles();
 
     return (
-        <Grid item>
+        <Grid item xs={12}>
             <Card className={classes.root}>
                 <CardMedia component="img" height="600" image={mediaUrl} />
                 <CardContent>
