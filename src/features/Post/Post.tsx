@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const Post = ({ id, caption, mediaUrl }: IPostProps) => {
+export const Post = ({ caption, mediaUrl }: IPostProps) => {
     const classes = useStyles();
 
     return (
