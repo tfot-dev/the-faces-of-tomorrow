@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Getting Started with the project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You will need a set of tools to set up this project on your PC-
+* Visual Studio Code
+* NodeJS
+* `yarn`
+* `git`
+ 
+## Installation and Setting up the project
+
+* Open a terminal window and `cd` into the directory you want your repository inside.
+* Setup a SSH key with github following this guideline- https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh
+* Run `git clone git@github.com:karanhudia/the-faces-of-tomorrow.git`.
+* `cd` into the newly added project's directory by using `cd the-faces-of-tomorrow`.
+* Run `yarn`.
+* Start the development by running `yarn start`.
 
 ## Available Scripts
 
