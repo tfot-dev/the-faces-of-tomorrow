@@ -8,6 +8,8 @@ const Users = gql`
         users {
             id
             name
+            email_id
+            admin
         }
     }
 `;

@@ -8,7 +8,7 @@ interface IApiProps {
     children: React.ReactElement | React.ReactElement[];
 }
 
-export const UserApi = ({ children }: IApiProps) => {
+export const AuthenticatedApi = ({ children }: IApiProps) => {
     const { getAccessTokenSilently } = useAuth0();
     const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
 
