@@ -12,8 +12,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
@@ -60,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export interface ITab {
     label: string;
+    icon: React.ElementType;
 }
 
 interface MiniDrawerProps {
@@ -93,9 +92,11 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                 <Toolbar />
                 <Divider />
                 <List>
-                    {tabs.map(({ label }, index) => (
+                    {tabs.map(({ label, icon: LabelIcon }) => (
                         <ListItem button key={label}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon>
+                                <LabelIcon />
+                            </ListItemIcon>
                             <ListItemText primary={label} />
                         </ListItem>
                     ))}
