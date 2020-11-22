@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface ITab {
     label: string;
     icon: React.ElementType;
+    component: React.ElementType;
 }
 
 interface MiniDrawerProps {
@@ -68,10 +69,17 @@ interface MiniDrawerProps {
 export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [drawerItem, setDrawerItem] = React.useState(0);
 
     const handleDrawerClick = () => {
         setOpen(!open);
     };
+
+    const handleDrawerItem = (index: number) => {
+        setDrawerItem(index);
+    };
+
+    const DrawerContent = tabs[drawerItem].component;
 
     return (
         <div className={classes.root}>
@@ -92,8 +100,8 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                 <Toolbar />
                 <Divider />
                 <List>
-                    {tabs.map(({ label, icon: LabelIcon }) => (
-                        <ListItem button key={label}>
+                    {tabs.map(({ label, icon: LabelIcon }, index) => (
+                        <ListItem button key={label} onClick={() => handleDrawerItem(index)}>
                             <ListItemIcon>
                                 <LabelIcon />
                             </ListItemIcon>
@@ -108,7 +116,9 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                     </IconButton>
                 </div>
             </Drawer>
-            <main className={classes.content}></main>
+            <main className={classes.content}>
+                <DrawerContent />
+            </main>
         </div>
     );
 };
