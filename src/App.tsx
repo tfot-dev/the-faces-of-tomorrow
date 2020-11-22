@@ -25,7 +25,9 @@ export const App: React.FC = () => {
                 <Router>
                     <Switch>
                         <Route path="/admin">
-                            <Admin />
+                            <AuthenticatedApi>
+                                <Admin />
+                            </AuthenticatedApi>
                         </Route>
                         <Route path="/">
                             <InstagramApi>
