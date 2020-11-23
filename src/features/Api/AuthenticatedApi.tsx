@@ -34,7 +34,7 @@ export const AuthenticatedApi = ({ children }: IApiProps) => {
                     new ApolloClient({
                         link: authLink.concat(httpLink),
                         cache: new InMemoryCache({
-                            addTypename: false,
+                            addTypename: true,
                         }),
                     }),
                 );
