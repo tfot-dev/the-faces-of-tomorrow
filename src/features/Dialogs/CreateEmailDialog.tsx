@@ -14,7 +14,6 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { ICreateEmailForm } from '../Admin/Admin';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,6 +24,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+
+export interface ICreateEmailForm {
+    email: string;
+    message: string;
+    subject: string;
+}
 
 interface CreateEmailDialogProps {
     onSend: (data: ICreateEmailForm) => void;
