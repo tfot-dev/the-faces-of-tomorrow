@@ -1,11 +1,11 @@
 fragment Email on Email {
-    summary
+    folderId
+    fromAddress
+    messageId
+    receivedTime
+    sender
     sentDateInGMT
     subject
-    messageId
+    summary
     toAddress
-    sender
-    receivedTime
-    fromAddress
-    folderId
 }
