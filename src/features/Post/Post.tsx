@@ -1,11 +1,9 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Post as PostType } from '../../generated/graphql';
 
 export interface IPostProps {
-    id: string;
-    caption: string;
-    mediaUrl: string;
-    timestamp: string;
+    post: PostType;
 }
 
 const useStyles = makeStyles({
@@ -14,8 +12,10 @@ const useStyles = makeStyles({
     },
 });
 
-export const Post = ({ caption, mediaUrl }: IPostProps) => {
+export const Post = ({ post }: IPostProps) => {
     const classes = useStyles();
+
+    const { mediaUrl, caption } = post;
 
     return (
         <Grid item xs={12}>
