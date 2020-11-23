@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export interface ICreateEmailForm {
+interface ICreateEmailForm {
     email: string;
     message: string;
     subject: string;
