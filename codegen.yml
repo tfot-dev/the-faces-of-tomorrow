@@ -2,24 +2,13 @@ overwrite: true
 schema: "schema.graphql"
 documents: "src/**/*.graphql"
 generates:
-  src/generated/types.ts:
+  src/generated/graphql.ts:
     plugins:
       - typescript
-  src/generated/operations.ts:
-    documents: 'src/queries/**/**.gql'
-    preset: import-types
-    presetConfig:
-      typesPath: ./types
-    plugins:
       - typescript-operations
-  src/generated/hooks.ts:
-    preset: import-types
-    presetConfig:
-      typesPath: ./operations
-    plugins:
       - typescript-react-apollo
     config:
-      # Optionals
       withHOC: false
       withComponent: false
       withHooks: true
+      avoidOptionals: true
