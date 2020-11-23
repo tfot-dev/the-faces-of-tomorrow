@@ -1,21 +1,10 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@material-ui/core';
-
-const Users = gql`
-    query GetAllUsers {
-        users {
-            id
-            name
-            email_id
-            admin
-        }
-    }
-`;
+import { useGetAllUsersQuery } from '../../generated/graphql';
 
 export const User: React.FC = () => {
-    const { loading, error, data } = useQuery(Users);
+    const { loading, error, data } = useGetAllUsersQuery();
     const { logout } = useAuth0();
 
     if (loading) return <p>Loading...</p>;
