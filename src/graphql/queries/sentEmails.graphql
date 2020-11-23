@@ -1,0 +1,7 @@
+#import "../fragments/email.graphql"
+
+query GetSentEmails {
+    sentEmails {
+        ...SentEmail
+    }
+}

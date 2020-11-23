@@ -78,7 +78,35 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   emails: Array<Maybe<Email>>;
+  getEmail?: Maybe<Email>;
   posts: Array<Maybe<Post>>;
+  sentEmails: Array<Maybe<SentEmail>>;
+};
+
+
+export type QueryGetEmailArgs = {
+  messageId: Scalars['String'];
+};
+
+export type SentEmail = {
+  __typename?: 'SentEmail';
+  calendarType: Scalars['Int'];
+  flagid: Scalars['String'];
+  folderId: Scalars['String'];
+  fromAddress: Scalars['String'];
+  hasAttachment: Scalars['String'];
+  hasInline: Scalars['String'];
+  messageId: Scalars['String'];
+  priority: Scalars['String'];
+  receivedTime: Scalars['String'];
+  sender: Scalars['String'];
+  sentDateInGMT: Scalars['String'];
+  size: Scalars['String'];
+  status: Scalars['String'];
+  status2: Scalars['String'];
+  subject: Scalars['String'];
+  summary: Scalars['String'];
+  toAddress: Scalars['String'];
 };
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -367,17 +395,25 @@ export type Query_Root = {
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   emails: Array<Maybe<Email>>;
+  getEmail?: Maybe<Email>;
   /** fetch data from the table: "online_users" */
   online_users: Array<Online_Users>;
   /** fetch aggregated fields from the table: "online_users" */
   online_users_aggregate: Online_Users_Aggregate;
   posts: Array<Maybe<Post>>;
+  sentEmails: Array<Maybe<SentEmail>>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+/** query root */
+export type Query_RootGetEmailArgs = {
+  messageId: Scalars['String'];
 };
 
 
@@ -721,6 +757,11 @@ export type PostFragment = (
   & Pick<Post, 'id' | 'caption' | 'mediaUrl' | 'timestamp'>
 );
 
+export type SentEmailFragment = (
+  { __typename?: 'SentEmail' }
+  & Pick<SentEmail, 'calendarType' | 'flagid' | 'folderId' | 'fromAddress' | 'hasAttachment' | 'hasInline' | 'messageId' | 'priority' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'size' | 'status' | 'status2' | 'subject' | 'summary' | 'toAddress'>
+);
+
 export type UserFragment = (
   { __typename?: 'users' }
   & Pick<Users, 'id' | 'name' | 'email_id' | 'admin'>
@@ -752,6 +793,19 @@ export type GetAllEmailsQuery = (
   )>> }
 );
 
+export type GetEmailQueryVariables = Exact<{
+  messageId: Scalars['String'];
+}>;
+
+
+export type GetEmailQuery = (
+  { __typename?: 'query_root' }
+  & { getEmail?: Maybe<(
+    { __typename?: 'Email' }
+    & EmailFragment
+  )> }
+);
+
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -760,6 +814,17 @@ export type GetAllPostsQuery = (
   & { posts: Array<Maybe<(
     { __typename?: 'Post' }
     & PostFragment
+  )>> }
+);
+
+export type GetSentEmailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSentEmailsQuery = (
+  { __typename?: 'query_root' }
+  & { sentEmails: Array<Maybe<(
+    { __typename?: 'SentEmail' }
+    & SentEmailFragment
   )>> }
 );
 
@@ -793,6 +858,27 @@ export const PostFragmentDoc = gql`
   caption
   mediaUrl
   timestamp
+}
+    `;
+export const SentEmailFragmentDoc = gql`
+    fragment SentEmail on SentEmail {
+  calendarType
+  flagid
+  folderId
+  fromAddress
+  hasAttachment
+  hasInline
+  messageId
+  priority
+  receivedTime
+  sender
+  sentDateInGMT
+  size
+  status
+  status2
+  subject
+  summary
+  toAddress
 }
     `;
 export const UserFragmentDoc = gql`
@@ -869,6 +955,39 @@ export function useGetAllEmailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetAllEmailsQueryHookResult = ReturnType<typeof useGetAllEmailsQuery>;
 export type GetAllEmailsLazyQueryHookResult = ReturnType<typeof useGetAllEmailsLazyQuery>;
 export type GetAllEmailsQueryResult = Apollo.QueryResult<GetAllEmailsQuery, GetAllEmailsQueryVariables>;
+export const GetEmailDocument = gql`
+    query GetEmail($messageId: String!) {
+  getEmail(messageId: $messageId) {
+    ...Email
+  }
+}
+    ${EmailFragmentDoc}`;
+
+/**
+ * __useGetEmailQuery__
+ *
+ * To run a query within a React component, call `useGetEmailQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEmailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEmailQuery({
+ *   variables: {
+ *      messageId: // value for 'messageId'
+ *   },
+ * });
+ */
+export function useGetEmailQuery(baseOptions: Apollo.QueryHookOptions<GetEmailQuery, GetEmailQueryVariables>) {
+        return Apollo.useQuery<GetEmailQuery, GetEmailQueryVariables>(GetEmailDocument, baseOptions);
+      }
+export function useGetEmailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEmailQuery, GetEmailQueryVariables>) {
+          return Apollo.useLazyQuery<GetEmailQuery, GetEmailQueryVariables>(GetEmailDocument, baseOptions);
+        }
+export type GetEmailQueryHookResult = ReturnType<typeof useGetEmailQuery>;
+export type GetEmailLazyQueryHookResult = ReturnType<typeof useGetEmailLazyQuery>;
+export type GetEmailQueryResult = Apollo.QueryResult<GetEmailQuery, GetEmailQueryVariables>;
 export const GetAllPostsDocument = gql`
     query GetAllPosts {
   posts {
@@ -901,6 +1020,38 @@ export function useGetAllPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetAllPostsQueryHookResult = ReturnType<typeof useGetAllPostsQuery>;
 export type GetAllPostsLazyQueryHookResult = ReturnType<typeof useGetAllPostsLazyQuery>;
 export type GetAllPostsQueryResult = Apollo.QueryResult<GetAllPostsQuery, GetAllPostsQueryVariables>;
+export const GetSentEmailsDocument = gql`
+    query GetSentEmails {
+  sentEmails {
+    ...SentEmail
+  }
+}
+    ${SentEmailFragmentDoc}`;
+
+/**
+ * __useGetSentEmailsQuery__
+ *
+ * To run a query within a React component, call `useGetSentEmailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSentEmailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSentEmailsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSentEmailsQuery(baseOptions?: Apollo.QueryHookOptions<GetSentEmailsQuery, GetSentEmailsQueryVariables>) {
+        return Apollo.useQuery<GetSentEmailsQuery, GetSentEmailsQueryVariables>(GetSentEmailsDocument, baseOptions);
+      }
+export function useGetSentEmailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSentEmailsQuery, GetSentEmailsQueryVariables>) {
+          return Apollo.useLazyQuery<GetSentEmailsQuery, GetSentEmailsQueryVariables>(GetSentEmailsDocument, baseOptions);
+        }
+export type GetSentEmailsQueryHookResult = ReturnType<typeof useGetSentEmailsQuery>;
+export type GetSentEmailsLazyQueryHookResult = ReturnType<typeof useGetSentEmailsLazyQuery>;
+export type GetSentEmailsQueryResult = Apollo.QueryResult<GetSentEmailsQuery, GetSentEmailsQueryVariables>;
 export const GetAllUsersDocument = gql`
     query GetAllUsers {
   users {

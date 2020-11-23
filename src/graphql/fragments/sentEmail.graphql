@@ -1,0 +1,19 @@
+fragment SentEmail on SentEmail {
+    calendarType
+    flagid
+    folderId
+    fromAddress
+    hasAttachment
+    hasInline
+    messageId
+    priority
+    receivedTime
+    sender
+    sentDateInGMT
+    size
+    status
+    status2
+    subject
+    summary
+    toAddress
+}

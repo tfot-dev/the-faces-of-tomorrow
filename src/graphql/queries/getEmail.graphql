@@ -1,0 +1,7 @@
+#import "../fragments/email.graphql"
+
+query GetEmail($messageId: String!) {
+    getEmail(messageId: $messageId) {
+        ...Email
+    }
+}
