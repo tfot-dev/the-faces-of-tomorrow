@@ -1,10 +1,10 @@
 import React from 'react';
 import { Divider } from '@material-ui/core';
 import { EmailListItem } from './EmailListItem';
-import { Email } from '../../generated/graphql';
+import { Email, SentEmail } from '../../generated/graphql';
 
 interface EmailListViewProps {
-    emails: (Email | null)[];
+    emails: (Email | SentEmail | null)[];
 }
 
 export const EmailListView = ({ emails }: EmailListViewProps) => (

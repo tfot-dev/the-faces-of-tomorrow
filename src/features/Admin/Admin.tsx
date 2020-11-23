@@ -5,7 +5,7 @@ import { CreateEmailDialog } from '../Dialogs/CreateEmailDialog';
 import { useSendEmailMutation } from '../../generated/graphql';
 
 export const Admin = () => {
-    const [sendEmail] = useSendEmailMutation();
+    const [sendEmail] = useSendEmailMutation({ refetchQueries: ['sentEmails'] });
 
     return (
         <div>

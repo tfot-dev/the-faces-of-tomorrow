@@ -40,7 +40,10 @@ export const CreateEmailDialog = ({ onSend }: CreateEmailDialogProps) => {
     const [open, setOpen] = useState(false);
     const classes = useStyles();
 
-    const onSubmit = (data: ICreateEmailForm) => onSend(data);
+    const onSubmit = (data: ICreateEmailForm) => {
+        onSend(data);
+        handleClose();
+    };
 
     const handleClose = () => {
         setOpen(false);

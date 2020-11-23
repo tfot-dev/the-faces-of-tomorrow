@@ -5,6 +5,7 @@ import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import InboxIcon from '@material-ui/icons/Inbox';
 import { EmailContainer } from '../features/Email/EmailContainer';
+import { EmailSentContainer } from '../features/Email/EmailSentContainer';
 
 export const AdminSideNavItems = [
     {
@@ -15,7 +16,7 @@ export const AdminSideNavItems = [
     {
         label: 'Contacted',
         icon: ContactMailIcon,
-        component: EmailContainer,
+        component: EmailSentContainer,
     },
     {
         label: 'Unassigned',
