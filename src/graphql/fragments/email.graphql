@@ -1,0 +1,11 @@
+fragment Email on Email {
+    summary
+    sentDateInGMT
+    subject
+    messageId
+    toAddress
+    sender
+    receivedTime
+    fromAddress
+    folderId
+}
