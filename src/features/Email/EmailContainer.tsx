@@ -3,6 +3,8 @@ import { createStyles, List, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { EmailListView } from './EmailListView';
 import { useGetAllEmailsQuery } from '../../generated/graphql';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { EmailItemContent } from './EmailItemContent';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -14,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const EmailContainer: React.FC = () => {
+    const { url, path, params } = useRouteMatch();
     const classes = useStyles();
     const { loading, error, data } = useGetAllEmailsQuery();
 
@@ -23,11 +26,16 @@ export const EmailContainer: React.FC = () => {
         return null;
     }
 
-    console.log(data);
+    console.log({ url, path, params, data });
 
     return (
-        <List className={classes.root}>
-            <EmailListView emails={data.emails} />
-        </List>
+        <Switch>
+            <Route exact path={url}>
+                <List className={classes.root}>
+                    <EmailListView emails={data.emails} />
+                </List>
+            </Route>
+            <Route path={`${url}/:messageId`} component={EmailItemContent} />
+        </Switch>
     );
 };

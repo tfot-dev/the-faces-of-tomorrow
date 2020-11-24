@@ -1,20 +1,23 @@
 import React from 'react';
 import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
-// import { useRouteMatch } from 'react-router-dom';
 import { Email, SentEmail } from '../../generated/graphql';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 interface EmailListItemProps {
     email: Email | SentEmail;
 }
 
 export const EmailListItem = ({ email }: EmailListItemProps) => {
-    // const match = useRouteMatch();
-    const handleEmailClick = () => {
-        console.log('email clicked');
-    };
+    const { url } = useRouteMatch();
 
     return (
-        <ListItem button alignItems="flex-start" key={email.toAddress} onClick={handleEmailClick}>
+        <ListItem
+            button
+            alignItems="flex-start"
+            key={email.toAddress}
+            component={Link}
+            to={`${url}/${email.messageId}`}
+        >
             <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             </ListItemAvatar>
