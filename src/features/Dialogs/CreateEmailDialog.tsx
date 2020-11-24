@@ -14,6 +14,7 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
+import { useSendEmailMutation } from '../../generated/graphql';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -26,22 +27,20 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ICreateEmailForm {
-    email: string;
+    toAddress: string;
     message: string;
     subject: string;
 }
 
-interface CreateEmailDialogProps {
-    onSend: (data: ICreateEmailForm) => void;
-}
-
-export const CreateEmailDialog = ({ onSend }: CreateEmailDialogProps) => {
+export const CreateEmailDialog = () => {
+    const [sendEmail] = useSendEmailMutation({ refetchQueries: ['sentEmails'] });
     const { register, handleSubmit } = useForm();
     const [open, setOpen] = useState(false);
     const classes = useStyles();
 
     const onSubmit = (data: ICreateEmailForm) => {
-        onSend(data);
+        const { toAddress, subject, message } = data;
+        sendEmail({ variables: { toAddress, subject, message } });
         handleClose();
     };
 
@@ -63,7 +62,7 @@ export const CreateEmailDialog = ({ onSend }: CreateEmailDialogProps) => {
                             label="Email Address"
                             type="email"
                             fullWidth
-                            name="email"
+                            name="toAddress"
                             inputRef={register}
                         />
                         <TextField

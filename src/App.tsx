@@ -24,12 +24,8 @@ export const App: React.FC = () => {
             <Container className={classes.container}>
                 <Router>
                     <Switch>
-                        <Route path="/admin">
-                            <AuthenticatedApi>
-                                <Admin />
-                            </AuthenticatedApi>
-                        </Route>
-                        <Route path="/">
+                        <Route path="/admin" component={Admin} />
+                        <Route exact path="/">
                             <InstagramApi>
                                 <PostContainer />
                             </InstagramApi>
