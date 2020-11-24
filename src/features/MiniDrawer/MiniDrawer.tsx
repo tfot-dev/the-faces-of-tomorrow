@@ -12,6 +12,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Link, Redirect, Route, useRouteMatch } from 'react-router-dom';
+import { MiniDrawerContent } from './MiniDrawerContent';
 
 const drawerWidth = 240;
 
@@ -60,6 +62,7 @@ export interface ITab {
     label: string;
     icon: React.ElementType;
     component: React.ElementType;
+    route: string;
 }
 
 interface MiniDrawerProps {
@@ -67,19 +70,14 @@ interface MiniDrawerProps {
 }
 
 export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
+    const { url, path } = useRouteMatch<{ tabId: string }>();
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [drawerItem, setDrawerItem] = React.useState(0);
+    const [currentRoute, setCurrentRoute] = React.useState<string>();
 
     const handleDrawerClick = () => {
         setOpen(!open);
     };
-
-    const handleDrawerItem = (index: number) => {
-        setDrawerItem(index);
-    };
-
-    const DrawerContent = tabs[drawerItem].component;
 
     return (
         <div className={classes.root}>
@@ -97,15 +95,16 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                     }),
                 }}
             >
-                <Toolbar />
+                <Toolbar /> {/* For spacing from top*/}
                 <Divider />
-                <List>
-                    {tabs.map(({ label, icon: LabelIcon }, index) => (
+                <List disablePadding>
+                    {tabs.map(({ label, icon: LabelIcon, route }) => (
                         <ListItem
                             button
                             key={label}
-                            onClick={() => handleDrawerItem(index)}
-                            selected={drawerItem === index}
+                            selected={currentRoute === route}
+                            component={Link}
+                            to={`${url}/${route}`}
                         >
                             <ListItemIcon>
                                 <LabelIcon />
@@ -122,7 +121,10 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                 </div>
             </Drawer>
             <main className={classes.content}>
-                <DrawerContent />
+                <Route exact path="/admin" render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
+                <Route path={`${path}/:tabId`}>
+                    <MiniDrawerContent tabs={tabs} routeSelected={setCurrentRoute} />
+                </Route>
             </main>
         </div>
     );

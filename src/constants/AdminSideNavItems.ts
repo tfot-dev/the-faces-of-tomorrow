@@ -12,30 +12,36 @@ export const AdminSideNavItems = [
         label: 'Messages',
         icon: InboxIcon,
         component: EmailContainer,
+        route: 'messages',
     },
     {
         label: 'Contacted',
         icon: ContactMailIcon,
         component: EmailSentContainer,
+        route: 'contacted',
     },
     {
         label: 'Unassigned',
         icon: HourglassEmptyIcon,
         component: EmailContainer,
+        route: 'unassigned',
     },
     {
         label: 'In Progress',
         icon: CachedIcon,
         component: EmailContainer,
+        route: 'inprogress',
     },
     {
         label: 'Finished',
         icon: CheckCircleIcon,
         component: EmailContainer,
+        route: 'finished',
     },
     {
         label: 'Featured',
         icon: FeaturedPlayListIcon,
         component: EmailContainer,
+        route: 'featured',
     },
 ];
