@@ -101,7 +101,12 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                 <Divider />
                 <List>
                     {tabs.map(({ label, icon: LabelIcon }, index) => (
-                        <ListItem button key={label} onClick={() => handleDrawerItem(index)}>
+                        <ListItem
+                            button
+                            key={label}
+                            onClick={() => handleDrawerItem(index)}
+                            selected={drawerItem === index}
+                        >
                             <ListItemIcon>
                                 <LabelIcon />
                             </ListItemIcon>
