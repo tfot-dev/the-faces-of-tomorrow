@@ -31,7 +31,7 @@ export const EmailContainer: React.FC = () => {
     return (
         <Switch>
             <Route exact path={url}>
-                <List className={classes.root}>
+                <List disablePadding className={classes.root}>
                     <EmailListView emails={data.emails} />
                 </List>
             </Route>

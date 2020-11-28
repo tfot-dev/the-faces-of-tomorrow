@@ -26,7 +26,7 @@ export const EmailSentContainer: React.FC = () => {
     console.log(data);
 
     return (
-        <List className={classes.root}>
+        <List disablePadding className={classes.root}>
             <EmailListView emails={data.sentEmails} />
         </List>
     );
