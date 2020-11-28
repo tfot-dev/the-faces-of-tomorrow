@@ -2,13 +2,13 @@ import React from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { GraphqlEndpoints } from '../../constants/GraphqlEndpoints';
 
-interface IInstagramApiProps {
+interface IPublicApiProps {
     children: React.ReactElement | React.ReactElement[];
 }
 
-export const InstagramApi = ({ children }: IInstagramApiProps) => {
+export const PublicApi = ({ children }: IPublicApiProps) => {
     const client = new ApolloClient({
-        uri: GraphqlEndpoints.Instagram,
+        uri: GraphqlEndpoints.Public,
         cache: new InMemoryCache(),
     });
 
