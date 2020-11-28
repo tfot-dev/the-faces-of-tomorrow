@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, Divider, List, Theme } from '@material-ui/core';
+import { Box, createStyles, Divider, List, Theme } from '@material-ui/core';
 import { EmailListItem } from './EmailListItem';
 import { Email, SentEmail } from '../../generated/graphql';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
@@ -25,17 +25,19 @@ export const EmailListView = ({ emails, emailContent }: EmailListViewProps) => {
     return (
         <Switch>
             <Route exact path={url}>
-                <List disablePadding className={classes.root}>
-                    {emails.map(
-                        (email, index: number) =>
-                            email !== null && (
-                                <>
-                                    <EmailListItem email={email} />
-                                    {index !== emails.length - 1 && <Divider component="li" />}
-                                </>
-                            ),
-                    )}
-                </List>
+                <Box boxShadow={2}>
+                    <List disablePadding className={classes.root}>
+                        {emails.map(
+                            (email, index: number) =>
+                                email !== null && (
+                                    <>
+                                        <EmailListItem email={email} />
+                                        {index !== emails.length - 1 && <Divider component="li" />}
+                                    </>
+                                ),
+                        )}
+                    </List>
+                </Box>
             </Route>
             <Route path={`${url}/:messageId`} component={emailContent} />
         </Switch>
