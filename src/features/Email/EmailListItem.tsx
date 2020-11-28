@@ -10,7 +10,7 @@ interface EmailListItemProps {
 export const EmailListItem = ({ email }: EmailListItemProps) => {
     const { url } = useRouteMatch();
 
-    const { toAddress, messageId, subject, sender, summary } = email;
+    const { toAddress, messageId, subject, sender } = email;
 
     return (
         <ListItem button alignItems="flex-start" key={toAddress} component={Link} to={`${url}/${messageId}`}>
@@ -24,7 +24,6 @@ export const EmailListItem = ({ email }: EmailListItemProps) => {
                         <Typography component="span" variant="body2" color="textPrimary">
                             {sender}
                         </Typography>
-                        {` — ${summary}`}
                     </React.Fragment>
                 }
             />
