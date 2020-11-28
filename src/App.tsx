@@ -4,8 +4,6 @@ import { Header } from './features/Header/Header';
 import { PostContainer } from './features/Post/PostContainer';
 import { PublicApi } from './features/Api/PublicApi';
 import { Container, makeStyles } from '@material-ui/core';
-import { EmailContainer } from './features/Email/EmailContainer';
-import { AuthenticatedApi } from './features/Api/AuthenticatedApi';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Admin } from './features/Admin/Admin';
 
@@ -29,9 +27,6 @@ export const App: React.FC = () => {
                             <PublicApi>
                                 <PostContainer />
                             </PublicApi>
-                            <AuthenticatedApi>
-                                <EmailContainer />
-                            </AuthenticatedApi>
                         </Route>
                     </Switch>
                 </Router>
