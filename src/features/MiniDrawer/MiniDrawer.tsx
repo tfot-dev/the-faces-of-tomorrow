@@ -121,7 +121,7 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                 </div>
             </Drawer>
             <main className={classes.content}>
-                <Route exact path="/admin" render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
+                <Route exact path={path} render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
                 <Route path={`${path}/:tabId`}>
                     <MiniDrawerContent tabs={tabs} routeSelected={setCurrentRoute} />
                 </Route>

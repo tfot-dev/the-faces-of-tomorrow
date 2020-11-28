@@ -10,25 +10,21 @@ interface EmailListItemProps {
 export const EmailListItem = ({ email }: EmailListItemProps) => {
     const { url } = useRouteMatch();
 
+    const { toAddress, messageId, subject, sender, summary } = email;
+
     return (
-        <ListItem
-            button
-            alignItems="flex-start"
-            key={email.toAddress}
-            component={Link}
-            to={`${url}/${email.messageId}`}
-        >
+        <ListItem button alignItems="flex-start" key={toAddress} component={Link} to={`${url}/${messageId}`}>
             <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar>{sender.substr(0, 1)}</Avatar>
             </ListItemAvatar>
             <ListItemText
-                primary={email.subject}
+                primary={subject}
                 secondary={
                     <React.Fragment>
                         <Typography component="span" variant="body2" color="textPrimary">
-                            {email.sender}
+                            {sender}
                         </Typography>
-                        {` — ${email.summary}`}
+                        {` — ${summary}`}
                     </React.Fragment>
                 }
             />
