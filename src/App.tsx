@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Header } from './features/Header/Header';
 import { PostContainer } from './features/Post/PostContainer';
-import { InstagramApi } from './features/Api/InstagramApi';
+import { PublicApi } from './features/Api/PublicApi';
 import { Container, makeStyles } from '@material-ui/core';
 import { EmailContainer } from './features/Email/EmailContainer';
 import { AuthenticatedApi } from './features/Api/AuthenticatedApi';
@@ -26,9 +26,9 @@ export const App: React.FC = () => {
                     <Switch>
                         <Route path="/admin" component={Admin} />
                         <Route exact path="/">
-                            <InstagramApi>
+                            <PublicApi>
                                 <PostContainer />
-                            </InstagramApi>
+                            </PublicApi>
                             <AuthenticatedApi>
                                 <EmailContainer />
                             </AuthenticatedApi>
