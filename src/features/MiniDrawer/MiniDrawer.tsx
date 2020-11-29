@@ -52,8 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'fixed',
             bottom: 0,
             paddingBottom: 10,
+            [theme.breakpoints.down('sm')]: {
+                display: 'none',
+            },
         },
-        offset: theme.mixins.toolbar,
     }),
 );
 
