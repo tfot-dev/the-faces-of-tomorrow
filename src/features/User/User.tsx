@@ -3,6 +3,7 @@ import { Avatar, CircularProgress, IconButton, Menu, MenuItem } from '@material-
 import React from 'react';
 import { useGetAllUsersQuery } from '../../generated/graphql';
 import { Error } from '../Error/Error';
+import { Link } from 'react-router-dom';
 
 export const User: React.FC = () => {
     const { loading, error, data } = useGetAllUsersQuery();
@@ -29,7 +30,11 @@ export const User: React.FC = () => {
             </IconButton>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                {user.email.includes('@thefacesoftomorrow.com') && (
+                    <MenuItem onClick={handleClose} component={Link} to="/admin">
+                        Admin
+                    </MenuItem>
+                )}
                 <MenuItem onClick={() => logout()}>Logout</MenuItem>
             </Menu>
         </div>

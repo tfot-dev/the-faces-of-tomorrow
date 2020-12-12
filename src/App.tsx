@@ -17,20 +17,18 @@ export const App: React.FC = () => {
     const classes = useStyles();
 
     return (
-        <div>
+        <Router>
             <Header />
             <Container className={classes.container}>
-                <Router>
-                    <Switch>
-                        <Route path="/admin" component={Admin} />
-                        <Route exact path="/">
-                            <PublicApi>
-                                <PostContainer />
-                            </PublicApi>
-                        </Route>
-                    </Switch>
-                </Router>
+                <Switch>
+                    <Route path="/admin" component={Admin} />
+                    <Route exact path="/">
+                        <PublicApi>
+                            <PostContainer />
+                        </PublicApi>
+                    </Route>
+                </Switch>
             </Container>
-        </div>
+        </Router>
     );
 };
