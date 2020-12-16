@@ -11,9 +11,13 @@ type ThemeButton = {
 };
 
 export const ThemeButton = ({ onThemeChange }: ThemeButton) => {
-    const [darkMode, setDarkMode] = React.useState<boolean>(
-        getLocalStorage(LocalStorageItems.Theme) === ThemeModes.Dark,
-    );
+    const currentLocalTheme = getLocalStorage<PaletteType>(LocalStorageItems.Theme);
+
+    if (currentLocalTheme) {
+        onThemeChange(currentLocalTheme);
+    }
+
+    const [darkMode, setDarkMode] = React.useState<boolean>(currentLocalTheme === ThemeModes.Dark);
 
     const handleDarkModeToggle = () => {
         const newThemeMode = !darkMode ? ThemeModes.Dark : ThemeModes.Light;

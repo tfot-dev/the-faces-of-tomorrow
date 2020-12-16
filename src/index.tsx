@@ -7,8 +7,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { Auth } from './constants/Auth';
 import { AppState } from '@auth0/auth0-react/dist/auth0-provider';
 import { history } from './utils/history';
-import { ThemeProvider } from '@material-ui/core';
-import { theme } from './config/theme';
 
 const onRedirectCallback = (appState: AppState) => {
     history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);
@@ -23,9 +21,7 @@ ReactDOM.render(
             redirectUri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
         >
-            <ThemeProvider theme={theme}>
-                <App />
-            </ThemeProvider>
+            <App />
         </Auth0Provider>
     </React.StrictMode>,
     document.getElementById('root'),

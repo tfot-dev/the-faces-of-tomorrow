@@ -1,34 +1,27 @@
 import React from 'react';
 import './App.css';
-import { Header } from './features/Header/Header';
-import { PostContainer } from './features/Post/PostContainer';
-import { PublicApi } from './features/Api/PublicApi';
-import { Container, makeStyles } from '@material-ui/core';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { PaletteType, ThemeProvider } from '@material-ui/core';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Admin } from './features/Admin/Admin';
-
-const useStyles = makeStyles({
-    container: {
-        marginTop: 30,
-    },
-});
+import { YourStory } from './features/YourStory/YourStory';
+import { Home } from './features/Home/Home';
+import { theme } from './config/theme';
+import { MainLayoutRoute } from './features/LayoutRoutes/MainLayoutRoute';
+import { HomeLayoutRoute } from './features/LayoutRoutes/HomeLayoutRoute';
 
 export const App: React.FC = () => {
-    const classes = useStyles();
+    const [themeMode, setThemeMode] = React.useState<PaletteType>();
+    const themeConfig = theme(themeMode);
 
     return (
-        <Router>
-            <Header />
-            <Container className={classes.container}>
+        <ThemeProvider theme={themeConfig}>
+            <Router>
                 <Switch>
-                    <Route path="/admin" component={Admin} />
-                    <Route exact path="/">
-                        <PublicApi>
-                            <PostContainer />
-                        </PublicApi>
-                    </Route>
+                    <MainLayoutRoute path="/yourstory" component={YourStory} onThemeChange={setThemeMode} />
+                    <MainLayoutRoute path="/admin" component={Admin} onThemeChange={setThemeMode} />
+                    <HomeLayoutRoute exact path="/" component={Home} onThemeChange={setThemeMode} />
                 </Switch>
-            </Container>
-        </Router>
+            </Router>
+        </ThemeProvider>
     );
 };
