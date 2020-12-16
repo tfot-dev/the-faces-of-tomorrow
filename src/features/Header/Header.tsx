@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Avatar, createStyles, PaletteType, Theme, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, createStyles, Theme, Toolbar, Typography } from '@material-ui/core';
 import { Authentication } from '../Authentication/Authentication';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../assets/logo.png';
@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Header = {
-    onThemeChange: (mode: PaletteType) => void;
+    onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const Header = ({ onThemeChange }: Header) => {
+export const Header = ({ onThemeToggle }: Header) => {
     const classes = useStyles();
 
     return (
@@ -33,7 +33,7 @@ export const Header = ({ onThemeChange }: Header) => {
                     <Typography variant="h6" className={classes.title}>
                         The Faces of Tomorrow
                     </Typography>
-                    <ThemeButton onThemeChange={onThemeChange} />
+                    <ThemeButton onThemeToggle={onThemeToggle} />
                     <Authentication />
                 </Toolbar>
             </AppBar>

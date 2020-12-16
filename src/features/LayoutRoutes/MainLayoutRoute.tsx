@@ -10,12 +10,12 @@ const useStyles = makeStyles({
     },
 });
 
-export const MainLayoutRoute = ({ onThemeChange, ...rest }: LayoutRoute) => {
+export const MainLayoutRoute = ({ onThemeToggle, ...rest }: LayoutRoute) => {
     const classes = useStyles();
 
     return (
         <>
-            <Header onThemeChange={onThemeChange} />
+            <Header onThemeToggle={onThemeToggle} />
             <Container className={classes.container}>
                 <Route {...rest} />
             </Container>

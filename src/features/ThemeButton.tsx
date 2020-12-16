@@ -1,30 +1,27 @@
 import React from 'react';
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 import { LocalStorageItems } from '../constants/LocalStorageItems';
-import { ThemeModes } from '../constants/ThemeModes';
-import { IconButton, PaletteType } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 
 type ThemeButton = {
-    onThemeChange: (mode: PaletteType) => void;
+    onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const ThemeButton = ({ onThemeChange }: ThemeButton) => {
-    const currentLocalTheme = getLocalStorage<PaletteType>(LocalStorageItems.Theme);
+export const ThemeButton = ({ onThemeToggle }: ThemeButton) => {
+    const isLocallyDarkMode = getLocalStorage(LocalStorageItems.DarkMode) === 'true';
 
-    if (currentLocalTheme) {
-        onThemeChange(currentLocalTheme);
+    if (isLocallyDarkMode) {
+        onThemeToggle(isLocallyDarkMode);
     }
 
-    const [darkMode, setDarkMode] = React.useState<boolean>(currentLocalTheme === ThemeModes.Dark);
+    const [darkMode, setDarkMode] = React.useState<boolean>(isLocallyDarkMode);
 
     const handleDarkModeToggle = () => {
-        const newThemeMode = !darkMode ? ThemeModes.Dark : ThemeModes.Light;
-
-        setLocalStorage(LocalStorageItems.Theme, newThemeMode);
+        setLocalStorage<boolean>(LocalStorageItems.DarkMode, !darkMode);
         setDarkMode(!darkMode);
-        onThemeChange(newThemeMode as PaletteType);
+        onThemeToggle(!darkMode);
     };
 
     return (

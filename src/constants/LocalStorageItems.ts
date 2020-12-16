@@ -1,3 +1,3 @@
 export const LocalStorageItems = {
-    Theme: 'theme',
+    DarkMode: 'darkMode',
 };
