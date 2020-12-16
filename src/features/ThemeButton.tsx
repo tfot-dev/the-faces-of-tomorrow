@@ -2,7 +2,7 @@ import React from 'react';
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 import { LocalStorageItems } from '../constants/LocalStorageItems';
 import { ThemeModes } from '../constants/ThemeModes';
-import { PaletteType } from '@material-ui/core';
+import { IconButton, PaletteType } from '@material-ui/core';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 
@@ -27,9 +27,7 @@ export const ThemeButton = ({ onThemeChange }: ThemeButton) => {
         onThemeChange(newThemeMode as PaletteType);
     };
 
-    return darkMode ? (
-        <Brightness5Icon onClick={handleDarkModeToggle} />
-    ) : (
-        <NightsStayIcon onClick={handleDarkModeToggle} />
+    return (
+        <IconButton onClick={handleDarkModeToggle}>{darkMode ? <Brightness5Icon /> : <NightsStayIcon />}</IconButton>
     );
 };
