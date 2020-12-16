@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppBar, Avatar, createStyles, Theme, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, createStyles, PaletteType, Theme, Toolbar, Typography } from '@material-ui/core';
 import { Authentication } from '../Authentication/Authentication';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../assets/logo.png';
+import { ThemeButton } from '../ThemeButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,7 +17,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
-export const Header: React.FC = () => {
+
+type Header = {
+    onThemeChange: (mode: PaletteType) => void;
+};
+
+export const Header = ({ onThemeChange }: Header) => {
     const classes = useStyles();
 
     return (
@@ -27,6 +33,7 @@ export const Header: React.FC = () => {
                     <Typography variant="h6" className={classes.title}>
                         The Faces of Tomorrow
                     </Typography>
+                    <ThemeButton onThemeChange={onThemeChange} />
                     <Authentication />
                 </Toolbar>
             </AppBar>
