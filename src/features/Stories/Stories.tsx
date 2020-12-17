@@ -8,8 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             backgroundColor: theme.palette.shades[200],
-            height: 500,
-            padding: 5,
+            padding: '20px 0',
         },
     }),
 );
