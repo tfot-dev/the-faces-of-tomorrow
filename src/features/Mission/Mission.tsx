@@ -6,8 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             backgroundColor: theme.palette.shades[300],
-            height: 300,
-            padding: 5,
+            padding: '20px 0',
         },
     }),
 );

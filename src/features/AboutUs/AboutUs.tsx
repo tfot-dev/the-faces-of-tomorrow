@@ -8,8 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             backgroundColor: theme.palette.shades[400],
-            height: 300,
-            padding: 5,
+            padding: '20px 0',
         },
     }),
 );
@@ -23,11 +22,7 @@ export const AboutUs = () => {
                 Who we are?
             </Typography>
             <Box display="flex" justifyContent="space-evenly" margin={5}>
-                <ProfileInfo image={KaranPicture} text="Best web developer of life time" />
-                <ProfileInfo image={KaranPicture} text="Best web developer of life time" />
-                <ProfileInfo image={KaranPicture} text="Best web developer of life time" />
-                <ProfileInfo image={KaranPicture} text="Best web developer of life time" />
-                <ProfileInfo image={KaranPicture} text="Best web developer of life time" />
+                <ProfileInfo image={KaranPicture} text="Trying my best!" />
             </Box>
         </Box>
     );

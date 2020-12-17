@@ -29,7 +29,7 @@ const ProfileInfo = ({ image, text }: ProfileInfo) => {
         <Box className={classes.root}>
             <Avatar src={image} className={classes.picture} />
             <Typography variant="caption" color="textPrimary">
-                {text}
+                {`"${text}"`}
             </Typography>
         </Box>
     );
