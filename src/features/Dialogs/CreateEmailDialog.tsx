@@ -58,24 +58,15 @@ export const CreateEmailDialog = () => {
                         <TextField
                             autoFocus
                             margin="dense"
-                            id="name"
                             label="Email Address"
                             type="email"
                             fullWidth
                             name="toAddress"
                             inputRef={register}
                         />
+                        <TextField margin="dense" label="Subject" fullWidth name="subject" inputRef={register} />
                         <TextField
                             margin="dense"
-                            id="subject"
-                            label="Subject"
-                            fullWidth
-                            name="subject"
-                            inputRef={register}
-                        />
-                        <TextField
-                            margin="dense"
-                            id="message"
                             label="Message"
                             multiline
                             rows={10}
