@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-type Header = {
+type HeaderType = {
     onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const Header = ({ onThemeToggle }: Header) => {
+export const Header = ({ onThemeToggle }: HeaderType) => {
     const classes = useStyles();
 
     return (

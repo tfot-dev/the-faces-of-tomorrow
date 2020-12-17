@@ -1,15 +1,18 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core';
 
 declare module '@material-ui/core/styles/createPalette' {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Palette {
         shades: Palette['grey'];
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface PaletteOptions {
         shades: PaletteOptions['grey'];
     }
 }
 
-export const theme = (darkMode: boolean) =>
+export const theme = (darkMode: boolean): Theme =>
     darkMode
         ? createMuiTheme({
               palette: {

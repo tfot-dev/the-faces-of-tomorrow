@@ -5,11 +5,11 @@ import { IconButton } from '@material-ui/core';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 
-type ThemeButton = {
+type ThemeButtonType = {
     onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const ThemeButton = ({ onThemeToggle }: ThemeButton) => {
+export const ThemeButton = ({ onThemeToggle }: ThemeButtonType) => {
     const isLocallyDarkMode = getLocalStorage(LocalStorageItems.DarkMode) === 'true';
 
     if (isLocallyDarkMode) {

@@ -1,36 +1,38 @@
 import React from 'react';
-import { AppBar, Avatar, createStyles, PaletteType, Theme, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, createStyles, Slide, Toolbar, Typography, useScrollTrigger } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../assets/logo.png';
 import { ThemeButton } from '../ThemeButton';
 import { Authentication } from '../Authentication/Authentication';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         title: {
             flexGrow: 1,
-            paddingLeft: '10px',
         },
     }),
 );
 
-type OverlappingHeader = {
+type OverlappingHeaderType = {
     onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const OverlappingHeader = ({ onThemeToggle }: OverlappingHeader) => {
+export const OverlappingHeader = ({ onThemeToggle }: OverlappingHeaderType) => {
     const classes = useStyles();
+    const trigger = useScrollTrigger();
 
     return (
-        <AppBar position="absolute" color="transparent" elevation={0}>
-            <Toolbar>
-                <Avatar src={Logo} />
-                <Typography align="center" variant="h3" className={classes.title} color="textPrimary">
-                    THE FACES OF TOMORROW
-                </Typography>
-                <ThemeButton onThemeToggle={onThemeToggle} />
-                <Authentication />
-            </Toolbar>
-        </AppBar>
+        <Slide appear={false} direction="down" in={!trigger}>
+            <AppBar color="transparent" elevation={0}>
+                <Toolbar>
+                    <Avatar src={Logo} />
+                    <Typography align="center" variant="h3" className={classes.title} color="textPrimary">
+                        THE FACES OF TOMORROW
+                    </Typography>
+                    <ThemeButton onThemeToggle={onThemeToggle} />
+                    <Authentication />
+                </Toolbar>
+            </AppBar>
+        </Slide>
     );
 };

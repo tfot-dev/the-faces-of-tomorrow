@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Card, CardActions, CardContent, CardHeader, Grid, TextField } from '@material-ui/core';
 
-type YourStory = {
+type YourStoryForm = {
     name: string;
     email: string;
     city: string;
@@ -19,8 +19,8 @@ type YourStory = {
 export const YourStory = () => {
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data: YourStory) => {
-        const { name, email } = data;
+    const onSubmit = (data: YourStoryForm) => {
+        console.log(data);
     };
 
     return (
