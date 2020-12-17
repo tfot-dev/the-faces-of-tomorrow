@@ -2227,6 +2227,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/clamp-js@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@types/clamp-js/-/clamp-js-0.7.2.tgz#93523ff1ed7ade1fcc41851d84a360cc52130b76"
+  integrity sha512-yNxPj09JE4jb2PYBBM0gNbQjSingoMVdNt5Z12w3Crcy5ta4JuWBVA5/2Z2I1MjrLOiGSApFqn4W5wTrxf42+g==
+
 "@types/eslint@^7.2.0":
   version "7.2.4"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.4.tgz#d12eeed7741d2491b69808576ac2d20c14f74c41"
@@ -4180,6 +4185,11 @@ cjs-module-lexer@^0.4.2:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/cjs-module-lexer/-/cjs-module-lexer-0.4.3.tgz#9e31f7fe701f5fcee5793f77ab4e58fa8dcde8bc"
   integrity sha512-5RLK0Qfs0PNDpEyBXIr3bIT1Muw3ojSlvpw6dAmkUcO0+uTrsBn7GuEIgx40u+OzbCBLDta7nvmud85P4EmTsQ==
+
+clamp-js@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/clamp-js/-/clamp-js-0.7.0.tgz#95c49e0e28323c8eeac8c63201dddf30dbd78fce"
+  integrity sha1-lcSeDigyPI7qyMYyAd3fMNvXj84=
 
 class-utils@^0.3.5:
   version "0.3.6"
