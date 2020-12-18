@@ -73,9 +73,6 @@ export const theme = (darkMode: boolean): Theme =>
                       50: 'rgba(0,0,0,0.8)',
                       100: 'rgba(0,0,0,0.9)',
                   },
-                  text: {
-                      secondary: '#fff',
-                  },
               },
               typography,
           })
@@ -90,9 +87,6 @@ export const theme = (darkMode: boolean): Theme =>
                   shades: {
                       50: '#fafafa',
                       100: '#f5f5f5',
-                  },
-                  text: {
-                      secondary: '#fff',
                   },
               },
               typography,

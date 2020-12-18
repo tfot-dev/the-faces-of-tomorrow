@@ -19,7 +19,7 @@ export const PostSkeleton = () => {
             <Card className={classes.root}>
                 <Skeleton animation="wave" variant="rect" height={150} />
                 <CardContent>
-                    <Typography variant="caption" color="textSecondary">
+                    <Typography variant="caption">
                         <Skeleton animation="wave" />
                         <Skeleton animation="wave" />
                         <Skeleton animation="wave" />

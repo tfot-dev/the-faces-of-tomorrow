@@ -33,7 +33,7 @@ export const Post = ({ post }: IPostProps) => {
             <Card className={classes.root}>
                 <CardMedia component="img" height={150} image={mediaUrl} />
                 <CardContent>
-                    <Typography variant="caption" color="textSecondary" ref={captionElement}>
+                    <Typography variant="caption" color="textPrimary" ref={captionElement}>
                         {caption}
                     </Typography>
                 </CardContent>
