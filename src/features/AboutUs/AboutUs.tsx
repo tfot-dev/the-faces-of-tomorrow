@@ -18,8 +18,8 @@ export const AboutUs = () => {
 
     return (
         <Box className={classes.root}>
-            <Typography variant="h3" align="center" color="textPrimary">
-                Who we are?
+            <Typography variant="h3" align="center" color="primary">
+                <Box fontWeight="fontWeightBold">The Team</Box>
             </Typography>
             <Box display="flex" justifyContent="space-evenly" margin={5}>
                 <ProfileInfo image={KaranPicture} text="Trying my best!" />
