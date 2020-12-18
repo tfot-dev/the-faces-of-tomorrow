@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
         display: 'flex',
-        height: 800,
+        height: 1000,
         backgroundImage: ({ src }: SlideshowItem) => `url(${src})`,
         backgroundSize: 'cover',
     },
@@ -26,11 +26,18 @@ export const SlideshowItem = (props: SlideshowItem) => {
 
     return (
         <Box className={classes.root}>
-            <Box className={classes.text}>
-                <Typography align="center" variant="h2" color="textPrimary">
-                    {name}
-                </Typography>
-            </Box>
+            <Grid container spacing={4} justify="center" direction="column">
+                <Grid item>
+                    <Typography align="center" variant="h1" color="textPrimary">
+                        The Faces of Tomorrow
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography align="center" variant="h5" color="textPrimary">
+                        {name}
+                    </Typography>
+                </Grid>
+            </Grid>
         </Box>
     );
 };
