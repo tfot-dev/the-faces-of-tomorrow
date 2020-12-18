@@ -12,6 +12,52 @@ declare module '@material-ui/core/styles/createPalette' {
     }
 }
 
+const headingFontFamily = "'Cairo', sans-serif";
+const tfotFontFamily = "'Fjalla One', sans-serif";
+const otherFontFamily = "Lora', serif";
+
+const typography = {
+    h1: {
+        fontFamily: tfotFontFamily,
+    },
+    h2: {
+        fontFamily: tfotFontFamily,
+    },
+    h3: {
+        fontFamily: headingFontFamily,
+    },
+    h4: {
+        fontFamily: headingFontFamily,
+    },
+    h5: {
+        fontFamily: headingFontFamily,
+    },
+    h6: {
+        fontFamily: headingFontFamily,
+    },
+    subtitle1: {
+        fontFamily: otherFontFamily,
+    },
+    subtitle2: {
+        fontFamily: otherFontFamily,
+    },
+    body1: {
+        fontFamily: otherFontFamily,
+    },
+    body2: {
+        fontFamily: otherFontFamily,
+    },
+    button: {
+        fontFamily: otherFontFamily,
+    },
+    caption: {
+        fontFamily: otherFontFamily,
+    },
+    overline: {
+        fontFamily: otherFontFamily,
+    },
+};
+
 export const theme = (darkMode: boolean): Theme =>
     darkMode
         ? createMuiTheme({
@@ -31,6 +77,7 @@ export const theme = (darkMode: boolean): Theme =>
                       400: '#212121',
                   },
               },
+              typography,
           })
         : createMuiTheme({
               palette: {
@@ -48,4 +95,5 @@ export const theme = (darkMode: boolean): Theme =>
                       400: '#bdbdbd',
                   },
               },
+              typography,
           });
