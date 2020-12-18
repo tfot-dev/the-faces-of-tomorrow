@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../assets/logo.png';
 import { ThemeButton } from '../ThemeButton';
 import { Authentication } from '../Authentication/Authentication';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -13,11 +14,11 @@ const useStyles = makeStyles(() =>
     }),
 );
 
-type OverlappingHeaderType = {
+type AbsoluteHeaderType = {
     onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const OverlappingHeader = ({ onThemeToggle }: OverlappingHeaderType) => {
+export const AbsoluteHeader = ({ onThemeToggle }: AbsoluteHeaderType) => {
     const classes = useStyles();
     const trigger = useScrollTrigger();
 
@@ -25,7 +26,7 @@ export const OverlappingHeader = ({ onThemeToggle }: OverlappingHeaderType) => {
         <Slide appear={false} direction="down" in={!trigger}>
             <AppBar color="transparent" elevation={0}>
                 <Toolbar>
-                    <Avatar src={Logo} />
+                    <Avatar src={Logo} component={Link} to="/" />
                     <div className={classes.spacer} />
                     <ThemeButton onThemeToggle={onThemeToggle} />
                     <Authentication />

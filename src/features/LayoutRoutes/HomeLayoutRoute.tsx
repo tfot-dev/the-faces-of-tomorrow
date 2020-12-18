@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { OverlappingHeader } from '../Header/OverlappingHeader';
+import { AbsoluteHeader } from '../Header/AbsoluteHeader';
 import { LayoutRoute } from './LayoutRoute';
 
 export const HomeLayoutRoute = ({ onThemeToggle, ...rest }: LayoutRoute) => (
     <>
-        <OverlappingHeader onThemeToggle={onThemeToggle} />
+        <AbsoluteHeader onThemeToggle={onThemeToggle} />
         <Route {...rest} />
     </>
 );

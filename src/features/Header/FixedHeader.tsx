@@ -4,6 +4,7 @@ import { Authentication } from '../Authentication/Authentication';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../../assets/logo.png';
 import { ThemeButton } from '../ThemeButton';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -18,18 +19,18 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-type HeaderType = {
+type FixedHeaderType = {
     onThemeToggle: (darkMode: boolean) => void;
 };
 
-export const Header = ({ onThemeToggle }: HeaderType) => {
+export const FixedHeader = ({ onThemeToggle }: FixedHeaderType) => {
     const classes = useStyles();
 
     return (
         <React.Fragment>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                    <Avatar src={Logo} />
+                    <Avatar src={Logo} component={Link} to="/" />
                     <Typography variant="h6" className={classes.title}>
                         The Faces of Tomorrow
                     </Typography>

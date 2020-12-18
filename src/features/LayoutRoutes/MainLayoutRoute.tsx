@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../Header/Header';
+import { FixedHeader } from '../Header/FixedHeader';
 import { Container, makeStyles } from '@material-ui/core';
 import { Route } from 'react-router-dom';
 import { LayoutRoute } from './LayoutRoute';
@@ -15,7 +15,7 @@ export const MainLayoutRoute = ({ onThemeToggle, ...rest }: LayoutRoute) => {
 
     return (
         <>
-            <Header onThemeToggle={onThemeToggle} />
+            <FixedHeader onThemeToggle={onThemeToggle} />
             <Container className={classes.container}>
                 <Route {...rest} />
             </Container>
