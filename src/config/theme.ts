@@ -70,11 +70,11 @@ export const theme = (darkMode: boolean): Theme =>
                       main: '#775447',
                   },
                   shades: {
-                      50: '#9e9e9e',
-                      100: '#757575',
-                      200: '#616161',
-                      300: '#424242',
-                      400: '#212121',
+                      50: 'rgba(0,0,0,0.8)',
+                      100: 'rgba(0,0,0,0.9)',
+                  },
+                  text: {
+                      secondary: '#fff',
                   },
               },
               typography,
@@ -90,9 +90,9 @@ export const theme = (darkMode: boolean): Theme =>
                   shades: {
                       50: '#fafafa',
                       100: '#f5f5f5',
-                      200: '#eeeeee',
-                      300: '#e0e0e0',
-                      400: '#bdbdbd',
+                  },
+                  text: {
+                      secondary: '#fff',
                   },
               },
               typography,

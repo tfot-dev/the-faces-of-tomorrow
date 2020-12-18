@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            backgroundColor: theme.palette.shades[200],
+            backgroundColor: theme.palette.shades[50],
             padding: '20px 0',
         },
     }),
@@ -18,8 +18,8 @@ export const Stories = () => {
 
     return (
         <Box className={classes.root}>
-            <Typography variant="h3" align="center" color="textPrimary">
-                Latest Stories
+            <Typography variant="h3" align="center" color="secondary">
+                <Box fontWeight="fontWeightBold">Latest Stories</Box>
             </Typography>
             <Box display="flex" justifyContent="space-evenly" margin={5}>
                 <PublicApi>

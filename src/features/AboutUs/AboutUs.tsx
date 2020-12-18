@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            backgroundColor: theme.palette.shades[400],
+            backgroundColor: theme.palette.shades[100],
             padding: '20px 0',
         },
     }),
@@ -18,7 +18,7 @@ export const AboutUs = () => {
 
     return (
         <Box className={classes.root}>
-            <Typography variant="h3" align="center" color="primary">
+            <Typography variant="h3" align="center" color="secondary">
                 <Box fontWeight="fontWeightBold">The Team</Box>
             </Typography>
             <Box display="flex" justifyContent="space-evenly" margin={5}>
