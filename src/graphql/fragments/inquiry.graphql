@@ -1,0 +1,6 @@
+fragment Inquiry on ContactUs {
+    name
+    email
+    query
+    id
+}
