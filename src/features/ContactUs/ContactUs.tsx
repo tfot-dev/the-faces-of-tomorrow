@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Button, Card, CardContent, createStyles, Grid, TextField, Theme, Typography } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
+import { Box, Card, CardContent, createStyles, Theme, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSendInquiriesMutation } from '../../generated/graphql';
+import { ContactUsForm } from './ContactUsForm';
 
 type ContactUsForm = {
     name: string;
@@ -26,13 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ContactUs = () => {
     const [sendInquiry] = useSendInquiriesMutation();
-    const { register, handleSubmit } = useForm();
     const classes = useStyles();
-
-    const onSubmit = (data: ContactUsForm) => {
-        console.log(data);
-        sendInquiry({ variables: data });
-    };
 
     return (
         <Box className={classes.root}>
@@ -41,34 +35,7 @@ export const ContactUs = () => {
                     <Typography variant="h3" align="center" color="secondary">
                         <Box fontWeight="fontWeightBold">Contact Us!</Box>
                     </Typography>
-
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Box display="flex" justifyContent="space-evenly" margin={5}>
-                            <Grid container spacing={4} alignItems="center">
-                                <Grid item xs={6}>
-                                    <TextField label="Name" fullWidth name="name" inputRef={register} />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField label="Email" fullWidth name="email" inputRef={register} />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="How can we help you?"
-                                        fullWidth
-                                        name="query"
-                                        inputRef={register}
-                                        multiline
-                                        rows={6}
-                                    />
-                                </Grid>
-                                <Grid container item xs={12} justify="center">
-                                    <Button type="submit" color="secondary" variant="contained">
-                                        Send
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </form>
+                    <ContactUsForm onSubmit={(data) => sendInquiry({ variables: data })} />
                 </CardContent>
             </Card>
         </Box>
