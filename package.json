@@ -67,7 +67,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "schema": "graphql-codegen --config codegen.js"
+    "schema:download": "gq https://holy-mammal-41.hasura.app/v1/graphql -H \"X-Hasura-Admin-Secret: thefacesoftomorrowareus\" --introspect > schema.graphql",
+    "schema": "yarn schema:download && graphql-codegen --config codegen.js"
   },
   "browserslist": {
     "production": [
