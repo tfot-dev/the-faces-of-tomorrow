@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Theme } from '@material-ui/core';
+import { responsiveFontSizes, Theme } from '@material-ui/core';
 
 declare module '@material-ui/core/styles/createPalette' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -59,35 +59,37 @@ const typography = {
 };
 
 export const theme = (darkMode: boolean): Theme =>
-    darkMode
-        ? createMuiTheme({
-              palette: {
-                  type: 'dark',
-                  primary: {
-                      main: '#8EA480',
+    responsiveFontSizes(
+        darkMode
+            ? createMuiTheme({
+                  palette: {
+                      type: 'dark',
+                      primary: {
+                          main: '#8EA480',
+                      },
+                      secondary: {
+                          main: '#775447',
+                      },
+                      shades: {
+                          50: 'rgba(0,0,0,0.8)',
+                          100: 'rgba(0,0,0,0.9)',
+                      },
                   },
-                  secondary: {
-                      main: '#775447',
+                  typography,
+              })
+            : createMuiTheme({
+                  palette: {
+                      primary: {
+                          main: '#8EA480',
+                      },
+                      secondary: {
+                          main: '#775447',
+                      },
+                      shades: {
+                          50: '#fafafa',
+                          100: '#f5f5f5',
+                      },
                   },
-                  shades: {
-                      50: 'rgba(0,0,0,0.8)',
-                      100: 'rgba(0,0,0,0.9)',
-                  },
-              },
-              typography,
-          })
-        : createMuiTheme({
-              palette: {
-                  primary: {
-                      main: '#8EA480',
-                  },
-                  secondary: {
-                      main: '#775447',
-                  },
-                  shades: {
-                      50: '#fafafa',
-                      100: '#f5f5f5',
-                  },
-              },
-              typography,
-          });
+                  typography,
+              }),
+    );
