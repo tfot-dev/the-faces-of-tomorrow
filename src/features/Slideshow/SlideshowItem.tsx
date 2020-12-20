@@ -8,6 +8,7 @@ const useStyles = makeStyles({
         height: 1000,
         backgroundImage: ({ src }: SlideshowItem) => `url(${src})`,
         backgroundSize: 'cover',
+        backgroundPosition: '50% 50%',
     },
     text: {
         margin: 'auto',
