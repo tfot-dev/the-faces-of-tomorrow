@@ -28,6 +28,170 @@ enum CacheControlScope {
   PUBLIC
 }
 
+# columns and relationships of "ContactUs"
+type ContactUs {
+  email: String!
+  id: uuid!
+  name: String!
+  query: String!
+}
+
+# aggregated selection of "ContactUs"
+type ContactUs_aggregate {
+  aggregate: ContactUs_aggregate_fields
+  nodes: [ContactUs!]!
+}
+
+# aggregate fields of "ContactUs"
+type ContactUs_aggregate_fields {
+  count(columns: [ContactUs_select_column!], distinct: Boolean): Int
+  max: ContactUs_max_fields
+  min: ContactUs_min_fields
+}
+
+# order by aggregate values of table "ContactUs"
+input ContactUs_aggregate_order_by {
+  count: order_by
+  max: ContactUs_max_order_by
+  min: ContactUs_min_order_by
+}
+
+# input type for inserting array relation for remote table "ContactUs"
+input ContactUs_arr_rel_insert_input {
+  data: [ContactUs_insert_input!]!
+  on_conflict: ContactUs_on_conflict
+}
+
+# Boolean expression to filter rows from the table "ContactUs". All fields are combined with a logical 'AND'.
+input ContactUs_bool_exp {
+  _and: [ContactUs_bool_exp]
+  _not: ContactUs_bool_exp
+  _or: [ContactUs_bool_exp]
+  email: String_comparison_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  query: String_comparison_exp
+}
+
+# unique or primary key constraints on table "ContactUs"
+enum ContactUs_constraint {
+  # unique or primary key constraint
+  ContactUs_pkey
+}
+
+# input type for inserting data into table "ContactUs"
+input ContactUs_insert_input {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# aggregate max on columns
+type ContactUs_max_fields {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# order by max() on columns of table "ContactUs"
+input ContactUs_max_order_by {
+  email: order_by
+  id: order_by
+  name: order_by
+  query: order_by
+}
+
+# aggregate min on columns
+type ContactUs_min_fields {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# order by min() on columns of table "ContactUs"
+input ContactUs_min_order_by {
+  email: order_by
+  id: order_by
+  name: order_by
+  query: order_by
+}
+
+# response of any mutation on the table "ContactUs"
+type ContactUs_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [ContactUs!]!
+}
+
+# input type for inserting object relation for remote table "ContactUs"
+input ContactUs_obj_rel_insert_input {
+  data: ContactUs_insert_input!
+  on_conflict: ContactUs_on_conflict
+}
+
+# on conflict condition type for table "ContactUs"
+input ContactUs_on_conflict {
+  constraint: ContactUs_constraint!
+  update_columns: [ContactUs_update_column!]!
+  where: ContactUs_bool_exp
+}
+
+# ordering options when selecting data from "ContactUs"
+input ContactUs_order_by {
+  email: order_by
+  id: order_by
+  name: order_by
+  query: order_by
+}
+
+# primary key columns input for table: "ContactUs"
+input ContactUs_pk_columns_input {
+  id: uuid!
+}
+
+# select columns of table "ContactUs"
+enum ContactUs_select_column {
+  # column name
+  email
+
+  # column name
+  id
+
+  # column name
+  name
+
+  # column name
+  query
+}
+
+# input type for updating data in table "ContactUs"
+input ContactUs_set_input {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# update columns of table "ContactUs"
+enum ContactUs_update_column {
+  # column name
+  email
+
+  # column name
+  id
+
+  # column name
+  name
+
+  # column name
+  query
+}
+
 type Email {
   folderId: String!
   fromAddress: String!
@@ -38,6 +202,13 @@ type Email {
   subject: String!
   summary: String!
   toAddress: String!
+}
+
+type GetPostsOutput {
+  caption: String!
+  id: String!
+  mediaUrl: String!
+  timestamp: String!
 }
 
 scalar json
@@ -64,6 +235,15 @@ type Mutation {
 type mutation_root {
   deleteEmail(folderId: String!, messageId: String!): [Email]
 
+  # delete data from the table: "ContactUs"
+  delete_ContactUs(
+    # filter the rows which have to be deleted
+    where: ContactUs_bool_exp!
+  ): ContactUs_mutation_response
+
+  # delete single row from the table: "ContactUs"
+  delete_ContactUs_by_pk(id: uuid!): ContactUs
+
   # delete data from the table: "online_users"
   delete_online_users(
     # filter the rows which have to be deleted
@@ -78,6 +258,15 @@ type mutation_root {
 
   # delete single row from the table: "users"
   delete_users_by_pk(auth0_id: String!): users
+
+  # insert a single row into the table: "ContactUs"
+  insert_ContactUs_one(
+    # the row to be inserted
+    object: ContactUs_insert_input!
+
+    # on conflict condition
+    on_conflict: ContactUs_on_conflict
+  ): ContactUs
 
   # insert data into the table: "online_users"
   insert_online_users(
@@ -109,6 +298,31 @@ type mutation_root {
     on_conflict: users_on_conflict
   ): users
   sendEmail(message: String!, subject: String!, toAddress: String!): [Email]
+
+  # insert data into the table: "ContactUs"
+  sendInquiries(
+    # the rows to be inserted
+    objects: [ContactUs_insert_input!]!
+
+    # on conflict condition
+    on_conflict: ContactUs_on_conflict
+  ): ContactUs_mutation_response
+
+  # update data of the table: "ContactUs"
+  update_ContactUs(
+    # sets the columns of the filtered rows to the given values
+    _set: ContactUs_set_input
+
+    # filter the rows which have to be updated
+    where: ContactUs_bool_exp!
+  ): ContactUs_mutation_response
+
+  # update single row of the table: "ContactUs"
+  update_ContactUs_by_pk(
+    # sets the columns of the filtered rows to the given values
+    _set: ContactUs_set_input
+    pk_columns: ContactUs_pk_columns_input!
+  ): ContactUs
 
   # update data of the table: "online_users"
   update_online_users(
@@ -271,14 +485,56 @@ type Post {
 
 type Query {
   emails: [Email]!
+  getEmail(messageId: String!): Email
   posts: [Post]!
+  sentEmails: [SentEmail]!
 }
 
 # query root
 type query_root {
+  # fetch aggregated fields from the table: "ContactUs"
+  ContactUs_aggregate(
+    # distinct select on columns
+    distinct_on: [ContactUs_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ContactUs_order_by!]
+
+    # filter the rows returned
+    where: ContactUs_bool_exp
+  ): ContactUs_aggregate!
+
+  # fetch data from the table: "ContactUs" using primary key columns
+  ContactUs_by_pk(id: uuid!): ContactUs
+
   # perform the action: "auth0"
   auth0: auth0_profile
   emails: [Email]!
+  getEmail(messageId: String!): Email
+
+  # fetch data from the table: "ContactUs"
+  getInquiries(
+    # distinct select on columns
+    distinct_on: [ContactUs_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ContactUs_order_by!]
+
+    # filter the rows returned
+    where: ContactUs_bool_exp
+  ): [ContactUs!]!
 
   # fetch data from the table: "online_users"
   online_users(
@@ -316,6 +572,10 @@ type query_root {
     where: online_users_bool_exp
   ): online_users_aggregate!
   posts: [Post]!
+  sentEmails: [SentEmail]!
+
+  # fetch data from the table: "users" using primary key columns
+  user(auth0_id: String!): users
 
   # fetch data from the table: "users"
   users(
@@ -352,9 +612,26 @@ type query_root {
     # filter the rows returned
     where: users_bool_exp
   ): users_aggregate!
+}
 
-  # fetch data from the table: "users" using primary key columns
-  users_by_pk(auth0_id: String!): users
+type SentEmail {
+  calendarType: Int!
+  flagid: String!
+  folderId: String!
+  fromAddress: String!
+  hasAttachment: String!
+  hasInline: String!
+  messageId: String!
+  priority: String!
+  receivedTime: String!
+  sender: String!
+  sentDateInGMT: String!
+  size: String!
+  status: String!
+  status2: String!
+  subject: String!
+  summary: String!
+  toAddress: String!
 }
 
 # expression to compare columns of type String. All fields are combined with logical 'AND'.
@@ -378,8 +655,47 @@ input String_comparison_exp {
 
 # subscription root
 type subscription_root {
+  # fetch aggregated fields from the table: "ContactUs"
+  ContactUs_aggregate(
+    # distinct select on columns
+    distinct_on: [ContactUs_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ContactUs_order_by!]
+
+    # filter the rows returned
+    where: ContactUs_bool_exp
+  ): ContactUs_aggregate!
+
+  # fetch data from the table: "ContactUs" using primary key columns
+  ContactUs_by_pk(id: uuid!): ContactUs
+
   # perform the action: "auth0"
   auth0: auth0_profile
+
+  # fetch data from the table: "ContactUs"
+  getInquiries(
+    # distinct select on columns
+    distinct_on: [ContactUs_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [ContactUs_order_by!]
+
+    # filter the rows returned
+    where: ContactUs_bool_exp
+  ): [ContactUs!]!
 
   # fetch data from the table: "online_users"
   online_users(
@@ -417,6 +733,9 @@ type subscription_root {
     where: online_users_bool_exp
   ): online_users_aggregate!
 
+  # fetch data from the table: "users" using primary key columns
+  user(auth0_id: String!): users
+
   # fetch data from the table: "users"
   users(
     # distinct select on columns
@@ -452,9 +771,6 @@ type subscription_root {
     # filter the rows returned
     where: users_bool_exp
   ): users_aggregate!
-
-  # fetch data from the table: "users" using primary key columns
-  users_by_pk(auth0_id: String!): users
 }
 
 scalar timestamptz
@@ -684,4 +1000,17 @@ enum users_update_column {
 }
 
 scalar uuid
+
+# expression to compare columns of type uuid. All fields are combined with logical 'AND'.
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
 

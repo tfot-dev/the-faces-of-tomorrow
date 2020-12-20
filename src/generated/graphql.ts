@@ -35,6 +35,176 @@ export enum CacheControlScope {
   Public = 'PUBLIC'
 }
 
+/** columns and relationships of "ContactUs" */
+export type ContactUs = {
+  __typename?: 'ContactUs';
+  email: Scalars['String'];
+  id: Scalars['uuid'];
+  name: Scalars['String'];
+  query: Scalars['String'];
+};
+
+/** aggregated selection of "ContactUs" */
+export type ContactUs_Aggregate = {
+  __typename?: 'ContactUs_aggregate';
+  aggregate?: Maybe<ContactUs_Aggregate_Fields>;
+  nodes: Array<ContactUs>;
+};
+
+/** aggregate fields of "ContactUs" */
+export type ContactUs_Aggregate_Fields = {
+  __typename?: 'ContactUs_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<ContactUs_Max_Fields>;
+  min?: Maybe<ContactUs_Min_Fields>;
+};
+
+
+/** aggregate fields of "ContactUs" */
+export type ContactUs_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<ContactUs_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "ContactUs" */
+export type ContactUs_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<ContactUs_Max_Order_By>;
+  min?: Maybe<ContactUs_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "ContactUs" */
+export type ContactUs_Arr_Rel_Insert_Input = {
+  data: Array<ContactUs_Insert_Input>;
+  on_conflict?: Maybe<ContactUs_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "ContactUs". All fields are combined with a logical 'AND'. */
+export type ContactUs_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<ContactUs_Bool_Exp>>>;
+  _not?: Maybe<ContactUs_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<ContactUs_Bool_Exp>>>;
+  email?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  query?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "ContactUs" */
+export enum ContactUs_Constraint {
+  /** unique or primary key constraint */
+  ContactUsPkey = 'ContactUs_pkey'
+}
+
+/** input type for inserting data into table "ContactUs" */
+export type ContactUs_Insert_Input = {
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  query?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type ContactUs_Max_Fields = {
+  __typename?: 'ContactUs_max_fields';
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  query?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "ContactUs" */
+export type ContactUs_Max_Order_By = {
+  email?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  query?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type ContactUs_Min_Fields = {
+  __typename?: 'ContactUs_min_fields';
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  query?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "ContactUs" */
+export type ContactUs_Min_Order_By = {
+  email?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  query?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "ContactUs" */
+export type ContactUs_Mutation_Response = {
+  __typename?: 'ContactUs_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<ContactUs>;
+};
+
+/** input type for inserting object relation for remote table "ContactUs" */
+export type ContactUs_Obj_Rel_Insert_Input = {
+  data: ContactUs_Insert_Input;
+  on_conflict?: Maybe<ContactUs_On_Conflict>;
+};
+
+/** on conflict condition type for table "ContactUs" */
+export type ContactUs_On_Conflict = {
+  constraint: ContactUs_Constraint;
+  update_columns: Array<ContactUs_Update_Column>;
+  where?: Maybe<ContactUs_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "ContactUs" */
+export type ContactUs_Order_By = {
+  email?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  query?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "ContactUs" */
+export type ContactUs_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "ContactUs" */
+export enum ContactUs_Select_Column {
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Query = 'query'
+}
+
+/** input type for updating data in table "ContactUs" */
+export type ContactUs_Set_Input = {
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  query?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "ContactUs" */
+export enum ContactUs_Update_Column {
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Query = 'query'
+}
+
 export type Email = {
   __typename?: 'Email';
   folderId: Scalars['String'];
@@ -46,6 +216,14 @@ export type Email = {
   subject: Scalars['String'];
   summary: Scalars['String'];
   toAddress: Scalars['String'];
+};
+
+export type GetPostsOutput = {
+  __typename?: 'GetPostsOutput';
+  caption: Scalars['String'];
+  id: Scalars['String'];
+  mediaUrl: Scalars['String'];
+  timestamp: Scalars['String'];
 };
 
 export type Mutation = {
@@ -154,12 +332,18 @@ export type Json_Comparison_Exp = {
 export type Mutation_Root = {
   __typename?: 'mutation_root';
   deleteEmail?: Maybe<Array<Maybe<Email>>>;
+  /** delete data from the table: "ContactUs" */
+  delete_ContactUs?: Maybe<ContactUs_Mutation_Response>;
+  /** delete single row from the table: "ContactUs" */
+  delete_ContactUs_by_pk?: Maybe<ContactUs>;
   /** delete data from the table: "online_users" */
   delete_online_users?: Maybe<Online_Users_Mutation_Response>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
+  /** insert a single row into the table: "ContactUs" */
+  insert_ContactUs_one?: Maybe<ContactUs>;
   /** insert data into the table: "online_users" */
   insert_online_users?: Maybe<Online_Users_Mutation_Response>;
   /** insert a single row into the table: "online_users" */
@@ -169,6 +353,12 @@ export type Mutation_Root = {
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
   sendEmail?: Maybe<Array<Maybe<Email>>>;
+  /** insert data into the table: "ContactUs" */
+  sendInquiries?: Maybe<ContactUs_Mutation_Response>;
+  /** update data of the table: "ContactUs" */
+  update_ContactUs?: Maybe<ContactUs_Mutation_Response>;
+  /** update single row of the table: "ContactUs" */
+  update_ContactUs_by_pk?: Maybe<ContactUs>;
   /** update data of the table: "online_users" */
   update_online_users?: Maybe<Online_Users_Mutation_Response>;
   /** update data of the table: "users" */
@@ -182,6 +372,18 @@ export type Mutation_Root = {
 export type Mutation_RootDeleteEmailArgs = {
   folderId: Scalars['String'];
   messageId: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ContactUsArgs = {
+  where: ContactUs_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ContactUs_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -200,6 +402,13 @@ export type Mutation_RootDelete_UsersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Users_By_PkArgs = {
   auth0_id: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ContactUs_OneArgs = {
+  object: ContactUs_Insert_Input;
+  on_conflict?: Maybe<ContactUs_On_Conflict>;
 };
 
 
@@ -234,6 +443,27 @@ export type Mutation_RootSendEmailArgs = {
   message: Scalars['String'];
   subject: Scalars['String'];
   toAddress: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootSendInquiriesArgs = {
+  objects: Array<ContactUs_Insert_Input>;
+  on_conflict?: Maybe<ContactUs_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_ContactUsArgs = {
+  _set?: Maybe<ContactUs_Set_Input>;
+  where: ContactUs_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_ContactUs_By_PkArgs = {
+  _set?: Maybe<ContactUs_Set_Input>;
+  pk_columns: ContactUs_Pk_Columns_Input;
 };
 
 
@@ -392,28 +622,60 @@ export enum Order_By {
 /** query root */
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch aggregated fields from the table: "ContactUs" */
+  ContactUs_aggregate: ContactUs_Aggregate;
+  /** fetch data from the table: "ContactUs" using primary key columns */
+  ContactUs_by_pk?: Maybe<ContactUs>;
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   emails: Array<Maybe<Email>>;
   getEmail?: Maybe<Email>;
+  /** fetch data from the table: "ContactUs" */
+  getInquiries: Array<ContactUs>;
   /** fetch data from the table: "online_users" */
   online_users: Array<Online_Users>;
   /** fetch aggregated fields from the table: "online_users" */
   online_users_aggregate: Online_Users_Aggregate;
   posts: Array<Maybe<Post>>;
   sentEmails: Array<Maybe<SentEmail>>;
+  /** fetch data from the table: "users" using primary key columns */
+  user?: Maybe<Users>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
-  /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+};
+
+
+/** query root */
+export type Query_RootContactUs_AggregateArgs = {
+  distinct_on?: Maybe<Array<ContactUs_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ContactUs_Order_By>>;
+  where?: Maybe<ContactUs_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootContactUs_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
 /** query root */
 export type Query_RootGetEmailArgs = {
   messageId: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootGetInquiriesArgs = {
+  distinct_on?: Maybe<Array<ContactUs_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ContactUs_Order_By>>;
+  where?: Maybe<ContactUs_Bool_Exp>;
 };
 
 
@@ -438,6 +700,12 @@ export type Query_RootOnline_Users_AggregateArgs = {
 
 
 /** query root */
+export type Query_RootUserArgs = {
+  auth0_id: Scalars['String'];
+};
+
+
+/** query root */
 export type Query_RootUsersArgs = {
   distinct_on?: Maybe<Array<Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -456,27 +724,53 @@ export type Query_RootUsers_AggregateArgs = {
   where?: Maybe<Users_Bool_Exp>;
 };
 
-
-/** query root */
-export type Query_RootUsers_By_PkArgs = {
-  auth0_id: Scalars['String'];
-};
-
 /** subscription root */
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch aggregated fields from the table: "ContactUs" */
+  ContactUs_aggregate: ContactUs_Aggregate;
+  /** fetch data from the table: "ContactUs" using primary key columns */
+  ContactUs_by_pk?: Maybe<ContactUs>;
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
+  /** fetch data from the table: "ContactUs" */
+  getInquiries: Array<ContactUs>;
   /** fetch data from the table: "online_users" */
   online_users: Array<Online_Users>;
   /** fetch aggregated fields from the table: "online_users" */
   online_users_aggregate: Online_Users_Aggregate;
+  /** fetch data from the table: "users" using primary key columns */
+  user?: Maybe<Users>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
-  /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContactUs_AggregateArgs = {
+  distinct_on?: Maybe<Array<ContactUs_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ContactUs_Order_By>>;
+  where?: Maybe<ContactUs_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootContactUs_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** subscription root */
+export type Subscription_RootGetInquiriesArgs = {
+  distinct_on?: Maybe<Array<ContactUs_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ContactUs_Order_By>>;
+  where?: Maybe<ContactUs_Bool_Exp>;
 };
 
 
@@ -501,6 +795,12 @@ export type Subscription_RootOnline_Users_AggregateArgs = {
 
 
 /** subscription root */
+export type Subscription_RootUserArgs = {
+  auth0_id: Scalars['String'];
+};
+
+
+/** subscription root */
 export type Subscription_RootUsersArgs = {
   distinct_on?: Maybe<Array<Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -517,12 +817,6 @@ export type Subscription_RootUsers_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Users_Order_By>>;
   where?: Maybe<Users_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootUsers_By_PkArgs = {
-  auth0_id: Scalars['String'];
 };
 
 
@@ -747,9 +1041,27 @@ export enum Users_Update_Column {
 }
 
 
+/** expression to compare columns of type uuid. All fields are combined with logical 'AND'. */
+export type Uuid_Comparison_Exp = {
+  _eq?: Maybe<Scalars['uuid']>;
+  _gt?: Maybe<Scalars['uuid']>;
+  _gte?: Maybe<Scalars['uuid']>;
+  _in?: Maybe<Array<Scalars['uuid']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['uuid']>;
+  _lte?: Maybe<Scalars['uuid']>;
+  _neq?: Maybe<Scalars['uuid']>;
+  _nin?: Maybe<Array<Scalars['uuid']>>;
+};
+
 export type EmailFragment = (
   { __typename?: 'Email' }
   & Pick<Email, 'folderId' | 'fromAddress' | 'messageId' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'subject' | 'summary' | 'toAddress'>
+);
+
+export type InquiryFragment = (
+  { __typename?: 'ContactUs' }
+  & Pick<ContactUs, 'name' | 'email' | 'query' | 'id'>
 );
 
 export type PostFragment = (
@@ -780,6 +1092,24 @@ export type SendEmailMutation = (
     { __typename?: 'Email' }
     & EmailFragment
   )>>> }
+);
+
+export type SendInquiriesMutationVariables = Exact<{
+  name: Scalars['String'];
+  email: Scalars['String'];
+  query: Scalars['String'];
+}>;
+
+
+export type SendInquiriesMutation = (
+  { __typename?: 'mutation_root' }
+  & { sendInquiries?: Maybe<(
+    { __typename?: 'ContactUs_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'ContactUs' }
+      & InquiryFragment
+    )> }
+  )> }
 );
 
 export type GetAllEmailsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -850,6 +1180,14 @@ export const EmailFragmentDoc = gql`
   subject
   summary
   toAddress
+}
+    `;
+export const InquiryFragmentDoc = gql`
+    fragment Inquiry on ContactUs {
+  name
+  email
+  query
+  id
 }
     `;
 export const PostFragmentDoc = gql`
@@ -923,6 +1261,42 @@ export function useSendEmailMutation(baseOptions?: Apollo.MutationHookOptions<Se
 export type SendEmailMutationHookResult = ReturnType<typeof useSendEmailMutation>;
 export type SendEmailMutationResult = Apollo.MutationResult<SendEmailMutation>;
 export type SendEmailMutationOptions = Apollo.BaseMutationOptions<SendEmailMutation, SendEmailMutationVariables>;
+export const SendInquiriesDocument = gql`
+    mutation sendInquiries($name: String!, $email: String!, $query: String!) {
+  sendInquiries(objects: [{name: $name, email: $email, query: $query}]) {
+    returning {
+      ...Inquiry
+    }
+  }
+}
+    ${InquiryFragmentDoc}`;
+export type SendInquiriesMutationFn = Apollo.MutationFunction<SendInquiriesMutation, SendInquiriesMutationVariables>;
+
+/**
+ * __useSendInquiriesMutation__
+ *
+ * To run a mutation, you first call `useSendInquiriesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSendInquiriesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [sendInquiriesMutation, { data, loading, error }] = useSendInquiriesMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      email: // value for 'email'
+ *      query: // value for 'query'
+ *   },
+ * });
+ */
+export function useSendInquiriesMutation(baseOptions?: Apollo.MutationHookOptions<SendInquiriesMutation, SendInquiriesMutationVariables>) {
+        return Apollo.useMutation<SendInquiriesMutation, SendInquiriesMutationVariables>(SendInquiriesDocument, baseOptions);
+      }
+export type SendInquiriesMutationHookResult = ReturnType<typeof useSendInquiriesMutation>;
+export type SendInquiriesMutationResult = Apollo.MutationResult<SendInquiriesMutation>;
+export type SendInquiriesMutationOptions = Apollo.BaseMutationOptions<SendInquiriesMutation, SendInquiriesMutationVariables>;
 export const GetAllEmailsDocument = gql`
     query GetAllEmails {
   emails {
