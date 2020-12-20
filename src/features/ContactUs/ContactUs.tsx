@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Card, CardContent, createStyles, Grid, TextField, Theme, Typography } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSendInquiriesMutation } from '../../generated/graphql';
 
 type ContactUsForm = {
     name: string;
@@ -24,11 +25,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const ContactUs = () => {
+    const [sendInquiry] = useSendInquiriesMutation();
     const { register, handleSubmit } = useForm();
     const classes = useStyles();
 
     const onSubmit = (data: ContactUsForm) => {
         console.log(data);
+        sendInquiry({ variables: data });
     };
 
     return (
