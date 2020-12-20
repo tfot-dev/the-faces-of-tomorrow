@@ -4,6 +4,7 @@ import { AboutUs } from '../AboutUs/AboutUs';
 import { Stories } from '../Stories/Stories';
 import { ContactUs } from '../ContactUs/ContactUs';
 import { Footer } from '../Footer/Footer';
+import { PublicApi } from '../Api/PublicApi';
 
 export const Home = () => {
     return (
@@ -11,7 +12,9 @@ export const Home = () => {
             <Slideshow />
             <AboutUs />
             <Stories />
-            <ContactUs />
+            <PublicApi>
+                <ContactUs />
+            </PublicApi>
             <Footer />
         </>
     );
