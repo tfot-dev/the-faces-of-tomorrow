@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             justifyContent: 'center',
         },
+        card: {
+            margin: '0 20px',
+        },
     }),
 );
 
@@ -30,7 +33,7 @@ export const ContactUs = () => {
 
     return (
         <Box className={classes.root}>
-            <Card>
+            <Card className={classes.card}>
                 <CardContent>
                     <Typography variant="h3" align="center" color="secondary">
                         <Box fontWeight="fontWeightBold">Contact Us!</Box>
