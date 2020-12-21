@@ -2,6 +2,6 @@
 
 mutation sendInquiries($name: String!, $email: String!, $query: String!) {
     sendInquiries(objects: [{name: $name, email: $email, query: $query}]) {
-        returning {...Inquiry}
+        affected_rows
     }
 }

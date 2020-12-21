@@ -8,7 +8,7 @@ interface IPublicApiProps {
 
 export const PublicApi = ({ children }: IPublicApiProps) => {
     const client = new ApolloClient({
-        uri: GraphqlEndpoints.Public,
+        uri: GraphqlEndpoints.Hasura,
         cache: new InMemoryCache(),
     });
 

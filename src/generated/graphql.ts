@@ -1105,10 +1105,7 @@ export type SendInquiriesMutation = (
   { __typename?: 'mutation_root' }
   & { sendInquiries?: Maybe<(
     { __typename?: 'ContactUs_mutation_response' }
-    & { returning: Array<(
-      { __typename?: 'ContactUs' }
-      & InquiryFragment
-    )> }
+    & Pick<ContactUs_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -1264,12 +1261,10 @@ export type SendEmailMutationOptions = Apollo.BaseMutationOptions<SendEmailMutat
 export const SendInquiriesDocument = gql`
     mutation sendInquiries($name: String!, $email: String!, $query: String!) {
   sendInquiries(objects: [{name: $name, email: $email, query: $query}]) {
-    returning {
-      ...Inquiry
-    }
+    affected_rows
   }
 }
-    ${InquiryFragmentDoc}`;
+    `;
 export type SendInquiriesMutationFn = Apollo.MutationFunction<SendInquiriesMutation, SendInquiriesMutationVariables>;
 
 /**
