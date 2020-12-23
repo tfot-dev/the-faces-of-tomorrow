@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            width: theme.spacing(20),
         },
         picture: {
             width: theme.spacing(20),
@@ -28,7 +29,7 @@ const ProfileInfo = ({ image, text }: ProfileInfo) => {
     return (
         <Box className={classes.root}>
             <Avatar src={image} className={classes.picture} />
-            <Typography variant="caption" color="textPrimary">
+            <Typography variant="caption" color="textPrimary" align="center">
                 {`"${text}"`}
             </Typography>
         </Box>
