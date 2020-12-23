@@ -5,6 +5,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 type ProfileInfo = {
     image: string;
     text: string;
+    name: string;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -23,12 +24,17 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const ProfileInfo = ({ image, text }: ProfileInfo) => {
+const ProfileInfo = ({ image, text, name }: ProfileInfo) => {
     const classes = useStyles();
 
     return (
         <Box className={classes.root}>
             <Avatar src={image} className={classes.picture} />
+            <Box fontWeight="fontWeightBold">
+                <Typography variant="body2" color="textPrimary">
+                    {name}
+                </Typography>
+            </Box>
             <Typography variant="caption" color="textPrimary" align="center">
                 {`"${text}"`}
             </Typography>
