@@ -1,5 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { Card, CardContent, CardMedia, GridListTile, makeStyles, Typography } from '@material-ui/core';
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    createStyles,
+    GridListTile,
+    makeStyles,
+    Theme,
+    Typography,
+} from '@material-ui/core';
 import { Post as PostType } from '../../generated/graphql';
 import clamp from 'clamp-js';
 
@@ -7,14 +16,21 @@ export interface IPostProps {
     post: PostType;
 }
 
-const useStyles = makeStyles({
-    root: {
-        width: 150,
-    },
-    tile: {
-        padding: 10,
-    },
-});
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            width: 150,
+        },
+        tile: {
+            '&:not(:first-child)': {
+                paddingLeft: theme.spacing(1),
+            },
+            '&:not(:last-child)': {
+                paddingRight: theme.spacing(1),
+            },
+        },
+    }),
+);
 
 export const Post = ({ post }: IPostProps) => {
     const classes = useStyles();
@@ -29,7 +45,7 @@ export const Post = ({ post }: IPostProps) => {
     }, []);
 
     return (
-        <GridListTile classes={{ tile: classes.tile }}>
+        <GridListTile className={classes.tile}>
             <Card className={classes.root}>
                 <CardMedia component="img" height={150} image={mediaUrl} />
                 <CardContent>

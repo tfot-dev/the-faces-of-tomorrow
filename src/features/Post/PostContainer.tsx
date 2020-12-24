@@ -1,27 +1,24 @@
 import React from 'react';
-import { createStyles, GridList } from '@material-ui/core';
+import { GridList } from '@material-ui/core';
 import { Post } from './Post';
 import { useGetAllPostsQuery } from '../../generated/graphql';
 import { Error } from '../Error/Error';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { PostSkeleton } from './PostSkeleton';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
-        },
-        gridList: {
-            flexWrap: 'nowrap',
-            padding: theme.spacing(3),
-        },
-    }),
-);
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+    },
+    gridList: {
+        flexWrap: 'nowrap',
+    },
+});
 
-export const PostContainer: React.FC = () => {
+export const PostContainer = () => {
     const classes = useStyles();
     const { loading, error, data } = useGetAllPostsQuery();
 

@@ -3,7 +3,7 @@ import { Avatar, Box, createStyles, Grid, Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-type ProfileInfo = {
+type ProfileInfoType = {
     image: string;
     text: string;
     name: string;
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const ProfileInfo = ({ image, text, name, country }: ProfileInfo) => {
+export const ProfileInfo = ({ image, text, name, country }: ProfileInfoType) => {
     const classes = useStyles();
 
     return (
