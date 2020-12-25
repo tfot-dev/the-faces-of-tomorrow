@@ -28,170 +28,6 @@ enum CacheControlScope {
   PUBLIC
 }
 
-# columns and relationships of "ContactUs"
-type ContactUs {
-  email: String!
-  id: uuid!
-  name: String!
-  query: String!
-}
-
-# aggregated selection of "ContactUs"
-type ContactUs_aggregate {
-  aggregate: ContactUs_aggregate_fields
-  nodes: [ContactUs!]!
-}
-
-# aggregate fields of "ContactUs"
-type ContactUs_aggregate_fields {
-  count(columns: [ContactUs_select_column!], distinct: Boolean): Int
-  max: ContactUs_max_fields
-  min: ContactUs_min_fields
-}
-
-# order by aggregate values of table "ContactUs"
-input ContactUs_aggregate_order_by {
-  count: order_by
-  max: ContactUs_max_order_by
-  min: ContactUs_min_order_by
-}
-
-# input type for inserting array relation for remote table "ContactUs"
-input ContactUs_arr_rel_insert_input {
-  data: [ContactUs_insert_input!]!
-  on_conflict: ContactUs_on_conflict
-}
-
-# Boolean expression to filter rows from the table "ContactUs". All fields are combined with a logical 'AND'.
-input ContactUs_bool_exp {
-  _and: [ContactUs_bool_exp]
-  _not: ContactUs_bool_exp
-  _or: [ContactUs_bool_exp]
-  email: String_comparison_exp
-  id: uuid_comparison_exp
-  name: String_comparison_exp
-  query: String_comparison_exp
-}
-
-# unique or primary key constraints on table "ContactUs"
-enum ContactUs_constraint {
-  # unique or primary key constraint
-  ContactUs_pkey
-}
-
-# input type for inserting data into table "ContactUs"
-input ContactUs_insert_input {
-  email: String
-  id: uuid
-  name: String
-  query: String
-}
-
-# aggregate max on columns
-type ContactUs_max_fields {
-  email: String
-  id: uuid
-  name: String
-  query: String
-}
-
-# order by max() on columns of table "ContactUs"
-input ContactUs_max_order_by {
-  email: order_by
-  id: order_by
-  name: order_by
-  query: order_by
-}
-
-# aggregate min on columns
-type ContactUs_min_fields {
-  email: String
-  id: uuid
-  name: String
-  query: String
-}
-
-# order by min() on columns of table "ContactUs"
-input ContactUs_min_order_by {
-  email: order_by
-  id: order_by
-  name: order_by
-  query: order_by
-}
-
-# response of any mutation on the table "ContactUs"
-type ContactUs_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [ContactUs!]!
-}
-
-# input type for inserting object relation for remote table "ContactUs"
-input ContactUs_obj_rel_insert_input {
-  data: ContactUs_insert_input!
-  on_conflict: ContactUs_on_conflict
-}
-
-# on conflict condition type for table "ContactUs"
-input ContactUs_on_conflict {
-  constraint: ContactUs_constraint!
-  update_columns: [ContactUs_update_column!]!
-  where: ContactUs_bool_exp
-}
-
-# ordering options when selecting data from "ContactUs"
-input ContactUs_order_by {
-  email: order_by
-  id: order_by
-  name: order_by
-  query: order_by
-}
-
-# primary key columns input for table: "ContactUs"
-input ContactUs_pk_columns_input {
-  id: uuid!
-}
-
-# select columns of table "ContactUs"
-enum ContactUs_select_column {
-  # column name
-  email
-
-  # column name
-  id
-
-  # column name
-  name
-
-  # column name
-  query
-}
-
-# input type for updating data in table "ContactUs"
-input ContactUs_set_input {
-  email: String
-  id: uuid
-  name: String
-  query: String
-}
-
-# update columns of table "ContactUs"
-enum ContactUs_update_column {
-  # column name
-  email
-
-  # column name
-  id
-
-  # column name
-  name
-
-  # column name
-  query
-}
-
 type Email {
   folderId: String!
   fromAddress: String!
@@ -209,6 +45,195 @@ type GetPostsOutput {
   id: String!
   mediaUrl: String!
   timestamp: String!
+}
+
+# columns and relationships of "inquiries"
+type inquiries {
+  email: String!
+  id: uuid!
+  name: String!
+  query: String!
+
+  # A computed field, executes function "read_inquiries_messages"
+  read_status(
+    # input parameters for function "read_inquiries_messages"
+    args: read_inquiries_messages_args!
+  ): Boolean
+
+  # An object relationship
+  read_status_lookup: read_status_lookup
+}
+
+# aggregated selection of "inquiries"
+type inquiries_aggregate {
+  aggregate: inquiries_aggregate_fields
+  nodes: [inquiries!]!
+}
+
+# aggregate fields of "inquiries"
+type inquiries_aggregate_fields {
+  count(columns: [inquiries_select_column!], distinct: Boolean): Int
+  max: inquiries_max_fields
+  min: inquiries_min_fields
+}
+
+# order by aggregate values of table "inquiries"
+input inquiries_aggregate_order_by {
+  count: order_by
+  max: inquiries_max_order_by
+  min: inquiries_min_order_by
+}
+
+# input type for inserting array relation for remote table "inquiries"
+input inquiries_arr_rel_insert_input {
+  data: [inquiries_insert_input!]!
+  on_conflict: inquiries_on_conflict
+}
+
+# Boolean expression to filter rows from the table "inquiries". All fields are combined with a logical 'AND'.
+input inquiries_bool_exp {
+  _and: [inquiries_bool_exp]
+  _not: inquiries_bool_exp
+  _or: [inquiries_bool_exp]
+  email: String_comparison_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  query: String_comparison_exp
+  read_status_lookup: read_status_lookup_bool_exp
+}
+
+# unique or primary key constraints on table "inquiries"
+enum inquiries_constraint {
+  # unique or primary key constraint
+  ContactUs_pkey
+}
+
+# input type for inserting data into table "inquiries"
+input inquiries_insert_input {
+  email: String
+  id: uuid
+  name: String
+  query: String
+  read_status_lookup: read_status_lookup_obj_rel_insert_input
+}
+
+# aggregate max on columns
+type inquiries_max_fields {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# order by max() on columns of table "inquiries"
+input inquiries_max_order_by {
+  email: order_by
+  id: order_by
+  name: order_by
+  query: order_by
+}
+
+# aggregate min on columns
+type inquiries_min_fields {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# order by min() on columns of table "inquiries"
+input inquiries_min_order_by {
+  email: order_by
+  id: order_by
+  name: order_by
+  query: order_by
+}
+
+# response of any mutation on the table "inquiries"
+type inquiries_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [inquiries!]!
+}
+
+# input type for inserting object relation for remote table "inquiries"
+input inquiries_obj_rel_insert_input {
+  data: inquiries_insert_input!
+  on_conflict: inquiries_on_conflict
+}
+
+# on conflict condition type for table "inquiries"
+input inquiries_on_conflict {
+  constraint: inquiries_constraint!
+  update_columns: [inquiries_update_column!]!
+  where: inquiries_bool_exp
+}
+
+# ordering options when selecting data from "inquiries"
+input inquiries_order_by {
+  email: order_by
+  id: order_by
+  name: order_by
+  query: order_by
+  read_status_lookup: read_status_lookup_order_by
+}
+
+# primary key columns input for table: "inquiries"
+input inquiries_pk_columns_input {
+  id: uuid!
+}
+
+# select columns of table "inquiries"
+enum inquiries_select_column {
+  # column name
+  email
+
+  # column name
+  id
+
+  # column name
+  name
+
+  # column name
+  query
+}
+
+# input type for updating data in table "inquiries"
+input inquiries_set_input {
+  email: String
+  id: uuid
+  name: String
+  query: String
+}
+
+# update columns of table "inquiries"
+enum inquiries_update_column {
+  # column name
+  email
+
+  # column name
+  id
+
+  # column name
+  name
+
+  # column name
+  query
+}
+
+# expression to compare columns of type Int. All fields are combined with logical 'AND'.
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
 }
 
 scalar json
@@ -235,20 +260,32 @@ type Mutation {
 type mutation_root {
   deleteEmail(folderId: String!, messageId: String!): [Email]
 
-  # delete data from the table: "ContactUs"
-  delete_ContactUs(
+  # delete data from the table: "YourStory"
+  delete_YourStory(
     # filter the rows which have to be deleted
-    where: ContactUs_bool_exp!
-  ): ContactUs_mutation_response
+    where: YourStory_bool_exp!
+  ): YourStory_mutation_response
 
-  # delete single row from the table: "ContactUs"
-  delete_ContactUs_by_pk(id: uuid!): ContactUs
+  # delete single row from the table: "YourStory"
+  delete_YourStory_by_pk(id: uuid!): YourStory
 
-  # delete data from the table: "online_users"
-  delete_online_users(
+  # delete data from the table: "inquiries"
+  delete_inquiries(
     # filter the rows which have to be deleted
-    where: online_users_bool_exp!
-  ): online_users_mutation_response
+    where: inquiries_bool_exp!
+  ): inquiries_mutation_response
+
+  # delete single row from the table: "inquiries"
+  delete_inquiries_by_pk(id: uuid!): inquiries
+
+  # delete data from the table: "read_status_lookup"
+  delete_read_status_lookup(
+    # filter the rows which have to be deleted
+    where: read_status_lookup_bool_exp!
+  ): read_status_lookup_mutation_response
+
+  # delete single row from the table: "read_status_lookup"
+  delete_read_status_lookup_by_pk(user_id: String!): read_status_lookup
 
   # delete data from the table: "users"
   delete_users(
@@ -259,26 +296,50 @@ type mutation_root {
   # delete single row from the table: "users"
   delete_users_by_pk(auth0_id: String!): users
 
-  # insert a single row into the table: "ContactUs"
-  insert_ContactUs_one(
-    # the row to be inserted
-    object: ContactUs_insert_input!
+  # insert data into the table: "YourStory"
+  insert_YourStory(
+    # the rows to be inserted
+    objects: [YourStory_insert_input!]!
 
     # on conflict condition
-    on_conflict: ContactUs_on_conflict
-  ): ContactUs
+    on_conflict: YourStory_on_conflict
+  ): YourStory_mutation_response
 
-  # insert data into the table: "online_users"
-  insert_online_users(
-    # the rows to be inserted
-    objects: [online_users_insert_input!]!
-  ): online_users_mutation_response
-
-  # insert a single row into the table: "online_users"
-  insert_online_users_one(
+  # insert a single row into the table: "YourStory"
+  insert_YourStory_one(
     # the row to be inserted
-    object: online_users_insert_input!
-  ): online_users
+    object: YourStory_insert_input!
+
+    # on conflict condition
+    on_conflict: YourStory_on_conflict
+  ): YourStory
+
+  # insert a single row into the table: "inquiries"
+  insert_inquiries_one(
+    # the row to be inserted
+    object: inquiries_insert_input!
+
+    # on conflict condition
+    on_conflict: inquiries_on_conflict
+  ): inquiries
+
+  # insert data into the table: "read_status_lookup"
+  insert_read_status_lookup(
+    # the rows to be inserted
+    objects: [read_status_lookup_insert_input!]!
+
+    # on conflict condition
+    on_conflict: read_status_lookup_on_conflict
+  ): read_status_lookup_mutation_response
+
+  # insert a single row into the table: "read_status_lookup"
+  insert_read_status_lookup_one(
+    # the row to be inserted
+    object: read_status_lookup_insert_input!
+
+    # on conflict condition
+    on_conflict: read_status_lookup_on_conflict
+  ): read_status_lookup
 
   # insert data into the table: "users"
   insert_users(
@@ -299,39 +360,68 @@ type mutation_root {
   ): users
   sendEmail(message: String!, subject: String!, toAddress: String!): [Email]
 
-  # insert data into the table: "ContactUs"
+  # insert data into the table: "inquiries"
   sendInquiries(
     # the rows to be inserted
-    objects: [ContactUs_insert_input!]!
+    objects: [inquiries_insert_input!]!
 
     # on conflict condition
-    on_conflict: ContactUs_on_conflict
-  ): ContactUs_mutation_response
+    on_conflict: inquiries_on_conflict
+  ): inquiries_mutation_response
 
-  # update data of the table: "ContactUs"
-  update_ContactUs(
+  # update data of the table: "YourStory"
+  update_YourStory(
+    # increments the integer columns with given value of the filtered values
+    _inc: YourStory_inc_input
+
     # sets the columns of the filtered rows to the given values
-    _set: ContactUs_set_input
+    _set: YourStory_set_input
 
     # filter the rows which have to be updated
-    where: ContactUs_bool_exp!
-  ): ContactUs_mutation_response
+    where: YourStory_bool_exp!
+  ): YourStory_mutation_response
 
-  # update single row of the table: "ContactUs"
-  update_ContactUs_by_pk(
-    # sets the columns of the filtered rows to the given values
-    _set: ContactUs_set_input
-    pk_columns: ContactUs_pk_columns_input!
-  ): ContactUs
+  # update single row of the table: "YourStory"
+  update_YourStory_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: YourStory_inc_input
 
-  # update data of the table: "online_users"
-  update_online_users(
     # sets the columns of the filtered rows to the given values
-    _set: online_users_set_input
+    _set: YourStory_set_input
+    pk_columns: YourStory_pk_columns_input!
+  ): YourStory
+
+  # update data of the table: "inquiries"
+  update_inquiries(
+    # sets the columns of the filtered rows to the given values
+    _set: inquiries_set_input
 
     # filter the rows which have to be updated
-    where: online_users_bool_exp!
-  ): online_users_mutation_response
+    where: inquiries_bool_exp!
+  ): inquiries_mutation_response
+
+  # update single row of the table: "inquiries"
+  update_inquiries_by_pk(
+    # sets the columns of the filtered rows to the given values
+    _set: inquiries_set_input
+    pk_columns: inquiries_pk_columns_input!
+  ): inquiries
+
+  # update data of the table: "read_status_lookup"
+  update_read_status_lookup(
+    # sets the columns of the filtered rows to the given values
+    _set: read_status_lookup_set_input
+
+    # filter the rows which have to be updated
+    where: read_status_lookup_bool_exp!
+  ): read_status_lookup_mutation_response
+
+  # update single row of the table: "read_status_lookup"
+  update_read_status_lookup_by_pk(
+    # sets the columns of the filtered rows to the given values
+    _set: read_status_lookup_set_input
+    pk_columns: read_status_lookup_pk_columns_input!
+  ): read_status_lookup
 
   # update data of the table: "users"
   update_users(
@@ -348,111 +438,6 @@ type mutation_root {
     _set: users_set_input
     pk_columns: users_pk_columns_input!
   ): users
-}
-
-# columns and relationships of "online_users"
-type online_users {
-  last_seen: timestamptz
-  name: String
-}
-
-# aggregated selection of "online_users"
-type online_users_aggregate {
-  aggregate: online_users_aggregate_fields
-  nodes: [online_users!]!
-}
-
-# aggregate fields of "online_users"
-type online_users_aggregate_fields {
-  count(columns: [online_users_select_column!], distinct: Boolean): Int
-  max: online_users_max_fields
-  min: online_users_min_fields
-}
-
-# order by aggregate values of table "online_users"
-input online_users_aggregate_order_by {
-  count: order_by
-  max: online_users_max_order_by
-  min: online_users_min_order_by
-}
-
-# input type for inserting array relation for remote table "online_users"
-input online_users_arr_rel_insert_input {
-  data: [online_users_insert_input!]!
-}
-
-# Boolean expression to filter rows from the table "online_users". All fields are combined with a logical 'AND'.
-input online_users_bool_exp {
-  _and: [online_users_bool_exp]
-  _not: online_users_bool_exp
-  _or: [online_users_bool_exp]
-  last_seen: timestamptz_comparison_exp
-  name: String_comparison_exp
-}
-
-# input type for inserting data into table "online_users"
-input online_users_insert_input {
-  last_seen: timestamptz
-  name: String
-}
-
-# aggregate max on columns
-type online_users_max_fields {
-  last_seen: timestamptz
-  name: String
-}
-
-# order by max() on columns of table "online_users"
-input online_users_max_order_by {
-  last_seen: order_by
-  name: order_by
-}
-
-# aggregate min on columns
-type online_users_min_fields {
-  last_seen: timestamptz
-  name: String
-}
-
-# order by min() on columns of table "online_users"
-input online_users_min_order_by {
-  last_seen: order_by
-  name: order_by
-}
-
-# response of any mutation on the table "online_users"
-type online_users_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [online_users!]!
-}
-
-# input type for inserting object relation for remote table "online_users"
-input online_users_obj_rel_insert_input {
-  data: online_users_insert_input!
-}
-
-# ordering options when selecting data from "online_users"
-input online_users_order_by {
-  last_seen: order_by
-  name: order_by
-}
-
-# select columns of table "online_users"
-enum online_users_select_column {
-  # column name
-  last_seen
-
-  # column name
-  name
-}
-
-# input type for updating data in table "online_users"
-input online_users_set_input {
-  last_seen: timestamptz
-  name: String
 }
 
 # column ordering options
@@ -492,10 +477,10 @@ type Query {
 
 # query root
 type query_root {
-  # fetch aggregated fields from the table: "ContactUs"
-  ContactUs_aggregate(
+  # fetch data from the table: "YourStory"
+  YourStory(
     # distinct select on columns
-    distinct_on: [ContactUs_select_column!]
+    distinct_on: [YourStory_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -504,24 +489,42 @@ type query_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [ContactUs_order_by!]
+    order_by: [YourStory_order_by!]
 
     # filter the rows returned
-    where: ContactUs_bool_exp
-  ): ContactUs_aggregate!
+    where: YourStory_bool_exp
+  ): [YourStory!]!
 
-  # fetch data from the table: "ContactUs" using primary key columns
-  ContactUs_by_pk(id: uuid!): ContactUs
+  # fetch aggregated fields from the table: "YourStory"
+  YourStory_aggregate(
+    # distinct select on columns
+    distinct_on: [YourStory_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [YourStory_order_by!]
+
+    # filter the rows returned
+    where: YourStory_bool_exp
+  ): YourStory_aggregate!
+
+  # fetch data from the table: "YourStory" using primary key columns
+  YourStory_by_pk(id: uuid!): YourStory
 
   # perform the action: "auth0"
   auth0: auth0_profile
   emails: [Email]!
   getEmail(messageId: String!): Email
 
-  # fetch data from the table: "ContactUs"
+  # fetch data from the table: "inquiries"
   getInquiries(
     # distinct select on columns
-    distinct_on: [ContactUs_select_column!]
+    distinct_on: [inquiries_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -530,16 +533,16 @@ type query_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [ContactUs_order_by!]
+    order_by: [inquiries_order_by!]
 
     # filter the rows returned
-    where: ContactUs_bool_exp
-  ): [ContactUs!]!
+    where: inquiries_bool_exp
+  ): [inquiries!]!
 
-  # fetch data from the table: "online_users"
-  online_users(
+  # fetch aggregated fields from the table: "inquiries"
+  inquiries_aggregate(
     # distinct select on columns
-    distinct_on: [online_users_select_column!]
+    distinct_on: [inquiries_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -548,30 +551,54 @@ type query_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [online_users_order_by!]
+    order_by: [inquiries_order_by!]
 
     # filter the rows returned
-    where: online_users_bool_exp
-  ): [online_users!]!
+    where: inquiries_bool_exp
+  ): inquiries_aggregate!
 
-  # fetch aggregated fields from the table: "online_users"
-  online_users_aggregate(
-    # distinct select on columns
-    distinct_on: [online_users_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [online_users_order_by!]
-
-    # filter the rows returned
-    where: online_users_bool_exp
-  ): online_users_aggregate!
+  # fetch data from the table: "inquiries" using primary key columns
+  inquiries_by_pk(id: uuid!): inquiries
   posts: [Post]!
+
+  # fetch data from the table: "read_status_lookup"
+  read_status_lookup(
+    # distinct select on columns
+    distinct_on: [read_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [read_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: read_status_lookup_bool_exp
+  ): [read_status_lookup!]!
+
+  # fetch aggregated fields from the table: "read_status_lookup"
+  read_status_lookup_aggregate(
+    # distinct select on columns
+    distinct_on: [read_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [read_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: read_status_lookup_bool_exp
+  ): read_status_lookup_aggregate!
+
+  # fetch data from the table: "read_status_lookup" using primary key columns
+  read_status_lookup_by_pk(user_id: String!): read_status_lookup
   sentEmails: [SentEmail]!
 
   # fetch data from the table: "users" using primary key columns
@@ -612,6 +639,147 @@ type query_root {
     # filter the rows returned
     where: users_bool_exp
   ): users_aggregate!
+}
+
+input read_inquiries_messages_args {
+  hasura_session: json
+}
+
+# columns and relationships of "read_status_lookup"
+type read_status_lookup {
+  id: uuid!
+  user_id: String!
+}
+
+# aggregated selection of "read_status_lookup"
+type read_status_lookup_aggregate {
+  aggregate: read_status_lookup_aggregate_fields
+  nodes: [read_status_lookup!]!
+}
+
+# aggregate fields of "read_status_lookup"
+type read_status_lookup_aggregate_fields {
+  count(columns: [read_status_lookup_select_column!], distinct: Boolean): Int
+  max: read_status_lookup_max_fields
+  min: read_status_lookup_min_fields
+}
+
+# order by aggregate values of table "read_status_lookup"
+input read_status_lookup_aggregate_order_by {
+  count: order_by
+  max: read_status_lookup_max_order_by
+  min: read_status_lookup_min_order_by
+}
+
+# input type for inserting array relation for remote table "read_status_lookup"
+input read_status_lookup_arr_rel_insert_input {
+  data: [read_status_lookup_insert_input!]!
+  on_conflict: read_status_lookup_on_conflict
+}
+
+# Boolean expression to filter rows from the table "read_status_lookup". All fields are combined with a logical 'AND'.
+input read_status_lookup_bool_exp {
+  _and: [read_status_lookup_bool_exp]
+  _not: read_status_lookup_bool_exp
+  _or: [read_status_lookup_bool_exp]
+  id: uuid_comparison_exp
+  user_id: String_comparison_exp
+}
+
+# unique or primary key constraints on table "read_status_lookup"
+enum read_status_lookup_constraint {
+  # unique or primary key constraint
+  ReadMessages_pkey
+
+  # unique or primary key constraint
+  read_status_lookup_id_key
+}
+
+# input type for inserting data into table "read_status_lookup"
+input read_status_lookup_insert_input {
+  id: uuid
+  user_id: String
+}
+
+# aggregate max on columns
+type read_status_lookup_max_fields {
+  id: uuid
+  user_id: String
+}
+
+# order by max() on columns of table "read_status_lookup"
+input read_status_lookup_max_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+# aggregate min on columns
+type read_status_lookup_min_fields {
+  id: uuid
+  user_id: String
+}
+
+# order by min() on columns of table "read_status_lookup"
+input read_status_lookup_min_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+# response of any mutation on the table "read_status_lookup"
+type read_status_lookup_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [read_status_lookup!]!
+}
+
+# input type for inserting object relation for remote table "read_status_lookup"
+input read_status_lookup_obj_rel_insert_input {
+  data: read_status_lookup_insert_input!
+  on_conflict: read_status_lookup_on_conflict
+}
+
+# on conflict condition type for table "read_status_lookup"
+input read_status_lookup_on_conflict {
+  constraint: read_status_lookup_constraint!
+  update_columns: [read_status_lookup_update_column!]!
+  where: read_status_lookup_bool_exp
+}
+
+# ordering options when selecting data from "read_status_lookup"
+input read_status_lookup_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+# primary key columns input for table: "read_status_lookup"
+input read_status_lookup_pk_columns_input {
+  user_id: String!
+}
+
+# select columns of table "read_status_lookup"
+enum read_status_lookup_select_column {
+  # column name
+  id
+
+  # column name
+  user_id
+}
+
+# input type for updating data in table "read_status_lookup"
+input read_status_lookup_set_input {
+  id: uuid
+  user_id: String
+}
+
+# update columns of table "read_status_lookup"
+enum read_status_lookup_update_column {
+  # column name
+  id
+
+  # column name
+  user_id
 }
 
 type SentEmail {
@@ -655,10 +823,10 @@ input String_comparison_exp {
 
 # subscription root
 type subscription_root {
-  # fetch aggregated fields from the table: "ContactUs"
-  ContactUs_aggregate(
+  # fetch data from the table: "YourStory"
+  YourStory(
     # distinct select on columns
-    distinct_on: [ContactUs_select_column!]
+    distinct_on: [YourStory_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -667,22 +835,40 @@ type subscription_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [ContactUs_order_by!]
+    order_by: [YourStory_order_by!]
 
     # filter the rows returned
-    where: ContactUs_bool_exp
-  ): ContactUs_aggregate!
+    where: YourStory_bool_exp
+  ): [YourStory!]!
 
-  # fetch data from the table: "ContactUs" using primary key columns
-  ContactUs_by_pk(id: uuid!): ContactUs
+  # fetch aggregated fields from the table: "YourStory"
+  YourStory_aggregate(
+    # distinct select on columns
+    distinct_on: [YourStory_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [YourStory_order_by!]
+
+    # filter the rows returned
+    where: YourStory_bool_exp
+  ): YourStory_aggregate!
+
+  # fetch data from the table: "YourStory" using primary key columns
+  YourStory_by_pk(id: uuid!): YourStory
 
   # perform the action: "auth0"
   auth0: auth0_profile
 
-  # fetch data from the table: "ContactUs"
+  # fetch data from the table: "inquiries"
   getInquiries(
     # distinct select on columns
-    distinct_on: [ContactUs_select_column!]
+    distinct_on: [inquiries_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -691,16 +877,16 @@ type subscription_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [ContactUs_order_by!]
+    order_by: [inquiries_order_by!]
 
     # filter the rows returned
-    where: ContactUs_bool_exp
-  ): [ContactUs!]!
+    where: inquiries_bool_exp
+  ): [inquiries!]!
 
-  # fetch data from the table: "online_users"
-  online_users(
+  # fetch aggregated fields from the table: "inquiries"
+  inquiries_aggregate(
     # distinct select on columns
-    distinct_on: [online_users_select_column!]
+    distinct_on: [inquiries_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -709,16 +895,19 @@ type subscription_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [online_users_order_by!]
+    order_by: [inquiries_order_by!]
 
     # filter the rows returned
-    where: online_users_bool_exp
-  ): [online_users!]!
+    where: inquiries_bool_exp
+  ): inquiries_aggregate!
 
-  # fetch aggregated fields from the table: "online_users"
-  online_users_aggregate(
+  # fetch data from the table: "inquiries" using primary key columns
+  inquiries_by_pk(id: uuid!): inquiries
+
+  # fetch data from the table: "read_status_lookup"
+  read_status_lookup(
     # distinct select on columns
-    distinct_on: [online_users_select_column!]
+    distinct_on: [read_status_lookup_select_column!]
 
     # limit the number of rows returned
     limit: Int
@@ -727,11 +916,32 @@ type subscription_root {
     offset: Int
 
     # sort the rows by one or more columns
-    order_by: [online_users_order_by!]
+    order_by: [read_status_lookup_order_by!]
 
     # filter the rows returned
-    where: online_users_bool_exp
-  ): online_users_aggregate!
+    where: read_status_lookup_bool_exp
+  ): [read_status_lookup!]!
+
+  # fetch aggregated fields from the table: "read_status_lookup"
+  read_status_lookup_aggregate(
+    # distinct select on columns
+    distinct_on: [read_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [read_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: read_status_lookup_bool_exp
+  ): read_status_lookup_aggregate!
+
+  # fetch data from the table: "read_status_lookup" using primary key columns
+  read_status_lookup_by_pk(user_id: String!): read_status_lookup
 
   # fetch data from the table: "users" using primary key columns
   user(auth0_id: String!): users
@@ -800,6 +1010,42 @@ type users {
   id: String!
   last_seen: timestamptz
   name: String!
+
+  # An array relationship
+  read_status_lookups(
+    # distinct select on columns
+    distinct_on: [read_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [read_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: read_status_lookup_bool_exp
+  ): [read_status_lookup!]!
+
+  # An aggregated array relationship
+  read_status_lookups_aggregate(
+    # distinct select on columns
+    distinct_on: [read_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [read_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: read_status_lookup_bool_exp
+  ): read_status_lookup_aggregate!
 }
 
 # aggregated selection of "users"
@@ -840,6 +1086,7 @@ input users_bool_exp {
   id: String_comparison_exp
   last_seen: timestamptz_comparison_exp
   name: String_comparison_exp
+  read_status_lookups: read_status_lookup_bool_exp
 }
 
 # unique or primary key constraints on table "users"
@@ -860,6 +1107,7 @@ input users_insert_input {
   id: String
   last_seen: timestamptz
   name: String
+  read_status_lookups: read_status_lookup_arr_rel_insert_input
 }
 
 # aggregate max on columns
@@ -933,6 +1181,7 @@ input users_order_by {
   id: order_by
   last_seen: order_by
   name: order_by
+  read_status_lookups_aggregate: read_status_lookup_aggregate_order_by
 }
 
 # primary key columns input for table: "users"
@@ -1012,5 +1261,390 @@ input uuid_comparison_exp {
   _lte: uuid
   _neq: uuid
   _nin: [uuid!]
+}
+
+# columns and relationships of "YourStory"
+type YourStory {
+  advise: String!
+  age: Int!
+  city: String!
+  email: String!
+  id: uuid!
+  inspiration: String!
+  name: String!
+  need: String!
+  observedEffects: String!
+  occupation: String!
+  pictures: String!
+  projectIdea: String!
+}
+
+# aggregated selection of "YourStory"
+type YourStory_aggregate {
+  aggregate: YourStory_aggregate_fields
+  nodes: [YourStory!]!
+}
+
+# aggregate fields of "YourStory"
+type YourStory_aggregate_fields {
+  avg: YourStory_avg_fields
+  count(columns: [YourStory_select_column!], distinct: Boolean): Int
+  max: YourStory_max_fields
+  min: YourStory_min_fields
+  stddev: YourStory_stddev_fields
+  stddev_pop: YourStory_stddev_pop_fields
+  stddev_samp: YourStory_stddev_samp_fields
+  sum: YourStory_sum_fields
+  var_pop: YourStory_var_pop_fields
+  var_samp: YourStory_var_samp_fields
+  variance: YourStory_variance_fields
+}
+
+# order by aggregate values of table "YourStory"
+input YourStory_aggregate_order_by {
+  avg: YourStory_avg_order_by
+  count: order_by
+  max: YourStory_max_order_by
+  min: YourStory_min_order_by
+  stddev: YourStory_stddev_order_by
+  stddev_pop: YourStory_stddev_pop_order_by
+  stddev_samp: YourStory_stddev_samp_order_by
+  sum: YourStory_sum_order_by
+  var_pop: YourStory_var_pop_order_by
+  var_samp: YourStory_var_samp_order_by
+  variance: YourStory_variance_order_by
+}
+
+# input type for inserting array relation for remote table "YourStory"
+input YourStory_arr_rel_insert_input {
+  data: [YourStory_insert_input!]!
+  on_conflict: YourStory_on_conflict
+}
+
+# aggregate avg on columns
+type YourStory_avg_fields {
+  age: Float
+}
+
+# order by avg() on columns of table "YourStory"
+input YourStory_avg_order_by {
+  age: order_by
+}
+
+# Boolean expression to filter rows from the table "YourStory". All fields are combined with a logical 'AND'.
+input YourStory_bool_exp {
+  _and: [YourStory_bool_exp]
+  _not: YourStory_bool_exp
+  _or: [YourStory_bool_exp]
+  advise: String_comparison_exp
+  age: Int_comparison_exp
+  city: String_comparison_exp
+  email: String_comparison_exp
+  id: uuid_comparison_exp
+  inspiration: String_comparison_exp
+  name: String_comparison_exp
+  need: String_comparison_exp
+  observedEffects: String_comparison_exp
+  occupation: String_comparison_exp
+  pictures: String_comparison_exp
+  projectIdea: String_comparison_exp
+}
+
+# unique or primary key constraints on table "YourStory"
+enum YourStory_constraint {
+  # unique or primary key constraint
+  YourStory_pkey
+}
+
+# input type for incrementing integer column in table "YourStory"
+input YourStory_inc_input {
+  age: Int
+}
+
+# input type for inserting data into table "YourStory"
+input YourStory_insert_input {
+  advise: String
+  age: Int
+  city: String
+  email: String
+  id: uuid
+  inspiration: String
+  name: String
+  need: String
+  observedEffects: String
+  occupation: String
+  pictures: String
+  projectIdea: String
+}
+
+# aggregate max on columns
+type YourStory_max_fields {
+  advise: String
+  age: Int
+  city: String
+  email: String
+  id: uuid
+  inspiration: String
+  name: String
+  need: String
+  observedEffects: String
+  occupation: String
+  pictures: String
+  projectIdea: String
+}
+
+# order by max() on columns of table "YourStory"
+input YourStory_max_order_by {
+  advise: order_by
+  age: order_by
+  city: order_by
+  email: order_by
+  id: order_by
+  inspiration: order_by
+  name: order_by
+  need: order_by
+  observedEffects: order_by
+  occupation: order_by
+  pictures: order_by
+  projectIdea: order_by
+}
+
+# aggregate min on columns
+type YourStory_min_fields {
+  advise: String
+  age: Int
+  city: String
+  email: String
+  id: uuid
+  inspiration: String
+  name: String
+  need: String
+  observedEffects: String
+  occupation: String
+  pictures: String
+  projectIdea: String
+}
+
+# order by min() on columns of table "YourStory"
+input YourStory_min_order_by {
+  advise: order_by
+  age: order_by
+  city: order_by
+  email: order_by
+  id: order_by
+  inspiration: order_by
+  name: order_by
+  need: order_by
+  observedEffects: order_by
+  occupation: order_by
+  pictures: order_by
+  projectIdea: order_by
+}
+
+# response of any mutation on the table "YourStory"
+type YourStory_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [YourStory!]!
+}
+
+# input type for inserting object relation for remote table "YourStory"
+input YourStory_obj_rel_insert_input {
+  data: YourStory_insert_input!
+  on_conflict: YourStory_on_conflict
+}
+
+# on conflict condition type for table "YourStory"
+input YourStory_on_conflict {
+  constraint: YourStory_constraint!
+  update_columns: [YourStory_update_column!]!
+  where: YourStory_bool_exp
+}
+
+# ordering options when selecting data from "YourStory"
+input YourStory_order_by {
+  advise: order_by
+  age: order_by
+  city: order_by
+  email: order_by
+  id: order_by
+  inspiration: order_by
+  name: order_by
+  need: order_by
+  observedEffects: order_by
+  occupation: order_by
+  pictures: order_by
+  projectIdea: order_by
+}
+
+# primary key columns input for table: "YourStory"
+input YourStory_pk_columns_input {
+  id: uuid!
+}
+
+# select columns of table "YourStory"
+enum YourStory_select_column {
+  # column name
+  advise
+
+  # column name
+  age
+
+  # column name
+  city
+
+  # column name
+  email
+
+  # column name
+  id
+
+  # column name
+  inspiration
+
+  # column name
+  name
+
+  # column name
+  need
+
+  # column name
+  observedEffects
+
+  # column name
+  occupation
+
+  # column name
+  pictures
+
+  # column name
+  projectIdea
+}
+
+# input type for updating data in table "YourStory"
+input YourStory_set_input {
+  advise: String
+  age: Int
+  city: String
+  email: String
+  id: uuid
+  inspiration: String
+  name: String
+  need: String
+  observedEffects: String
+  occupation: String
+  pictures: String
+  projectIdea: String
+}
+
+# aggregate stddev on columns
+type YourStory_stddev_fields {
+  age: Float
+}
+
+# order by stddev() on columns of table "YourStory"
+input YourStory_stddev_order_by {
+  age: order_by
+}
+
+# aggregate stddev_pop on columns
+type YourStory_stddev_pop_fields {
+  age: Float
+}
+
+# order by stddev_pop() on columns of table "YourStory"
+input YourStory_stddev_pop_order_by {
+  age: order_by
+}
+
+# aggregate stddev_samp on columns
+type YourStory_stddev_samp_fields {
+  age: Float
+}
+
+# order by stddev_samp() on columns of table "YourStory"
+input YourStory_stddev_samp_order_by {
+  age: order_by
+}
+
+# aggregate sum on columns
+type YourStory_sum_fields {
+  age: Int
+}
+
+# order by sum() on columns of table "YourStory"
+input YourStory_sum_order_by {
+  age: order_by
+}
+
+# update columns of table "YourStory"
+enum YourStory_update_column {
+  # column name
+  advise
+
+  # column name
+  age
+
+  # column name
+  city
+
+  # column name
+  email
+
+  # column name
+  id
+
+  # column name
+  inspiration
+
+  # column name
+  name
+
+  # column name
+  need
+
+  # column name
+  observedEffects
+
+  # column name
+  occupation
+
+  # column name
+  pictures
+
+  # column name
+  projectIdea
+}
+
+# aggregate var_pop on columns
+type YourStory_var_pop_fields {
+  age: Float
+}
+
+# order by var_pop() on columns of table "YourStory"
+input YourStory_var_pop_order_by {
+  age: order_by
+}
+
+# aggregate var_samp on columns
+type YourStory_var_samp_fields {
+  age: Float
+}
+
+# order by var_samp() on columns of table "YourStory"
+input YourStory_var_samp_order_by {
+  age: order_by
+}
+
+# aggregate variance on columns
+type YourStory_variance_fields {
+  age: Float
+}
+
+# order by variance() on columns of table "YourStory"
+input YourStory_variance_order_by {
+  age: order_by
 }
 
