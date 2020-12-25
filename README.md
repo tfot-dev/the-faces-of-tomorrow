@@ -15,6 +15,20 @@ You will need a set of tools to set up this project on your PC-
 * Run `yarn`.
 * Start the development by running `yarn start`.
 
+## Git workflow
+
+* Make sure to always pull from the `master` branch before making your own branch.
+* Create your own branch with branch name such as-
+  - For features- feat/{feature-name}
+  - For bugs and fixes= fix/{fix-name}
+  - Example- feat/show-profile-pictures, fix/image-format-import
+* For commits, use-
+  - `chore: ` for normal day-to-day commits.
+  - `feat: ` for special feature commits.
+  - `fix: ` for the bug fixes commits.
+* After committing, push your branch and create a pull request for the same.
+* Merge your branch after it is approved.
+
 ## Available Scripts
 
 In the project directory, you can run:
