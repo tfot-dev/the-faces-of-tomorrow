@@ -4,9 +4,11 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import InboxIcon from '@material-ui/icons/Inbox';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import { EmailSentContainer } from '../features/Email/EmailSentContainer';
 import { Error } from '../features/Error/Error';
 import { EmailInboxContainer } from '../features/Email/EmailInboxContainer';
+import { InquiriesContainer } from '../features/ContactUs/InquiriesContainer';
 
 export const AdminSideNavItems = [
     {
@@ -44,5 +46,11 @@ export const AdminSideNavItems = [
         icon: FeaturedPlayListIcon,
         component: Error,
         route: 'featured',
+    },
+    {
+        label: 'Inquiries',
+        icon: ContactSupportIcon,
+        component: InquiriesContainer,
+        route: 'Inquiries',
     },
 ];
