@@ -5,7 +5,7 @@ import KaranPicture from '../../assets/Karan.jpeg';
 import DeepikaPicture from '../../assets/Deepika.jpg';
 import JuliaPicture from '../../assets/Julia.jpeg';
 import GiorgiaPicture from '../../assets/Giorgia.jpeg';
-import DianaPicture from '../../assets/Diana.jpeg';
+import DianaPicture from '../../assets/Diana.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
