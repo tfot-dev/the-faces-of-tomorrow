@@ -29,6 +29,12 @@ You will need a set of tools to set up this project on your PC-
 * After committing, push your branch and create a pull request for the same.
 * Merge your branch after it is approved.
 
+## GraphQL Schema
+
+* Update the graphql schema using 'yarn schema'.
+* You can create your own `fragment, query, mutation` inside `src/graphql` directory.
+* Run `yarn schema` again to generate react hooks for the same.
+
 ## Available Scripts
 
 In the project directory, you can run:
