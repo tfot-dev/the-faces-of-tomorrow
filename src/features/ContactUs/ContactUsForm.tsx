@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Button, Grid, TextField } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { ContactUs } from '../../generated/graphql';
+import { Inquiries } from '../../generated/graphql';
 
 type ContactUsFormType = {
-    onSubmit: (data: ContactUs) => void;
+    onSubmit: (data: Inquiries) => void;
 };
 
 export const ContactUsForm = ({ onSubmit }: ContactUsFormType) => {
