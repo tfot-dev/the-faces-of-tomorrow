@@ -1,4 +1,4 @@
-fragment Inquiry on ContactUs {
+fragment Inquiry on inquiries {
     name
     email
     query
