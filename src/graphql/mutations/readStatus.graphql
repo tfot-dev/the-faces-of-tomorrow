@@ -1,0 +1,5 @@
+mutation readStatus($id: uuid!, $user_id: String!) {
+    setReadStatus(objects: {id: $id, user_id: $user_id }) {
+        affected_rows
+    }
+}

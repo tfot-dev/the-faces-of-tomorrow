@@ -1,0 +1,5 @@
+query GetInquiry($id: uuid!) {
+    inquiries_by_pk(id: $id) {
+        ...Inquiry
+    }
+}

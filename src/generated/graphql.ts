@@ -1602,6 +1602,20 @@ export type YourStoryFragment = (
   & Pick<Your_Story, 'advise' | 'age' | 'city' | 'email' | 'id' | 'inspiration' | 'name' | 'need' | 'observedEffects' | 'occupation' | 'pictures' | 'projectIdea' | 'read_status'>
 );
 
+export type ReadStatusMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  user_id: Scalars['String'];
+}>;
+
+
+export type ReadStatusMutation = (
+  { __typename?: 'mutation_root' }
+  & { setReadStatus?: Maybe<(
+    { __typename?: 'read_status_lookup_mutation_response' }
+    & Pick<Read_Status_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type SendEmailMutationVariables = Exact<{
   toAddress: Scalars['String'];
   subject: Scalars['String'];
@@ -1690,6 +1704,19 @@ export type GetAllInquiriesQuery = (
   )> }
 );
 
+export type GetInquiryQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetInquiryQuery = (
+  { __typename?: 'query_root' }
+  & { inquiries_by_pk?: Maybe<(
+    { __typename?: 'inquiries' }
+    & InquiryFragment
+  )> }
+);
+
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1729,6 +1756,19 @@ export type GetAllYourStoriesQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetAllYourStoriesQuery = (
   { __typename?: 'query_root' }
   & { your_story: Array<(
+    { __typename?: 'your_story' }
+    & YourStoryFragment
+  )> }
+);
+
+export type GetYourStoryQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetYourStoryQuery = (
+  { __typename?: 'query_root' }
+  & { your_story_by_pk?: Maybe<(
     { __typename?: 'your_story' }
     & YourStoryFragment
   )> }
@@ -1809,6 +1849,39 @@ export const YourStoryFragmentDoc = gql`
   read_status
 }
     `;
+export const ReadStatusDocument = gql`
+    mutation readStatus($id: uuid!, $user_id: String!) {
+  setReadStatus(objects: {id: $id, user_id: $user_id}) {
+    affected_rows
+  }
+}
+    `;
+export type ReadStatusMutationFn = Apollo.MutationFunction<ReadStatusMutation, ReadStatusMutationVariables>;
+
+/**
+ * __useReadStatusMutation__
+ *
+ * To run a mutation, you first call `useReadStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReadStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [readStatusMutation, { data, loading, error }] = useReadStatusMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useReadStatusMutation(baseOptions?: Apollo.MutationHookOptions<ReadStatusMutation, ReadStatusMutationVariables>) {
+        return Apollo.useMutation<ReadStatusMutation, ReadStatusMutationVariables>(ReadStatusDocument, baseOptions);
+      }
+export type ReadStatusMutationHookResult = ReturnType<typeof useReadStatusMutation>;
+export type ReadStatusMutationResult = Apollo.MutationResult<ReadStatusMutation>;
+export type ReadStatusMutationOptions = Apollo.BaseMutationOptions<ReadStatusMutation, ReadStatusMutationVariables>;
 export const SendEmailDocument = gql`
     mutation sendEmail($toAddress: String!, $subject: String!, $message: String!) {
   sendEmail(toAddress: $toAddress, subject: $subject, message: $message) {
@@ -2018,6 +2091,39 @@ export function useGetAllInquiriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetAllInquiriesQueryHookResult = ReturnType<typeof useGetAllInquiriesQuery>;
 export type GetAllInquiriesLazyQueryHookResult = ReturnType<typeof useGetAllInquiriesLazyQuery>;
 export type GetAllInquiriesQueryResult = Apollo.QueryResult<GetAllInquiriesQuery, GetAllInquiriesQueryVariables>;
+export const GetInquiryDocument = gql`
+    query GetInquiry($id: uuid!) {
+  inquiries_by_pk(id: $id) {
+    ...Inquiry
+  }
+}
+    ${InquiryFragmentDoc}`;
+
+/**
+ * __useGetInquiryQuery__
+ *
+ * To run a query within a React component, call `useGetInquiryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetInquiryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetInquiryQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetInquiryQuery(baseOptions: Apollo.QueryHookOptions<GetInquiryQuery, GetInquiryQueryVariables>) {
+        return Apollo.useQuery<GetInquiryQuery, GetInquiryQueryVariables>(GetInquiryDocument, baseOptions);
+      }
+export function useGetInquiryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetInquiryQuery, GetInquiryQueryVariables>) {
+          return Apollo.useLazyQuery<GetInquiryQuery, GetInquiryQueryVariables>(GetInquiryDocument, baseOptions);
+        }
+export type GetInquiryQueryHookResult = ReturnType<typeof useGetInquiryQuery>;
+export type GetInquiryLazyQueryHookResult = ReturnType<typeof useGetInquiryLazyQuery>;
+export type GetInquiryQueryResult = Apollo.QueryResult<GetInquiryQuery, GetInquiryQueryVariables>;
 export const GetAllPostsDocument = gql`
     query GetAllPosts {
   posts {
@@ -2146,3 +2252,36 @@ export function useGetAllYourStoriesLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetAllYourStoriesQueryHookResult = ReturnType<typeof useGetAllYourStoriesQuery>;
 export type GetAllYourStoriesLazyQueryHookResult = ReturnType<typeof useGetAllYourStoriesLazyQuery>;
 export type GetAllYourStoriesQueryResult = Apollo.QueryResult<GetAllYourStoriesQuery, GetAllYourStoriesQueryVariables>;
+export const GetYourStoryDocument = gql`
+    query GetYourStory($id: uuid!) {
+  your_story_by_pk(id: $id) {
+    ...YourStory
+  }
+}
+    ${YourStoryFragmentDoc}`;
+
+/**
+ * __useGetYourStoryQuery__
+ *
+ * To run a query within a React component, call `useGetYourStoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetYourStoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetYourStoryQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetYourStoryQuery(baseOptions: Apollo.QueryHookOptions<GetYourStoryQuery, GetYourStoryQueryVariables>) {
+        return Apollo.useQuery<GetYourStoryQuery, GetYourStoryQueryVariables>(GetYourStoryDocument, baseOptions);
+      }
+export function useGetYourStoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetYourStoryQuery, GetYourStoryQueryVariables>) {
+          return Apollo.useLazyQuery<GetYourStoryQuery, GetYourStoryQueryVariables>(GetYourStoryDocument, baseOptions);
+        }
+export type GetYourStoryQueryHookResult = ReturnType<typeof useGetYourStoryQuery>;
+export type GetYourStoryLazyQueryHookResult = ReturnType<typeof useGetYourStoryLazyQuery>;
+export type GetYourStoryQueryResult = Apollo.QueryResult<GetYourStoryQuery, GetYourStoryQueryVariables>;
