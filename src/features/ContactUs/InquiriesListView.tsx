@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 interface InquiriesListViewProps {
     inquiries: Inquiries[];
+    inquiryContent: React.ComponentType<unknown>;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const InquiriesListView = ({ inquiries }: InquiriesListViewProps) => {
+export const InquiriesListView = ({ inquiries, inquiryContent }: InquiriesListViewProps) => {
     const { url } = useRouteMatch();
     const classes = useStyles();
 
@@ -40,6 +41,7 @@ export const InquiriesListView = ({ inquiries }: InquiriesListViewProps) => {
                     </List>
                 </Box>
             </Route>
+            <Route path={`${url}/:inquiryId`} component={inquiryContent} />
         </Switch>
     );
 };

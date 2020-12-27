@@ -3,6 +3,7 @@ import { useGetAllInquiriesQuery } from '../../generated/graphql';
 import { LinearProgress } from '@material-ui/core';
 import { Error } from '../Error/Error';
 import { InquiriesListView } from './InquiriesListView';
+import { InquiryContent } from './InquiryContent';
 
 export const InquiriesContainer = () => {
     const { loading, error, data } = useGetAllInquiriesQuery();
@@ -15,5 +16,5 @@ export const InquiriesContainer = () => {
 
     console.log(data?.getInquiries);
 
-    return <InquiriesListView inquiries={data.getInquiries} />;
+    return <InquiriesListView inquiries={data.getInquiries} inquiryContent={InquiryContent} />;
 };
