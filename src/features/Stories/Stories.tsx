@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, createStyles, Theme, Typography } from '@material-ui/core';
 import { PostContainer } from '../Post/PostContainer';
-import { PublicApi } from '../Api/PublicApi';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,9 +21,7 @@ export const Stories = () => {
                 <Box fontWeight="fontWeightBold">Latest Stories</Box>
             </Typography>
             <Box display="flex" justifyContent="space-evenly" margin={5}>
-                <PublicApi>
-                    <PostContainer />
-                </PublicApi>
+                <PostContainer />
             </Box>
         </Box>
     );

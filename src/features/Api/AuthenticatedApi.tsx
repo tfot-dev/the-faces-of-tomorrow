@@ -10,7 +10,12 @@ interface IApiProps {
 
 export const AuthenticatedApi = ({ children }: IApiProps) => {
     const { getAccessTokenSilently } = useAuth0();
-    const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
+    const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>(
+        new ApolloClient({
+            uri: GraphqlEndpoints.Hasura,
+            cache: new InMemoryCache(),
+        }),
+    );
 
     useEffect(() => {
         const getToken = async () => {
@@ -46,5 +51,5 @@ export const AuthenticatedApi = ({ children }: IApiProps) => {
         getToken();
     }, [getAccessTokenSilently]);
 
-    return client ? <ApolloProvider client={client}>{children}</ApolloProvider> : <div />;
+    return <ApolloProvider client={client}>{children}</ApolloProvider>;
 };

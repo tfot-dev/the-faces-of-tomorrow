@@ -3,7 +3,7 @@ import { Slideshow } from '../Slideshow/Slideshow';
 import { AboutUs } from '../AboutUs/AboutUs';
 import { Stories } from '../Stories/Stories';
 import { Footer } from '../Footer/Footer';
-import { ContactUsContainer } from '../ContactUs/ContactUsContainer';
+import { ContactUs } from '../ContactUs/ContactUs';
 
 export const Home = () => {
     return (
@@ -11,7 +11,7 @@ export const Home = () => {
             <Slideshow />
             <AboutUs />
             <Stories />
-            <ContactUsContainer />
+            <ContactUs />
             <Footer />
         </>
     );
