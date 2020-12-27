@@ -10,10 +10,10 @@ type YourStoryListItemType = {
 export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
     const { url } = useRouteMatch();
 
-    const { name, email, id, projectIdea } = yourStory;
+    const { name, email, id, projectIdea, read_status } = yourStory;
 
     return (
-        <ListItem button alignItems="flex-start" key={id} component={Link} to={`${url}/${id}`}>
+        <ListItem button alignItems="flex-start" key={id} component={Link} to={`${url}/${id}`} selected={!!read_status}>
             <ListItemAvatar>
                 <Avatar>{email.substr(0, 1)}</Avatar>
             </ListItemAvatar>

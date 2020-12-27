@@ -7,6 +7,7 @@ import { YourStoryListItem } from './YourStoryListItem';
 
 type YourStoryListViewType = {
     yourStories: Your_Story[];
+    yourStoryContent: React.ComponentType<unknown>;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const YourStoryListView = ({ yourStories }: YourStoryListViewType) => {
+export const YourStoryListView = ({ yourStories, yourStoryContent }: YourStoryListViewType) => {
     const { url } = useRouteMatch();
     const classes = useStyles();
 
@@ -38,6 +39,7 @@ export const YourStoryListView = ({ yourStories }: YourStoryListViewType) => {
                     </List>
                 </Box>
             </Route>
+            <Route path={`${url}/:yourStoryId`} component={yourStoryContent} />
         </Switch>
     );
 };
