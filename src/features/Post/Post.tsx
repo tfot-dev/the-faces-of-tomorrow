@@ -21,7 +21,14 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             width: 150,
         },
-        tile: {
+        tileRoot: {
+            padding: '8px 0',
+            '&:first-child': {
+                paddingLeft: theme.spacing(0.5),
+            },
+            '&:last-child': {
+                paddingRight: theme.spacing(0.5),
+            },
             '&:not(:first-child)': {
                 paddingLeft: theme.spacing(1),
             },
@@ -29,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 paddingRight: theme.spacing(1),
             },
         },
+        tile: { padding: '4px 0' },
     }),
 );
 
@@ -45,7 +53,7 @@ export const Post = ({ post }: IPostProps) => {
     }, []);
 
     return (
-        <GridListTile className={classes.tile}>
+        <GridListTile className={classes.tileRoot} classes={{ tile: classes.tile }}>
             <Card className={classes.root}>
                 <CardMedia component="img" height={150} image={mediaUrl} />
                 <CardContent>
