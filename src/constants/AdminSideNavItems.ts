@@ -9,6 +9,7 @@ import { EmailSentContainer } from '../features/Email/EmailSentContainer';
 import { Error } from '../features/Error/Error';
 import { EmailInboxContainer } from '../features/Email/EmailInboxContainer';
 import { InquiriesContainer } from '../features/ContactUs/InquiriesContainer';
+import { YourStoryContainer } from '../features/YourStory/YourStoryContainer';
 
 export const AdminSideNavItems = [
     {
@@ -26,7 +27,7 @@ export const AdminSideNavItems = [
     {
         label: 'Unassigned',
         icon: HourglassEmptyIcon,
-        component: Error,
+        component: YourStoryContainer,
         route: 'unassigned',
     },
     {
