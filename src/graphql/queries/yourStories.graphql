@@ -1,0 +1,5 @@
+query GetAllYourStories {
+    your_story {
+        ...YourStory
+    }
+}

@@ -1,0 +1,15 @@
+fragment YourStory on your_story {
+    advise
+    age
+    city
+    email
+    id
+    inspiration
+    name
+    need
+    observedEffects
+    occupation
+    pictures
+    projectIdea
+    read_status
+}
