@@ -21,7 +21,15 @@ module.exports = {
     rules: {
         // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
         // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+        'graphql/template-strings': [
+            'error',
+            {
+                env: 'apollo',
+                schemaJson: require('./schema.json'),
+            },
+        ],
     },
+    plugins: ['graphql'],
     overrides: [
         {
             files: ['**/*.tsx'],

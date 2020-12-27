@@ -30,9 +30,12 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.6",
     "apollo-boost": "^0.4.9",
+    "axios": "^0.21.1",
     "clamp-js": "^0.7.0",
+    "eslint-plugin-graphql": "^4.0.0",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "material-ui-dropzone": "^3.5.0",
     "react": "^17.0.1",
     "react-apollo": "^3.1.5",
     "react-apollo-hooks": "^0.5.0",
@@ -68,7 +71,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "schema:download": "gq https://holy-mammal-41.hasura.app/v1/graphql -H \"X-Hasura-Admin-Secret: thefacesoftomorrowareus\" --introspect > schema.graphql",
-    "schema": "yarn schema:download && graphql-codegen --config codegen.js"
+    "schema:download:json": "gq https://holy-mammal-41.hasura.app/v1/graphql -H \"X-Hasura-Admin-Secret: thefacesoftomorrowareus\" --introspect --format json > schema.json",
+    "schema": "yarn schema:download && yarn schema:download:json && graphql-codegen --config codegen.js"
   },
   "browserslist": {
     "production": [
