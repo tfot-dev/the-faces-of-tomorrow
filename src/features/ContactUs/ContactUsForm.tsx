@@ -14,14 +14,15 @@ export const ContactUsForm = ({ onSubmit }: ContactUsFormType) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <Box display="flex" justifyContent="space-evenly" margin={5}>
                 <Grid container spacing={4} alignItems="center">
-                    <Grid item xs={6}>
-                        <TextField label="Name" fullWidth name="name" inputRef={register} />
+                    <Grid item xs={12} sm={6}>
+                        <TextField size="small" label="Name" fullWidth name="name" inputRef={register} />
                     </Grid>
-                    <Grid item xs={6}>
-                        <TextField label="Email" fullWidth name="email" inputRef={register} />
+                    <Grid item xs={12} sm={6}>
+                        <TextField size="small" label="Email" fullWidth name="email" inputRef={register} />
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
+                            size="small"
                             label="How can we help you?"
                             fullWidth
                             name="query"
