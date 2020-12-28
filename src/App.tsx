@@ -14,6 +14,7 @@ import { TermsAndConditions } from './features/PrivacyAndTerms/TermsAndCondition
 
 export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
+    console.log(process.env.BRANCH);
 
     return (
         <ThemeProvider theme={theme(!!darkMode)}>
