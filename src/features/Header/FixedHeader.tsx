@@ -32,7 +32,7 @@ export const FixedHeader = ({ onThemeToggle }: FixedHeaderType) => {
                 <Toolbar>
                     <Avatar src={Logo} component={Link} to="/" />
                     <Typography variant="h6" className={classes.title}>
-                        The Faces of Tomorrow
+                        The Faces of Tomorrow Admin Version
                     </Typography>
                     <ThemeButton onThemeToggle={onThemeToggle} />
                     <Authentication />
