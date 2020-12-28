@@ -29,7 +29,7 @@ export const AbsoluteHeader = ({ onThemeToggle }: AbsoluteHeaderType) => {
                     <Avatar src={Logo} component={Link} to="/" />
                     <div className={classes.spacer} />
                     <ThemeButton onThemeToggle={onThemeToggle} />
-                    <Authentication />
+                    {process.env.REACT_APP_ENVIRONMENT === 'admin' && <Authentication />}
                 </Toolbar>
             </AppBar>
         </Slide>
