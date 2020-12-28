@@ -21,7 +21,7 @@ export const App: React.FC = () => {
                 <Router>
                     <Switch>
                         <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
-                        {process.env.REACT_APP_ENVIRONMENT === 'admin' && (
+                        {process.env.BRANCH === 'admin' && (
                             <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
                         )}
                         <MainLayoutRoute exact path="/privacy" component={PrivacyPolicy} onThemeToggle={setDarkMode} />

@@ -35,7 +35,7 @@ export const FixedHeader = ({ onThemeToggle }: FixedHeaderType) => {
                         The Faces of Tomorrow Admin Version
                     </Typography>
                     <ThemeButton onThemeToggle={onThemeToggle} />
-                    {process.env.REACT_APP_ENVIRONMENT === 'admin' && <Authentication />}
+                    {process.env.BRANCH === 'admin' && <Authentication />}
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />
