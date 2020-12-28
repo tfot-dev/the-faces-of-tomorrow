@@ -54,7 +54,7 @@ export const AboutUs = () => {
                     <ProfileInfo
                         image={DianaPicture}
                         text="A girl fascinated by our universe who believes that there is good in everything, we just need to find it and inspire each other."
-                        name="Diana Spurzum"
+                        name="Diana Spurzem"
                         country="Denmark"
                     />
                 </Grid>
