@@ -35,6 +35,7 @@ module.exports = {
             files: ['**/*.tsx'],
             rules: {
                 '@typescript-eslint/explicit-module-boundary-types': 'off',
+                'react/no-unescaped-entities': 'off',
             },
         },
     ],
