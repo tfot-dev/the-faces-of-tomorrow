@@ -2,6 +2,7 @@ import React from 'react';
 import { DropzoneDialogBase, FileObject } from 'material-ui-dropzone';
 import { Button, CircularProgress, Typography } from '@material-ui/core';
 import axios from 'axios';
+import { Cloudinary } from '../../constants/Cloudinary';
 
 type UploadImagesDialogType = {
     onChange: (publicIds: string[]) => void;
@@ -22,10 +23,10 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
             const formData = new FormData();
 
             formData.append('file', fileObj.file);
-            formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || '');
+            formData.append('upload_preset', Cloudinary.UploadPreset);
 
             return axios
-                .post(process.env.REACT_APP_CLOUDINARY_UPLOAD_URL || '', formData, {
+                .post(Cloudinary.UploadUrl, formData, {
                     headers: { 'X-Requested-With': 'XMLHttpRequest' },
                 })
                 .then((response) => {
