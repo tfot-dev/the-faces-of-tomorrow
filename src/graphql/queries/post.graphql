@@ -1,0 +1,7 @@
+#import "../fragments/post.graphql"
+
+query GetPost($id: String!) {
+    post(id: $id) {
+        ...Post
+    }
+}

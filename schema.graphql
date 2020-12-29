@@ -242,6 +242,12 @@ input json_comparison_exp {
   _nin: [json!]
 }
 
+type Media {
+  id: String!
+  media_url: String!
+  thumbnail_url: String
+}
+
 type Mutation {
   deleteEmail(folderId: String!, messageId: String!): [Email]
   sendEmail(message: String!, subject: String!, toAddress: String!): [Email]
@@ -439,13 +445,19 @@ enum order_by {
 type Post {
   caption: String!
   id: String!
-  mediaUrl: String!
+  media: [Media]!
+  media_type: String!
+  media_url: String!
+  permalink: String!
+  thumbnail_url: String
   timestamp: String!
+  username: String!
 }
 
 type Query {
   emails: [Email]!
   getEmail(messageId: String!): Email
+  post(id: String!): Post
   posts: [Post]!
   sentEmails: [SentEmail]!
 }
@@ -495,6 +507,7 @@ type query_root {
 
   # fetch data from the table: "inquiries" using primary key columns
   inquiries_by_pk(id: uuid!): inquiries
+  post(id: String!): Post
   posts: [Post]!
 
   # fetch data from the table: "read_status_lookup"

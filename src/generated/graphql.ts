@@ -69,6 +69,13 @@ export type Int_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['Int']>>;
 };
 
+export type Media = {
+  __typename?: 'Media';
+  id: Scalars['String'];
+  media_url: Scalars['String'];
+  thumbnail_url?: Maybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   deleteEmail?: Maybe<Array<Maybe<Email>>>;
@@ -92,14 +99,20 @@ export type Post = {
   __typename?: 'Post';
   caption: Scalars['String'];
   id: Scalars['String'];
-  mediaUrl: Scalars['String'];
+  media: Array<Maybe<Media>>;
+  media_type: Scalars['String'];
+  media_url: Scalars['String'];
+  permalink: Scalars['String'];
+  thumbnail_url?: Maybe<Scalars['String']>;
   timestamp: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
   emails: Array<Maybe<Email>>;
   getEmail?: Maybe<Email>;
+  post?: Maybe<Post>;
   posts: Array<Maybe<Post>>;
   sentEmails: Array<Maybe<SentEmail>>;
 };
@@ -107,6 +120,11 @@ export type Query = {
 
 export type QueryGetEmailArgs = {
   messageId: Scalars['String'];
+};
+
+
+export type QueryPostArgs = {
+  id: Scalars['String'];
 };
 
 export type SentEmail = {
@@ -585,6 +603,7 @@ export type Query_Root = {
   inquiries_aggregate: Inquiries_Aggregate;
   /** fetch data from the table: "inquiries" using primary key columns */
   inquiries_by_pk?: Maybe<Inquiries>;
+  post?: Maybe<Post>;
   posts: Array<Maybe<Post>>;
   /** fetch data from the table: "read_status_lookup" */
   read_status_lookup: Array<Read_Status_Lookup>;
@@ -635,6 +654,12 @@ export type Query_RootInquiries_AggregateArgs = {
 /** query root */
 export type Query_RootInquiries_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** query root */
+export type Query_RootPostArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -1584,7 +1609,11 @@ export type InquiryFragment = (
 
 export type PostFragment = (
   { __typename?: 'Post' }
-  & Pick<Post, 'id' | 'caption' | 'mediaUrl' | 'timestamp'>
+  & Pick<Post, 'id' | 'caption' | 'media_url' | 'media_type' | 'timestamp' | 'permalink'>
+  & { media: Array<Maybe<(
+    { __typename?: 'Media' }
+    & Pick<Media, 'media_url' | 'thumbnail_url'>
+  )>> }
 );
 
 export type SentEmailFragment = (
@@ -1717,6 +1746,19 @@ export type GetInquiryQuery = (
   )> }
 );
 
+export type GetPostQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type GetPostQuery = (
+  { __typename?: 'query_root' }
+  & { post?: Maybe<(
+    { __typename?: 'Post' }
+    & PostFragment
+  )> }
+);
+
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1799,8 +1841,14 @@ export const PostFragmentDoc = gql`
     fragment Post on Post {
   id
   caption
-  mediaUrl
+  media {
+    media_url
+    thumbnail_url
+  }
+  media_url
+  media_type
   timestamp
+  permalink
 }
     `;
 export const SentEmailFragmentDoc = gql`
@@ -2124,6 +2172,39 @@ export function useGetInquiryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetInquiryQueryHookResult = ReturnType<typeof useGetInquiryQuery>;
 export type GetInquiryLazyQueryHookResult = ReturnType<typeof useGetInquiryLazyQuery>;
 export type GetInquiryQueryResult = Apollo.QueryResult<GetInquiryQuery, GetInquiryQueryVariables>;
+export const GetPostDocument = gql`
+    query GetPost($id: String!) {
+  post(id: $id) {
+    ...Post
+  }
+}
+    ${PostFragmentDoc}`;
+
+/**
+ * __useGetPostQuery__
+ *
+ * To run a query within a React component, call `useGetPostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPostQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetPostQuery(baseOptions: Apollo.QueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
+        return Apollo.useQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, baseOptions);
+      }
+export function useGetPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
+          return Apollo.useLazyQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, baseOptions);
+        }
+export type GetPostQueryHookResult = ReturnType<typeof useGetPostQuery>;
+export type GetPostLazyQueryHookResult = ReturnType<typeof useGetPostLazyQuery>;
+export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVariables>;
 export const GetAllPostsDocument = gql`
     query GetAllPosts {
   posts {
