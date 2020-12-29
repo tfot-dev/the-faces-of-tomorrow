@@ -14,7 +14,6 @@ import { TermsAndConditions } from './features/PrivacyAndTerms/TermsAndCondition
 
 export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
-    console.log(process.env.BRANCH);
 
     return (
         <ThemeProvider theme={theme(!!darkMode)}>
@@ -22,7 +21,7 @@ export const App: React.FC = () => {
                 <Router>
                     <Switch>
                         <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
-                        {process.env.BRANCH === 'admin' && (
+                        {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
                             <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
                         )}
                         <MainLayoutRoute exact path="/privacy" component={PrivacyPolicy} onThemeToggle={setDarkMode} />
