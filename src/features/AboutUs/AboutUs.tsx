@@ -47,7 +47,7 @@ export const AboutUs = () => {
                     />
                     <ProfileInfo
                         image={GiorgiaPicture}
-                        text="Please provide me a text? o.O"
+                        text="Politics graduate eager to catalyse climate action and learn about sustainable practices by connecting with people from all over the world."
                         name="Giorgia Marchesan"
                         country="Italy"
                     />
