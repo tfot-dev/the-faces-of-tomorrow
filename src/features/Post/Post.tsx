@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import {
     Card,
+    CardActionArea,
     CardContent,
     CardMedia,
     createStyles,
@@ -11,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { Post as PostType } from '../../generated/graphql';
 import clamp from 'clamp-js';
+import { openLinkInNewTab } from '../../utils/link';
 
 export interface IPostProps {
     post: PostType;
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Post = ({ post }: IPostProps) => {
     const classes = useStyles();
 
-    const { mediaUrl, caption } = post;
+    const { media_url, caption, permalink } = post;
     const captionElement = useRef<HTMLElement>(null);
 
     useEffect(() => {
@@ -55,12 +57,14 @@ export const Post = ({ post }: IPostProps) => {
     return (
         <GridListTile className={classes.tileRoot} classes={{ tile: classes.tile }}>
             <Card className={classes.root}>
-                <CardMedia component="img" height={150} image={mediaUrl} />
-                <CardContent>
-                    <Typography variant="caption" color="textPrimary" ref={captionElement}>
-                        {caption}
-                    </Typography>
-                </CardContent>
+                <CardActionArea onClick={() => openLinkInNewTab(permalink)}>
+                    <CardMedia component="img" height={150} image={media_url} />
+                    <CardContent>
+                        <Typography variant="caption" color="textPrimary" ref={captionElement}>
+                            {caption}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
             </Card>
         </GridListTile>
     );
