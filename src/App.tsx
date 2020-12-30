@@ -11,6 +11,7 @@ import { theme } from './config/theme';
 import { AuthenticatedApi } from './features/Api/AuthenticatedApi';
 import { PrivacyPolicy } from './features/PrivacyAndTerms/PrivacyPolicy';
 import { TermsAndConditions } from './features/PrivacyAndTerms/TermsAndConditions';
+import { PostView } from './features/Post/PostView';
 
 export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
@@ -20,6 +21,7 @@ export const App: React.FC = () => {
             <AuthenticatedApi>
                 <Router>
                     <Switch>
+                        <MainLayoutRoute path="/post/:postId" component={PostView} onThemeToggle={setDarkMode} />
                         <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
                         {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
                             <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
