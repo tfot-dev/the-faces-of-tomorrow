@@ -1,31 +1,36 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
-import { useGetPostQuery } from '../../generated/graphql';
-import { Card, CardContent, LinearProgress, Typography } from '@material-ui/core';
-import { Error } from '../Error/Error';
+import { Media } from '../../generated/graphql';
+import { Card, CardContent, createStyles, Typography } from '@material-ui/core';
 import Carousel from 'react-material-ui-carousel';
 import { PostViewImage } from './PostViewImage';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const PostView = () => {
-    const { params } = useRouteMatch<{ postId: string }>();
+const useStyles = makeStyles(() =>
+    createStyles({
+        card: {
+            width: 600,
+        },
+    }),
+);
 
-    const { loading, error, data } = useGetPostQuery({ variables: { id: params.postId } });
+type PostViewType = {
+    caption: string;
+    media: (Pick<Media, 'media_url'> | null)[];
+};
 
-    if (loading) return <LinearProgress color="secondary" />;
-    if (error) return <Error />;
-    if (!data?.post) {
-        return null;
-    }
-
-    const { caption, media } = data.post;
+export const PostView = ({ caption, media }: PostViewType) => {
+    const classes = useStyles();
 
     return (
-        <Card>
-            <Carousel>
-                {media.map(
-                    (mediaInfo, index) => mediaInfo !== null && <PostViewImage key={index} src={mediaInfo.media_url} />,
-                )}
-            </Carousel>
+        <Card className={classes.card}>
+            {media !== null && (
+                <Carousel autoPlay={false}>
+                    {media.map(
+                        (mediaInfo, index) =>
+                            mediaInfo !== null && <PostViewImage key={index} src={mediaInfo.media_url} />,
+                    )}
+                </Carousel>
+            )}
             <CardContent>
                 <Typography variant="caption" color="textPrimary">
                     {caption}
