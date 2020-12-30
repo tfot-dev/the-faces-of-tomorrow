@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useGetPostQuery } from '../../generated/graphql';
-import { LinearProgress } from '@material-ui/core';
+import { Grid, LinearProgress } from '@material-ui/core';
 import { Error } from '../Error/Error';
 import { PostView } from './PostView';
 
@@ -22,5 +22,12 @@ export const PostViewContainer = () => {
         return <PostView caption={caption} media={[{ media_url }]} />;
     }
 
-    return <PostView caption={caption} media={media} />;
+    return (
+        <Grid container>
+            <Grid item xs={6}>
+                <PostView caption={caption} media={media} />
+            </Grid>
+            <Grid item xs={6}></Grid>
+        </Grid>
+    );
 };
