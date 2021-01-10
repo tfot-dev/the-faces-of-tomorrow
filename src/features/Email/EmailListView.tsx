@@ -39,7 +39,7 @@ export const EmailListView = ({ emails, emailContent }: EmailListViewProps) => {
                     </List>
                 </Box>
             </Route>
-            <Route path={`${url}/:messageId`} component={emailContent} />
+            <Route path={`${url}/:folderId/:messageId`} component={emailContent} />
         </Switch>
     );
 };

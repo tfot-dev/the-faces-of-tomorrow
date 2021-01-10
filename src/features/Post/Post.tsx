@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Post as PostType } from '../../generated/graphql';
 import clamp from 'clamp-js';
-import { openLinkInNewTab } from '../../utils/link';
+import { Link } from 'react-router-dom';
 
 export interface IPostProps {
     post: PostType;
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Post = ({ post }: IPostProps) => {
     const classes = useStyles();
 
-    const { media_url, caption, permalink } = post;
+    const { media_url, caption, id } = post;
     const captionElement = useRef<HTMLElement>(null);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export const Post = ({ post }: IPostProps) => {
     return (
         <GridListTile className={classes.tileRoot} classes={{ tile: classes.tile }}>
             <Card className={classes.root}>
-                <CardActionArea onClick={() => openLinkInNewTab(permalink)}>
+                <CardActionArea component={Link} target="_blank" to={`post/${id}`}>
                     <CardMedia component="img" height={150} image={media_url} />
                     <CardContent>
                         <Typography variant="caption" color="textPrimary" ref={captionElement}>

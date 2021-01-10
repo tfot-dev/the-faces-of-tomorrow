@@ -1,10 +1,18 @@
 fragment Email on Email {
+    calendarType
+    ccAddress
+    flagid
     folderId
     fromAddress
+    hasAttachment
+    hasInline
     messageId
+    priority
     receivedTime
     sender
     sentDateInGMT
+    size
+    status2
     subject
     summary
     toAddress
