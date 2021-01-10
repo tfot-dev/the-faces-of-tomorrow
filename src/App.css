@@ -1,0 +1,4 @@
+/* CKEditor CSS */
+.ck-editor__editable_inline {
+    min-height: 60vh;
+}

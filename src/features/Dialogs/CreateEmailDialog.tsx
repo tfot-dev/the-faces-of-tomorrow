@@ -8,13 +8,18 @@ import {
     DialogContentText,
     DialogTitle,
     Fab,
+    Grid,
     TextField,
     Theme,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { useSnackbar } from 'notistack';
 import { useSendEmailMutation } from '../../generated/graphql';
+import { CKEditorConfiguration } from '../../constants/CKEditorConfiguration';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,15 +38,22 @@ interface ICreateEmailForm {
 }
 
 export const CreateEmailDialog = () => {
+    const { enqueueSnackbar } = useSnackbar();
     const [sendEmail] = useSendEmailMutation({ refetchQueries: ['sentEmails'] });
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
     const [open, setOpen] = useState(false);
     const classes = useStyles();
 
+    React.useEffect(() => {
+        register('message');
+    }, []);
+
     const onSubmit = (data: ICreateEmailForm) => {
         const { toAddress, subject, message } = data;
-        sendEmail({ variables: { toAddress, subject, message } });
-        handleClose();
+        sendEmail({ variables: { toAddress, subject, message } }).then(() => {
+            enqueueSnackbar('Email sent successfully!', { variant: 'success' });
+            handleClose();
+        });
     };
 
     const handleClose = () => {
@@ -50,30 +62,46 @@ export const CreateEmailDialog = () => {
 
     return (
         <>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="Create Message">
+            <Dialog open={open} onClose={handleClose} aria-labelledby="Create Message" fullWidth maxWidth="xl">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <DialogTitle id="form-dialog-title">Create Message</DialogTitle>
                     <DialogContent>
                         <DialogContentText>This message will be send as a normal email to the user.</DialogContentText>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                            name="toAddress"
-                            inputRef={register}
-                        />
-                        <TextField margin="dense" label="Subject" fullWidth name="subject" inputRef={register} />
-                        <TextField
-                            margin="dense"
-                            label="Message"
-                            multiline
-                            rows={10}
-                            fullWidth
-                            name="message"
-                            inputRef={register}
-                        />
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    label="Email Address"
+                                    type="email"
+                                    fullWidth
+                                    name="toAddress"
+                                    inputRef={register}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    margin="dense"
+                                    label="Subject"
+                                    fullWidth
+                                    name="subject"
+                                    inputRef={register}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <CKEditor
+                                    editor={Editor}
+                                    config={CKEditorConfiguration}
+                                    onChange={(event: unknown, editor: { getData: () => unknown }) => {
+                                        const data = editor.getData();
+
+                                        setValue('message', data);
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary">
