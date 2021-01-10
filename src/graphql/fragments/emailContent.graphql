@@ -1,0 +1,5 @@
+fragment EmailContent on EmailContent {
+    messageId
+    content
+    blockContent
+}
