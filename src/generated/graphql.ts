@@ -1629,7 +1629,7 @@ export type Your_Story_Variance_Order_By = {
 
 export type EmailFragment = (
   { __typename?: 'Email' }
-  & Pick<Email, 'folderId' | 'fromAddress' | 'messageId' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'subject' | 'summary' | 'toAddress'>
+  & Pick<Email, 'calendarType' | 'ccAddress' | 'flagid' | 'folderId' | 'fromAddress' | 'hasAttachment' | 'hasInline' | 'messageId' | 'priority' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'size' | 'status2' | 'subject' | 'summary' | 'toAddress'>
 );
 
 export type EmailContentFragment = (
@@ -1854,12 +1854,20 @@ export type GetYourStoryQuery = (
 
 export const EmailFragmentDoc = gql`
     fragment Email on Email {
+  calendarType
+  ccAddress
+  flagid
   folderId
   fromAddress
+  hasAttachment
+  hasInline
   messageId
+  priority
   receivedTime
   sender
   sentDateInGMT
+  size
+  status2
   subject
   summary
   toAddress
