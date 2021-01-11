@@ -15,12 +15,29 @@ const useStyles = makeStyles({
         color: 'white',
         height: 48,
         padding: '0 30px',
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginTop: '750px',
+    },
+    gridList: {
+        cellheight: 50,
+        spacing: 4,
+        cols: 3,
+        justifyContent: 'center',
+        height: 2000,
+        fontStretch: 'default',
+    },
+    div: {
+        margin: 'auto',
+        flexBasis: 30,
+        padding: '0 30px',
     },
 });
 
 export const MoreStoriesContainer = () => {
     const classes = useStyles();
-    const { error, data } = useGetAllPostsQuery();
+    const { loading, error, data } = useGetAllPostsQuery();
 
     let posts = Array(10).fill({});
 
@@ -30,8 +47,12 @@ export const MoreStoriesContainer = () => {
     }
 
     return (
-        <div>
-            <GridList></GridList>
+        <div className={classes.root}>
+            <GridList className={classes.gridList}>
+                {posts.map((post) => {
+                    return loading ? <PostSkeleton /> : post !== null && <Post post={post} key={post.id} />;
+                })}
+            </GridList>
         </div>
     );
 };
