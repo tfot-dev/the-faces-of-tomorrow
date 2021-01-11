@@ -2136,15 +2136,28 @@ export type YourStoryFragment = (
   )> }
 );
 
-export type AssignedStatusMutationVariables = Exact<{
+export type SetAssignedStatusMutationVariables = Exact<{
   id: Scalars['uuid'];
   user_id: Scalars['String'];
 }>;
 
 
-export type AssignedStatusMutation = (
+export type SetAssignedStatusMutation = (
   { __typename?: 'mutation_root' }
   & { insert_assigned_status_lookup?: Maybe<(
+    { __typename?: 'assigned_status_lookup_mutation_response' }
+    & Pick<Assigned_Status_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type DeleteAssignedStatusMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteAssignedStatusMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_assigned_status_lookup?: Maybe<(
     { __typename?: 'assigned_status_lookup_mutation_response' }
     & Pick<Assigned_Status_Lookup_Mutation_Response, 'affected_rows'>
   )> }
@@ -2470,39 +2483,71 @@ export const YourStoryFragmentDoc = gql`
   }
 }
     `;
-export const AssignedStatusDocument = gql`
-    mutation assignedStatus($id: uuid!, $user_id: String!) {
+export const SetAssignedStatusDocument = gql`
+    mutation setAssignedStatus($id: uuid!, $user_id: String!) {
   insert_assigned_status_lookup(objects: {id: $id, user_id: $user_id}) {
     affected_rows
   }
 }
     `;
-export type AssignedStatusMutationFn = Apollo.MutationFunction<AssignedStatusMutation, AssignedStatusMutationVariables>;
+export type SetAssignedStatusMutationFn = Apollo.MutationFunction<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>;
 
 /**
- * __useAssignedStatusMutation__
+ * __useSetAssignedStatusMutation__
  *
- * To run a mutation, you first call `useAssignedStatusMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAssignedStatusMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useSetAssignedStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSetAssignedStatusMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [assignedStatusMutation, { data, loading, error }] = useAssignedStatusMutation({
+ * const [setAssignedStatusMutation, { data, loading, error }] = useSetAssignedStatusMutation({
  *   variables: {
  *      id: // value for 'id'
  *      user_id: // value for 'user_id'
  *   },
  * });
  */
-export function useAssignedStatusMutation(baseOptions?: Apollo.MutationHookOptions<AssignedStatusMutation, AssignedStatusMutationVariables>) {
-        return Apollo.useMutation<AssignedStatusMutation, AssignedStatusMutationVariables>(AssignedStatusDocument, baseOptions);
+export function useSetAssignedStatusMutation(baseOptions?: Apollo.MutationHookOptions<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>) {
+        return Apollo.useMutation<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>(SetAssignedStatusDocument, baseOptions);
       }
-export type AssignedStatusMutationHookResult = ReturnType<typeof useAssignedStatusMutation>;
-export type AssignedStatusMutationResult = Apollo.MutationResult<AssignedStatusMutation>;
-export type AssignedStatusMutationOptions = Apollo.BaseMutationOptions<AssignedStatusMutation, AssignedStatusMutationVariables>;
+export type SetAssignedStatusMutationHookResult = ReturnType<typeof useSetAssignedStatusMutation>;
+export type SetAssignedStatusMutationResult = Apollo.MutationResult<SetAssignedStatusMutation>;
+export type SetAssignedStatusMutationOptions = Apollo.BaseMutationOptions<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>;
+export const DeleteAssignedStatusDocument = gql`
+    mutation deleteAssignedStatus($id: uuid!) {
+  delete_assigned_status_lookup(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteAssignedStatusMutationFn = Apollo.MutationFunction<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
+
+/**
+ * __useDeleteAssignedStatusMutation__
+ *
+ * To run a mutation, you first call `useDeleteAssignedStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAssignedStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAssignedStatusMutation, { data, loading, error }] = useDeleteAssignedStatusMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteAssignedStatusMutation(baseOptions?: Apollo.MutationHookOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>) {
+        return Apollo.useMutation<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>(DeleteAssignedStatusDocument, baseOptions);
+      }
+export type DeleteAssignedStatusMutationHookResult = ReturnType<typeof useDeleteAssignedStatusMutation>;
+export type DeleteAssignedStatusMutationResult = Apollo.MutationResult<DeleteAssignedStatusMutation>;
+export type DeleteAssignedStatusMutationOptions = Apollo.BaseMutationOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
 export const ReadStatusDocument = gql`
     mutation readStatus($id: uuid!, $user_id: String!) {
   setReadStatus(objects: {id: $id, user_id: $user_id}) {
