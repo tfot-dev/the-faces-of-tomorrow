@@ -27,7 +27,7 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
         refetchQueries: [namedOperations.Query.GetAllYourStories],
     });
 
-    const { name, id, projectIdea, read_status, assigned_to } = yourStory;
+    const { name, age, city, email, id, read_status, assigned_to } = yourStory;
 
     const handleAssignToMeClick = () => {
         insert_assigned_status_lookup({
@@ -49,11 +49,11 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
     return (
         <ListItem button alignItems="flex-start" key={id} component={Link} to={`${url}/${id}`} selected={!!read_status}>
             <ListItemText
-                primary={name}
+                primary={`${name}, ${age}, ${city}`}
                 secondary={
                     <React.Fragment>
                         <Typography component="span" variant="body2" color="textPrimary">
-                            {projectIdea}
+                            {email}
                         </Typography>
                     </React.Fragment>
                 }

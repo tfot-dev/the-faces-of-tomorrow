@@ -13,6 +13,7 @@ import { PrivacyPolicy } from './features/PrivacyAndTerms/PrivacyPolicy';
 import { TermsAndConditions } from './features/PrivacyAndTerms/TermsAndConditions';
 import { PostViewContainer } from './features/Post/PostViewContainer';
 import { SnackbarProvider } from 'notistack';
+import { YourStoryPosted } from './features/YourStory/YourStoryPosted';
 
 export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
@@ -29,6 +30,11 @@ export const App: React.FC = () => {
                                 onThemeToggle={setDarkMode}
                             />
                             <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
+                            <MainLayoutRoute
+                                path="/yourstoryposted"
+                                component={YourStoryPosted}
+                                onThemeToggle={setDarkMode}
+                            />
                             {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
                                 <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
                             )}

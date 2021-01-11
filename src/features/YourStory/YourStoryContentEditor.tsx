@@ -24,20 +24,28 @@ export const YourStoryContentEditor = ({ yourStory }: YourStoryContentEditorType
     }
 
     return (
-        <Grid item>
-            {isStoryReady(yourStory) && written_story?.story ? (
-                <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    dangerouslySetInnerHTML={{ __html: written_story?.story }}
-                />
-            ) : (
-                <CKEditor
-                    editor={Editor}
-                    config={CKEditorConfiguration(handleSaveWrittenStory)}
-                    data={written_story?.story}
-                />
-            )}
-        </Grid>
+        <>
+            <Grid item xs={12}>
+                <Typography variant="h6" color="textSecondary">
+                    Story
+                </Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+                {isStoryReady(yourStory) && written_story?.story ? (
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        dangerouslySetInnerHTML={{ __html: written_story?.story }}
+                    />
+                ) : (
+                    <CKEditor
+                        editor={Editor}
+                        config={CKEditorConfiguration(handleSaveWrittenStory)}
+                        data={written_story?.story}
+                    />
+                )}
+            </Grid>
+        </>
     );
 };
