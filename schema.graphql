@@ -1542,7 +1542,7 @@ input uuid_comparison_exp {
 type written_story {
   id: uuid!
   ready: Boolean!
-  story: String!
+  story: String
 }
 
 # aggregated selection of "written_story"

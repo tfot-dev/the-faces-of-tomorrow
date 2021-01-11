@@ -1552,7 +1552,7 @@ export type Written_Story = {
   __typename?: 'written_story';
   id: Scalars['uuid'];
   ready: Scalars['Boolean'];
-  story: Scalars['String'];
+  story?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "written_story" */
@@ -2217,6 +2217,34 @@ export type SendYourStoryMutation = (
   )> }
 );
 
+export type UpdateWrittenStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  writtenStory: Scalars['String'];
+}>;
+
+
+export type UpdateWrittenStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_written_story?: Maybe<(
+    { __typename?: 'written_story_mutation_response' }
+    & Pick<Written_Story_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UpdateStoryStatusMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  ready: Scalars['Boolean'];
+}>;
+
+
+export type UpdateStoryStatusMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_written_story?: Maybe<(
+    { __typename?: 'written_story_mutation_response' }
+    & Pick<Written_Story_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type GetAllEmailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2620,6 +2648,78 @@ export function useSendYourStoryMutation(baseOptions?: Apollo.MutationHookOption
 export type SendYourStoryMutationHookResult = ReturnType<typeof useSendYourStoryMutation>;
 export type SendYourStoryMutationResult = Apollo.MutationResult<SendYourStoryMutation>;
 export type SendYourStoryMutationOptions = Apollo.BaseMutationOptions<SendYourStoryMutation, SendYourStoryMutationVariables>;
+export const UpdateWrittenStoryDocument = gql`
+    mutation updateWrittenStory($id: uuid!, $writtenStory: String!) {
+  insert_written_story(
+    on_conflict: {constraint: written_story_id_key, update_columns: story}
+    objects: {id: $id, story: $writtenStory}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateWrittenStoryMutationFn = Apollo.MutationFunction<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>;
+
+/**
+ * __useUpdateWrittenStoryMutation__
+ *
+ * To run a mutation, you first call `useUpdateWrittenStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateWrittenStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateWrittenStoryMutation, { data, loading, error }] = useUpdateWrittenStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      writtenStory: // value for 'writtenStory'
+ *   },
+ * });
+ */
+export function useUpdateWrittenStoryMutation(baseOptions?: Apollo.MutationHookOptions<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>) {
+        return Apollo.useMutation<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>(UpdateWrittenStoryDocument, baseOptions);
+      }
+export type UpdateWrittenStoryMutationHookResult = ReturnType<typeof useUpdateWrittenStoryMutation>;
+export type UpdateWrittenStoryMutationResult = Apollo.MutationResult<UpdateWrittenStoryMutation>;
+export type UpdateWrittenStoryMutationOptions = Apollo.BaseMutationOptions<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>;
+export const UpdateStoryStatusDocument = gql`
+    mutation updateStoryStatus($id: uuid!, $ready: Boolean!) {
+  insert_written_story(
+    on_conflict: {constraint: written_story_id_key, update_columns: ready}
+    objects: {id: $id, ready: $ready}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateStoryStatusMutationFn = Apollo.MutationFunction<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>;
+
+/**
+ * __useUpdateStoryStatusMutation__
+ *
+ * To run a mutation, you first call `useUpdateStoryStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateStoryStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateStoryStatusMutation, { data, loading, error }] = useUpdateStoryStatusMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      ready: // value for 'ready'
+ *   },
+ * });
+ */
+export function useUpdateStoryStatusMutation(baseOptions?: Apollo.MutationHookOptions<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>) {
+        return Apollo.useMutation<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>(UpdateStoryStatusDocument, baseOptions);
+      }
+export type UpdateStoryStatusMutationHookResult = ReturnType<typeof useUpdateStoryStatusMutation>;
+export type UpdateStoryStatusMutationResult = Apollo.MutationResult<UpdateStoryStatusMutation>;
+export type UpdateStoryStatusMutationOptions = Apollo.BaseMutationOptions<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>;
 export const GetAllEmailsDocument = gql`
     query GetAllEmails {
   emails {
