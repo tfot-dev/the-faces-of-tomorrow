@@ -959,14 +959,9 @@
               }
             ],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Email",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "OBJECT",
+              "name": "ResponseStatus",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -1030,14 +1025,9 @@
               }
             ],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Email",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "OBJECT",
+              "name": "SendEmailResponse",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -1380,7 +1370,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "SentEmail",
+                  "name": "Email",
                   "ofType": null,
                   "__typename": "__Type"
                 },
@@ -1401,11 +1391,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "SentEmail",
+        "name": "ResponseStatus",
         "description": null,
         "fields": [
           {
-            "name": "calendarType",
+            "name": "code",
             "description": null,
             "args": [],
             "type": {
@@ -1424,7 +1414,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "flagid",
+            "name": "description",
             "description": null,
             "args": [],
             "type": {
@@ -1441,9 +1431,21 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__Field"
-          },
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null,
+        "__typename": "__Type"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SendEmailData",
+        "description": null,
+        "fields": [
           {
-            "name": "folderId",
+            "name": "content",
             "description": null,
             "args": [],
             "type": {
@@ -1481,178 +1483,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "hasAttachment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "hasInline",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
             "name": "messageId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "priority",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "receivedTime",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "sender",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "sentDateInGMT",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "size",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "status",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "status2",
             "description": null,
             "args": [],
             "type": {
@@ -1690,7 +1521,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "summary",
+            "name": "toAddress",
             "description": null,
             "args": [],
             "type": {
@@ -1707,20 +1538,41 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__Field"
-          },
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null,
+        "__typename": "__Type"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SendEmailResponse",
+        "description": null,
+        "fields": [
           {
-            "name": "toAddress",
+            "name": "data",
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "OBJECT",
+              "name": "SendEmailData",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ResponseStatus",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -5332,14 +5184,9 @@
               }
             ],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Email",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "OBJECT",
+              "name": "ResponseStatus",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -6159,14 +6006,9 @@
               }
             ],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Email",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "OBJECT",
+              "name": "SendEmailResponse",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -7572,7 +7414,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "SentEmail",
+                  "name": "Email",
                   "ofType": null,
                   "__typename": "__Type"
                 },

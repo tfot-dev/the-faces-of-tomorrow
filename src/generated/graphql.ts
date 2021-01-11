@@ -93,8 +93,8 @@ export type Media = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  deleteEmail?: Maybe<Array<Maybe<Email>>>;
-  sendEmail?: Maybe<Array<Maybe<Email>>>;
+  deleteEmail?: Maybe<ResponseStatus>;
+  sendEmail?: Maybe<SendEmailResponse>;
 };
 
 
@@ -129,7 +129,7 @@ export type Query = {
   getEmail?: Maybe<EmailContent>;
   post?: Maybe<Post>;
   posts: Array<Maybe<Post>>;
-  sentEmails: Array<Maybe<SentEmail>>;
+  sentEmails: Array<Maybe<Email>>;
 };
 
 
@@ -143,25 +143,25 @@ export type QueryPostArgs = {
   id: Scalars['String'];
 };
 
-export type SentEmail = {
-  __typename?: 'SentEmail';
-  calendarType: Scalars['Int'];
-  flagid: Scalars['String'];
-  folderId: Scalars['String'];
+export type ResponseStatus = {
+  __typename?: 'ResponseStatus';
+  code: Scalars['Int'];
+  description: Scalars['String'];
+};
+
+export type SendEmailData = {
+  __typename?: 'SendEmailData';
+  content: Scalars['String'];
   fromAddress: Scalars['String'];
-  hasAttachment: Scalars['String'];
-  hasInline: Scalars['String'];
   messageId: Scalars['String'];
-  priority: Scalars['String'];
-  receivedTime: Scalars['String'];
-  sender: Scalars['String'];
-  sentDateInGMT: Scalars['String'];
-  size: Scalars['String'];
-  status: Scalars['String'];
-  status2: Scalars['String'];
   subject: Scalars['String'];
-  summary: Scalars['String'];
   toAddress: Scalars['String'];
+};
+
+export type SendEmailResponse = {
+  __typename?: 'SendEmailResponse';
+  data?: Maybe<SendEmailData>;
+  status?: Maybe<ResponseStatus>;
 };
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -532,7 +532,7 @@ export type Json_Comparison_Exp = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  deleteEmail?: Maybe<Array<Maybe<Email>>>;
+  deleteEmail?: Maybe<ResponseStatus>;
   /** delete data from the table: "assigned_status_lookup" */
   delete_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
   /** delete data from the table: "inquiries" */
@@ -571,7 +571,7 @@ export type Mutation_Root = {
   insert_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** insert a single row into the table: "your_story" */
   insert_your_story_one?: Maybe<Your_Story>;
-  sendEmail?: Maybe<Array<Maybe<Email>>>;
+  sendEmail?: Maybe<SendEmailResponse>;
   /** insert data into the table: "inquiries" */
   sendInquiries?: Maybe<Inquiries_Mutation_Response>;
   /** insert data into the table: "read_status_lookup" */
@@ -851,7 +851,7 @@ export type Query_Root = {
   read_status_lookup: Array<Read_Status_Lookup>;
   /** fetch aggregated fields from the table: "read_status_lookup" */
   read_status_lookup_aggregate: Read_Status_Lookup_Aggregate;
-  sentEmails: Array<Maybe<SentEmail>>;
+  sentEmails: Array<Maybe<Email>>;
   /** fetch data from the table: "users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "users" */
@@ -2114,9 +2114,15 @@ export type PostFragment = (
   )>> }
 );
 
-export type SentEmailFragment = (
-  { __typename?: 'SentEmail' }
-  & Pick<SentEmail, 'calendarType' | 'flagid' | 'folderId' | 'fromAddress' | 'hasAttachment' | 'hasInline' | 'messageId' | 'priority' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'size' | 'status' | 'status2' | 'subject' | 'summary' | 'toAddress'>
+export type SendEmailFragment = (
+  { __typename?: 'SendEmailResponse' }
+  & { data?: Maybe<(
+    { __typename?: 'SendEmailData' }
+    & Pick<SendEmailData, 'content' | 'fromAddress' | 'subject' | 'messageId' | 'toAddress'>
+  )>, status?: Maybe<(
+    { __typename?: 'ResponseStatus' }
+    & Pick<ResponseStatus, 'description' | 'code'>
+  )> }
 );
 
 export type UserFragment = (
@@ -2186,10 +2192,10 @@ export type SendEmailMutationVariables = Exact<{
 
 export type SendEmailMutation = (
   { __typename?: 'mutation_root' }
-  & { sendEmail?: Maybe<Array<Maybe<(
-    { __typename?: 'Email' }
-    & EmailFragment
-  )>>> }
+  & { sendEmail?: Maybe<(
+    { __typename?: 'SendEmailResponse' }
+    & SendEmailFragment
+  )> }
 );
 
 export type SendInquiriesMutationVariables = Exact<{
@@ -2337,8 +2343,8 @@ export type GetSentEmailsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetSentEmailsQuery = (
   { __typename?: 'query_root' }
   & { sentEmails: Array<Maybe<(
-    { __typename?: 'SentEmail' }
-    & SentEmailFragment
+    { __typename?: 'Email' }
+    & EmailFragment
   )>> }
 );
 
@@ -2427,25 +2433,19 @@ export const PostFragmentDoc = gql`
   permalink
 }
     `;
-export const SentEmailFragmentDoc = gql`
-    fragment SentEmail on SentEmail {
-  calendarType
-  flagid
-  folderId
-  fromAddress
-  hasAttachment
-  hasInline
-  messageId
-  priority
-  receivedTime
-  sender
-  sentDateInGMT
-  size
-  status
-  status2
-  subject
-  summary
-  toAddress
+export const SendEmailFragmentDoc = gql`
+    fragment SendEmail on SendEmailResponse {
+  data {
+    content
+    fromAddress
+    subject
+    messageId
+    toAddress
+  }
+  status {
+    description
+    code
+  }
 }
     `;
 export const UserFragmentDoc = gql`
@@ -2584,10 +2584,10 @@ export type ReadStatusMutationOptions = Apollo.BaseMutationOptions<ReadStatusMut
 export const SendEmailDocument = gql`
     mutation sendEmail($toAddress: String!, $subject: String!, $message: String!) {
   sendEmail(toAddress: $toAddress, subject: $subject, message: $message) {
-    ...Email
+    ...SendEmail
   }
 }
-    ${EmailFragmentDoc}`;
+    ${SendEmailFragmentDoc}`;
 export type SendEmailMutationFn = Apollo.MutationFunction<SendEmailMutation, SendEmailMutationVariables>;
 
 /**
@@ -2964,10 +2964,10 @@ export type GetAllPostsQueryResult = Apollo.QueryResult<GetAllPostsQuery, GetAll
 export const GetSentEmailsDocument = gql`
     query GetSentEmails {
   sentEmails {
-    ...SentEmail
+    ...Email
   }
 }
-    ${SentEmailFragmentDoc}`;
+    ${EmailFragmentDoc}`;
 
 /**
  * __useGetSentEmailsQuery__
@@ -3118,7 +3118,7 @@ export const namedOperations = {
     EmailContent: 'EmailContent',
     Inquiry: 'Inquiry',
     Post: 'Post',
-    SentEmail: 'SentEmail',
+    SendEmail: 'SendEmail',
     User: 'User',
     YourStory: 'YourStory'
   }

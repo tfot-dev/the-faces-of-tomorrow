@@ -407,13 +407,13 @@ type Media {
 }
 
 type Mutation {
-  deleteEmail(folderId: String!, messageId: String!): [Email]
-  sendEmail(message: String!, subject: String!, toAddress: String!): [Email]
+  deleteEmail(folderId: String!, messageId: String!): ResponseStatus
+  sendEmail(message: String!, subject: String!, toAddress: String!): SendEmailResponse
 }
 
 # mutation root
 type mutation_root {
-  deleteEmail(folderId: String!, messageId: String!): [Email]
+  deleteEmail(folderId: String!, messageId: String!): ResponseStatus
 
   # delete data from the table: "assigned_status_lookup"
   delete_assigned_status_lookup(
@@ -546,7 +546,7 @@ type mutation_root {
     # on conflict condition
     on_conflict: your_story_on_conflict
   ): your_story
-  sendEmail(message: String!, subject: String!, toAddress: String!): [Email]
+  sendEmail(message: String!, subject: String!, toAddress: String!): SendEmailResponse
 
   # insert data into the table: "inquiries"
   sendInquiries(
@@ -683,7 +683,7 @@ type Query {
   getEmail(folderId: String!, messageId: String!): EmailContent
   post(id: String!): Post
   posts: [Post]!
-  sentEmails: [SentEmail]!
+  sentEmails: [Email]!
 }
 
 # query root
@@ -805,7 +805,7 @@ type query_root {
     # filter the rows returned
     where: read_status_lookup_bool_exp
   ): read_status_lookup_aggregate!
-  sentEmails: [SentEmail]!
+  sentEmails: [Email]!
 
   # fetch data from the table: "users" using primary key columns
   user(auth0_id: String!): users
@@ -1027,24 +1027,22 @@ input read_status_lookup_set_input {
   user_id: String
 }
 
-type SentEmail {
-  calendarType: Int!
-  flagid: String!
-  folderId: String!
+type ResponseStatus {
+  code: Int!
+  description: String!
+}
+
+type SendEmailData {
+  content: String!
   fromAddress: String!
-  hasAttachment: String!
-  hasInline: String!
   messageId: String!
-  priority: String!
-  receivedTime: String!
-  sender: String!
-  sentDateInGMT: String!
-  size: String!
-  status: String!
-  status2: String!
   subject: String!
-  summary: String!
   toAddress: String!
+}
+
+type SendEmailResponse {
+  data: SendEmailData
+  status: ResponseStatus
 }
 
 # expression to compare columns of type String. All fields are combined with logical 'AND'.
