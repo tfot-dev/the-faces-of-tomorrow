@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, createStyles, Divider, List, Theme } from '@material-ui/core';
 import { EmailListItem } from './EmailListItem';
-import { Email, SentEmail } from '../../generated/graphql';
+import { Email } from '../../generated/graphql';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 interface EmailListViewProps {
-    emails: (Email | SentEmail | null)[];
+    emails: (Email | null)[];
     emailContent: React.ComponentType<unknown>;
 }
 
