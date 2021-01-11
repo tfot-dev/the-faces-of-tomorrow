@@ -16,4 +16,8 @@ fragment YourStory on your_story {
         id
         user_id
     }
+    written_stories {
+        story
+        ready
+    }
 }

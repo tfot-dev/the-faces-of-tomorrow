@@ -545,6 +545,10 @@ export type Mutation_Root = {
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
+  /** delete data from the table: "written_story" */
+  delete_written_story?: Maybe<Written_Story_Mutation_Response>;
+  /** delete single row from the table: "written_story" */
+  delete_written_story_by_pk?: Maybe<Written_Story>;
   /** delete data from the table: "your_story" */
   delete_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** delete single row from the table: "your_story" */
@@ -561,6 +565,10 @@ export type Mutation_Root = {
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
+  /** insert data into the table: "written_story" */
+  insert_written_story?: Maybe<Written_Story_Mutation_Response>;
+  /** insert a single row into the table: "written_story" */
+  insert_written_story_one?: Maybe<Written_Story>;
   /** insert data into the table: "your_story" */
   insert_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** insert a single row into the table: "your_story" */
@@ -582,6 +590,10 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
+  /** update data of the table: "written_story" */
+  update_written_story?: Maybe<Written_Story_Mutation_Response>;
+  /** update single row of the table: "written_story" */
+  update_written_story_by_pk?: Maybe<Written_Story>;
   /** update data of the table: "your_story" */
   update_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** update single row of the table: "your_story" */
@@ -629,6 +641,18 @@ export type Mutation_RootDelete_UsersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Users_By_PkArgs = {
   auth0_id: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Written_StoryArgs = {
+  where: Written_Story_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Written_Story_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -682,6 +706,20 @@ export type Mutation_RootInsert_UsersArgs = {
 export type Mutation_RootInsert_Users_OneArgs = {
   object: Users_Insert_Input;
   on_conflict?: Maybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Written_StoryArgs = {
+  objects: Array<Written_Story_Insert_Input>;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Written_Story_OneArgs = {
+  object: Written_Story_Insert_Input;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
 };
 
 
@@ -763,6 +801,20 @@ export type Mutation_RootUpdate_Users_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Written_StoryArgs = {
+  _set?: Maybe<Written_Story_Set_Input>;
+  where: Written_Story_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Written_Story_By_PkArgs = {
+  _set?: Maybe<Written_Story_Set_Input>;
+  pk_columns: Written_Story_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Your_StoryArgs = {
   _inc?: Maybe<Your_Story_Inc_Input>;
   _set?: Maybe<Your_Story_Set_Input>;
@@ -823,6 +875,12 @@ export type Query_Root = {
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "written_story" */
+  written_story: Array<Written_Story>;
+  /** fetch aggregated fields from the table: "written_story" */
+  written_story_aggregate: Written_Story_Aggregate;
+  /** fetch data from the table: "written_story" using primary key columns */
+  written_story_by_pk?: Maybe<Written_Story>;
   /** fetch data from the table: "your_story" */
   your_story: Array<Your_Story>;
   /** fetch aggregated fields from the table: "your_story" */
@@ -934,6 +992,32 @@ export type Query_RootUsers_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Users_Order_By>>;
   where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootWritten_StoryArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootWritten_Story_AggregateArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootWritten_Story_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1103,6 +1187,12 @@ export type Subscription_Root = {
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "written_story" */
+  written_story: Array<Written_Story>;
+  /** fetch aggregated fields from the table: "written_story" */
+  written_story_aggregate: Written_Story_Aggregate;
+  /** fetch data from the table: "written_story" using primary key columns */
+  written_story_by_pk?: Maybe<Written_Story>;
   /** fetch data from the table: "your_story" */
   your_story: Array<Your_Story>;
   /** fetch aggregated fields from the table: "your_story" */
@@ -1201,6 +1291,32 @@ export type Subscription_RootUsers_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Users_Order_By>>;
   where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootWritten_StoryArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootWritten_Story_AggregateArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootWritten_Story_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1464,6 +1580,159 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+/** columns and relationships of "written_story" */
+export type Written_Story = {
+  __typename?: 'written_story';
+  id: Scalars['uuid'];
+  ready: Scalars['Boolean'];
+  story: Scalars['String'];
+};
+
+/** aggregated selection of "written_story" */
+export type Written_Story_Aggregate = {
+  __typename?: 'written_story_aggregate';
+  aggregate?: Maybe<Written_Story_Aggregate_Fields>;
+  nodes: Array<Written_Story>;
+};
+
+/** aggregate fields of "written_story" */
+export type Written_Story_Aggregate_Fields = {
+  __typename?: 'written_story_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Written_Story_Max_Fields>;
+  min?: Maybe<Written_Story_Min_Fields>;
+};
+
+
+/** aggregate fields of "written_story" */
+export type Written_Story_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Written_Story_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "written_story" */
+export type Written_Story_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Written_Story_Max_Order_By>;
+  min?: Maybe<Written_Story_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "written_story" */
+export type Written_Story_Arr_Rel_Insert_Input = {
+  data: Array<Written_Story_Insert_Input>;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "written_story". All fields are combined with a logical 'AND'. */
+export type Written_Story_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Written_Story_Bool_Exp>>>;
+  _not?: Maybe<Written_Story_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Written_Story_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  ready?: Maybe<Boolean_Comparison_Exp>;
+  story?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "written_story" */
+export enum Written_Story_Constraint {
+  /** unique or primary key constraint */
+  WrittenStoryPkey = 'written_story_pkey'
+}
+
+/** input type for inserting data into table "written_story" */
+export type Written_Story_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  ready?: Maybe<Scalars['Boolean']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Written_Story_Max_Fields = {
+  __typename?: 'written_story_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "written_story" */
+export type Written_Story_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  story?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Written_Story_Min_Fields = {
+  __typename?: 'written_story_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "written_story" */
+export type Written_Story_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  story?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "written_story" */
+export type Written_Story_Mutation_Response = {
+  __typename?: 'written_story_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Written_Story>;
+};
+
+/** input type for inserting object relation for remote table "written_story" */
+export type Written_Story_Obj_Rel_Insert_Input = {
+  data: Written_Story_Insert_Input;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
+};
+
+/** on conflict condition type for table "written_story" */
+export type Written_Story_On_Conflict = {
+  constraint: Written_Story_Constraint;
+  update_columns: Array<Written_Story_Update_Column>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "written_story" */
+export type Written_Story_Order_By = {
+  id?: Maybe<Order_By>;
+  ready?: Maybe<Order_By>;
+  story?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "written_story" */
+export type Written_Story_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "written_story" */
+export enum Written_Story_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Ready = 'ready',
+  /** column name */
+  Story = 'story'
+}
+
+/** input type for updating data in table "written_story" */
+export type Written_Story_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  ready?: Maybe<Scalars['Boolean']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "written_story" */
+export enum Written_Story_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Ready = 'ready',
+  /** column name */
+  Story = 'story'
+}
+
 /** columns and relationships of "your_story" */
 export type Your_Story = {
   __typename?: 'your_story';
@@ -1483,6 +1752,30 @@ export type Your_Story = {
   projectIdea: Scalars['String'];
   /** A computed field, executes function "read_your_story" */
   read_status?: Maybe<Scalars['Boolean']>;
+  /** An array relationship */
+  written_stories: Array<Written_Story>;
+  /** An aggregated array relationship */
+  written_stories_aggregate: Written_Story_Aggregate;
+};
+
+
+/** columns and relationships of "your_story" */
+export type Your_StoryWritten_StoriesArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** columns and relationships of "your_story" */
+export type Your_StoryWritten_Stories_AggregateArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
 };
 
 /** aggregated selection of "your_story" */
@@ -1565,6 +1858,7 @@ export type Your_Story_Bool_Exp = {
   occupation?: Maybe<String_Comparison_Exp>;
   pictures?: Maybe<String_Comparison_Exp>;
   projectIdea?: Maybe<String_Comparison_Exp>;
+  written_stories?: Maybe<Written_Story_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "your_story" */
@@ -1593,6 +1887,7 @@ export type Your_Story_Insert_Input = {
   occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
+  written_stories?: Maybe<Written_Story_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -1698,6 +1993,7 @@ export type Your_Story_Order_By = {
   occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
+  written_stories_aggregate?: Maybe<Written_Story_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "your_story" */
@@ -1894,6 +2190,9 @@ export type YourStoryFragment = (
   & { assigned_to?: Maybe<(
     { __typename?: 'assigned_status_lookup' }
     & Pick<Assigned_Status_Lookup, 'id' | 'user_id'>
+  )>, written_stories: Array<(
+    { __typename?: 'written_story' }
+    & Pick<Written_Story, 'story' | 'ready'>
   )> }
 );
 
@@ -2195,6 +2494,10 @@ export const YourStoryFragmentDoc = gql`
   assigned_to {
     id
     user_id
+  }
+  written_stories {
+    story
+    ready
   }
 }
     `;
