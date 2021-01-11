@@ -33,7 +33,7 @@
     "@types/react-router-dom": "^5.1.6",
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.1",
-    "ckeditor5-custom-build": "file:./ckeditor5",
+    "ckeditor5-build-classic-email": "^1.0.0",
     "clamp-js": "^0.7.0",
     "eslint-plugin-graphql": "^4.0.0",
     "graphql": "^15.4.0",
