@@ -3090,3 +3090,36 @@ export function useGetYourStoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetYourStoryQueryHookResult = ReturnType<typeof useGetYourStoryQuery>;
 export type GetYourStoryLazyQueryHookResult = ReturnType<typeof useGetYourStoryLazyQuery>;
 export type GetYourStoryQueryResult = Apollo.QueryResult<GetYourStoryQuery, GetYourStoryQueryVariables>;
+export const namedOperations = {
+  Query: {
+    GetAllEmails: 'GetAllEmails',
+    GetEmail: 'GetEmail',
+    GetAllInquiries: 'GetAllInquiries',
+    GetInquiry: 'GetInquiry',
+    GetPost: 'GetPost',
+    GetAllPosts: 'GetAllPosts',
+    GetSentEmails: 'GetSentEmails',
+    GetAllUsers: 'GetAllUsers',
+    GetAllYourStories: 'GetAllYourStories',
+    GetYourStory: 'GetYourStory'
+  },
+  Mutation: {
+    setAssignedStatus: 'setAssignedStatus',
+    deleteAssignedStatus: 'deleteAssignedStatus',
+    readStatus: 'readStatus',
+    sendEmail: 'sendEmail',
+    sendInquiries: 'sendInquiries',
+    sendYourStory: 'sendYourStory',
+    updateWrittenStory: 'updateWrittenStory',
+    updateStoryStatus: 'updateStoryStatus'
+  },
+  Fragment: {
+    Email: 'Email',
+    EmailContent: 'EmailContent',
+    Inquiry: 'Inquiry',
+    Post: 'Post',
+    SentEmail: 'SentEmail',
+    User: 'User',
+    YourStory: 'YourStory'
+  }
+}
