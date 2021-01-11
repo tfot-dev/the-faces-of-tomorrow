@@ -9,7 +9,9 @@ import { EmailSentContainer } from '../features/Email/EmailSentContainer';
 import { Error } from '../features/Error/Error';
 import { EmailInboxContainer } from '../features/Email/EmailInboxContainer';
 import { InquiriesContainer } from '../features/ContactUs/InquiriesContainer';
-import { YourStoryContainer } from '../features/YourStory/YourStoryContainer';
+import { YourStoryUnassignedContainer } from '../features/YourStory/YourStoryUnassignedContainer';
+import { YourStoryAssignedContainer } from '../features/YourStory/YourStoryAssignedContainer';
+import { YourStoryFinishedContainer } from '../features/YourStory/YourStoryFinishedContainer';
 
 export const AdminSideNavItems = [
     {
@@ -27,19 +29,19 @@ export const AdminSideNavItems = [
     {
         label: 'Unassigned',
         icon: HourglassEmptyIcon,
-        component: YourStoryContainer,
+        component: YourStoryUnassignedContainer,
         route: 'unassigned',
     },
     {
         label: 'In Progress',
         icon: CachedIcon,
-        component: Error,
+        component: YourStoryAssignedContainer,
         route: 'inprogress',
     },
     {
         label: 'Finished',
         icon: CheckCircleIcon,
-        component: Error,
+        component: YourStoryFinishedContainer,
         route: 'finished',
     },
     {

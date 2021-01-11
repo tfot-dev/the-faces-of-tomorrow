@@ -30,10 +30,10 @@ export const YourStoryListView = ({ yourStories, yourStoryContent }: YourStoryLi
                         {yourStories.map(
                             (yourStory, index: number) =>
                                 yourStory !== null && (
-                                    <>
+                                    <React.Fragment key={yourStory.id}>
                                         <YourStoryListItem yourStory={yourStory} />
                                         {index !== yourStories.length - 1 && <Divider component="li" />}
-                                    </>
+                                    </React.Fragment>
                                 ),
                         )}
                     </List>

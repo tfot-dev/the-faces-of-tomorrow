@@ -13,7 +13,13 @@ module.exports = {
     overwrite: true,
     generates: {
         'src/generated/graphql.ts': {
-            plugins: ['add', 'typescript', 'typescript-operations', 'typescript-react-apollo'],
+            plugins: [
+                'add',
+                'typescript',
+                'typescript-operations',
+                'typescript-react-apollo',
+                'named-operations-object',
+            ],
             config: {
                 skipTypename: false,
                 withHooks: true,

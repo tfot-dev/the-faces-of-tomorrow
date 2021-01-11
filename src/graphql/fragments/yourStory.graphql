@@ -12,4 +12,13 @@ fragment YourStory on your_story {
     pictures
     projectIdea
     read_status
+    assigned_to {
+        id
+        user_id
+    }
+    written_story {
+        id
+        story
+        ready
+    }
 }

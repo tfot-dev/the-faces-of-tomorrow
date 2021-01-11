@@ -1,0 +1,11 @@
+mutation setAssignedStatus($id: uuid!, $user_id: String!) {
+    insert_assigned_status_lookup(objects: {id: $id, user_id: $user_id }) {
+        affected_rows
+    }
+}
+
+mutation deleteAssignedStatus($id: uuid!) {
+    delete_assigned_status_lookup(where: {id: {_eq: $id}}) {
+        affected_rows
+    }
+}

@@ -14,6 +14,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import { MiniDrawerContent } from './MiniDrawerContent';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const drawerWidth = 240;
 
@@ -71,6 +72,7 @@ interface MiniDrawerProps {
 }
 
 export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
+    const { isAuthenticated } = useAuth0();
     const { url, path } = useRouteMatch<{ tabId: string }>();
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -121,12 +123,14 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                     </IconButton>
                 </div>
             </Drawer>
-            <main className={classes.content}>
-                <Route exact path={path} render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
-                <Route path={`${path}/:tabId`}>
-                    <MiniDrawerContent tabs={tabs} routeSelected={setCurrentRoute} />
-                </Route>
-            </main>
+            {isAuthenticated && (
+                <main className={classes.content}>
+                    <Route exact path={path} render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
+                    <Route path={`${path}/:tabId`}>
+                        <MiniDrawerContent tabs={tabs} routeSelected={setCurrentRoute} />
+                    </Route>
+                </main>
+            )}
         </div>
     );
 };

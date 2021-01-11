@@ -184,6 +184,145 @@ export type String_Comparison_Exp = {
 };
 
 
+/** columns and relationships of "assigned_status_lookup" */
+export type Assigned_Status_Lookup = {
+  __typename?: 'assigned_status_lookup';
+  id: Scalars['uuid'];
+  user_id: Scalars['String'];
+};
+
+/** aggregated selection of "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Aggregate = {
+  __typename?: 'assigned_status_lookup_aggregate';
+  aggregate?: Maybe<Assigned_Status_Lookup_Aggregate_Fields>;
+  nodes: Array<Assigned_Status_Lookup>;
+};
+
+/** aggregate fields of "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Aggregate_Fields = {
+  __typename?: 'assigned_status_lookup_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Assigned_Status_Lookup_Max_Fields>;
+  min?: Maybe<Assigned_Status_Lookup_Min_Fields>;
+};
+
+
+/** aggregate fields of "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Assigned_Status_Lookup_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Assigned_Status_Lookup_Max_Order_By>;
+  min?: Maybe<Assigned_Status_Lookup_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Arr_Rel_Insert_Input = {
+  data: Array<Assigned_Status_Lookup_Insert_Input>;
+  on_conflict?: Maybe<Assigned_Status_Lookup_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "assigned_status_lookup". All fields are combined with a logical 'AND'. */
+export type Assigned_Status_Lookup_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Assigned_Status_Lookup_Bool_Exp>>>;
+  _not?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Assigned_Status_Lookup_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  user_id?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "assigned_status_lookup" */
+export enum Assigned_Status_Lookup_Constraint {
+  /** unique or primary key constraint */
+  AssignedStatusLookupIdKey = 'assigned_status_lookup_id_key'
+}
+
+/** input type for inserting data into table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Assigned_Status_Lookup_Max_Fields = {
+  __typename?: 'assigned_status_lookup_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Assigned_Status_Lookup_Min_Fields = {
+  __typename?: 'assigned_status_lookup_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Mutation_Response = {
+  __typename?: 'assigned_status_lookup_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Assigned_Status_Lookup>;
+};
+
+/** input type for inserting object relation for remote table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Obj_Rel_Insert_Input = {
+  data: Assigned_Status_Lookup_Insert_Input;
+  on_conflict?: Maybe<Assigned_Status_Lookup_On_Conflict>;
+};
+
+/** on conflict condition type for table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_On_Conflict = {
+  constraint: Assigned_Status_Lookup_Constraint;
+  update_columns: Array<Assigned_Status_Lookup_Update_Column>;
+  where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Order_By = {
+  id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** select columns of table "assigned_status_lookup" */
+export enum Assigned_Status_Lookup_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "assigned_status_lookup" */
+export type Assigned_Status_Lookup_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "assigned_status_lookup" */
+export enum Assigned_Status_Lookup_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UserId = 'user_id'
+}
+
 export type Auth0_Profile = {
   __typename?: 'auth0_profile';
   email?: Maybe<Scalars['String']>;
@@ -394,6 +533,8 @@ export type Json_Comparison_Exp = {
 export type Mutation_Root = {
   __typename?: 'mutation_root';
   deleteEmail?: Maybe<Array<Maybe<Email>>>;
+  /** delete data from the table: "assigned_status_lookup" */
+  delete_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
   /** delete data from the table: "inquiries" */
   delete_inquiries?: Maybe<Inquiries_Mutation_Response>;
   /** delete single row from the table: "inquiries" */
@@ -404,10 +545,16 @@ export type Mutation_Root = {
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
+  /** delete data from the table: "written_story" */
+  delete_written_story?: Maybe<Written_Story_Mutation_Response>;
   /** delete data from the table: "your_story" */
   delete_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** delete single row from the table: "your_story" */
   delete_your_story_by_pk?: Maybe<Your_Story>;
+  /** insert data into the table: "assigned_status_lookup" */
+  insert_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
+  /** insert a single row into the table: "assigned_status_lookup" */
+  insert_assigned_status_lookup_one?: Maybe<Assigned_Status_Lookup>;
   /** insert a single row into the table: "inquiries" */
   insert_inquiries_one?: Maybe<Inquiries>;
   /** insert a single row into the table: "read_status_lookup" */
@@ -416,6 +563,10 @@ export type Mutation_Root = {
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
+  /** insert data into the table: "written_story" */
+  insert_written_story?: Maybe<Written_Story_Mutation_Response>;
+  /** insert a single row into the table: "written_story" */
+  insert_written_story_one?: Maybe<Written_Story>;
   /** insert data into the table: "your_story" */
   insert_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** insert a single row into the table: "your_story" */
@@ -425,6 +576,8 @@ export type Mutation_Root = {
   sendInquiries?: Maybe<Inquiries_Mutation_Response>;
   /** insert data into the table: "read_status_lookup" */
   setReadStatus?: Maybe<Read_Status_Lookup_Mutation_Response>;
+  /** update data of the table: "assigned_status_lookup" */
+  update_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
   /** update data of the table: "inquiries" */
   update_inquiries?: Maybe<Inquiries_Mutation_Response>;
   /** update single row of the table: "inquiries" */
@@ -435,6 +588,8 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
+  /** update data of the table: "written_story" */
+  update_written_story?: Maybe<Written_Story_Mutation_Response>;
   /** update data of the table: "your_story" */
   update_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** update single row of the table: "your_story" */
@@ -446,6 +601,12 @@ export type Mutation_Root = {
 export type Mutation_RootDeleteEmailArgs = {
   folderId: Scalars['String'];
   messageId: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Assigned_Status_LookupArgs = {
+  where: Assigned_Status_Lookup_Bool_Exp;
 };
 
 
@@ -480,6 +641,12 @@ export type Mutation_RootDelete_Users_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Written_StoryArgs = {
+  where: Written_Story_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_Your_StoryArgs = {
   where: Your_Story_Bool_Exp;
 };
@@ -488,6 +655,20 @@ export type Mutation_RootDelete_Your_StoryArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Your_Story_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Assigned_Status_LookupArgs = {
+  objects: Array<Assigned_Status_Lookup_Insert_Input>;
+  on_conflict?: Maybe<Assigned_Status_Lookup_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Assigned_Status_Lookup_OneArgs = {
+  object: Assigned_Status_Lookup_Insert_Input;
+  on_conflict?: Maybe<Assigned_Status_Lookup_On_Conflict>;
 };
 
 
@@ -515,6 +696,20 @@ export type Mutation_RootInsert_UsersArgs = {
 export type Mutation_RootInsert_Users_OneArgs = {
   object: Users_Insert_Input;
   on_conflict?: Maybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Written_StoryArgs = {
+  objects: Array<Written_Story_Insert_Input>;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Written_Story_OneArgs = {
+  object: Written_Story_Insert_Input;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
 };
 
 
@@ -554,6 +749,13 @@ export type Mutation_RootSetReadStatusArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Assigned_Status_LookupArgs = {
+  _set?: Maybe<Assigned_Status_Lookup_Set_Input>;
+  where: Assigned_Status_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_InquiriesArgs = {
   _set?: Maybe<Inquiries_Set_Input>;
   where: Inquiries_Bool_Exp;
@@ -585,6 +787,13 @@ export type Mutation_RootUpdate_UsersArgs = {
 export type Mutation_RootUpdate_Users_By_PkArgs = {
   _set?: Maybe<Users_Set_Input>;
   pk_columns: Users_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Written_StoryArgs = {
+  _set?: Maybe<Written_Story_Set_Input>;
+  where: Written_Story_Bool_Exp;
 };
 
 
@@ -622,6 +831,10 @@ export enum Order_By {
 /** query root */
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch data from the table: "assigned_status_lookup" */
+  assigned_status_lookup: Array<Assigned_Status_Lookup>;
+  /** fetch aggregated fields from the table: "assigned_status_lookup" */
+  assigned_status_lookup_aggregate: Assigned_Status_Lookup_Aggregate;
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   emails: Array<Maybe<Email>>;
@@ -645,12 +858,36 @@ export type Query_Root = {
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "written_story" */
+  written_story: Array<Written_Story>;
+  /** fetch aggregated fields from the table: "written_story" */
+  written_story_aggregate: Written_Story_Aggregate;
   /** fetch data from the table: "your_story" */
   your_story: Array<Your_Story>;
   /** fetch aggregated fields from the table: "your_story" */
   your_story_aggregate: Your_Story_Aggregate;
   /** fetch data from the table: "your_story" using primary key columns */
   your_story_by_pk?: Maybe<Your_Story>;
+};
+
+
+/** query root */
+export type Query_RootAssigned_Status_LookupArgs = {
+  distinct_on?: Maybe<Array<Assigned_Status_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
+  where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootAssigned_Status_Lookup_AggregateArgs = {
+  distinct_on?: Maybe<Array<Assigned_Status_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
+  where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
 };
 
 
@@ -736,6 +973,26 @@ export type Query_RootUsers_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Users_Order_By>>;
   where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootWritten_StoryArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootWritten_Story_AggregateArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
 };
 
 
@@ -883,6 +1140,10 @@ export type Read_Status_Lookup_Set_Input = {
 /** subscription root */
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch data from the table: "assigned_status_lookup" */
+  assigned_status_lookup: Array<Assigned_Status_Lookup>;
+  /** fetch aggregated fields from the table: "assigned_status_lookup" */
+  assigned_status_lookup_aggregate: Assigned_Status_Lookup_Aggregate;
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   /** fetch data from the table: "inquiries" */
@@ -901,12 +1162,36 @@ export type Subscription_Root = {
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
   users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "written_story" */
+  written_story: Array<Written_Story>;
+  /** fetch aggregated fields from the table: "written_story" */
+  written_story_aggregate: Written_Story_Aggregate;
   /** fetch data from the table: "your_story" */
   your_story: Array<Your_Story>;
   /** fetch aggregated fields from the table: "your_story" */
   your_story_aggregate: Your_Story_Aggregate;
   /** fetch data from the table: "your_story" using primary key columns */
   your_story_by_pk?: Maybe<Your_Story>;
+};
+
+
+/** subscription root */
+export type Subscription_RootAssigned_Status_LookupArgs = {
+  distinct_on?: Maybe<Array<Assigned_Status_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
+  where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootAssigned_Status_Lookup_AggregateArgs = {
+  distinct_on?: Maybe<Array<Assigned_Status_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
+  where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
 };
 
 
@@ -979,6 +1264,26 @@ export type Subscription_RootUsers_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Users_Order_By>>;
   where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootWritten_StoryArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootWritten_Story_AggregateArgs = {
+  distinct_on?: Maybe<Array<Written_Story_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Written_Story_Order_By>>;
+  where?: Maybe<Written_Story_Bool_Exp>;
 };
 
 
@@ -1242,11 +1547,161 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+/** columns and relationships of "written_story" */
+export type Written_Story = {
+  __typename?: 'written_story';
+  id: Scalars['uuid'];
+  ready: Scalars['Boolean'];
+  story?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "written_story" */
+export type Written_Story_Aggregate = {
+  __typename?: 'written_story_aggregate';
+  aggregate?: Maybe<Written_Story_Aggregate_Fields>;
+  nodes: Array<Written_Story>;
+};
+
+/** aggregate fields of "written_story" */
+export type Written_Story_Aggregate_Fields = {
+  __typename?: 'written_story_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Written_Story_Max_Fields>;
+  min?: Maybe<Written_Story_Min_Fields>;
+};
+
+
+/** aggregate fields of "written_story" */
+export type Written_Story_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Written_Story_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "written_story" */
+export type Written_Story_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Written_Story_Max_Order_By>;
+  min?: Maybe<Written_Story_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "written_story" */
+export type Written_Story_Arr_Rel_Insert_Input = {
+  data: Array<Written_Story_Insert_Input>;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "written_story". All fields are combined with a logical 'AND'. */
+export type Written_Story_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Written_Story_Bool_Exp>>>;
+  _not?: Maybe<Written_Story_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Written_Story_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  ready?: Maybe<Boolean_Comparison_Exp>;
+  story?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "written_story" */
+export enum Written_Story_Constraint {
+  /** unique or primary key constraint */
+  WrittenStoryIdKey = 'written_story_id_key'
+}
+
+/** input type for inserting data into table "written_story" */
+export type Written_Story_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  ready?: Maybe<Scalars['Boolean']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Written_Story_Max_Fields = {
+  __typename?: 'written_story_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "written_story" */
+export type Written_Story_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  story?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Written_Story_Min_Fields = {
+  __typename?: 'written_story_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "written_story" */
+export type Written_Story_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  story?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "written_story" */
+export type Written_Story_Mutation_Response = {
+  __typename?: 'written_story_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Written_Story>;
+};
+
+/** input type for inserting object relation for remote table "written_story" */
+export type Written_Story_Obj_Rel_Insert_Input = {
+  data: Written_Story_Insert_Input;
+  on_conflict?: Maybe<Written_Story_On_Conflict>;
+};
+
+/** on conflict condition type for table "written_story" */
+export type Written_Story_On_Conflict = {
+  constraint: Written_Story_Constraint;
+  update_columns: Array<Written_Story_Update_Column>;
+  where?: Maybe<Written_Story_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "written_story" */
+export type Written_Story_Order_By = {
+  id?: Maybe<Order_By>;
+  ready?: Maybe<Order_By>;
+  story?: Maybe<Order_By>;
+};
+
+/** select columns of table "written_story" */
+export enum Written_Story_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Ready = 'ready',
+  /** column name */
+  Story = 'story'
+}
+
+/** input type for updating data in table "written_story" */
+export type Written_Story_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+  ready?: Maybe<Scalars['Boolean']>;
+  story?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "written_story" */
+export enum Written_Story_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Ready = 'ready',
+  /** column name */
+  Story = 'story'
+}
+
 /** columns and relationships of "your_story" */
 export type Your_Story = {
   __typename?: 'your_story';
   advise: Scalars['String'];
   age: Scalars['Int'];
+  /** An object relationship */
+  assigned_to?: Maybe<Assigned_Status_Lookup>;
   city: Scalars['String'];
   email: Scalars['String'];
   id: Scalars['uuid'];
@@ -1259,6 +1714,8 @@ export type Your_Story = {
   projectIdea: Scalars['String'];
   /** A computed field, executes function "read_your_story" */
   read_status?: Maybe<Scalars['Boolean']>;
+  /** An object relationship */
+  written_story?: Maybe<Written_Story>;
 };
 
 /** aggregated selection of "your_story" */
@@ -1330,6 +1787,7 @@ export type Your_Story_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Your_Story_Bool_Exp>>>;
   advise?: Maybe<String_Comparison_Exp>;
   age?: Maybe<Int_Comparison_Exp>;
+  assigned_to?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
   city?: Maybe<String_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
@@ -1340,6 +1798,7 @@ export type Your_Story_Bool_Exp = {
   occupation?: Maybe<String_Comparison_Exp>;
   pictures?: Maybe<String_Comparison_Exp>;
   projectIdea?: Maybe<String_Comparison_Exp>;
+  written_story?: Maybe<Written_Story_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "your_story" */
@@ -1357,6 +1816,7 @@ export type Your_Story_Inc_Input = {
 export type Your_Story_Insert_Input = {
   advise?: Maybe<Scalars['String']>;
   age?: Maybe<Scalars['Int']>;
+  assigned_to?: Maybe<Assigned_Status_Lookup_Obj_Rel_Insert_Input>;
   city?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
@@ -1367,6 +1827,7 @@ export type Your_Story_Insert_Input = {
   occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
+  written_story?: Maybe<Written_Story_Obj_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -1461,6 +1922,7 @@ export type Your_Story_On_Conflict = {
 export type Your_Story_Order_By = {
   advise?: Maybe<Order_By>;
   age?: Maybe<Order_By>;
+  assigned_to?: Maybe<Assigned_Status_Lookup_Order_By>;
   city?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -1471,6 +1933,7 @@ export type Your_Story_Order_By = {
   occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
+  written_story?: Maybe<Written_Story_Order_By>;
 };
 
 /** primary key columns input for table: "your_story" */
@@ -1658,12 +2121,46 @@ export type SentEmailFragment = (
 
 export type UserFragment = (
   { __typename?: 'users' }
-  & Pick<Users, 'id' | 'name' | 'email_id' | 'admin'>
+  & Pick<Users, 'id' | 'name' | 'email_id' | 'admin' | 'auth0_id'>
 );
 
 export type YourStoryFragment = (
   { __typename?: 'your_story' }
   & Pick<Your_Story, 'advise' | 'age' | 'city' | 'email' | 'id' | 'inspiration' | 'name' | 'need' | 'observedEffects' | 'occupation' | 'pictures' | 'projectIdea' | 'read_status'>
+  & { assigned_to?: Maybe<(
+    { __typename?: 'assigned_status_lookup' }
+    & Pick<Assigned_Status_Lookup, 'id' | 'user_id'>
+  )>, written_story?: Maybe<(
+    { __typename?: 'written_story' }
+    & Pick<Written_Story, 'id' | 'story' | 'ready'>
+  )> }
+);
+
+export type SetAssignedStatusMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  user_id: Scalars['String'];
+}>;
+
+
+export type SetAssignedStatusMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_assigned_status_lookup?: Maybe<(
+    { __typename?: 'assigned_status_lookup_mutation_response' }
+    & Pick<Assigned_Status_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type DeleteAssignedStatusMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteAssignedStatusMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_assigned_status_lookup?: Maybe<(
+    { __typename?: 'assigned_status_lookup_mutation_response' }
+    & Pick<Assigned_Status_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
 );
 
 export type ReadStatusMutationVariables = Exact<{
@@ -1730,6 +2227,34 @@ export type SendYourStoryMutation = (
   & { insert_your_story?: Maybe<(
     { __typename?: 'your_story_mutation_response' }
     & Pick<Your_Story_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UpdateWrittenStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  writtenStory: Scalars['String'];
+}>;
+
+
+export type UpdateWrittenStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_written_story?: Maybe<(
+    { __typename?: 'written_story_mutation_response' }
+    & Pick<Written_Story_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UpdateStoryStatusMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  ready: Scalars['Boolean'];
+}>;
+
+
+export type UpdateStoryStatusMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_written_story?: Maybe<(
+    { __typename?: 'written_story_mutation_response' }
+    & Pick<Written_Story_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -1929,6 +2454,7 @@ export const UserFragmentDoc = gql`
   name
   email_id
   admin
+  auth0_id
 }
     `;
 export const YourStoryFragmentDoc = gql`
@@ -1946,8 +2472,82 @@ export const YourStoryFragmentDoc = gql`
   pictures
   projectIdea
   read_status
+  assigned_to {
+    id
+    user_id
+  }
+  written_story {
+    id
+    story
+    ready
+  }
 }
     `;
+export const SetAssignedStatusDocument = gql`
+    mutation setAssignedStatus($id: uuid!, $user_id: String!) {
+  insert_assigned_status_lookup(objects: {id: $id, user_id: $user_id}) {
+    affected_rows
+  }
+}
+    `;
+export type SetAssignedStatusMutationFn = Apollo.MutationFunction<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>;
+
+/**
+ * __useSetAssignedStatusMutation__
+ *
+ * To run a mutation, you first call `useSetAssignedStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSetAssignedStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [setAssignedStatusMutation, { data, loading, error }] = useSetAssignedStatusMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useSetAssignedStatusMutation(baseOptions?: Apollo.MutationHookOptions<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>) {
+        return Apollo.useMutation<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>(SetAssignedStatusDocument, baseOptions);
+      }
+export type SetAssignedStatusMutationHookResult = ReturnType<typeof useSetAssignedStatusMutation>;
+export type SetAssignedStatusMutationResult = Apollo.MutationResult<SetAssignedStatusMutation>;
+export type SetAssignedStatusMutationOptions = Apollo.BaseMutationOptions<SetAssignedStatusMutation, SetAssignedStatusMutationVariables>;
+export const DeleteAssignedStatusDocument = gql`
+    mutation deleteAssignedStatus($id: uuid!) {
+  delete_assigned_status_lookup(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteAssignedStatusMutationFn = Apollo.MutationFunction<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
+
+/**
+ * __useDeleteAssignedStatusMutation__
+ *
+ * To run a mutation, you first call `useDeleteAssignedStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteAssignedStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteAssignedStatusMutation, { data, loading, error }] = useDeleteAssignedStatusMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteAssignedStatusMutation(baseOptions?: Apollo.MutationHookOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>) {
+        return Apollo.useMutation<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>(DeleteAssignedStatusDocument, baseOptions);
+      }
+export type DeleteAssignedStatusMutationHookResult = ReturnType<typeof useDeleteAssignedStatusMutation>;
+export type DeleteAssignedStatusMutationResult = Apollo.MutationResult<DeleteAssignedStatusMutation>;
+export type DeleteAssignedStatusMutationOptions = Apollo.BaseMutationOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
 export const ReadStatusDocument = gql`
     mutation readStatus($id: uuid!, $user_id: String!) {
   setReadStatus(objects: {id: $id, user_id: $user_id}) {
@@ -2093,6 +2693,78 @@ export function useSendYourStoryMutation(baseOptions?: Apollo.MutationHookOption
 export type SendYourStoryMutationHookResult = ReturnType<typeof useSendYourStoryMutation>;
 export type SendYourStoryMutationResult = Apollo.MutationResult<SendYourStoryMutation>;
 export type SendYourStoryMutationOptions = Apollo.BaseMutationOptions<SendYourStoryMutation, SendYourStoryMutationVariables>;
+export const UpdateWrittenStoryDocument = gql`
+    mutation updateWrittenStory($id: uuid!, $writtenStory: String!) {
+  insert_written_story(
+    on_conflict: {constraint: written_story_id_key, update_columns: story}
+    objects: {id: $id, story: $writtenStory}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateWrittenStoryMutationFn = Apollo.MutationFunction<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>;
+
+/**
+ * __useUpdateWrittenStoryMutation__
+ *
+ * To run a mutation, you first call `useUpdateWrittenStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateWrittenStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateWrittenStoryMutation, { data, loading, error }] = useUpdateWrittenStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      writtenStory: // value for 'writtenStory'
+ *   },
+ * });
+ */
+export function useUpdateWrittenStoryMutation(baseOptions?: Apollo.MutationHookOptions<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>) {
+        return Apollo.useMutation<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>(UpdateWrittenStoryDocument, baseOptions);
+      }
+export type UpdateWrittenStoryMutationHookResult = ReturnType<typeof useUpdateWrittenStoryMutation>;
+export type UpdateWrittenStoryMutationResult = Apollo.MutationResult<UpdateWrittenStoryMutation>;
+export type UpdateWrittenStoryMutationOptions = Apollo.BaseMutationOptions<UpdateWrittenStoryMutation, UpdateWrittenStoryMutationVariables>;
+export const UpdateStoryStatusDocument = gql`
+    mutation updateStoryStatus($id: uuid!, $ready: Boolean!) {
+  insert_written_story(
+    on_conflict: {constraint: written_story_id_key, update_columns: ready}
+    objects: {id: $id, ready: $ready}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateStoryStatusMutationFn = Apollo.MutationFunction<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>;
+
+/**
+ * __useUpdateStoryStatusMutation__
+ *
+ * To run a mutation, you first call `useUpdateStoryStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateStoryStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateStoryStatusMutation, { data, loading, error }] = useUpdateStoryStatusMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      ready: // value for 'ready'
+ *   },
+ * });
+ */
+export function useUpdateStoryStatusMutation(baseOptions?: Apollo.MutationHookOptions<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>) {
+        return Apollo.useMutation<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>(UpdateStoryStatusDocument, baseOptions);
+      }
+export type UpdateStoryStatusMutationHookResult = ReturnType<typeof useUpdateStoryStatusMutation>;
+export type UpdateStoryStatusMutationResult = Apollo.MutationResult<UpdateStoryStatusMutation>;
+export type UpdateStoryStatusMutationOptions = Apollo.BaseMutationOptions<UpdateStoryStatusMutation, UpdateStoryStatusMutationVariables>;
 export const GetAllEmailsDocument = gql`
     query GetAllEmails {
   emails {
@@ -2418,3 +3090,36 @@ export function useGetYourStoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetYourStoryQueryHookResult = ReturnType<typeof useGetYourStoryQuery>;
 export type GetYourStoryLazyQueryHookResult = ReturnType<typeof useGetYourStoryLazyQuery>;
 export type GetYourStoryQueryResult = Apollo.QueryResult<GetYourStoryQuery, GetYourStoryQueryVariables>;
+export const namedOperations = {
+  Query: {
+    GetAllEmails: 'GetAllEmails',
+    GetEmail: 'GetEmail',
+    GetAllInquiries: 'GetAllInquiries',
+    GetInquiry: 'GetInquiry',
+    GetPost: 'GetPost',
+    GetAllPosts: 'GetAllPosts',
+    GetSentEmails: 'GetSentEmails',
+    GetAllUsers: 'GetAllUsers',
+    GetAllYourStories: 'GetAllYourStories',
+    GetYourStory: 'GetYourStory'
+  },
+  Mutation: {
+    setAssignedStatus: 'setAssignedStatus',
+    deleteAssignedStatus: 'deleteAssignedStatus',
+    readStatus: 'readStatus',
+    sendEmail: 'sendEmail',
+    sendInquiries: 'sendInquiries',
+    sendYourStory: 'sendYourStory',
+    updateWrittenStory: 'updateWrittenStory',
+    updateStoryStatus: 'updateStoryStatus'
+  },
+  Fragment: {
+    Email: 'Email',
+    EmailContent: 'EmailContent',
+    Inquiry: 'Inquiry',
+    Post: 'Post',
+    SentEmail: 'SentEmail',
+    User: 'User',
+    YourStory: 'YourStory'
+  }
+}

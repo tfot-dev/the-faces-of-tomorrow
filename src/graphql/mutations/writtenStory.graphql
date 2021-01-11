@@ -1,0 +1,11 @@
+mutation updateWrittenStory($id: uuid!, $writtenStory: String!) {
+    insert_written_story(on_conflict: {constraint: written_story_id_key, update_columns: story}, objects: {id: $id, story: $writtenStory }) {
+        affected_rows
+    }
+}
+
+mutation updateStoryStatus($id: uuid!, $ready: Boolean!) {
+    insert_written_story(on_conflict: {constraint: written_story_id_key, update_columns: ready}, objects: {id: $id, ready: $ready }) {
+        affected_rows
+    }
+}

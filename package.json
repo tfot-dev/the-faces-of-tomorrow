@@ -33,7 +33,7 @@
     "@types/react-router-dom": "^5.1.6",
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.1",
-    "ckeditor5-custom-build": "file:./ckeditor5",
+    "ckeditor5-build-classic-email": "^1.0.0",
     "clamp-js": "^0.7.0",
     "eslint-plugin-graphql": "^4.0.0",
     "graphql": "^15.4.0",
@@ -55,6 +55,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.19.2",
     "@graphql-codegen/import-types-preset": "^1.18.0",
+    "@graphql-codegen/named-operations-object": "^1.17.9",
     "@graphql-codegen/typescript": "^1.17.11",
     "@graphql-codegen/typescript-operations": "^1.17.10",
     "@graphql-codegen/typescript-react-apollo": "^2.1.1",

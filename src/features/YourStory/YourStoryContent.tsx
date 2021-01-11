@@ -1,40 +1,15 @@
 import React from 'react';
-import {
-    Avatar,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    GridList,
-    GridListTile,
-    GridListTileBar,
-    IconButton,
-    LinearProgress,
-    Typography,
-} from '@material-ui/core';
+import { Avatar, Card, CardContent, CardHeader, Grid, LinearProgress } from '@material-ui/core';
 import { useGetYourStoryQuery, useReadStatusMutation } from '../../generated/graphql';
 import { useRouteMatch } from 'react-router-dom';
 import { Error } from '../Error/Error';
-import { makeStyles } from '@material-ui/core/styles';
-import { CloudDownload } from '@material-ui/icons';
 import { useAuth0 } from '@auth0/auth0-react';
-
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        overflow: 'hidden',
-    },
-    gridList: {
-        flexWrap: 'nowrap',
-    },
-    gridItem: {
-        width: 200,
-    },
-});
+import { YourStoryContentEditor } from './YourStoryContentEditor';
+import { YourStoryContentDetails } from './YourStoryContentDetails';
+import { YourStoryContentImages } from './YourStoryContentImages';
+import { YourStoryContentAction } from './YourStoryContentAction';
 
 export const YourStoryContent = () => {
-    const classes = useStyles();
     const { params } = useRouteMatch<{ yourStoryId: string }>();
     const { user } = useAuth0();
     const { loading, error, data } = useGetYourStoryQuery({ variables: { id: params.yourStoryId } });
@@ -46,23 +21,7 @@ export const YourStoryContent = () => {
         return null;
     }
 
-    const {
-        name,
-        email,
-        advise,
-        age,
-        city,
-        inspiration,
-        need,
-        observedEffects,
-        occupation,
-        projectIdea,
-        read_status,
-        pictures,
-        id,
-    } = data.your_story_by_pk;
-
-    const pictureUrls = pictures.split(',');
+    const { name, email, age, city, occupation, read_status, id } = data.your_story_by_pk;
 
     if (!read_status) {
         setReadStatus({
@@ -73,8 +32,6 @@ export const YourStoryContent = () => {
         });
     }
 
-    console.log({ pictures, pictureUrls });
-
     return (
         <Card>
             <CardHeader
@@ -83,45 +40,12 @@ export const YourStoryContent = () => {
                 subheader={email}
             />
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {advise}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {inspiration}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {need}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {observedEffects}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {projectIdea}
-                </Typography>
-                <Divider />
-                <Typography variant="h6" color="textSecondary">
-                    Attachments
-                </Typography>
-                <div className={classes.root}>
-                    <GridList className={classes.gridList} cols={4}>
-                        {pictureUrls.map((picture) => (
-                            <GridListTile key={picture}>
-                                <img
-                                    className={classes.gridItem}
-                                    src={`https://res.cloudinary.com/thefacesoftomorrow/image/upload/v26789735/${picture}`}
-                                />
-                                <GridListTileBar
-                                    title="Download"
-                                    actionIcon={
-                                        <IconButton>
-                                            <CloudDownload />
-                                        </IconButton>
-                                    }
-                                />
-                            </GridListTile>
-                        ))}
-                    </GridList>
-                </div>
+                <Grid container spacing={2}>
+                    <YourStoryContentDetails yourStory={data.your_story_by_pk} />
+                    <YourStoryContentImages yourStory={data.your_story_by_pk} />
+                    <YourStoryContentEditor yourStory={data.your_story_by_pk} />
+                    <YourStoryContentAction yourStory={data.your_story_by_pk} />
+                </Grid>
             </CardContent>
         </Card>
     );
