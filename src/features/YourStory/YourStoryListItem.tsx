@@ -2,7 +2,12 @@ import React from 'react';
 import { IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography } from '@material-ui/core';
 import EventSeatIcon from '@material-ui/icons/EventSeat';
 import RestoreIcon from '@material-ui/icons/Restore';
-import { useDeleteAssignedStatusMutation, useSetAssignedStatusMutation, Your_Story } from '../../generated/graphql';
+import {
+    namedOperations,
+    useDeleteAssignedStatusMutation,
+    useSetAssignedStatusMutation,
+    Your_Story,
+} from '../../generated/graphql';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSnackbar } from 'notistack';
@@ -15,8 +20,12 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
     const { url } = useRouteMatch();
     const { enqueueSnackbar } = useSnackbar();
     const { user } = useAuth0();
-    const [insert_assigned_status_lookup] = useSetAssignedStatusMutation();
-    const [delete_assigned_status_lookup] = useDeleteAssignedStatusMutation();
+    const [insert_assigned_status_lookup] = useSetAssignedStatusMutation({
+        refetchQueries: [namedOperations.Query.GetAllYourStories],
+    });
+    const [delete_assigned_status_lookup] = useDeleteAssignedStatusMutation({
+        refetchQueries: [namedOperations.Query.GetAllYourStories],
+    });
 
     const { name, id, projectIdea, read_status, assigned_to } = yourStory;
 
