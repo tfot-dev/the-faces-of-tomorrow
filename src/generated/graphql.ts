@@ -145,17 +145,17 @@ export type QueryPostArgs = {
 
 export type ResponseStatus = {
   __typename?: 'ResponseStatus';
-  code: Scalars['Int'];
-  description: Scalars['String'];
+  code?: Maybe<Scalars['Int']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type SendEmailData = {
   __typename?: 'SendEmailData';
-  content: Scalars['String'];
-  fromAddress: Scalars['String'];
-  messageId: Scalars['String'];
-  subject: Scalars['String'];
-  toAddress: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
+  fromAddress?: Maybe<Scalars['String']>;
+  messageId?: Maybe<Scalars['String']>;
+  subject?: Maybe<Scalars['String']>;
+  toAddress?: Maybe<Scalars['String']>;
 };
 
 export type SendEmailResponse = {

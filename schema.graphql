@@ -1028,16 +1028,16 @@ input read_status_lookup_set_input {
 }
 
 type ResponseStatus {
-  code: Int!
-  description: String!
+  code: Int
+  description: String
 }
 
 type SendEmailData {
-  content: String!
-  fromAddress: String!
-  messageId: String!
-  subject: String!
-  toAddress: String!
+  content: String
+  fromAddress: String
+  messageId: String
+  subject: String
+  toAddress: String
 }
 
 type SendEmailResponse {
