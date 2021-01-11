@@ -16,10 +16,9 @@ import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import Editor from 'ckeditor5-build-classic-email/build/ckeditor';
 import { useSnackbar } from 'notistack';
 import { useSendEmailMutation } from '../../generated/graphql';
-import { CKEditorConfiguration } from '../../constants/CKEditorConfiguration';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -93,7 +92,6 @@ export const CreateEmailDialog = () => {
                             <Grid item xs={12}>
                                 <CKEditor
                                     editor={Editor}
-                                    config={CKEditorConfiguration}
                                     onChange={(event: unknown, editor: { getData: () => unknown }) => {
                                         const data = editor.getData();
 
