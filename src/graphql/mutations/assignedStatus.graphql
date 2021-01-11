@@ -1,0 +1,5 @@
+mutation assignedStatus($id: uuid!, $user_id: String!) {
+    insert_assigned_status_lookup(objects: {id: $id, user_id: $user_id }) {
+        affected_rows
+    }
+}
