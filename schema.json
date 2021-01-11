@@ -196,6 +196,63 @@
         "description": null,
         "fields": [
           {
+            "name": "calendarType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "ccAddress",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "flagid",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "folderId",
             "description": null,
             "args": [],
@@ -234,7 +291,64 @@
             "__typename": "__Field"
           },
           {
+            "name": "hasAttachment",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "hasInline",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "messageId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "priority",
             "description": null,
             "args": [],
             "type": {
@@ -310,6 +424,44 @@
             "__typename": "__Field"
           },
           {
+            "name": "size",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "status2",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "subject",
             "description": null,
             "args": [],
@@ -357,6 +509,70 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null,
+        "__typename": "__Type"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "EmailContent",
+        "description": null,
+        "fields": [
+          {
+            "name": "blockContent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "content",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "messageId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
                 "ofType": null,
                 "__typename": "__Type"
               },
@@ -1052,6 +1268,23 @@
             "description": null,
             "args": [
               {
+                "name": "folderId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null,
+                    "__typename": "__Type"
+                  },
+                  "__typename": "__Type"
+                },
+                "defaultValue": null,
+                "__typename": "__InputValue"
+              },
+              {
                 "name": "messageId",
                 "description": null,
                 "type": {
@@ -1071,7 +1304,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Email",
+              "name": "EmailContent",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -2810,6 +3043,20 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__Field"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
           }
         ],
         "inputFields": null,
@@ -3160,6 +3407,18 @@
             },
             "defaultValue": null,
             "__typename": "__InputValue"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "timestamptz_comparison_exp",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
           }
         ],
         "interfaces": null,
@@ -3239,6 +3498,18 @@
             },
             "defaultValue": null,
             "__typename": "__InputValue"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
           }
         ],
         "interfaces": null,
@@ -3306,6 +3577,20 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__Field"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
           }
         ],
         "inputFields": null,
@@ -3358,6 +3643,18 @@
           },
           {
             "name": "query",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -3434,6 +3731,20 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__Field"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
           }
         ],
         "inputFields": null,
@@ -3486,6 +3797,18 @@
           },
           {
             "name": "query",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "timestamp",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -3724,6 +4047,18 @@
             },
             "defaultValue": null,
             "__typename": "__InputValue"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
           }
         ],
         "interfaces": null,
@@ -3795,6 +4130,13 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__EnumValue"
+          },
+          {
+            "name": "timestamp",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
           }
         ],
         "possibleTypes": null,
@@ -3853,6 +4195,18 @@
             },
             "defaultValue": null,
             "__typename": "__InputValue"
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "timestamptz",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
           }
         ],
         "interfaces": null,
@@ -3891,6 +4245,13 @@
           },
           {
             "name": "query",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
+            "name": "timestamp",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
@@ -5214,6 +5575,23 @@
             "description": null,
             "args": [
               {
+                "name": "folderId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null,
+                    "__typename": "__Type"
+                  },
+                  "__typename": "__Type"
+                },
+                "defaultValue": null,
+                "__typename": "__InputValue"
+              },
+              {
                 "name": "messageId",
                 "description": null,
                 "type": {
@@ -5233,7 +5611,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Email",
+              "name": "EmailContent",
               "ofType": null,
               "__typename": "__Type"
             },

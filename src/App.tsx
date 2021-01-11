@@ -11,30 +11,44 @@ import { theme } from './config/theme';
 import { AuthenticatedApi } from './features/Api/AuthenticatedApi';
 import { PrivacyPolicy } from './features/PrivacyAndTerms/PrivacyPolicy';
 import { TermsAndConditions } from './features/PrivacyAndTerms/TermsAndConditions';
+import { PostViewContainer } from './features/Post/PostViewContainer';
+import { SnackbarProvider } from 'notistack';
 
 export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
 
     return (
         <ThemeProvider theme={theme(!!darkMode)}>
-            <AuthenticatedApi>
-                <Router>
-                    <Switch>
-                        <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
-                        {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
-                            <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
-                        )}
-                        <MainLayoutRoute exact path="/privacy" component={PrivacyPolicy} onThemeToggle={setDarkMode} />
-                        <MainLayoutRoute
-                            exact
-                            path="/termsandconditions"
-                            component={TermsAndConditions}
-                            onThemeToggle={setDarkMode}
-                        />
-                        <HomeLayoutRoute exact path="/" component={Home} onThemeToggle={setDarkMode} />
-                    </Switch>
-                </Router>
-            </AuthenticatedApi>
+            <SnackbarProvider>
+                <AuthenticatedApi>
+                    <Router>
+                        <Switch>
+                            <MainLayoutRoute
+                                path="/post/:postId"
+                                component={PostViewContainer}
+                                onThemeToggle={setDarkMode}
+                            />
+                            <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
+                            {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
+                                <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
+                            )}
+                            <MainLayoutRoute
+                                exact
+                                path="/privacy"
+                                component={PrivacyPolicy}
+                                onThemeToggle={setDarkMode}
+                            />
+                            <MainLayoutRoute
+                                exact
+                                path="/termsandconditions"
+                                component={TermsAndConditions}
+                                onThemeToggle={setDarkMode}
+                            />
+                            <HomeLayoutRoute exact path="/" component={Home} onThemeToggle={setDarkMode} />
+                        </Switch>
+                    </Router>
+                </AuthenticatedApi>
+            </SnackbarProvider>
         </ThemeProvider>
     );
 };

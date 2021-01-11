@@ -37,15 +37,30 @@ export enum CacheControlScope {
 
 export type Email = {
   __typename?: 'Email';
+  calendarType: Scalars['Int'];
+  ccAddress: Scalars['String'];
+  flagid: Scalars['String'];
   folderId: Scalars['String'];
   fromAddress: Scalars['String'];
+  hasAttachment: Scalars['String'];
+  hasInline: Scalars['String'];
   messageId: Scalars['String'];
+  priority: Scalars['String'];
   receivedTime: Scalars['String'];
   sender: Scalars['String'];
   sentDateInGMT: Scalars['String'];
+  size: Scalars['String'];
+  status2: Scalars['String'];
   subject: Scalars['String'];
   summary: Scalars['String'];
   toAddress: Scalars['String'];
+};
+
+export type EmailContent = {
+  __typename?: 'EmailContent';
+  blockContent?: Maybe<Scalars['String']>;
+  content: Scalars['String'];
+  messageId: Scalars['Float'];
 };
 
 export type GetPostsOutput = {
@@ -111,7 +126,7 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   emails: Array<Maybe<Email>>;
-  getEmail?: Maybe<Email>;
+  getEmail?: Maybe<EmailContent>;
   post?: Maybe<Post>;
   posts: Array<Maybe<Post>>;
   sentEmails: Array<Maybe<SentEmail>>;
@@ -119,6 +134,7 @@ export type Query = {
 
 
 export type QueryGetEmailArgs = {
+  folderId: Scalars['String'];
   messageId: Scalars['String'];
 };
 
@@ -184,6 +200,7 @@ export type Inquiries = {
   query: Scalars['String'];
   /** A computed field, executes function "read_inquiries_messages" */
   read_status?: Maybe<Scalars['Boolean']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregated selection of "inquiries" */
@@ -230,6 +247,7 @@ export type Inquiries_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   query?: Maybe<String_Comparison_Exp>;
+  timestamp?: Maybe<Timestamptz_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "inquiries" */
@@ -244,6 +262,7 @@ export type Inquiries_Insert_Input = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   query?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
@@ -253,6 +272,7 @@ export type Inquiries_Max_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   query?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "inquiries" */
@@ -261,6 +281,7 @@ export type Inquiries_Max_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   query?: Maybe<Order_By>;
+  timestamp?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -270,6 +291,7 @@ export type Inquiries_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   query?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "inquiries" */
@@ -278,6 +300,7 @@ export type Inquiries_Min_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   query?: Maybe<Order_By>;
+  timestamp?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "inquiries" */
@@ -308,6 +331,7 @@ export type Inquiries_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   query?: Maybe<Order_By>;
+  timestamp?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "inquiries" */
@@ -324,7 +348,9 @@ export enum Inquiries_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  Query = 'query'
+  Query = 'query',
+  /** column name */
+  Timestamp = 'timestamp'
 }
 
 /** input type for updating data in table "inquiries" */
@@ -333,6 +359,7 @@ export type Inquiries_Set_Input = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   query?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "inquiries" */
@@ -344,7 +371,9 @@ export enum Inquiries_Update_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  Query = 'query'
+  Query = 'query',
+  /** column name */
+  Timestamp = 'timestamp'
 }
 
 
@@ -596,7 +625,7 @@ export type Query_Root = {
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   emails: Array<Maybe<Email>>;
-  getEmail?: Maybe<Email>;
+  getEmail?: Maybe<EmailContent>;
   /** fetch data from the table: "inquiries" */
   getInquiries: Array<Inquiries>;
   /** fetch aggregated fields from the table: "inquiries" */
@@ -627,6 +656,7 @@ export type Query_Root = {
 
 /** query root */
 export type Query_RootGetEmailArgs = {
+  folderId: Scalars['String'];
   messageId: Scalars['String'];
 };
 
@@ -1599,7 +1629,12 @@ export type Your_Story_Variance_Order_By = {
 
 export type EmailFragment = (
   { __typename?: 'Email' }
-  & Pick<Email, 'folderId' | 'fromAddress' | 'messageId' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'subject' | 'summary' | 'toAddress'>
+  & Pick<Email, 'calendarType' | 'ccAddress' | 'flagid' | 'folderId' | 'fromAddress' | 'hasAttachment' | 'hasInline' | 'messageId' | 'priority' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'size' | 'status2' | 'subject' | 'summary' | 'toAddress'>
+);
+
+export type EmailContentFragment = (
+  { __typename?: 'EmailContent' }
+  & Pick<EmailContent, 'messageId' | 'content' | 'blockContent'>
 );
 
 export type InquiryFragment = (
@@ -1711,14 +1746,15 @@ export type GetAllEmailsQuery = (
 
 export type GetEmailQueryVariables = Exact<{
   messageId: Scalars['String'];
+  folderId: Scalars['String'];
 }>;
 
 
 export type GetEmailQuery = (
   { __typename?: 'query_root' }
   & { getEmail?: Maybe<(
-    { __typename?: 'Email' }
-    & EmailFragment
+    { __typename?: 'EmailContent' }
+    & EmailContentFragment
   )> }
 );
 
@@ -1818,15 +1854,30 @@ export type GetYourStoryQuery = (
 
 export const EmailFragmentDoc = gql`
     fragment Email on Email {
+  calendarType
+  ccAddress
+  flagid
   folderId
   fromAddress
+  hasAttachment
+  hasInline
   messageId
+  priority
   receivedTime
   sender
   sentDateInGMT
+  size
+  status2
   subject
   summary
   toAddress
+}
+    `;
+export const EmailContentFragmentDoc = gql`
+    fragment EmailContent on EmailContent {
+  messageId
+  content
+  blockContent
 }
     `;
 export const InquiryFragmentDoc = gql`
@@ -2075,12 +2126,12 @@ export type GetAllEmailsQueryHookResult = ReturnType<typeof useGetAllEmailsQuery
 export type GetAllEmailsLazyQueryHookResult = ReturnType<typeof useGetAllEmailsLazyQuery>;
 export type GetAllEmailsQueryResult = Apollo.QueryResult<GetAllEmailsQuery, GetAllEmailsQueryVariables>;
 export const GetEmailDocument = gql`
-    query GetEmail($messageId: String!) {
-  getEmail(messageId: $messageId) {
-    ...Email
+    query GetEmail($messageId: String!, $folderId: String!) {
+  getEmail(messageId: $messageId, folderId: $folderId) {
+    ...EmailContent
   }
 }
-    ${EmailFragmentDoc}`;
+    ${EmailContentFragmentDoc}`;
 
 /**
  * __useGetEmailQuery__
@@ -2095,6 +2146,7 @@ export const GetEmailDocument = gql`
  * const { data, loading, error } = useGetEmailQuery({
  *   variables: {
  *      messageId: // value for 'messageId'
+ *      folderId: // value for 'folderId'
  *   },
  * });
  */

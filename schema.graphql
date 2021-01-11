@@ -29,15 +29,29 @@ enum CacheControlScope {
 }
 
 type Email {
+  calendarType: Int!
+  ccAddress: String!
+  flagid: String!
   folderId: String!
   fromAddress: String!
+  hasAttachment: String!
+  hasInline: String!
   messageId: String!
+  priority: String!
   receivedTime: String!
   sender: String!
   sentDateInGMT: String!
+  size: String!
+  status2: String!
   subject: String!
   summary: String!
   toAddress: String!
+}
+
+type EmailContent {
+  blockContent: String
+  content: String!
+  messageId: Float!
 }
 
 type GetPostsOutput {
@@ -56,6 +70,7 @@ type inquiries {
 
   # A computed field, executes function "read_inquiries_messages"
   read_status: Boolean
+  timestamp: timestamptz
 }
 
 # aggregated selection of "inquiries"
@@ -93,6 +108,7 @@ input inquiries_bool_exp {
   id: uuid_comparison_exp
   name: String_comparison_exp
   query: String_comparison_exp
+  timestamp: timestamptz_comparison_exp
 }
 
 # unique or primary key constraints on table "inquiries"
@@ -107,6 +123,7 @@ input inquiries_insert_input {
   id: uuid
   name: String
   query: String
+  timestamp: timestamptz
 }
 
 # aggregate max on columns
@@ -115,6 +132,7 @@ type inquiries_max_fields {
   id: uuid
   name: String
   query: String
+  timestamp: timestamptz
 }
 
 # order by max() on columns of table "inquiries"
@@ -123,6 +141,7 @@ input inquiries_max_order_by {
   id: order_by
   name: order_by
   query: order_by
+  timestamp: order_by
 }
 
 # aggregate min on columns
@@ -131,6 +150,7 @@ type inquiries_min_fields {
   id: uuid
   name: String
   query: String
+  timestamp: timestamptz
 }
 
 # order by min() on columns of table "inquiries"
@@ -139,6 +159,7 @@ input inquiries_min_order_by {
   id: order_by
   name: order_by
   query: order_by
+  timestamp: order_by
 }
 
 # response of any mutation on the table "inquiries"
@@ -169,6 +190,7 @@ input inquiries_order_by {
   id: order_by
   name: order_by
   query: order_by
+  timestamp: order_by
 }
 
 # primary key columns input for table: "inquiries"
@@ -189,6 +211,9 @@ enum inquiries_select_column {
 
   # column name
   query
+
+  # column name
+  timestamp
 }
 
 # input type for updating data in table "inquiries"
@@ -197,6 +222,7 @@ input inquiries_set_input {
   id: uuid
   name: String
   query: String
+  timestamp: timestamptz
 }
 
 # update columns of table "inquiries"
@@ -212,6 +238,9 @@ enum inquiries_update_column {
 
   # column name
   query
+
+  # column name
+  timestamp
 }
 
 # expression to compare columns of type Int. All fields are combined with logical 'AND'.
@@ -456,7 +485,7 @@ type Post {
 
 type Query {
   emails: [Email]!
-  getEmail(messageId: String!): Email
+  getEmail(folderId: String!, messageId: String!): EmailContent
   post(id: String!): Post
   posts: [Post]!
   sentEmails: [SentEmail]!
@@ -467,7 +496,7 @@ type query_root {
   # perform the action: "auth0"
   auth0: auth0_profile
   emails: [Email]!
-  getEmail(messageId: String!): Email
+  getEmail(folderId: String!, messageId: String!): EmailContent
 
   # fetch data from the table: "inquiries"
   getInquiries(
