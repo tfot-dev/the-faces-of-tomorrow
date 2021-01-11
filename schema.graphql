@@ -4,6 +4,135 @@ schema {
   subscription: subscription_root
 }
 
+# columns and relationships of "assigned_status_lookup"
+type assigned_status_lookup {
+  id: uuid!
+  user_id: String!
+}
+
+# aggregated selection of "assigned_status_lookup"
+type assigned_status_lookup_aggregate {
+  aggregate: assigned_status_lookup_aggregate_fields
+  nodes: [assigned_status_lookup!]!
+}
+
+# aggregate fields of "assigned_status_lookup"
+type assigned_status_lookup_aggregate_fields {
+  count(columns: [assigned_status_lookup_select_column!], distinct: Boolean): Int
+  max: assigned_status_lookup_max_fields
+  min: assigned_status_lookup_min_fields
+}
+
+# order by aggregate values of table "assigned_status_lookup"
+input assigned_status_lookup_aggregate_order_by {
+  count: order_by
+  max: assigned_status_lookup_max_order_by
+  min: assigned_status_lookup_min_order_by
+}
+
+# input type for inserting array relation for remote table "assigned_status_lookup"
+input assigned_status_lookup_arr_rel_insert_input {
+  data: [assigned_status_lookup_insert_input!]!
+  on_conflict: assigned_status_lookup_on_conflict
+}
+
+# Boolean expression to filter rows from the table "assigned_status_lookup". All fields are combined with a logical 'AND'.
+input assigned_status_lookup_bool_exp {
+  _and: [assigned_status_lookup_bool_exp]
+  _not: assigned_status_lookup_bool_exp
+  _or: [assigned_status_lookup_bool_exp]
+  id: uuid_comparison_exp
+  user_id: String_comparison_exp
+}
+
+# unique or primary key constraints on table "assigned_status_lookup"
+enum assigned_status_lookup_constraint {
+  # unique or primary key constraint
+  assigned_status_lookup_id_key
+}
+
+# input type for inserting data into table "assigned_status_lookup"
+input assigned_status_lookup_insert_input {
+  id: uuid
+  user_id: String
+}
+
+# aggregate max on columns
+type assigned_status_lookup_max_fields {
+  id: uuid
+  user_id: String
+}
+
+# order by max() on columns of table "assigned_status_lookup"
+input assigned_status_lookup_max_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+# aggregate min on columns
+type assigned_status_lookup_min_fields {
+  id: uuid
+  user_id: String
+}
+
+# order by min() on columns of table "assigned_status_lookup"
+input assigned_status_lookup_min_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+# response of any mutation on the table "assigned_status_lookup"
+type assigned_status_lookup_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [assigned_status_lookup!]!
+}
+
+# input type for inserting object relation for remote table "assigned_status_lookup"
+input assigned_status_lookup_obj_rel_insert_input {
+  data: assigned_status_lookup_insert_input!
+  on_conflict: assigned_status_lookup_on_conflict
+}
+
+# on conflict condition type for table "assigned_status_lookup"
+input assigned_status_lookup_on_conflict {
+  constraint: assigned_status_lookup_constraint!
+  update_columns: [assigned_status_lookup_update_column!]!
+  where: assigned_status_lookup_bool_exp
+}
+
+# ordering options when selecting data from "assigned_status_lookup"
+input assigned_status_lookup_order_by {
+  id: order_by
+  user_id: order_by
+}
+
+# select columns of table "assigned_status_lookup"
+enum assigned_status_lookup_select_column {
+  # column name
+  id
+
+  # column name
+  user_id
+}
+
+# input type for updating data in table "assigned_status_lookup"
+input assigned_status_lookup_set_input {
+  id: uuid
+  user_id: String
+}
+
+# update columns of table "assigned_status_lookup"
+enum assigned_status_lookup_update_column {
+  # column name
+  id
+
+  # column name
+  user_id
+}
+
 type auth0_profile {
   email: String
   id: String
@@ -286,6 +415,12 @@ type Mutation {
 type mutation_root {
   deleteEmail(folderId: String!, messageId: String!): [Email]
 
+  # delete data from the table: "assigned_status_lookup"
+  delete_assigned_status_lookup(
+    # filter the rows which have to be deleted
+    where: assigned_status_lookup_bool_exp!
+  ): assigned_status_lookup_mutation_response
+
   # delete data from the table: "inquiries"
   delete_inquiries(
     # filter the rows which have to be deleted
@@ -318,6 +453,24 @@ type mutation_root {
 
   # delete single row from the table: "your_story"
   delete_your_story_by_pk(id: uuid!): your_story
+
+  # insert data into the table: "assigned_status_lookup"
+  insert_assigned_status_lookup(
+    # the rows to be inserted
+    objects: [assigned_status_lookup_insert_input!]!
+
+    # on conflict condition
+    on_conflict: assigned_status_lookup_on_conflict
+  ): assigned_status_lookup_mutation_response
+
+  # insert a single row into the table: "assigned_status_lookup"
+  insert_assigned_status_lookup_one(
+    # the row to be inserted
+    object: assigned_status_lookup_insert_input!
+
+    # on conflict condition
+    on_conflict: assigned_status_lookup_on_conflict
+  ): assigned_status_lookup
 
   # insert a single row into the table: "inquiries"
   insert_inquiries_one(
@@ -385,6 +538,15 @@ type mutation_root {
     # the rows to be inserted
     objects: [read_status_lookup_insert_input!]!
   ): read_status_lookup_mutation_response
+
+  # update data of the table: "assigned_status_lookup"
+  update_assigned_status_lookup(
+    # sets the columns of the filtered rows to the given values
+    _set: assigned_status_lookup_set_input
+
+    # filter the rows which have to be updated
+    where: assigned_status_lookup_bool_exp!
+  ): assigned_status_lookup_mutation_response
 
   # update data of the table: "inquiries"
   update_inquiries(
@@ -493,6 +655,42 @@ type Query {
 
 # query root
 type query_root {
+  # fetch data from the table: "assigned_status_lookup"
+  assigned_status_lookup(
+    # distinct select on columns
+    distinct_on: [assigned_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [assigned_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: assigned_status_lookup_bool_exp
+  ): [assigned_status_lookup!]!
+
+  # fetch aggregated fields from the table: "assigned_status_lookup"
+  assigned_status_lookup_aggregate(
+    # distinct select on columns
+    distinct_on: [assigned_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [assigned_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: assigned_status_lookup_bool_exp
+  ): assigned_status_lookup_aggregate!
+
   # perform the action: "auth0"
   auth0: auth0_profile
   emails: [Email]!
@@ -801,6 +999,42 @@ input String_comparison_exp {
 
 # subscription root
 type subscription_root {
+  # fetch data from the table: "assigned_status_lookup"
+  assigned_status_lookup(
+    # distinct select on columns
+    distinct_on: [assigned_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [assigned_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: assigned_status_lookup_bool_exp
+  ): [assigned_status_lookup!]!
+
+  # fetch aggregated fields from the table: "assigned_status_lookup"
+  assigned_status_lookup_aggregate(
+    # distinct select on columns
+    distinct_on: [assigned_status_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [assigned_status_lookup_order_by!]
+
+    # filter the rows returned
+    where: assigned_status_lookup_bool_exp
+  ): assigned_status_lookup_aggregate!
+
   # perform the action: "auth0"
   auth0: auth0_profile
 
@@ -1203,6 +1437,9 @@ input uuid_comparison_exp {
 type your_story {
   advise: String!
   age: Int!
+
+  # An object relationship
+  assigned_to: assigned_status_lookup
   city: String!
   email: String!
   id: uuid!
@@ -1277,6 +1514,7 @@ input your_story_bool_exp {
   _or: [your_story_bool_exp]
   advise: String_comparison_exp
   age: Int_comparison_exp
+  assigned_to: assigned_status_lookup_bool_exp
   city: String_comparison_exp
   email: String_comparison_exp
   id: uuid_comparison_exp
@@ -1304,6 +1542,7 @@ input your_story_inc_input {
 input your_story_insert_input {
   advise: String
   age: Int
+  assigned_to: assigned_status_lookup_obj_rel_insert_input
   city: String
   email: String
   id: uuid
@@ -1406,6 +1645,7 @@ input your_story_on_conflict {
 input your_story_order_by {
   advise: order_by
   age: order_by
+  assigned_to: assigned_status_lookup_order_by
   city: order_by
   email: order_by
   id: order_by
