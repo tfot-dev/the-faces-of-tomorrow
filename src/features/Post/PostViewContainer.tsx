@@ -4,6 +4,7 @@ import { useGetPostQuery } from '../../generated/graphql';
 import { Grid, LinearProgress } from '@material-ui/core';
 import { Error } from '../Error/Error';
 import { PostView } from './PostView';
+import { MoreStoriesContainer } from './MoreStoriesContainer';
 
 export const PostViewContainer = () => {
     const { params } = useRouteMatch<{ postId: string }>();
@@ -27,7 +28,9 @@ export const PostViewContainer = () => {
             <Grid item xs={6}>
                 <PostView caption={caption} media={media} />
             </Grid>
-            <Grid item xs={6}></Grid>
+            <Grid item xs={6}>
+                <MoreStoriesContainer />
+            </Grid>
         </Grid>
     );
 };
