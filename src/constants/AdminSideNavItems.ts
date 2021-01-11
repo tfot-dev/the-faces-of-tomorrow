@@ -11,6 +11,7 @@ import { EmailInboxContainer } from '../features/Email/EmailInboxContainer';
 import { InquiriesContainer } from '../features/ContactUs/InquiriesContainer';
 import { YourStoryUnassignedContainer } from '../features/YourStory/YourStoryUnassignedContainer';
 import { YourStoryAssignedContainer } from '../features/YourStory/YourStoryAssignedContainer';
+import { YourStoryFinishedContainer } from '../features/YourStory/YourStoryFinishedContainer';
 
 export const AdminSideNavItems = [
     {
@@ -40,7 +41,7 @@ export const AdminSideNavItems = [
     {
         label: 'Finished',
         icon: CheckCircleIcon,
-        component: Error,
+        component: YourStoryFinishedContainer,
         route: 'finished',
     },
     {

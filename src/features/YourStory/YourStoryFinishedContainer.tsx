@@ -5,7 +5,7 @@ import { Error } from '../Error/Error';
 import { YourStoryListView } from './YourStoryListView';
 import { YourStoryContent } from './YourStoryContent';
 
-export const YourStoryAssignedContainer: React.FC = () => {
+export const YourStoryFinishedContainer = () => {
     const { loading, error, data } = useGetAllYourStoriesQuery();
 
     if (loading) return <LinearProgress color="secondary" />;
@@ -14,15 +14,15 @@ export const YourStoryAssignedContainer: React.FC = () => {
         return null;
     }
 
-    const assignedStories = data.your_story
+    const finishedStories = data.your_story
         .filter((ys) => ys.assigned_to !== null)
-        .filter((ys) => !ys.written_story?.ready);
+        .filter((ys) => ys.written_story?.ready);
 
-    return assignedStories.length ? (
-        <YourStoryListView yourStories={assignedStories} yourStoryContent={YourStoryContent} />
+    return finishedStories.length ? (
+        <YourStoryListView yourStories={finishedStories} yourStoryContent={YourStoryContent} />
     ) : (
         <Card>
-            <CardContent>Looks like you have no stories in progress!</CardContent>
+            <CardContent>Looks like you have no stories finished yet!</CardContent>
         </Card>
     );
 };
