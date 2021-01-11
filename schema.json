@@ -5571,38 +5571,6 @@
             "__typename": "__Field"
           },
           {
-            "name": "delete_written_story_by_pk",
-            "description": "delete single row from the table: \"written_story\"",
-            "args": [
-              {
-                "name": "id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "uuid",
-                    "ofType": null,
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "written_story",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
             "name": "delete_your_story",
             "description": "delete data from the table: \"your_story\"",
             "args": [
@@ -6602,50 +6570,6 @@
             "type": {
               "kind": "OBJECT",
               "name": "written_story_mutation_response",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "update_written_story_by_pk",
-            "description": "update single row of the table: \"written_story\"",
-            "args": [
-              {
-                "name": "_set",
-                "description": "sets the columns of the filtered rows to the given values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "written_story_set_input",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "pk_columns",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "written_story_pk_columns_input",
-                    "ofType": null,
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "written_story",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -8106,38 +8030,6 @@
                 "ofType": null,
                 "__typename": "__Type"
               },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "written_story_by_pk",
-            "description": "fetch data from the table: \"written_story\" using primary key columns",
-            "args": [
-              {
-                "name": "id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "uuid",
-                    "ofType": null,
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "written_story",
-              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -10258,38 +10150,6 @@
                 "ofType": null,
                 "__typename": "__Type"
               },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "written_story_by_pk",
-            "description": "fetch data from the table: \"written_story\" using primary key columns",
-            "args": [
-              {
-                "name": "id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "uuid",
-                    "ofType": null,
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "written_story",
-              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -12776,7 +12636,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "written_story_pkey",
+            "name": "written_story_id_key",
             "description": "unique or primary key constraint",
             "isDeprecated": false,
             "deprecationReason": null,
@@ -13204,35 +13064,6 @@
         "__typename": "__Type"
       },
       {
-        "kind": "INPUT_OBJECT",
-        "name": "written_story_pk_columns_input",
-        "description": "primary key columns input for table: \"written_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "uuid",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
         "kind": "ENUM",
         "name": "written_story_select_column",
         "description": "select columns of table \"written_story\"",
@@ -13608,209 +13439,13 @@
             "__typename": "__Field"
           },
           {
-            "name": "written_stories",
-            "description": "An array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "written_story_select_column",
-                      "ofType": null,
-                      "__typename": "__Type"
-                    },
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "written_story_order_by",
-                      "ofType": null,
-                      "__typename": "__Type"
-                    },
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "written_story_bool_exp",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              }
-            ],
+            "name": "written_story",
+            "description": "An object relationship",
+            "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "written_story",
-                    "ofType": null,
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "written_stories_aggregate",
-            "description": "An aggregated array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "written_story_select_column",
-                      "ofType": null,
-                      "__typename": "__Type"
-                    },
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "written_story_order_by",
-                      "ofType": null,
-                      "__typename": "__Type"
-                    },
-                    "__typename": "__Type"
-                  },
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "written_story_bool_exp",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "written_story_aggregate",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "OBJECT",
+              "name": "written_story",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -14534,7 +14169,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "written_stories",
+            "name": "written_story",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -14757,11 +14392,11 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "written_stories",
+            "name": "written_story",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "written_story_arr_rel_insert_input",
+              "name": "written_story_obj_rel_insert_input",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -15778,11 +15413,11 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "written_stories_aggregate",
+            "name": "written_story",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "written_story_aggregate_order_by",
+              "name": "written_story_order_by",
               "ofType": null,
               "__typename": "__Type"
             },

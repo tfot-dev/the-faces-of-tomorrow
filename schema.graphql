@@ -451,9 +451,6 @@ type mutation_root {
     where: written_story_bool_exp!
   ): written_story_mutation_response
 
-  # delete single row from the table: "written_story"
-  delete_written_story_by_pk(id: uuid!): written_story
-
   # delete data from the table: "your_story"
   delete_your_story(
     # filter the rows which have to be deleted
@@ -624,13 +621,6 @@ type mutation_root {
     # filter the rows which have to be updated
     where: written_story_bool_exp!
   ): written_story_mutation_response
-
-  # update single row of the table: "written_story"
-  update_written_story_by_pk(
-    # sets the columns of the filtered rows to the given values
-    _set: written_story_set_input
-    pk_columns: written_story_pk_columns_input!
-  ): written_story
 
   # update data of the table: "your_story"
   update_your_story(
@@ -891,9 +881,6 @@ type query_root {
     # filter the rows returned
     where: written_story_bool_exp
   ): written_story_aggregate!
-
-  # fetch data from the table: "written_story" using primary key columns
-  written_story_by_pk(id: uuid!): written_story
 
   # fetch data from the table: "your_story"
   your_story(
@@ -1270,9 +1257,6 @@ type subscription_root {
     where: written_story_bool_exp
   ): written_story_aggregate!
 
-  # fetch data from the table: "written_story" using primary key columns
-  written_story_by_pk(id: uuid!): written_story
-
   # fetch data from the table: "your_story"
   your_story(
     # distinct select on columns
@@ -1600,7 +1584,7 @@ input written_story_bool_exp {
 # unique or primary key constraints on table "written_story"
 enum written_story_constraint {
   # unique or primary key constraint
-  written_story_pkey
+  written_story_id_key
 }
 
 # input type for inserting data into table "written_story"
@@ -1663,11 +1647,6 @@ input written_story_order_by {
   story: order_by
 }
 
-# primary key columns input for table: "written_story"
-input written_story_pk_columns_input {
-  id: uuid!
-}
-
 # select columns of table "written_story"
 enum written_story_select_column {
   # column name
@@ -1720,41 +1699,8 @@ type your_story {
   # A computed field, executes function "read_your_story"
   read_status: Boolean
 
-  # An array relationship
-  written_stories(
-    # distinct select on columns
-    distinct_on: [written_story_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [written_story_order_by!]
-
-    # filter the rows returned
-    where: written_story_bool_exp
-  ): [written_story!]!
-
-  # An aggregated array relationship
-  written_stories_aggregate(
-    # distinct select on columns
-    distinct_on: [written_story_select_column!]
-
-    # limit the number of rows returned
-    limit: Int
-
-    # skip the first n rows. Use only with order_by
-    offset: Int
-
-    # sort the rows by one or more columns
-    order_by: [written_story_order_by!]
-
-    # filter the rows returned
-    where: written_story_bool_exp
-  ): written_story_aggregate!
+  # An object relationship
+  written_story: written_story
 }
 
 # aggregated selection of "your_story"
@@ -1827,7 +1773,7 @@ input your_story_bool_exp {
   occupation: String_comparison_exp
   pictures: String_comparison_exp
   projectIdea: String_comparison_exp
-  written_stories: written_story_bool_exp
+  written_story: written_story_bool_exp
 }
 
 # unique or primary key constraints on table "your_story"
@@ -1856,7 +1802,7 @@ input your_story_insert_input {
   occupation: String
   pictures: String
   projectIdea: String
-  written_stories: written_story_arr_rel_insert_input
+  written_story: written_story_obj_rel_insert_input
 }
 
 # aggregate max on columns
@@ -1960,7 +1906,7 @@ input your_story_order_by {
   occupation: order_by
   pictures: order_by
   projectIdea: order_by
-  written_stories_aggregate: written_story_aggregate_order_by
+  written_story: written_story_order_by
 }
 
 # primary key columns input for table: "your_story"
