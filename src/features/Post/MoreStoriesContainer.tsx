@@ -8,30 +8,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        height: 48,
         padding: '0 30px',
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginTop: '750px',
     },
     gridList: {
-        cellheight: 50,
-        spacing: 4,
-        cols: 3,
         justifyContent: 'center',
-        height: 2000,
+        // height: 2000,
         fontStretch: 'default',
-    },
-    div: {
-        margin: 'auto',
-        flexBasis: 30,
-        padding: '0 30px',
     },
 });
 
@@ -48,7 +33,7 @@ export const MoreStoriesContainer = () => {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList}>
+            <GridList className={classes.gridList} cols={3} spacing={4} cellHeight={50}>
                 {posts.map((post) => {
                     return loading ? <PostSkeleton /> : post !== null && <Post post={post} key={post.id} />;
                 })}
