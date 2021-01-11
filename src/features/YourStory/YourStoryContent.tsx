@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Card, CardContent, CardHeader, Grid, LinearProgress } from '@material-ui/core';
-import { useGetYourStoryQuery, useReadStatusMutation } from '../../generated/graphql';
+import { namedOperations, useGetYourStoryQuery, useReadStatusMutation } from '../../generated/graphql';
 import { useRouteMatch } from 'react-router-dom';
 import { Error } from '../Error/Error';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -13,7 +13,7 @@ export const YourStoryContent = () => {
     const { params } = useRouteMatch<{ yourStoryId: string }>();
     const { user } = useAuth0();
     const { loading, error, data } = useGetYourStoryQuery({ variables: { id: params.yourStoryId } });
-    const [setReadStatus] = useReadStatusMutation();
+    const [setReadStatus] = useReadStatusMutation({ refetchQueries: [namedOperations.Query.GetAllYourStories] });
 
     if (loading) return <LinearProgress color="secondary" />;
     if (error) return <Error />;
