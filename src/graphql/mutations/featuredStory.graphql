@@ -1,0 +1,11 @@
+mutation featureStory($id: uuid!) {
+    insert_featured_story_lookup(objects: {id: $id }) {
+        affected_rows
+    }
+}
+
+mutation unfeatureStory($id: uuid!) {
+    delete_featured_story_lookup(where: {id: {_eq: $id}}) {
+        affected_rows
+    }
+}

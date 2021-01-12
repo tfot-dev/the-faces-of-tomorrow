@@ -183,6 +183,125 @@ type EmailContent {
   messageId: Float!
 }
 
+# columns and relationships of "featured_story_lookup"
+type featured_story_lookup {
+  id: uuid!
+}
+
+# aggregated selection of "featured_story_lookup"
+type featured_story_lookup_aggregate {
+  aggregate: featured_story_lookup_aggregate_fields
+  nodes: [featured_story_lookup!]!
+}
+
+# aggregate fields of "featured_story_lookup"
+type featured_story_lookup_aggregate_fields {
+  count(columns: [featured_story_lookup_select_column!], distinct: Boolean): Int
+  max: featured_story_lookup_max_fields
+  min: featured_story_lookup_min_fields
+}
+
+# order by aggregate values of table "featured_story_lookup"
+input featured_story_lookup_aggregate_order_by {
+  count: order_by
+  max: featured_story_lookup_max_order_by
+  min: featured_story_lookup_min_order_by
+}
+
+# input type for inserting array relation for remote table "featured_story_lookup"
+input featured_story_lookup_arr_rel_insert_input {
+  data: [featured_story_lookup_insert_input!]!
+  on_conflict: featured_story_lookup_on_conflict
+}
+
+# Boolean expression to filter rows from the table "featured_story_lookup". All fields are combined with a logical 'AND'.
+input featured_story_lookup_bool_exp {
+  _and: [featured_story_lookup_bool_exp]
+  _not: featured_story_lookup_bool_exp
+  _or: [featured_story_lookup_bool_exp]
+  id: uuid_comparison_exp
+}
+
+# unique or primary key constraints on table "featured_story_lookup"
+enum featured_story_lookup_constraint {
+  # unique or primary key constraint
+  featured_story_pkey
+}
+
+# input type for inserting data into table "featured_story_lookup"
+input featured_story_lookup_insert_input {
+  id: uuid
+}
+
+# aggregate max on columns
+type featured_story_lookup_max_fields {
+  id: uuid
+}
+
+# order by max() on columns of table "featured_story_lookup"
+input featured_story_lookup_max_order_by {
+  id: order_by
+}
+
+# aggregate min on columns
+type featured_story_lookup_min_fields {
+  id: uuid
+}
+
+# order by min() on columns of table "featured_story_lookup"
+input featured_story_lookup_min_order_by {
+  id: order_by
+}
+
+# response of any mutation on the table "featured_story_lookup"
+type featured_story_lookup_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [featured_story_lookup!]!
+}
+
+# input type for inserting object relation for remote table "featured_story_lookup"
+input featured_story_lookup_obj_rel_insert_input {
+  data: featured_story_lookup_insert_input!
+  on_conflict: featured_story_lookup_on_conflict
+}
+
+# on conflict condition type for table "featured_story_lookup"
+input featured_story_lookup_on_conflict {
+  constraint: featured_story_lookup_constraint!
+  update_columns: [featured_story_lookup_update_column!]!
+  where: featured_story_lookup_bool_exp
+}
+
+# ordering options when selecting data from "featured_story_lookup"
+input featured_story_lookup_order_by {
+  id: order_by
+}
+
+# primary key columns input for table: "featured_story_lookup"
+input featured_story_lookup_pk_columns_input {
+  id: uuid!
+}
+
+# select columns of table "featured_story_lookup"
+enum featured_story_lookup_select_column {
+  # column name
+  id
+}
+
+# input type for updating data in table "featured_story_lookup"
+input featured_story_lookup_set_input {
+  id: uuid
+}
+
+# update columns of table "featured_story_lookup"
+enum featured_story_lookup_update_column {
+  # column name
+  id
+}
+
 type GetPostsOutput {
   caption: String!
   id: String!
@@ -421,6 +540,15 @@ type mutation_root {
     where: assigned_status_lookup_bool_exp!
   ): assigned_status_lookup_mutation_response
 
+  # delete data from the table: "featured_story_lookup"
+  delete_featured_story_lookup(
+    # filter the rows which have to be deleted
+    where: featured_story_lookup_bool_exp!
+  ): featured_story_lookup_mutation_response
+
+  # delete single row from the table: "featured_story_lookup"
+  delete_featured_story_lookup_by_pk(id: uuid!): featured_story_lookup
+
   # delete data from the table: "inquiries"
   delete_inquiries(
     # filter the rows which have to be deleted
@@ -477,6 +605,24 @@ type mutation_root {
     # on conflict condition
     on_conflict: assigned_status_lookup_on_conflict
   ): assigned_status_lookup
+
+  # insert data into the table: "featured_story_lookup"
+  insert_featured_story_lookup(
+    # the rows to be inserted
+    objects: [featured_story_lookup_insert_input!]!
+
+    # on conflict condition
+    on_conflict: featured_story_lookup_on_conflict
+  ): featured_story_lookup_mutation_response
+
+  # insert a single row into the table: "featured_story_lookup"
+  insert_featured_story_lookup_one(
+    # the row to be inserted
+    object: featured_story_lookup_insert_input!
+
+    # on conflict condition
+    on_conflict: featured_story_lookup_on_conflict
+  ): featured_story_lookup
 
   # insert a single row into the table: "inquiries"
   insert_inquiries_one(
@@ -571,6 +717,22 @@ type mutation_root {
     # filter the rows which have to be updated
     where: assigned_status_lookup_bool_exp!
   ): assigned_status_lookup_mutation_response
+
+  # update data of the table: "featured_story_lookup"
+  update_featured_story_lookup(
+    # sets the columns of the filtered rows to the given values
+    _set: featured_story_lookup_set_input
+
+    # filter the rows which have to be updated
+    where: featured_story_lookup_bool_exp!
+  ): featured_story_lookup_mutation_response
+
+  # update single row of the table: "featured_story_lookup"
+  update_featured_story_lookup_by_pk(
+    # sets the columns of the filtered rows to the given values
+    _set: featured_story_lookup_set_input
+    pk_columns: featured_story_lookup_pk_columns_input!
+  ): featured_story_lookup
 
   # update data of the table: "inquiries"
   update_inquiries(
@@ -727,6 +889,45 @@ type query_root {
   # perform the action: "auth0"
   auth0: auth0_profile
   emails: [Email]!
+
+  # fetch data from the table: "featured_story_lookup"
+  featured_story_lookup(
+    # distinct select on columns
+    distinct_on: [featured_story_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [featured_story_lookup_order_by!]
+
+    # filter the rows returned
+    where: featured_story_lookup_bool_exp
+  ): [featured_story_lookup!]!
+
+  # fetch aggregated fields from the table: "featured_story_lookup"
+  featured_story_lookup_aggregate(
+    # distinct select on columns
+    distinct_on: [featured_story_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [featured_story_lookup_order_by!]
+
+    # filter the rows returned
+    where: featured_story_lookup_bool_exp
+  ): featured_story_lookup_aggregate!
+
+  # fetch data from the table: "featured_story_lookup" using primary key columns
+  featured_story_lookup_by_pk(id: uuid!): featured_story_lookup
   getEmail(folderId: String!, messageId: String!): EmailContent
 
   # fetch data from the table: "inquiries"
@@ -1104,6 +1305,45 @@ type subscription_root {
 
   # perform the action: "auth0"
   auth0: auth0_profile
+
+  # fetch data from the table: "featured_story_lookup"
+  featured_story_lookup(
+    # distinct select on columns
+    distinct_on: [featured_story_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [featured_story_lookup_order_by!]
+
+    # filter the rows returned
+    where: featured_story_lookup_bool_exp
+  ): [featured_story_lookup!]!
+
+  # fetch aggregated fields from the table: "featured_story_lookup"
+  featured_story_lookup_aggregate(
+    # distinct select on columns
+    distinct_on: [featured_story_lookup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [featured_story_lookup_order_by!]
+
+    # filter the rows returned
+    where: featured_story_lookup_bool_exp
+  ): featured_story_lookup_aggregate!
+
+  # fetch data from the table: "featured_story_lookup" using primary key columns
+  featured_story_lookup_by_pk(id: uuid!): featured_story_lookup
 
   # fetch data from the table: "inquiries"
   getInquiries(
@@ -1685,6 +1925,9 @@ type your_story {
   assigned_to: assigned_status_lookup
   city: String!
   email: String!
+
+  # A computed field, executes function "featured_story"
+  featured: Boolean
   id: uuid!
   inspiration: String!
   name: String!

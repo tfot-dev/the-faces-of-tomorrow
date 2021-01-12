@@ -330,6 +330,137 @@ export type Auth0_Profile = {
   picture?: Maybe<Scalars['String']>;
 };
 
+/** columns and relationships of "featured_story_lookup" */
+export type Featured_Story_Lookup = {
+  __typename?: 'featured_story_lookup';
+  id: Scalars['uuid'];
+};
+
+/** aggregated selection of "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate = {
+  __typename?: 'featured_story_lookup_aggregate';
+  aggregate?: Maybe<Featured_Story_Lookup_Aggregate_Fields>;
+  nodes: Array<Featured_Story_Lookup>;
+};
+
+/** aggregate fields of "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate_Fields = {
+  __typename?: 'featured_story_lookup_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Featured_Story_Lookup_Max_Fields>;
+  min?: Maybe<Featured_Story_Lookup_Min_Fields>;
+};
+
+
+/** aggregate fields of "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Featured_Story_Lookup_Max_Order_By>;
+  min?: Maybe<Featured_Story_Lookup_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "featured_story_lookup" */
+export type Featured_Story_Lookup_Arr_Rel_Insert_Input = {
+  data: Array<Featured_Story_Lookup_Insert_Input>;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "featured_story_lookup". All fields are combined with a logical 'AND'. */
+export type Featured_Story_Lookup_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Featured_Story_Lookup_Bool_Exp>>>;
+  _not?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Featured_Story_Lookup_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "featured_story_lookup" */
+export enum Featured_Story_Lookup_Constraint {
+  /** unique or primary key constraint */
+  FeaturedStoryPkey = 'featured_story_pkey'
+}
+
+/** input type for inserting data into table "featured_story_lookup" */
+export type Featured_Story_Lookup_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Featured_Story_Lookup_Max_Fields = {
+  __typename?: 'featured_story_lookup_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "featured_story_lookup" */
+export type Featured_Story_Lookup_Max_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Featured_Story_Lookup_Min_Fields = {
+  __typename?: 'featured_story_lookup_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "featured_story_lookup" */
+export type Featured_Story_Lookup_Min_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "featured_story_lookup" */
+export type Featured_Story_Lookup_Mutation_Response = {
+  __typename?: 'featured_story_lookup_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Featured_Story_Lookup>;
+};
+
+/** input type for inserting object relation for remote table "featured_story_lookup" */
+export type Featured_Story_Lookup_Obj_Rel_Insert_Input = {
+  data: Featured_Story_Lookup_Insert_Input;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
+};
+
+/** on conflict condition type for table "featured_story_lookup" */
+export type Featured_Story_Lookup_On_Conflict = {
+  constraint: Featured_Story_Lookup_Constraint;
+  update_columns: Array<Featured_Story_Lookup_Update_Column>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "featured_story_lookup" */
+export type Featured_Story_Lookup_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "featured_story_lookup" */
+export type Featured_Story_Lookup_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "featured_story_lookup" */
+export enum Featured_Story_Lookup_Select_Column {
+  /** column name */
+  Id = 'id'
+}
+
+/** input type for updating data in table "featured_story_lookup" */
+export type Featured_Story_Lookup_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "featured_story_lookup" */
+export enum Featured_Story_Lookup_Update_Column {
+  /** column name */
+  Id = 'id'
+}
+
 /** columns and relationships of "inquiries" */
 export type Inquiries = {
   __typename?: 'inquiries';
@@ -535,6 +666,10 @@ export type Mutation_Root = {
   deleteEmail?: Maybe<ResponseStatus>;
   /** delete data from the table: "assigned_status_lookup" */
   delete_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
+  /** delete data from the table: "featured_story_lookup" */
+  delete_featured_story_lookup?: Maybe<Featured_Story_Lookup_Mutation_Response>;
+  /** delete single row from the table: "featured_story_lookup" */
+  delete_featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   /** delete data from the table: "inquiries" */
   delete_inquiries?: Maybe<Inquiries_Mutation_Response>;
   /** delete single row from the table: "inquiries" */
@@ -555,6 +690,10 @@ export type Mutation_Root = {
   insert_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
   /** insert a single row into the table: "assigned_status_lookup" */
   insert_assigned_status_lookup_one?: Maybe<Assigned_Status_Lookup>;
+  /** insert data into the table: "featured_story_lookup" */
+  insert_featured_story_lookup?: Maybe<Featured_Story_Lookup_Mutation_Response>;
+  /** insert a single row into the table: "featured_story_lookup" */
+  insert_featured_story_lookup_one?: Maybe<Featured_Story_Lookup>;
   /** insert a single row into the table: "inquiries" */
   insert_inquiries_one?: Maybe<Inquiries>;
   /** insert a single row into the table: "read_status_lookup" */
@@ -578,6 +717,10 @@ export type Mutation_Root = {
   setReadStatus?: Maybe<Read_Status_Lookup_Mutation_Response>;
   /** update data of the table: "assigned_status_lookup" */
   update_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
+  /** update data of the table: "featured_story_lookup" */
+  update_featured_story_lookup?: Maybe<Featured_Story_Lookup_Mutation_Response>;
+  /** update single row of the table: "featured_story_lookup" */
+  update_featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   /** update data of the table: "inquiries" */
   update_inquiries?: Maybe<Inquiries_Mutation_Response>;
   /** update single row of the table: "inquiries" */
@@ -607,6 +750,18 @@ export type Mutation_RootDeleteEmailArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Assigned_Status_LookupArgs = {
   where: Assigned_Status_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Featured_Story_LookupArgs = {
+  where: Featured_Story_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Featured_Story_Lookup_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -669,6 +824,20 @@ export type Mutation_RootInsert_Assigned_Status_LookupArgs = {
 export type Mutation_RootInsert_Assigned_Status_Lookup_OneArgs = {
   object: Assigned_Status_Lookup_Insert_Input;
   on_conflict?: Maybe<Assigned_Status_Lookup_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Featured_Story_LookupArgs = {
+  objects: Array<Featured_Story_Lookup_Insert_Input>;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Featured_Story_Lookup_OneArgs = {
+  object: Featured_Story_Lookup_Insert_Input;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
 };
 
 
@@ -756,6 +925,20 @@ export type Mutation_RootUpdate_Assigned_Status_LookupArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Featured_Story_LookupArgs = {
+  _set?: Maybe<Featured_Story_Lookup_Set_Input>;
+  where: Featured_Story_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Featured_Story_Lookup_By_PkArgs = {
+  _set?: Maybe<Featured_Story_Lookup_Set_Input>;
+  pk_columns: Featured_Story_Lookup_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_InquiriesArgs = {
   _set?: Maybe<Inquiries_Set_Input>;
   where: Inquiries_Bool_Exp;
@@ -838,6 +1021,12 @@ export type Query_Root = {
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   emails: Array<Maybe<Email>>;
+  /** fetch data from the table: "featured_story_lookup" */
+  featured_story_lookup: Array<Featured_Story_Lookup>;
+  /** fetch aggregated fields from the table: "featured_story_lookup" */
+  featured_story_lookup_aggregate: Featured_Story_Lookup_Aggregate;
+  /** fetch data from the table: "featured_story_lookup" using primary key columns */
+  featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   getEmail?: Maybe<EmailContent>;
   /** fetch data from the table: "inquiries" */
   getInquiries: Array<Inquiries>;
@@ -888,6 +1077,32 @@ export type Query_RootAssigned_Status_Lookup_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
   where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootFeatured_Story_LookupArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootFeatured_Story_Lookup_AggregateArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootFeatured_Story_Lookup_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1146,6 +1361,12 @@ export type Subscription_Root = {
   assigned_status_lookup_aggregate: Assigned_Status_Lookup_Aggregate;
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
+  /** fetch data from the table: "featured_story_lookup" */
+  featured_story_lookup: Array<Featured_Story_Lookup>;
+  /** fetch aggregated fields from the table: "featured_story_lookup" */
+  featured_story_lookup_aggregate: Featured_Story_Lookup_Aggregate;
+  /** fetch data from the table: "featured_story_lookup" using primary key columns */
+  featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   /** fetch data from the table: "inquiries" */
   getInquiries: Array<Inquiries>;
   /** fetch aggregated fields from the table: "inquiries" */
@@ -1192,6 +1413,32 @@ export type Subscription_RootAssigned_Status_Lookup_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
   where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootFeatured_Story_LookupArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootFeatured_Story_Lookup_AggregateArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootFeatured_Story_Lookup_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1704,6 +1951,8 @@ export type Your_Story = {
   assigned_to?: Maybe<Assigned_Status_Lookup>;
   city: Scalars['String'];
   email: Scalars['String'];
+  /** A computed field, executes function "featured_story" */
+  featured?: Maybe<Scalars['Boolean']>;
   id: Scalars['uuid'];
   inspiration: Scalars['String'];
   name: Scalars['String'];
@@ -2132,7 +2381,7 @@ export type UserFragment = (
 
 export type YourStoryFragment = (
   { __typename?: 'your_story' }
-  & Pick<Your_Story, 'advise' | 'age' | 'city' | 'email' | 'id' | 'inspiration' | 'name' | 'need' | 'observedEffects' | 'occupation' | 'pictures' | 'projectIdea' | 'read_status'>
+  & Pick<Your_Story, 'advise' | 'age' | 'city' | 'email' | 'id' | 'inspiration' | 'name' | 'need' | 'observedEffects' | 'occupation' | 'pictures' | 'projectIdea' | 'read_status' | 'featured'>
   & { assigned_to?: Maybe<(
     { __typename?: 'assigned_status_lookup' }
     & Pick<Assigned_Status_Lookup, 'id' | 'user_id'>
@@ -2166,6 +2415,32 @@ export type DeleteAssignedStatusMutation = (
   & { delete_assigned_status_lookup?: Maybe<(
     { __typename?: 'assigned_status_lookup_mutation_response' }
     & Pick<Assigned_Status_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type FeatureStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type FeatureStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_featured_story_lookup?: Maybe<(
+    { __typename?: 'featured_story_lookup_mutation_response' }
+    & Pick<Featured_Story_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UnfeatureStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type UnfeatureStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_featured_story_lookup?: Maybe<(
+    { __typename?: 'featured_story_lookup_mutation_response' }
+    & Pick<Featured_Story_Lookup_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -2481,6 +2756,7 @@ export const YourStoryFragmentDoc = gql`
     story
     ready
   }
+  featured
 }
     `;
 export const SetAssignedStatusDocument = gql`
@@ -2548,6 +2824,70 @@ export function useDeleteAssignedStatusMutation(baseOptions?: Apollo.MutationHoo
 export type DeleteAssignedStatusMutationHookResult = ReturnType<typeof useDeleteAssignedStatusMutation>;
 export type DeleteAssignedStatusMutationResult = Apollo.MutationResult<DeleteAssignedStatusMutation>;
 export type DeleteAssignedStatusMutationOptions = Apollo.BaseMutationOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
+export const FeatureStoryDocument = gql`
+    mutation featureStory($id: uuid!) {
+  insert_featured_story_lookup(objects: {id: $id}) {
+    affected_rows
+  }
+}
+    `;
+export type FeatureStoryMutationFn = Apollo.MutationFunction<FeatureStoryMutation, FeatureStoryMutationVariables>;
+
+/**
+ * __useFeatureStoryMutation__
+ *
+ * To run a mutation, you first call `useFeatureStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useFeatureStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [featureStoryMutation, { data, loading, error }] = useFeatureStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFeatureStoryMutation(baseOptions?: Apollo.MutationHookOptions<FeatureStoryMutation, FeatureStoryMutationVariables>) {
+        return Apollo.useMutation<FeatureStoryMutation, FeatureStoryMutationVariables>(FeatureStoryDocument, baseOptions);
+      }
+export type FeatureStoryMutationHookResult = ReturnType<typeof useFeatureStoryMutation>;
+export type FeatureStoryMutationResult = Apollo.MutationResult<FeatureStoryMutation>;
+export type FeatureStoryMutationOptions = Apollo.BaseMutationOptions<FeatureStoryMutation, FeatureStoryMutationVariables>;
+export const UnfeatureStoryDocument = gql`
+    mutation unfeatureStory($id: uuid!) {
+  delete_featured_story_lookup(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+export type UnfeatureStoryMutationFn = Apollo.MutationFunction<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>;
+
+/**
+ * __useUnfeatureStoryMutation__
+ *
+ * To run a mutation, you first call `useUnfeatureStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnfeatureStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unfeatureStoryMutation, { data, loading, error }] = useUnfeatureStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUnfeatureStoryMutation(baseOptions?: Apollo.MutationHookOptions<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>) {
+        return Apollo.useMutation<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>(UnfeatureStoryDocument, baseOptions);
+      }
+export type UnfeatureStoryMutationHookResult = ReturnType<typeof useUnfeatureStoryMutation>;
+export type UnfeatureStoryMutationResult = Apollo.MutationResult<UnfeatureStoryMutation>;
+export type UnfeatureStoryMutationOptions = Apollo.BaseMutationOptions<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>;
 export const ReadStatusDocument = gql`
     mutation readStatus($id: uuid!, $user_id: String!) {
   setReadStatus(objects: {id: $id, user_id: $user_id}) {
@@ -3106,6 +3446,8 @@ export const namedOperations = {
   Mutation: {
     setAssignedStatus: 'setAssignedStatus',
     deleteAssignedStatus: 'deleteAssignedStatus',
+    featureStory: 'featureStory',
+    unfeatureStory: 'unfeatureStory',
     readStatus: 'readStatus',
     sendEmail: 'sendEmail',
     sendInquiries: 'sendInquiries',

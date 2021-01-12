@@ -21,4 +21,5 @@ fragment YourStory on your_story {
         story
         ready
     }
+    featured
 }
