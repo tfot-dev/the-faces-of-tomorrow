@@ -1,10 +1,19 @@
 import React from 'react';
-import { IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography } from '@material-ui/core';
+import {
+    Avatar,
+    IconButton,
+    ListItem,
+    ListItemAvatar,
+    ListItemSecondaryAction,
+    ListItemText,
+    Typography,
+} from '@material-ui/core';
 import EventSeatIcon from '@material-ui/icons/EventSeat';
 import RestoreIcon from '@material-ui/icons/Restore';
 import {
     namedOperations,
     useDeleteAssignedStatusMutation,
+    useGetAllUsersQuery,
     useSetAssignedStatusMutation,
     Your_Story,
 } from '../../generated/graphql';
@@ -17,6 +26,7 @@ type YourStoryListItemType = {
 };
 
 export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
+    const { data } = useGetAllUsersQuery();
     const { url } = useRouteMatch();
     const { enqueueSnackbar } = useSnackbar();
     const { user } = useAuth0();
@@ -46,8 +56,15 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
         }).then(() => enqueueSnackbar('Story has been unassigned!', { variant: 'success' }));
     };
 
+    const assignedUser = data?.users ? data.users.find((u) => u.auth0_id === assigned_to?.user_id) : null;
+
     return (
         <ListItem button alignItems="flex-start" key={id} component={Link} to={`${url}/${id}`} selected={!!read_status}>
+            {assignedUser !== null && assignedUser?.picture && (
+                <ListItemAvatar>
+                    <Avatar src={assignedUser.picture} alt={assignedUser.name} />
+                </ListItemAvatar>
+            )}
             <ListItemText
                 primary={`${name}, ${age}, ${city}`}
                 secondary={
