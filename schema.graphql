@@ -1319,9 +1319,9 @@ type users {
   auth0_id: String!
   created_at: timestamptz!
   email_id: String!
-  id: String!
   last_seen: timestamptz
   name: String!
+  picture: String
 }
 
 # aggregated selection of "users"
@@ -1359,9 +1359,9 @@ input users_bool_exp {
   auth0_id: String_comparison_exp
   created_at: timestamptz_comparison_exp
   email_id: String_comparison_exp
-  id: String_comparison_exp
   last_seen: timestamptz_comparison_exp
   name: String_comparison_exp
+  picture: String_comparison_exp
 }
 
 # unique or primary key constraints on table "users"
@@ -1379,9 +1379,9 @@ input users_insert_input {
   auth0_id: String
   created_at: timestamptz
   email_id: String
-  id: String
   last_seen: timestamptz
   name: String
+  picture: String
 }
 
 # aggregate max on columns
@@ -1389,9 +1389,9 @@ type users_max_fields {
   auth0_id: String
   created_at: timestamptz
   email_id: String
-  id: String
   last_seen: timestamptz
   name: String
+  picture: String
 }
 
 # order by max() on columns of table "users"
@@ -1399,9 +1399,9 @@ input users_max_order_by {
   auth0_id: order_by
   created_at: order_by
   email_id: order_by
-  id: order_by
   last_seen: order_by
   name: order_by
+  picture: order_by
 }
 
 # aggregate min on columns
@@ -1409,9 +1409,9 @@ type users_min_fields {
   auth0_id: String
   created_at: timestamptz
   email_id: String
-  id: String
   last_seen: timestamptz
   name: String
+  picture: String
 }
 
 # order by min() on columns of table "users"
@@ -1419,9 +1419,9 @@ input users_min_order_by {
   auth0_id: order_by
   created_at: order_by
   email_id: order_by
-  id: order_by
   last_seen: order_by
   name: order_by
+  picture: order_by
 }
 
 # response of any mutation on the table "users"
@@ -1452,9 +1452,9 @@ input users_order_by {
   auth0_id: order_by
   created_at: order_by
   email_id: order_by
-  id: order_by
   last_seen: order_by
   name: order_by
+  picture: order_by
 }
 
 # primary key columns input for table: "users"
@@ -1477,13 +1477,13 @@ enum users_select_column {
   email_id
 
   # column name
-  id
-
-  # column name
   last_seen
 
   # column name
   name
+
+  # column name
+  picture
 }
 
 # input type for updating data in table "users"
@@ -1492,9 +1492,9 @@ input users_set_input {
   auth0_id: String
   created_at: timestamptz
   email_id: String
-  id: String
   last_seen: timestamptz
   name: String
+  picture: String
 }
 
 # update columns of table "users"
@@ -1512,13 +1512,13 @@ enum users_update_column {
   email_id
 
   # column name
-  id
-
-  # column name
   last_seen
 
   # column name
   name
+
+  # column name
+  picture
 }
 
 scalar uuid

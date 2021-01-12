@@ -1333,9 +1333,9 @@ export type Users = {
   auth0_id: Scalars['String'];
   created_at: Scalars['timestamptz'];
   email_id: Scalars['String'];
-  id: Scalars['String'];
   last_seen?: Maybe<Scalars['timestamptz']>;
   name: Scalars['String'];
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "users" */
@@ -1382,9 +1382,9 @@ export type Users_Bool_Exp = {
   auth0_id?: Maybe<String_Comparison_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   email_id?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<String_Comparison_Exp>;
   last_seen?: Maybe<Timestamptz_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
+  picture?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "users" */
@@ -1401,9 +1401,9 @@ export type Users_Insert_Input = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -1412,9 +1412,9 @@ export type Users_Max_Fields = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "users" */
@@ -1422,9 +1422,9 @@ export type Users_Max_Order_By = {
   auth0_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   email_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
   last_seen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  picture?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -1433,9 +1433,9 @@ export type Users_Min_Fields = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "users" */
@@ -1443,9 +1443,9 @@ export type Users_Min_Order_By = {
   auth0_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   email_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
   last_seen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  picture?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "users" */
@@ -1476,9 +1476,9 @@ export type Users_Order_By = {
   auth0_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   email_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
   last_seen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  picture?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "users" */
@@ -1497,11 +1497,11 @@ export enum Users_Select_Column {
   /** column name */
   EmailId = 'email_id',
   /** column name */
-  Id = 'id',
-  /** column name */
   LastSeen = 'last_seen',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Picture = 'picture'
 }
 
 /** input type for updating data in table "users" */
@@ -1510,9 +1510,9 @@ export type Users_Set_Input = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
@@ -1526,11 +1526,11 @@ export enum Users_Update_Column {
   /** column name */
   EmailId = 'email_id',
   /** column name */
-  Id = 'id',
-  /** column name */
   LastSeen = 'last_seen',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Picture = 'picture'
 }
 
 
@@ -2127,7 +2127,7 @@ export type SendEmailFragment = (
 
 export type UserFragment = (
   { __typename?: 'users' }
-  & Pick<Users, 'id' | 'name' | 'email_id' | 'admin' | 'auth0_id'>
+  & Pick<Users, 'name' | 'email_id' | 'admin' | 'auth0_id' | 'picture'>
 );
 
 export type YourStoryFragment = (
@@ -2450,11 +2450,11 @@ export const SendEmailFragmentDoc = gql`
     `;
 export const UserFragmentDoc = gql`
     fragment User on users {
-  id
   name
   email_id
   admin
   auth0_id
+  picture
 }
     `;
 export const YourStoryFragmentDoc = gql`
