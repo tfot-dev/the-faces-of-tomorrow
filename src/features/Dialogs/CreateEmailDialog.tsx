@@ -23,7 +23,7 @@ import { namedOperations, useSendEmailMutation } from '../../generated/graphql';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         fab: {
-            position: 'absolute',
+            position: 'fixed',
             bottom: theme.spacing(3),
             right: theme.spacing(3),
         },
