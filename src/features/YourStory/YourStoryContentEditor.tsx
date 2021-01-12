@@ -5,18 +5,22 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { useUpdateWrittenStoryMutation, Your_Story } from '../../generated/graphql';
 import { Grid, Typography } from '@material-ui/core';
 import { isStoryReady, isUnassigned } from '../../utils/yourStory';
+import { useSnackbar } from 'notistack';
 
 type YourStoryContentEditorType = {
     yourStory: Your_Story;
 };
 
 export const YourStoryContentEditor = ({ yourStory }: YourStoryContentEditorType) => {
+    const { enqueueSnackbar } = useSnackbar();
     const [insert_written_story] = useUpdateWrittenStoryMutation();
 
     const { id, written_story } = yourStory;
 
     const handleSaveWrittenStory = (story: string) => {
-        return insert_written_story({ variables: { id, writtenStory: story } });
+        return insert_written_story({ variables: { id, writtenStory: story } }).then(() =>
+            enqueueSnackbar('Story Updated!', { variant: 'success' }),
+        );
     };
 
     if (isUnassigned(yourStory)) {
