@@ -6,12 +6,12 @@ import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import InboxIcon from '@material-ui/icons/Inbox';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import { EmailSentContainer } from '../features/Email/EmailSentContainer';
-import { Error } from '../features/Error/Error';
 import { EmailInboxContainer } from '../features/Email/EmailInboxContainer';
 import { InquiriesContainer } from '../features/ContactUs/InquiriesContainer';
 import { YourStoryUnassignedContainer } from '../features/YourStory/YourStoryUnassignedContainer';
 import { YourStoryAssignedContainer } from '../features/YourStory/YourStoryAssignedContainer';
 import { YourStoryFinishedContainer } from '../features/YourStory/YourStoryFinishedContainer';
+import { YourStoryFeaturedContainer } from '../features/YourStory/YourStoryFeaturedContainer';
 
 export const AdminSideNavItems = [
     {
@@ -47,7 +47,7 @@ export const AdminSideNavItems = [
     {
         label: 'Featured',
         icon: FeaturedPlayListIcon,
-        component: Error,
+        component: YourStoryFeaturedContainer,
         route: 'featured',
     },
     {

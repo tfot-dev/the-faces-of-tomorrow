@@ -5,7 +5,7 @@ import { Error } from '../Error/Error';
 import { YourStoryListView } from './YourStoryListView';
 import { YourStoryContent } from './YourStoryContent';
 
-export const YourStoryFinishedContainer = () => {
+export const YourStoryFeaturedContainer = () => {
     const { loading, error, data } = useGetAllYourStoriesQuery();
 
     if (loading) return <LinearProgress color="secondary" />;
@@ -14,16 +14,13 @@ export const YourStoryFinishedContainer = () => {
         return null;
     }
 
-    const finishedStories = data.your_story
-        .filter((ys) => ys.assigned_to !== null)
-        .filter((ys) => ys.written_story?.ready)
-        .filter((ys) => !ys.featured);
+    const featuredStories = data.your_story.filter((ys) => ys.featured);
 
-    return finishedStories.length ? (
-        <YourStoryListView yourStories={finishedStories} yourStoryContent={YourStoryContent} />
+    return featuredStories.length ? (
+        <YourStoryListView yourStories={featuredStories} yourStoryContent={YourStoryContent} />
     ) : (
         <Card>
-            <CardContent>Looks like you have no stories finished yet!</CardContent>
+            <CardContent>Looks like you have no stories featured!</CardContent>
         </Card>
     );
 };
