@@ -11,7 +11,7 @@ export const MiniDrawerContent = ({ tabs, routeSelected }: MiniDrawerContentProp
     const { params } = useRouteMatch<{ tabId: string }>();
     let DrawerContent = undefined;
 
-    const foundTabItem = tabs.find((tab) => tab.route === params.tabId);
+    const foundTabItem = tabs.find((tab) => tab.route.replace('/', '') === params.tabId);
 
     if (foundTabItem) {
         DrawerContent = foundTabItem.component;

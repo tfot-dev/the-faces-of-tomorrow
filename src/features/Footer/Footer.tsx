@@ -5,6 +5,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import { SocialMediaLinks } from '../../constants/SocialMediaLinks';
 import { Link as RouterLink } from 'react-router-dom';
 import { openLinkInNewTab } from '../../utils/link';
+import { Routes } from '../../constants/Routes';
 
 export const Footer = () => (
     <BottomNavigation>
@@ -20,12 +21,12 @@ export const Footer = () => (
                 </IconButton>
             </Grid>
             <Grid item>
-                <Link component={RouterLink} target="_blank" to="/privacy" variant="caption">
+                <Link component={RouterLink} target="_blank" to={Routes.Privacy} variant="caption">
                     Privacy
                 </Link>
             </Grid>
             <Grid item>
-                <Link component={RouterLink} target="_blank" to="/termsandconditions" variant="caption">
+                <Link component={RouterLink} target="_blank" to={Routes.TermsAndConditions} variant="caption">
                     Terms and Conditions
                 </Link>
             </Grid>

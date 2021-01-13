@@ -14,6 +14,7 @@ import { TermsAndConditions } from './features/PrivacyAndTerms/TermsAndCondition
 import { PostViewContainer } from './features/Post/PostViewContainer';
 import { SnackbarProvider } from 'notistack';
 import { YourStoryPosted } from './features/YourStory/YourStoryPosted';
+import { Routes } from './constants/Routes';
 
 export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
@@ -25,28 +26,28 @@ export const App: React.FC = () => {
                     <Router>
                         <Switch>
                             <MainLayoutRoute
-                                path="/post/:postId"
+                                path={Routes.Post}
                                 component={PostViewContainer}
                                 onThemeToggle={setDarkMode}
                             />
                             <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
                             <MainLayoutRoute
-                                path="/yourstoryposted"
+                                path={Routes.YourStoryPosted}
                                 component={YourStoryPosted}
                                 onThemeToggle={setDarkMode}
                             />
                             {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
-                                <MainLayoutRoute path="/admin" component={Admin} onThemeToggle={setDarkMode} />
+                                <MainLayoutRoute path={Routes.Admin} component={Admin} onThemeToggle={setDarkMode} />
                             )}
                             <MainLayoutRoute
                                 exact
-                                path="/privacy"
+                                path={Routes.Privacy}
                                 component={PrivacyPolicy}
                                 onThemeToggle={setDarkMode}
                             />
                             <MainLayoutRoute
                                 exact
-                                path="/termsandconditions"
+                                path={Routes.TermsAndConditions}
                                 component={TermsAndConditions}
                                 onThemeToggle={setDarkMode}
                             />

@@ -3,6 +3,7 @@ import { YourStoryForm } from './YourStoryForm';
 import { useSendYourStoryMutation, Your_Story } from '../../generated/graphql';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom';
+import { Routes } from '../../constants/Routes';
 
 export const YourStory = () => {
     const { enqueueSnackbar } = useSnackbar();
@@ -12,7 +13,7 @@ export const YourStory = () => {
     const handleOnSubmit = (data: Your_Story) => {
         insert_your_story({ variables: data }).then(() => {
             enqueueSnackbar('Story posted Successfully!', { variant: 'success' });
-            history.push('/yourstoryposted');
+            history.push(Routes.YourStoryPosted);
         });
     };
 

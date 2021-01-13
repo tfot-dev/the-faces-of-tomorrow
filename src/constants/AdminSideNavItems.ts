@@ -12,48 +12,49 @@ import { YourStoryUnassignedContainer } from '../features/YourStory/YourStoryUna
 import { YourStoryAssignedContainer } from '../features/YourStory/YourStoryAssignedContainer';
 import { YourStoryFinishedContainer } from '../features/YourStory/YourStoryFinishedContainer';
 import { YourStoryFeaturedContainer } from '../features/YourStory/YourStoryFeaturedContainer';
+import { Routes } from './Routes';
 
 export const AdminSideNavItems = [
     {
         label: 'Messages',
         icon: InboxIcon,
         component: EmailInboxContainer,
-        route: 'messages',
+        route: Routes.Messages,
     },
     {
         label: 'Contacted',
         icon: ContactMailIcon,
         component: EmailSentContainer,
-        route: 'contacted',
+        route: Routes.Contacted,
     },
     {
         label: 'Unassigned',
         icon: HourglassEmptyIcon,
         component: YourStoryUnassignedContainer,
-        route: 'unassigned',
+        route: Routes.Unassigned,
     },
     {
         label: 'In Progress',
         icon: CachedIcon,
         component: YourStoryAssignedContainer,
-        route: 'inprogress',
+        route: Routes.InProgress,
     },
     {
         label: 'Finished',
         icon: CheckCircleIcon,
         component: YourStoryFinishedContainer,
-        route: 'finished',
+        route: Routes.Finished,
     },
     {
         label: 'Featured',
         icon: FeaturedPlayListIcon,
         component: YourStoryFeaturedContainer,
-        route: 'featured',
+        route: Routes.Featured,
     },
     {
         label: 'Inquiries',
         icon: ContactSupportIcon,
         component: InquiriesContainer,
-        route: 'Inquiries',
+        route: Routes.Inquiries,
     },
 ];

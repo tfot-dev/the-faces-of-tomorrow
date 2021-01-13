@@ -4,6 +4,7 @@ import React from 'react';
 import { useGetAllUsersQuery } from '../../generated/graphql';
 import { Error } from '../Error/Error';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../constants/Routes';
 
 export const User: React.FC = () => {
     const { loading, error, data } = useGetAllUsersQuery();
@@ -31,7 +32,7 @@ export const User: React.FC = () => {
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 {user.email.includes('@thefacesoftomorrow.com') && (
-                    <MenuItem onClick={handleClose} component={Link} to="/admin">
+                    <MenuItem onClick={handleClose} component={Link} to={Routes.Admin}>
                         Admin
                     </MenuItem>
                 )}

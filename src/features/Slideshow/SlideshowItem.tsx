@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { common } from '@material-ui/core/colors';
+import { Link } from 'react-router-dom';
+import { Routes } from '../../constants/Routes';
 
 const useStyles = makeStyles({
     root: {
@@ -39,6 +41,13 @@ export const SlideshowItem = (props: SlideshowItem) => {
                     <Typography align="center" variant="h5" color="inherit">
                         {name}
                     </Typography>
+                </Grid>
+                <Grid item>
+                    <Box display="flex" justifyContent="center">
+                        <Button variant="contained" color="secondary" component={Link} to={Routes.YourStory}>
+                            Post Your Own Story!
+                        </Button>
+                    </Box>
                 </Grid>
             </Grid>
         </Box>

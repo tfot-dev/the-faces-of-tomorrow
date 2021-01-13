@@ -103,9 +103,9 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                         <ListItem
                             button
                             key={label}
-                            selected={currentRoute === route}
+                            selected={currentRoute === route.replace('/', '')}
                             component={Link}
-                            to={`${url}/${route}`}
+                            to={`${url}${route}`}
                         >
                             <ListItemIcon>
                                 <LabelIcon />
@@ -123,7 +123,7 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
             </Drawer>
             {isAuthenticated && (
                 <main className={classes.content}>
-                    <Route exact path={path} render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
+                    <Route exact path={path} render={() => <Redirect to={`${url}${tabs[0].route}`} />} />
                     <Route path={`${path}/:tabId`}>
                         <MiniDrawerContent tabs={tabs} routeSelected={setCurrentRoute} />
                     </Route>

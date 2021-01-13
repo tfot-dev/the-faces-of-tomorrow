@@ -17,6 +17,7 @@ import {
 
 import { UploadImagesDialog } from './UploadImagesDialog';
 import { Link as RouterLink } from 'react-router-dom';
+import { Routes } from '../../constants/Routes';
 
 type YourStoryFormType = {
     onSubmit: (data: Your_Story) => void;
@@ -188,7 +189,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         <Link
                                             component={RouterLink}
                                             target="_blank"
-                                            to="/termsandconditions"
+                                            to={Routes.TermsAndConditions}
                                             variant="caption"
                                         >
                                             Terms and Conditions
