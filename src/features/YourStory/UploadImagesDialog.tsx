@@ -75,7 +75,7 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
                     {uploading ? (
                         <CircularProgress />
                     ) : (
-                        <Button variant="outlined" color="secondary" onClick={() => setOpen(true)}>
+                        <Button variant="outlined" color="primary" onClick={() => setOpen(true)}>
                             Upload Images
                         </Button>
                     )}

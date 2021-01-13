@@ -49,7 +49,7 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
         refetchQueries: [namedOperations.Query.GetAllYourStories],
     });
 
-    const { name, age, city, email, id, read_status, assigned_to, written_story, featured } = yourStory;
+    const { name, email, id, read_status, assigned_to, written_story, featured } = yourStory;
 
     const handleAssignToMeClick = () => {
         insert_assigned_status_lookup({
@@ -94,13 +94,11 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
                 </ListItemAvatar>
             )}
             <ListItemText
-                primary={`${name}, ${age}, ${city}`}
+                primary={`${name}`}
                 secondary={
-                    <React.Fragment>
-                        <Typography component="span" variant="body2" color="textPrimary">
-                            {email}
-                        </Typography>
-                    </React.Fragment>
+                    <Typography component="span" variant="body2" color="textPrimary">
+                        {email}
+                    </Typography>
                 }
             />
             <ListItemSecondaryAction>

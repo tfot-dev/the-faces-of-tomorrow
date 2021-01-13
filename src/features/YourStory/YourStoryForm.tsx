@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Your_Story } from '../../generated/graphql';
 import {
+    Box,
     Button,
     Card,
     CardContent,
@@ -35,6 +36,24 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                 <CardHeader title="Post Your Own Story!" />
                 <CardContent>
                     <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Typography variant="body1">Hey There!</Typography>
+                            <br />
+                            <Typography variant="body1">
+                                Thank you for having an interest in sharing your story with us!
+                            </Typography>
+                            <br />
+                            <Typography variant="body1">
+                                We are certain that sharing your stories could bring hope to others and inspire them to
+                                take actions!
+                            </Typography>
+                            <br />
+                            <Typography variant="body1">
+                                Please submit your responses in the form below (to be answered briefly). Once we have
+                                your responses, we will get back to you with a final version of your story for your
+                                approval.
+                            </Typography>
+                        </Grid>
                         <Grid item xs={6}>
                             <TextField
                                 autoFocus
@@ -43,6 +62,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 fullWidth
                                 name="name"
                                 inputRef={register}
+                                required
                             />
                         </Grid>
                         <Grid item xs={6}>
@@ -53,87 +73,109 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 fullWidth
                                 name="email"
                                 inputRef={register}
+                                required
                             />
                         </Grid>
-                        <Grid item xs={4}>
-                            <TextField variant="outlined" label="City" fullWidth name="city" inputRef={register} />
-                        </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="outlined"
-                                label="Age"
-                                type="number"
+                                label="Instagram Handle"
                                 fullWidth
-                                name="age"
+                                name="instagram"
                                 inputRef={register}
                             />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="outlined"
-                                label="Occupation"
+                                label="Blog/Website (if any)"
                                 fullWidth
-                                name="occupation"
+                                name="blog"
                                 inputRef={register}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
-                                label="How did you develop your project/idea/sustainable practice?"
+                                label="Tell us briefly about yourself (e.g. age, the city you are currently based at, and current occupation)"
+                                fullWidth
+                                name="about"
+                                inputRef={register}
+                                multiline
+                                rows={10}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                label="How do you engage in environmental activism? (e.g. tell us about your project / idea / sustainable practice)"
                                 fullWidth
                                 name="projectIdea"
                                 inputRef={register}
                                 multiline
                                 rows={10}
+                                required
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
-                                label="What inspired you to work on this specific topic?"
+                                label="What gave you the inspiration to work on that specific topic? (e.g. if you have a personal motivation, please share how it evolved and when/why you decided to take action)"
                                 fullWidth
                                 name="inspiration"
                                 inputRef={register}
                                 multiline
                                 rows={10}
+                                required
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
-                                label="Why is it important for you to work on this particular issue? (If you have a personal motivation, please share how it evolved and when/why you decided to take action)."
-                                fullWidth
-                                name="need"
-                                inputRef={register}
-                                multiline
-                                rows={10}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                label="Did you observe any changes since starting your project? (ex. Feedback and responses from friends, family, community etc.)."
+                                label="Could you observe changes since you started your project / idea / sustainable practice? (e.g. feedback and responses from friends, family, community etc.)"
                                 fullWidth
                                 name="observedEffects"
                                 inputRef={register}
                                 multiline
                                 rows={10}
+                                required
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
-                                label="What would you say to people who are thinking of changing their lifestyle, or who want to start a similar project? (ex. What “advice” would you give them?)"
+                                label="What would be your piece of advice for people who are thinking of changing their lifestyle, or want to start something similar like you?"
                                 fullWidth
                                 name="advise"
+                                inputRef={register}
+                                multiline
+                                rows={10}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                label="Any other comments or personal request?"
+                                fullWidth
+                                name="comments"
                                 inputRef={register}
                                 multiline
                                 rows={10}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <UploadImagesDialog onChange={(data) => setValue('pictures', data)} />
+                            <UploadImagesDialog onChange={(data) => setValue('pictures', data.join(','))} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Box fontWeight="fontWeightBold">
+                                <Typography variant="body2">
+                                    Very important: We need one portrait picture of you, and a few more about your work
+                                    / project / sustainable practice (maximum 10 photos). You can also check out our
+                                    Instagram or Website for reference.
+                                </Typography>
+                            </Box>
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel

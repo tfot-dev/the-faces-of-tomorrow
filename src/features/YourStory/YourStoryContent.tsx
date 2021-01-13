@@ -21,7 +21,7 @@ export const YourStoryContent = () => {
         return null;
     }
 
-    const { name, email, age, city, occupation, read_status, id } = data.your_story_by_pk;
+    const { name, email, read_status, id } = data.your_story_by_pk;
 
     if (!read_status) {
         setReadStatus({
@@ -34,11 +34,7 @@ export const YourStoryContent = () => {
 
     return (
         <Card>
-            <CardHeader
-                avatar={<Avatar>{name.substr(0, 1)}</Avatar>}
-                title={`${name} (${age}), ${occupation}, ${city}`}
-                subheader={email}
-            />
+            <CardHeader avatar={<Avatar>{name.substr(0, 1)}</Avatar>} title={`${name}`} subheader={email} />
             <CardContent>
                 <Grid container spacing={2}>
                     <YourStoryContentDetails yourStory={data.your_story_by_pk} />
