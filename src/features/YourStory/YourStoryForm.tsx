@@ -1,9 +1,21 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Your_Story } from '../../generated/graphql';
-import { Button, Card, CardContent, CardHeader, Grid, TextField } from '@material-ui/core';
+import {
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Checkbox,
+    FormControlLabel,
+    Grid,
+    Link,
+    TextField,
+    Typography,
+} from '@material-ui/core';
 
 import { UploadImagesDialog } from './UploadImagesDialog';
+import { Link as RouterLink } from 'react-router-dom';
 
 type YourStoryFormType = {
     onSubmit: (data: Your_Story) => void;
@@ -122,7 +134,25 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                         <Grid item xs={12}>
                             <UploadImagesDialog onChange={(data) => setValue('pictures', data)} />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                control={<Checkbox checked={false} onChange={() => undefined} />}
+                                label={
+                                    <Typography variant="caption">
+                                        I agree to the{' '}
+                                        <Link
+                                            component={RouterLink}
+                                            target="_blank"
+                                            to="/termsandconditions"
+                                            variant="caption"
+                                        >
+                                            Terms and Conditions
+                                        </Link>
+                                    </Typography>
+                                }
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
                             <Button type="submit" color="secondary" variant="contained">
                                 Send
                             </Button>
