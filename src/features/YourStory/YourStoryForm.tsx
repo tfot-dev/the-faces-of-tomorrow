@@ -23,6 +23,7 @@ type YourStoryFormType = {
 
 export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
     const { register, handleSubmit, setValue } = useForm();
+    const [acceptTerms, setAcceptTerms] = React.useState<boolean>(false);
 
     useEffect(() => {
         register('pictures');
@@ -136,7 +137,9 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox checked={false} onChange={() => undefined} />}
+                                control={
+                                    <Checkbox checked={acceptTerms} onChange={() => setAcceptTerms(!acceptTerms)} />
+                                }
                                 label={
                                     <Typography variant="caption">
                                         I agree to the{' '}
@@ -153,7 +156,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button type="submit" color="secondary" variant="contained">
+                            <Button type="submit" color="secondary" variant="contained" disabled={!acceptTerms}>
                                 Send
                             </Button>
                         </Grid>
