@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Your_Story } from '../../generated/graphql';
 import { Button, Card, CardContent, CardHeader, Grid, TextField } from '@material-ui/core';
@@ -10,8 +10,11 @@ type YourStoryFormType = {
 };
 
 export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
-    const { register, handleSubmit } = useForm();
-    const [publicIds, setPublicIds] = React.useState<string[]>([]);
+    const { register, handleSubmit, setValue } = useForm();
+
+    useEffect(() => {
+        register('pictures');
+    }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -117,10 +120,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <UploadImagesDialog onChange={setPublicIds} />
-                            {publicIds.length !== 0 && (
-                                <input hidden ref={register} name="pictures" value={publicIds} />
-                            )}
+                            <UploadImagesDialog onChange={(data) => setValue('pictures', data)} />
                         </Grid>
                         <Grid item>
                             <Button type="submit" color="secondary" variant="contained">
