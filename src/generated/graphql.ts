@@ -71,19 +71,6 @@ export type GetPostsOutput = {
   timestamp: Scalars['String'];
 };
 
-/** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
-export type Int_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Int']>;
-  _gt?: Maybe<Scalars['Int']>;
-  _gte?: Maybe<Scalars['Int']>;
-  _in?: Maybe<Array<Scalars['Int']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Int']>;
-  _lte?: Maybe<Scalars['Int']>;
-  _neq?: Maybe<Scalars['Int']>;
-  _nin?: Maybe<Array<Scalars['Int']>>;
-};
-
 export type Media = {
   __typename?: 'Media';
   id: Scalars['String'];
@@ -982,7 +969,6 @@ export type Mutation_RootUpdate_Written_StoryArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Your_StoryArgs = {
-  _inc?: Maybe<Your_Story_Inc_Input>;
   _set?: Maybe<Your_Story_Set_Input>;
   where: Your_Story_Bool_Exp;
 };
@@ -990,7 +976,6 @@ export type Mutation_RootUpdate_Your_StoryArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Your_Story_By_PkArgs = {
-  _inc?: Maybe<Your_Story_Inc_Input>;
   _set?: Maybe<Your_Story_Set_Input>;
   pk_columns: Your_Story_Pk_Columns_Input;
 };
@@ -1945,20 +1930,20 @@ export enum Written_Story_Update_Column {
 /** columns and relationships of "your_story" */
 export type Your_Story = {
   __typename?: 'your_story';
+  about: Scalars['String'];
   advise: Scalars['String'];
-  age: Scalars['Int'];
   /** An object relationship */
   assigned_to?: Maybe<Assigned_Status_Lookup>;
-  city: Scalars['String'];
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email: Scalars['String'];
   /** A computed field, executes function "featured_story" */
   featured?: Maybe<Scalars['Boolean']>;
   id: Scalars['uuid'];
   inspiration: Scalars['String'];
+  instagram?: Maybe<Scalars['String']>;
   name: Scalars['String'];
-  need: Scalars['String'];
   observedEffects: Scalars['String'];
-  occupation: Scalars['String'];
   pictures: Scalars['String'];
   projectIdea: Scalars['String'];
   /** A computed field, executes function "read_your_story" */
@@ -1977,17 +1962,9 @@ export type Your_Story_Aggregate = {
 /** aggregate fields of "your_story" */
 export type Your_Story_Aggregate_Fields = {
   __typename?: 'your_story_aggregate_fields';
-  avg?: Maybe<Your_Story_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
   max?: Maybe<Your_Story_Max_Fields>;
   min?: Maybe<Your_Story_Min_Fields>;
-  stddev?: Maybe<Your_Story_Stddev_Fields>;
-  stddev_pop?: Maybe<Your_Story_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Your_Story_Stddev_Samp_Fields>;
-  sum?: Maybe<Your_Story_Sum_Fields>;
-  var_pop?: Maybe<Your_Story_Var_Pop_Fields>;
-  var_samp?: Maybe<Your_Story_Var_Samp_Fields>;
-  variance?: Maybe<Your_Story_Variance_Fields>;
 };
 
 
@@ -1999,17 +1976,9 @@ export type Your_Story_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "your_story" */
 export type Your_Story_Aggregate_Order_By = {
-  avg?: Maybe<Your_Story_Avg_Order_By>;
   count?: Maybe<Order_By>;
   max?: Maybe<Your_Story_Max_Order_By>;
   min?: Maybe<Your_Story_Min_Order_By>;
-  stddev?: Maybe<Your_Story_Stddev_Order_By>;
-  stddev_pop?: Maybe<Your_Story_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Your_Story_Stddev_Samp_Order_By>;
-  sum?: Maybe<Your_Story_Sum_Order_By>;
-  var_pop?: Maybe<Your_Story_Var_Pop_Order_By>;
-  var_samp?: Maybe<Your_Story_Var_Samp_Order_By>;
-  variance?: Maybe<Your_Story_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "your_story" */
@@ -2018,33 +1987,22 @@ export type Your_Story_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Your_Story_On_Conflict>;
 };
 
-/** aggregate avg on columns */
-export type Your_Story_Avg_Fields = {
-  __typename?: 'your_story_avg_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "your_story" */
-export type Your_Story_Avg_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
 /** Boolean expression to filter rows from the table "your_story". All fields are combined with a logical 'AND'. */
 export type Your_Story_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Your_Story_Bool_Exp>>>;
   _not?: Maybe<Your_Story_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Your_Story_Bool_Exp>>>;
+  about?: Maybe<String_Comparison_Exp>;
   advise?: Maybe<String_Comparison_Exp>;
-  age?: Maybe<Int_Comparison_Exp>;
   assigned_to?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
-  city?: Maybe<String_Comparison_Exp>;
+  blog?: Maybe<String_Comparison_Exp>;
+  comments?: Maybe<String_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   inspiration?: Maybe<String_Comparison_Exp>;
+  instagram?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  need?: Maybe<String_Comparison_Exp>;
   observedEffects?: Maybe<String_Comparison_Exp>;
-  occupation?: Maybe<String_Comparison_Exp>;
   pictures?: Maybe<String_Comparison_Exp>;
   projectIdea?: Maybe<String_Comparison_Exp>;
   written_story?: Maybe<Written_Story_Bool_Exp>;
@@ -2056,24 +2014,19 @@ export enum Your_Story_Constraint {
   YourStoryPkey = 'YourStory_pkey'
 }
 
-/** input type for incrementing integer column in table "your_story" */
-export type Your_Story_Inc_Input = {
-  age?: Maybe<Scalars['Int']>;
-};
-
 /** input type for inserting data into table "your_story" */
 export type Your_Story_Insert_Input = {
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
   assigned_to?: Maybe<Assigned_Status_Lookup_Obj_Rel_Insert_Input>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
   written_story?: Maybe<Written_Story_Obj_Rel_Insert_Input>;
@@ -2082,32 +2035,32 @@ export type Your_Story_Insert_Input = {
 /** aggregate max on columns */
 export type Your_Story_Max_Fields = {
   __typename?: 'your_story_max_fields';
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "your_story" */
 export type Your_Story_Max_Order_By = {
+  about?: Maybe<Order_By>;
   advise?: Maybe<Order_By>;
-  age?: Maybe<Order_By>;
-  city?: Maybe<Order_By>;
+  blog?: Maybe<Order_By>;
+  comments?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inspiration?: Maybe<Order_By>;
+  instagram?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  need?: Maybe<Order_By>;
   observedEffects?: Maybe<Order_By>;
-  occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
 };
@@ -2115,32 +2068,32 @@ export type Your_Story_Max_Order_By = {
 /** aggregate min on columns */
 export type Your_Story_Min_Fields = {
   __typename?: 'your_story_min_fields';
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "your_story" */
 export type Your_Story_Min_Order_By = {
+  about?: Maybe<Order_By>;
   advise?: Maybe<Order_By>;
-  age?: Maybe<Order_By>;
-  city?: Maybe<Order_By>;
+  blog?: Maybe<Order_By>;
+  comments?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inspiration?: Maybe<Order_By>;
+  instagram?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  need?: Maybe<Order_By>;
   observedEffects?: Maybe<Order_By>;
-  occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
 };
@@ -2169,17 +2122,17 @@ export type Your_Story_On_Conflict = {
 
 /** ordering options when selecting data from "your_story" */
 export type Your_Story_Order_By = {
+  about?: Maybe<Order_By>;
   advise?: Maybe<Order_By>;
-  age?: Maybe<Order_By>;
   assigned_to?: Maybe<Assigned_Status_Lookup_Order_By>;
-  city?: Maybe<Order_By>;
+  blog?: Maybe<Order_By>;
+  comments?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inspiration?: Maybe<Order_By>;
+  instagram?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  need?: Maybe<Order_By>;
   observedEffects?: Maybe<Order_By>;
-  occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
   written_story?: Maybe<Written_Story_Order_By>;
@@ -2193,11 +2146,13 @@ export type Your_Story_Pk_Columns_Input = {
 /** select columns of table "your_story" */
 export enum Your_Story_Select_Column {
   /** column name */
+  About = 'about',
+  /** column name */
   Advise = 'advise',
   /** column name */
-  Age = 'age',
+  Blog = 'blog',
   /** column name */
-  City = 'city',
+  Comments = 'comments',
   /** column name */
   Email = 'email',
   /** column name */
@@ -2205,13 +2160,11 @@ export enum Your_Story_Select_Column {
   /** column name */
   Inspiration = 'inspiration',
   /** column name */
+  Instagram = 'instagram',
+  /** column name */
   Name = 'name',
   /** column name */
-  Need = 'need',
-  /** column name */
   ObservedEffects = 'observedEffects',
-  /** column name */
-  Occupation = 'occupation',
   /** column name */
   Pictures = 'pictures',
   /** column name */
@@ -2220,72 +2173,30 @@ export enum Your_Story_Select_Column {
 
 /** input type for updating data in table "your_story" */
 export type Your_Story_Set_Input = {
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Your_Story_Stddev_Fields = {
-  __typename?: 'your_story_stddev_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "your_story" */
-export type Your_Story_Stddev_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Your_Story_Stddev_Pop_Fields = {
-  __typename?: 'your_story_stddev_pop_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "your_story" */
-export type Your_Story_Stddev_Pop_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Your_Story_Stddev_Samp_Fields = {
-  __typename?: 'your_story_stddev_samp_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "your_story" */
-export type Your_Story_Stddev_Samp_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Your_Story_Sum_Fields = {
-  __typename?: 'your_story_sum_fields';
-  age?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "your_story" */
-export type Your_Story_Sum_Order_By = {
-  age?: Maybe<Order_By>;
 };
 
 /** update columns of table "your_story" */
 export enum Your_Story_Update_Column {
   /** column name */
+  About = 'about',
+  /** column name */
   Advise = 'advise',
   /** column name */
-  Age = 'age',
+  Blog = 'blog',
   /** column name */
-  City = 'city',
+  Comments = 'comments',
   /** column name */
   Email = 'email',
   /** column name */
@@ -2293,51 +2204,16 @@ export enum Your_Story_Update_Column {
   /** column name */
   Inspiration = 'inspiration',
   /** column name */
+  Instagram = 'instagram',
+  /** column name */
   Name = 'name',
   /** column name */
-  Need = 'need',
-  /** column name */
   ObservedEffects = 'observedEffects',
-  /** column name */
-  Occupation = 'occupation',
   /** column name */
   Pictures = 'pictures',
   /** column name */
   ProjectIdea = 'projectIdea'
 }
-
-/** aggregate var_pop on columns */
-export type Your_Story_Var_Pop_Fields = {
-  __typename?: 'your_story_var_pop_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "your_story" */
-export type Your_Story_Var_Pop_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Your_Story_Var_Samp_Fields = {
-  __typename?: 'your_story_var_samp_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "your_story" */
-export type Your_Story_Var_Samp_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Your_Story_Variance_Fields = {
-  __typename?: 'your_story_variance_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "your_story" */
-export type Your_Story_Variance_Order_By = {
-  age?: Maybe<Order_By>;
-};
 
 export type EmailFragment = (
   { __typename?: 'Email' }
@@ -2381,7 +2257,7 @@ export type UserFragment = (
 
 export type YourStoryFragment = (
   { __typename?: 'your_story' }
-  & Pick<Your_Story, 'advise' | 'age' | 'city' | 'email' | 'id' | 'inspiration' | 'name' | 'need' | 'observedEffects' | 'occupation' | 'pictures' | 'projectIdea' | 'read_status' | 'featured'>
+  & Pick<Your_Story, 'about' | 'advise' | 'blog' | 'comments' | 'email' | 'id' | 'inspiration' | 'instagram' | 'name' | 'observedEffects' | 'pictures' | 'projectIdea' | 'read_status' | 'featured'>
   & { assigned_to?: Maybe<(
     { __typename?: 'assigned_status_lookup' }
     & Pick<Assigned_Status_Lookup, 'id' | 'user_id'>
@@ -2489,15 +2365,15 @@ export type SendInquiriesMutation = (
 );
 
 export type SendYourStoryMutationVariables = Exact<{
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
 }>;
@@ -2734,16 +2610,16 @@ export const UserFragmentDoc = gql`
     `;
 export const YourStoryFragmentDoc = gql`
     fragment YourStory on your_story {
+  about
   advise
-  age
-  city
+  blog
+  comments
   email
   id
   inspiration
+  instagram
   name
-  need
   observedEffects
-  occupation
   pictures
   projectIdea
   read_status
@@ -2990,9 +2866,9 @@ export type SendInquiriesMutationHookResult = ReturnType<typeof useSendInquiries
 export type SendInquiriesMutationResult = Apollo.MutationResult<SendInquiriesMutation>;
 export type SendInquiriesMutationOptions = Apollo.BaseMutationOptions<SendInquiriesMutation, SendInquiriesMutationVariables>;
 export const SendYourStoryDocument = gql`
-    mutation sendYourStory($advise: String, $age: Int, $city: String, $email: String, $inspiration: String, $name: String, $need: String, $observedEffects: String, $occupation: String, $pictures: String, $projectIdea: String) {
+    mutation sendYourStory($about: String, $advise: String, $blog: String, $comments: String, $email: String, $inspiration: String, $instagram: String, $name: String, $observedEffects: String, $pictures: String, $projectIdea: String) {
   insert_your_story(
-    objects: [{advise: $advise, age: $age, city: $city, email: $email, inspiration: $inspiration, name: $name, need: $need, observedEffects: $observedEffects, occupation: $occupation, pictures: $pictures, projectIdea: $projectIdea}]
+    objects: [{about: $about, advise: $advise, blog: $blog, comments: $comments, email: $email, inspiration: $inspiration, instagram: $instagram, name: $name, observedEffects: $observedEffects, pictures: $pictures, projectIdea: $projectIdea}]
   ) {
     affected_rows
   }
@@ -3013,15 +2889,15 @@ export type SendYourStoryMutationFn = Apollo.MutationFunction<SendYourStoryMutat
  * @example
  * const [sendYourStoryMutation, { data, loading, error }] = useSendYourStoryMutation({
  *   variables: {
+ *      about: // value for 'about'
  *      advise: // value for 'advise'
- *      age: // value for 'age'
- *      city: // value for 'city'
+ *      blog: // value for 'blog'
+ *      comments: // value for 'comments'
  *      email: // value for 'email'
  *      inspiration: // value for 'inspiration'
+ *      instagram: // value for 'instagram'
  *      name: // value for 'name'
- *      need: // value for 'need'
  *      observedEffects: // value for 'observedEffects'
- *      occupation: // value for 'occupation'
  *      pictures: // value for 'pictures'
  *      projectIdea: // value for 'projectIdea'
  *   },

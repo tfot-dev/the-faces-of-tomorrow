@@ -1,14 +1,14 @@
 fragment YourStory on your_story {
+    about
     advise
-    age
-    city
+    blog
+    comments
     email
     id
     inspiration
+    instagram
     name
-    need
     observedEffects
-    occupation
     pictures
     projectIdea
     read_status

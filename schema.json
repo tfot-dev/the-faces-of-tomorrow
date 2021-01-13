@@ -711,146 +711,6 @@
         "__typename": "__Type"
       },
       {
-        "kind": "INPUT_OBJECT",
-        "name": "Int_comparison_exp",
-        "description": "expression to compare columns of type Int. All fields are combined with logical 'AND'.",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_is_null",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_neq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "_nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
         "kind": "OBJECT",
         "name": "Media",
         "description": null,
@@ -7410,18 +7270,6 @@
             "description": "update data of the table: \"your_story\"",
             "args": [
               {
-                "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "your_story_inc_input",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
-              {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
@@ -7465,18 +7313,6 @@
             "name": "update_your_story_by_pk",
             "description": "update single row of the table: \"your_story\"",
             "args": [
-              {
-                "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "your_story_inc_input",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
-                "defaultValue": null,
-                "__typename": "__InputValue"
-              },
               {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
@@ -14485,7 +14321,7 @@
         "description": "columns and relationships of \"your_story\"",
         "fields": [
           {
-            "name": "advise",
+            "name": "about",
             "description": null,
             "args": [],
             "type": {
@@ -14504,7 +14340,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "age",
+            "name": "advise",
             "description": null,
             "args": [],
             "type": {
@@ -14512,7 +14348,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null,
                 "__typename": "__Type"
               },
@@ -14537,18 +14373,27 @@
             "__typename": "__Field"
           },
           {
-            "name": "city",
+            "name": "blog",
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "comments",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
               "__typename": "__Type"
             },
             "isDeprecated": false,
@@ -14627,6 +14472,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "name",
             "description": null,
             "args": [],
@@ -14646,45 +14505,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "need",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null,
-                "__typename": "__Type"
-              },
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "args": [],
             "type": {
@@ -14836,20 +14657,6 @@
         "description": "aggregate fields of \"your_story\"",
         "fields": [
           {
-            "name": "avg",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_avg_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
             "name": "count",
             "description": null,
             "args": [
@@ -14925,104 +14732,6 @@
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__Field"
-          },
-          {
-            "name": "stddev",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_stddev_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "stddev_pop",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_stddev_pop_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "stddev_samp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_stddev_samp_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "sum",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_sum_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "var_pop",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_var_pop_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "var_samp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_var_samp_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "variance",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "your_story_variance_fields",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
           }
         ],
         "inputFields": null,
@@ -15037,18 +14746,6 @@
         "description": "order by aggregate values of table \"your_story\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "avg",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_avg_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
           {
             "name": "count",
             "description": null,
@@ -15079,90 +14776,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "your_story_min_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "stddev",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_stddev_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "stddev_pop",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_stddev_pop_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "stddev_samp",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_stddev_samp_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "sum",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_sum_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "var_pop",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_var_pop_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "var_samp",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_var_samp_order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "variance",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "your_story_variance_order_by",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -15214,56 +14827,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "your_story_on_conflict",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_avg_fields",
-        "description": "aggregate avg on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_avg_order_by",
-        "description": "order by avg() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -15329,7 +14892,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "advise",
+            "name": "about",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -15341,11 +14904,11 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "age",
+            "name": "advise",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "Int_comparison_exp",
+              "name": "String_comparison_exp",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -15365,7 +14928,19 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "city",
+            "name": "blog",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "comments",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -15413,6 +14988,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -15425,31 +15012,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "need",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -15523,36 +15086,12 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "your_story_inc_input",
-        "description": "input type for incrementing integer column in table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "your_story_insert_input",
         "description": "input type for inserting data into table \"your_story\"",
         "fields": null,
         "inputFields": [
           {
-            "name": "advise",
+            "name": "about",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15564,11 +15103,11 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "age",
+            "name": "advise",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -15588,7 +15127,19 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "city",
+            "name": "blog",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "comments",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15636,6 +15187,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -15648,31 +15211,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "need",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15731,6 +15270,20 @@
         "description": "aggregate max on columns",
         "fields": [
           {
+            "name": "about",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "advise",
             "description": null,
             "args": [],
@@ -15745,12 +15298,12 @@
             "__typename": "__Field"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -15759,7 +15312,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": null,
             "args": [],
             "type": {
@@ -15815,6 +15368,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "name",
             "description": null,
             "args": [],
@@ -15829,35 +15396,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "need",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "args": [],
             "type": {
@@ -15912,6 +15451,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "about",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "advise",
             "description": null,
             "type": {
@@ -15924,7 +15475,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -15936,7 +15487,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -15984,6 +15535,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -15996,31 +15559,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "need",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16067,6 +15606,20 @@
         "description": "aggregate min on columns",
         "fields": [
           {
+            "name": "about",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "advise",
             "description": null,
             "args": [],
@@ -16081,12 +15634,12 @@
             "__typename": "__Field"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -16095,7 +15648,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": null,
             "args": [],
             "type": {
@@ -16151,6 +15704,20 @@
             "__typename": "__Field"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "name",
             "description": null,
             "args": [],
@@ -16165,35 +15732,7 @@
             "__typename": "__Field"
           },
           {
-            "name": "need",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "args": [],
             "type": {
@@ -16248,6 +15787,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "about",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "advise",
             "description": null,
             "type": {
@@ -16260,7 +15811,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16272,7 +15823,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16320,6 +15871,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -16332,31 +15895,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "need",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16573,7 +16112,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "advise",
+            "name": "about",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16585,7 +16124,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "age",
+            "name": "advise",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16609,7 +16148,19 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "city",
+            "name": "blog",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
+            "name": "comments",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16657,6 +16208,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -16669,31 +16232,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "need",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -16784,6 +16323,13 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "about",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "advise",
             "description": "column name",
             "isDeprecated": false,
@@ -16791,14 +16337,14 @@
             "__typename": "__EnumValue"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__EnumValue"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
@@ -16826,6 +16372,13 @@
             "__typename": "__EnumValue"
           },
           {
+            "name": "instagram",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "name",
             "description": "column name",
             "isDeprecated": false,
@@ -16833,21 +16386,7 @@
             "__typename": "__EnumValue"
           },
           {
-            "name": "need",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__EnumValue"
-          },
-          {
             "name": "observedEffects",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__EnumValue"
-          },
-          {
-            "name": "occupation",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
@@ -16878,6 +16417,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "about",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "advise",
             "description": null,
             "type": {
@@ -16890,11 +16441,11 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null,
               "__typename": "__Type"
             },
@@ -16902,7 +16453,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -16950,6 +16501,18 @@
             "__typename": "__InputValue"
           },
           {
+            "name": "instagram",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "defaultValue": null,
+            "__typename": "__InputValue"
+          },
+          {
             "name": "name",
             "description": null,
             "type": {
@@ -16962,31 +16525,7 @@
             "__typename": "__InputValue"
           },
           {
-            "name": "need",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
             "name": "observedEffects",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          },
-          {
-            "name": "occupation",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17028,206 +16567,6 @@
         "__typename": "__Type"
       },
       {
-        "kind": "OBJECT",
-        "name": "your_story_stddev_fields",
-        "description": "aggregate stddev on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_stddev_order_by",
-        "description": "order by stddev() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_stddev_pop_fields",
-        "description": "aggregate stddev_pop on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_stddev_samp_fields",
-        "description": "aggregate stddev_samp on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_sum_fields",
-        "description": "aggregate sum on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_sum_order_by",
-        "description": "order by sum() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
         "kind": "ENUM",
         "name": "your_story_update_column",
         "description": "update columns of table \"your_story\"",
@@ -17236,6 +16575,13 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "about",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "advise",
             "description": "column name",
             "isDeprecated": false,
@@ -17243,14 +16589,14 @@
             "__typename": "__EnumValue"
           },
           {
-            "name": "age",
+            "name": "blog",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
             "__typename": "__EnumValue"
           },
           {
-            "name": "city",
+            "name": "comments",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
@@ -17278,6 +16624,13 @@
             "__typename": "__EnumValue"
           },
           {
+            "name": "instagram",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__EnumValue"
+          },
+          {
             "name": "name",
             "description": "column name",
             "isDeprecated": false,
@@ -17285,21 +16638,7 @@
             "__typename": "__EnumValue"
           },
           {
-            "name": "need",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__EnumValue"
-          },
-          {
             "name": "observedEffects",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__EnumValue"
-          },
-          {
-            "name": "occupation",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null,
@@ -17320,156 +16659,6 @@
             "__typename": "__EnumValue"
           }
         ],
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_var_pop_fields",
-        "description": "aggregate var_pop on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_var_samp_fields",
-        "description": "aggregate var_samp on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "your_story_variance_fields",
-        "description": "aggregate variance on columns",
-        "fields": [
-          {
-            "name": "age",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "__typename": "__Field"
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null,
-        "__typename": "__Type"
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "your_story_variance_order_by",
-        "description": "order by variance() on columns of table \"your_story\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "age",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null,
-              "__typename": "__Type"
-            },
-            "defaultValue": null,
-            "__typename": "__InputValue"
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null,
         "__typename": "__Type"
       }
