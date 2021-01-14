@@ -71,19 +71,6 @@ export type GetPostsOutput = {
   timestamp: Scalars['String'];
 };
 
-/** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
-export type Int_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Int']>;
-  _gt?: Maybe<Scalars['Int']>;
-  _gte?: Maybe<Scalars['Int']>;
-  _in?: Maybe<Array<Scalars['Int']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Int']>;
-  _lte?: Maybe<Scalars['Int']>;
-  _neq?: Maybe<Scalars['Int']>;
-  _nin?: Maybe<Array<Scalars['Int']>>;
-};
-
 export type Media = {
   __typename?: 'Media';
   id: Scalars['String'];
@@ -93,8 +80,8 @@ export type Media = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  deleteEmail?: Maybe<Array<Maybe<Email>>>;
-  sendEmail?: Maybe<Array<Maybe<Email>>>;
+  deleteEmail?: Maybe<ResponseStatus>;
+  sendEmail?: Maybe<SendEmailResponse>;
 };
 
 
@@ -129,7 +116,7 @@ export type Query = {
   getEmail?: Maybe<EmailContent>;
   post?: Maybe<Post>;
   posts: Array<Maybe<Post>>;
-  sentEmails: Array<Maybe<SentEmail>>;
+  sentEmails: Array<Maybe<Email>>;
 };
 
 
@@ -143,25 +130,25 @@ export type QueryPostArgs = {
   id: Scalars['String'];
 };
 
-export type SentEmail = {
-  __typename?: 'SentEmail';
-  calendarType: Scalars['Int'];
-  flagid: Scalars['String'];
-  folderId: Scalars['String'];
-  fromAddress: Scalars['String'];
-  hasAttachment: Scalars['String'];
-  hasInline: Scalars['String'];
-  messageId: Scalars['String'];
-  priority: Scalars['String'];
-  receivedTime: Scalars['String'];
-  sender: Scalars['String'];
-  sentDateInGMT: Scalars['String'];
-  size: Scalars['String'];
-  status: Scalars['String'];
-  status2: Scalars['String'];
-  subject: Scalars['String'];
-  summary: Scalars['String'];
-  toAddress: Scalars['String'];
+export type ResponseStatus = {
+  __typename?: 'ResponseStatus';
+  code?: Maybe<Scalars['Int']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+export type SendEmailData = {
+  __typename?: 'SendEmailData';
+  content?: Maybe<Scalars['String']>;
+  fromAddress?: Maybe<Scalars['String']>;
+  messageId?: Maybe<Scalars['String']>;
+  subject?: Maybe<Scalars['String']>;
+  toAddress?: Maybe<Scalars['String']>;
+};
+
+export type SendEmailResponse = {
+  __typename?: 'SendEmailResponse';
+  data?: Maybe<SendEmailData>;
+  status?: Maybe<ResponseStatus>;
 };
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -329,6 +316,137 @@ export type Auth0_Profile = {
   id?: Maybe<Scalars['String']>;
   picture?: Maybe<Scalars['String']>;
 };
+
+/** columns and relationships of "featured_story_lookup" */
+export type Featured_Story_Lookup = {
+  __typename?: 'featured_story_lookup';
+  id: Scalars['uuid'];
+};
+
+/** aggregated selection of "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate = {
+  __typename?: 'featured_story_lookup_aggregate';
+  aggregate?: Maybe<Featured_Story_Lookup_Aggregate_Fields>;
+  nodes: Array<Featured_Story_Lookup>;
+};
+
+/** aggregate fields of "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate_Fields = {
+  __typename?: 'featured_story_lookup_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Featured_Story_Lookup_Max_Fields>;
+  min?: Maybe<Featured_Story_Lookup_Min_Fields>;
+};
+
+
+/** aggregate fields of "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "featured_story_lookup" */
+export type Featured_Story_Lookup_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Featured_Story_Lookup_Max_Order_By>;
+  min?: Maybe<Featured_Story_Lookup_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "featured_story_lookup" */
+export type Featured_Story_Lookup_Arr_Rel_Insert_Input = {
+  data: Array<Featured_Story_Lookup_Insert_Input>;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "featured_story_lookup". All fields are combined with a logical 'AND'. */
+export type Featured_Story_Lookup_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Featured_Story_Lookup_Bool_Exp>>>;
+  _not?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Featured_Story_Lookup_Bool_Exp>>>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "featured_story_lookup" */
+export enum Featured_Story_Lookup_Constraint {
+  /** unique or primary key constraint */
+  FeaturedStoryPkey = 'featured_story_pkey'
+}
+
+/** input type for inserting data into table "featured_story_lookup" */
+export type Featured_Story_Lookup_Insert_Input = {
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Featured_Story_Lookup_Max_Fields = {
+  __typename?: 'featured_story_lookup_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "featured_story_lookup" */
+export type Featured_Story_Lookup_Max_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Featured_Story_Lookup_Min_Fields = {
+  __typename?: 'featured_story_lookup_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "featured_story_lookup" */
+export type Featured_Story_Lookup_Min_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "featured_story_lookup" */
+export type Featured_Story_Lookup_Mutation_Response = {
+  __typename?: 'featured_story_lookup_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Featured_Story_Lookup>;
+};
+
+/** input type for inserting object relation for remote table "featured_story_lookup" */
+export type Featured_Story_Lookup_Obj_Rel_Insert_Input = {
+  data: Featured_Story_Lookup_Insert_Input;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
+};
+
+/** on conflict condition type for table "featured_story_lookup" */
+export type Featured_Story_Lookup_On_Conflict = {
+  constraint: Featured_Story_Lookup_Constraint;
+  update_columns: Array<Featured_Story_Lookup_Update_Column>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "featured_story_lookup" */
+export type Featured_Story_Lookup_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: "featured_story_lookup" */
+export type Featured_Story_Lookup_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "featured_story_lookup" */
+export enum Featured_Story_Lookup_Select_Column {
+  /** column name */
+  Id = 'id'
+}
+
+/** input type for updating data in table "featured_story_lookup" */
+export type Featured_Story_Lookup_Set_Input = {
+  id?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "featured_story_lookup" */
+export enum Featured_Story_Lookup_Update_Column {
+  /** column name */
+  Id = 'id'
+}
 
 /** columns and relationships of "inquiries" */
 export type Inquiries = {
@@ -532,9 +650,13 @@ export type Json_Comparison_Exp = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  deleteEmail?: Maybe<Array<Maybe<Email>>>;
+  deleteEmail?: Maybe<ResponseStatus>;
   /** delete data from the table: "assigned_status_lookup" */
   delete_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
+  /** delete data from the table: "featured_story_lookup" */
+  delete_featured_story_lookup?: Maybe<Featured_Story_Lookup_Mutation_Response>;
+  /** delete single row from the table: "featured_story_lookup" */
+  delete_featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   /** delete data from the table: "inquiries" */
   delete_inquiries?: Maybe<Inquiries_Mutation_Response>;
   /** delete single row from the table: "inquiries" */
@@ -555,6 +677,10 @@ export type Mutation_Root = {
   insert_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
   /** insert a single row into the table: "assigned_status_lookup" */
   insert_assigned_status_lookup_one?: Maybe<Assigned_Status_Lookup>;
+  /** insert data into the table: "featured_story_lookup" */
+  insert_featured_story_lookup?: Maybe<Featured_Story_Lookup_Mutation_Response>;
+  /** insert a single row into the table: "featured_story_lookup" */
+  insert_featured_story_lookup_one?: Maybe<Featured_Story_Lookup>;
   /** insert a single row into the table: "inquiries" */
   insert_inquiries_one?: Maybe<Inquiries>;
   /** insert a single row into the table: "read_status_lookup" */
@@ -571,13 +697,17 @@ export type Mutation_Root = {
   insert_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** insert a single row into the table: "your_story" */
   insert_your_story_one?: Maybe<Your_Story>;
-  sendEmail?: Maybe<Array<Maybe<Email>>>;
+  sendEmail?: Maybe<SendEmailResponse>;
   /** insert data into the table: "inquiries" */
   sendInquiries?: Maybe<Inquiries_Mutation_Response>;
   /** insert data into the table: "read_status_lookup" */
   setReadStatus?: Maybe<Read_Status_Lookup_Mutation_Response>;
   /** update data of the table: "assigned_status_lookup" */
   update_assigned_status_lookup?: Maybe<Assigned_Status_Lookup_Mutation_Response>;
+  /** update data of the table: "featured_story_lookup" */
+  update_featured_story_lookup?: Maybe<Featured_Story_Lookup_Mutation_Response>;
+  /** update single row of the table: "featured_story_lookup" */
+  update_featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   /** update data of the table: "inquiries" */
   update_inquiries?: Maybe<Inquiries_Mutation_Response>;
   /** update single row of the table: "inquiries" */
@@ -607,6 +737,18 @@ export type Mutation_RootDeleteEmailArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Assigned_Status_LookupArgs = {
   where: Assigned_Status_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Featured_Story_LookupArgs = {
+  where: Featured_Story_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Featured_Story_Lookup_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -669,6 +811,20 @@ export type Mutation_RootInsert_Assigned_Status_LookupArgs = {
 export type Mutation_RootInsert_Assigned_Status_Lookup_OneArgs = {
   object: Assigned_Status_Lookup_Insert_Input;
   on_conflict?: Maybe<Assigned_Status_Lookup_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Featured_Story_LookupArgs = {
+  objects: Array<Featured_Story_Lookup_Insert_Input>;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Featured_Story_Lookup_OneArgs = {
+  object: Featured_Story_Lookup_Insert_Input;
+  on_conflict?: Maybe<Featured_Story_Lookup_On_Conflict>;
 };
 
 
@@ -756,6 +912,20 @@ export type Mutation_RootUpdate_Assigned_Status_LookupArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Featured_Story_LookupArgs = {
+  _set?: Maybe<Featured_Story_Lookup_Set_Input>;
+  where: Featured_Story_Lookup_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Featured_Story_Lookup_By_PkArgs = {
+  _set?: Maybe<Featured_Story_Lookup_Set_Input>;
+  pk_columns: Featured_Story_Lookup_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_InquiriesArgs = {
   _set?: Maybe<Inquiries_Set_Input>;
   where: Inquiries_Bool_Exp;
@@ -799,7 +969,6 @@ export type Mutation_RootUpdate_Written_StoryArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Your_StoryArgs = {
-  _inc?: Maybe<Your_Story_Inc_Input>;
   _set?: Maybe<Your_Story_Set_Input>;
   where: Your_Story_Bool_Exp;
 };
@@ -807,7 +976,6 @@ export type Mutation_RootUpdate_Your_StoryArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Your_Story_By_PkArgs = {
-  _inc?: Maybe<Your_Story_Inc_Input>;
   _set?: Maybe<Your_Story_Set_Input>;
   pk_columns: Your_Story_Pk_Columns_Input;
 };
@@ -838,6 +1006,12 @@ export type Query_Root = {
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
   emails: Array<Maybe<Email>>;
+  /** fetch data from the table: "featured_story_lookup" */
+  featured_story_lookup: Array<Featured_Story_Lookup>;
+  /** fetch aggregated fields from the table: "featured_story_lookup" */
+  featured_story_lookup_aggregate: Featured_Story_Lookup_Aggregate;
+  /** fetch data from the table: "featured_story_lookup" using primary key columns */
+  featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   getEmail?: Maybe<EmailContent>;
   /** fetch data from the table: "inquiries" */
   getInquiries: Array<Inquiries>;
@@ -851,7 +1025,7 @@ export type Query_Root = {
   read_status_lookup: Array<Read_Status_Lookup>;
   /** fetch aggregated fields from the table: "read_status_lookup" */
   read_status_lookup_aggregate: Read_Status_Lookup_Aggregate;
-  sentEmails: Array<Maybe<SentEmail>>;
+  sentEmails: Array<Maybe<Email>>;
   /** fetch data from the table: "users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "users" */
@@ -888,6 +1062,32 @@ export type Query_RootAssigned_Status_Lookup_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
   where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootFeatured_Story_LookupArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootFeatured_Story_Lookup_AggregateArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootFeatured_Story_Lookup_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1146,6 +1346,12 @@ export type Subscription_Root = {
   assigned_status_lookup_aggregate: Assigned_Status_Lookup_Aggregate;
   /** perform the action: "auth0" */
   auth0?: Maybe<Auth0_Profile>;
+  /** fetch data from the table: "featured_story_lookup" */
+  featured_story_lookup: Array<Featured_Story_Lookup>;
+  /** fetch aggregated fields from the table: "featured_story_lookup" */
+  featured_story_lookup_aggregate: Featured_Story_Lookup_Aggregate;
+  /** fetch data from the table: "featured_story_lookup" using primary key columns */
+  featured_story_lookup_by_pk?: Maybe<Featured_Story_Lookup>;
   /** fetch data from the table: "inquiries" */
   getInquiries: Array<Inquiries>;
   /** fetch aggregated fields from the table: "inquiries" */
@@ -1192,6 +1398,32 @@ export type Subscription_RootAssigned_Status_Lookup_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Assigned_Status_Lookup_Order_By>>;
   where?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootFeatured_Story_LookupArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootFeatured_Story_Lookup_AggregateArgs = {
+  distinct_on?: Maybe<Array<Featured_Story_Lookup_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Featured_Story_Lookup_Order_By>>;
+  where?: Maybe<Featured_Story_Lookup_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootFeatured_Story_Lookup_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
@@ -1333,9 +1565,9 @@ export type Users = {
   auth0_id: Scalars['String'];
   created_at: Scalars['timestamptz'];
   email_id: Scalars['String'];
-  id: Scalars['String'];
   last_seen?: Maybe<Scalars['timestamptz']>;
   name: Scalars['String'];
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "users" */
@@ -1382,9 +1614,9 @@ export type Users_Bool_Exp = {
   auth0_id?: Maybe<String_Comparison_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   email_id?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<String_Comparison_Exp>;
   last_seen?: Maybe<Timestamptz_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
+  picture?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "users" */
@@ -1401,9 +1633,9 @@ export type Users_Insert_Input = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -1412,9 +1644,9 @@ export type Users_Max_Fields = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "users" */
@@ -1422,9 +1654,9 @@ export type Users_Max_Order_By = {
   auth0_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   email_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
   last_seen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  picture?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -1433,9 +1665,9 @@ export type Users_Min_Fields = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "users" */
@@ -1443,9 +1675,9 @@ export type Users_Min_Order_By = {
   auth0_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   email_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
   last_seen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  picture?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "users" */
@@ -1476,9 +1708,9 @@ export type Users_Order_By = {
   auth0_id?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   email_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
   last_seen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
+  picture?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: "users" */
@@ -1497,11 +1729,11 @@ export enum Users_Select_Column {
   /** column name */
   EmailId = 'email_id',
   /** column name */
-  Id = 'id',
-  /** column name */
   LastSeen = 'last_seen',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Picture = 'picture'
 }
 
 /** input type for updating data in table "users" */
@@ -1510,9 +1742,9 @@ export type Users_Set_Input = {
   auth0_id?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email_id?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
   last_seen?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
@@ -1526,11 +1758,11 @@ export enum Users_Update_Column {
   /** column name */
   EmailId = 'email_id',
   /** column name */
-  Id = 'id',
-  /** column name */
   LastSeen = 'last_seen',
   /** column name */
-  Name = 'name'
+  Name = 'name',
+  /** column name */
+  Picture = 'picture'
 }
 
 
@@ -1698,18 +1930,20 @@ export enum Written_Story_Update_Column {
 /** columns and relationships of "your_story" */
 export type Your_Story = {
   __typename?: 'your_story';
+  about: Scalars['String'];
   advise: Scalars['String'];
-  age: Scalars['Int'];
   /** An object relationship */
   assigned_to?: Maybe<Assigned_Status_Lookup>;
-  city: Scalars['String'];
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email: Scalars['String'];
+  /** A computed field, executes function "featured_story" */
+  featured?: Maybe<Scalars['Boolean']>;
   id: Scalars['uuid'];
   inspiration: Scalars['String'];
+  instagram?: Maybe<Scalars['String']>;
   name: Scalars['String'];
-  need: Scalars['String'];
   observedEffects: Scalars['String'];
-  occupation: Scalars['String'];
   pictures: Scalars['String'];
   projectIdea: Scalars['String'];
   /** A computed field, executes function "read_your_story" */
@@ -1728,17 +1962,9 @@ export type Your_Story_Aggregate = {
 /** aggregate fields of "your_story" */
 export type Your_Story_Aggregate_Fields = {
   __typename?: 'your_story_aggregate_fields';
-  avg?: Maybe<Your_Story_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
   max?: Maybe<Your_Story_Max_Fields>;
   min?: Maybe<Your_Story_Min_Fields>;
-  stddev?: Maybe<Your_Story_Stddev_Fields>;
-  stddev_pop?: Maybe<Your_Story_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Your_Story_Stddev_Samp_Fields>;
-  sum?: Maybe<Your_Story_Sum_Fields>;
-  var_pop?: Maybe<Your_Story_Var_Pop_Fields>;
-  var_samp?: Maybe<Your_Story_Var_Samp_Fields>;
-  variance?: Maybe<Your_Story_Variance_Fields>;
 };
 
 
@@ -1750,17 +1976,9 @@ export type Your_Story_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "your_story" */
 export type Your_Story_Aggregate_Order_By = {
-  avg?: Maybe<Your_Story_Avg_Order_By>;
   count?: Maybe<Order_By>;
   max?: Maybe<Your_Story_Max_Order_By>;
   min?: Maybe<Your_Story_Min_Order_By>;
-  stddev?: Maybe<Your_Story_Stddev_Order_By>;
-  stddev_pop?: Maybe<Your_Story_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Your_Story_Stddev_Samp_Order_By>;
-  sum?: Maybe<Your_Story_Sum_Order_By>;
-  var_pop?: Maybe<Your_Story_Var_Pop_Order_By>;
-  var_samp?: Maybe<Your_Story_Var_Samp_Order_By>;
-  variance?: Maybe<Your_Story_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "your_story" */
@@ -1769,33 +1987,22 @@ export type Your_Story_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Your_Story_On_Conflict>;
 };
 
-/** aggregate avg on columns */
-export type Your_Story_Avg_Fields = {
-  __typename?: 'your_story_avg_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "your_story" */
-export type Your_Story_Avg_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
 /** Boolean expression to filter rows from the table "your_story". All fields are combined with a logical 'AND'. */
 export type Your_Story_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Your_Story_Bool_Exp>>>;
   _not?: Maybe<Your_Story_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Your_Story_Bool_Exp>>>;
+  about?: Maybe<String_Comparison_Exp>;
   advise?: Maybe<String_Comparison_Exp>;
-  age?: Maybe<Int_Comparison_Exp>;
   assigned_to?: Maybe<Assigned_Status_Lookup_Bool_Exp>;
-  city?: Maybe<String_Comparison_Exp>;
+  blog?: Maybe<String_Comparison_Exp>;
+  comments?: Maybe<String_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   inspiration?: Maybe<String_Comparison_Exp>;
+  instagram?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  need?: Maybe<String_Comparison_Exp>;
   observedEffects?: Maybe<String_Comparison_Exp>;
-  occupation?: Maybe<String_Comparison_Exp>;
   pictures?: Maybe<String_Comparison_Exp>;
   projectIdea?: Maybe<String_Comparison_Exp>;
   written_story?: Maybe<Written_Story_Bool_Exp>;
@@ -1807,24 +2014,19 @@ export enum Your_Story_Constraint {
   YourStoryPkey = 'YourStory_pkey'
 }
 
-/** input type for incrementing integer column in table "your_story" */
-export type Your_Story_Inc_Input = {
-  age?: Maybe<Scalars['Int']>;
-};
-
 /** input type for inserting data into table "your_story" */
 export type Your_Story_Insert_Input = {
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
   assigned_to?: Maybe<Assigned_Status_Lookup_Obj_Rel_Insert_Input>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
   written_story?: Maybe<Written_Story_Obj_Rel_Insert_Input>;
@@ -1833,32 +2035,32 @@ export type Your_Story_Insert_Input = {
 /** aggregate max on columns */
 export type Your_Story_Max_Fields = {
   __typename?: 'your_story_max_fields';
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "your_story" */
 export type Your_Story_Max_Order_By = {
+  about?: Maybe<Order_By>;
   advise?: Maybe<Order_By>;
-  age?: Maybe<Order_By>;
-  city?: Maybe<Order_By>;
+  blog?: Maybe<Order_By>;
+  comments?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inspiration?: Maybe<Order_By>;
+  instagram?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  need?: Maybe<Order_By>;
   observedEffects?: Maybe<Order_By>;
-  occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
 };
@@ -1866,32 +2068,32 @@ export type Your_Story_Max_Order_By = {
 /** aggregate min on columns */
 export type Your_Story_Min_Fields = {
   __typename?: 'your_story_min_fields';
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "your_story" */
 export type Your_Story_Min_Order_By = {
+  about?: Maybe<Order_By>;
   advise?: Maybe<Order_By>;
-  age?: Maybe<Order_By>;
-  city?: Maybe<Order_By>;
+  blog?: Maybe<Order_By>;
+  comments?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inspiration?: Maybe<Order_By>;
+  instagram?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  need?: Maybe<Order_By>;
   observedEffects?: Maybe<Order_By>;
-  occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
 };
@@ -1920,17 +2122,17 @@ export type Your_Story_On_Conflict = {
 
 /** ordering options when selecting data from "your_story" */
 export type Your_Story_Order_By = {
+  about?: Maybe<Order_By>;
   advise?: Maybe<Order_By>;
-  age?: Maybe<Order_By>;
   assigned_to?: Maybe<Assigned_Status_Lookup_Order_By>;
-  city?: Maybe<Order_By>;
+  blog?: Maybe<Order_By>;
+  comments?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   inspiration?: Maybe<Order_By>;
+  instagram?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  need?: Maybe<Order_By>;
   observedEffects?: Maybe<Order_By>;
-  occupation?: Maybe<Order_By>;
   pictures?: Maybe<Order_By>;
   projectIdea?: Maybe<Order_By>;
   written_story?: Maybe<Written_Story_Order_By>;
@@ -1944,11 +2146,13 @@ export type Your_Story_Pk_Columns_Input = {
 /** select columns of table "your_story" */
 export enum Your_Story_Select_Column {
   /** column name */
+  About = 'about',
+  /** column name */
   Advise = 'advise',
   /** column name */
-  Age = 'age',
+  Blog = 'blog',
   /** column name */
-  City = 'city',
+  Comments = 'comments',
   /** column name */
   Email = 'email',
   /** column name */
@@ -1956,13 +2160,11 @@ export enum Your_Story_Select_Column {
   /** column name */
   Inspiration = 'inspiration',
   /** column name */
+  Instagram = 'instagram',
+  /** column name */
   Name = 'name',
   /** column name */
-  Need = 'need',
-  /** column name */
   ObservedEffects = 'observedEffects',
-  /** column name */
-  Occupation = 'occupation',
   /** column name */
   Pictures = 'pictures',
   /** column name */
@@ -1971,72 +2173,30 @@ export enum Your_Story_Select_Column {
 
 /** input type for updating data in table "your_story" */
 export type Your_Story_Set_Input = {
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Your_Story_Stddev_Fields = {
-  __typename?: 'your_story_stddev_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "your_story" */
-export type Your_Story_Stddev_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Your_Story_Stddev_Pop_Fields = {
-  __typename?: 'your_story_stddev_pop_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "your_story" */
-export type Your_Story_Stddev_Pop_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Your_Story_Stddev_Samp_Fields = {
-  __typename?: 'your_story_stddev_samp_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "your_story" */
-export type Your_Story_Stddev_Samp_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Your_Story_Sum_Fields = {
-  __typename?: 'your_story_sum_fields';
-  age?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "your_story" */
-export type Your_Story_Sum_Order_By = {
-  age?: Maybe<Order_By>;
 };
 
 /** update columns of table "your_story" */
 export enum Your_Story_Update_Column {
   /** column name */
+  About = 'about',
+  /** column name */
   Advise = 'advise',
   /** column name */
-  Age = 'age',
+  Blog = 'blog',
   /** column name */
-  City = 'city',
+  Comments = 'comments',
   /** column name */
   Email = 'email',
   /** column name */
@@ -2044,51 +2204,16 @@ export enum Your_Story_Update_Column {
   /** column name */
   Inspiration = 'inspiration',
   /** column name */
+  Instagram = 'instagram',
+  /** column name */
   Name = 'name',
   /** column name */
-  Need = 'need',
-  /** column name */
   ObservedEffects = 'observedEffects',
-  /** column name */
-  Occupation = 'occupation',
   /** column name */
   Pictures = 'pictures',
   /** column name */
   ProjectIdea = 'projectIdea'
 }
-
-/** aggregate var_pop on columns */
-export type Your_Story_Var_Pop_Fields = {
-  __typename?: 'your_story_var_pop_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "your_story" */
-export type Your_Story_Var_Pop_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Your_Story_Var_Samp_Fields = {
-  __typename?: 'your_story_var_samp_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "your_story" */
-export type Your_Story_Var_Samp_Order_By = {
-  age?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Your_Story_Variance_Fields = {
-  __typename?: 'your_story_variance_fields';
-  age?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "your_story" */
-export type Your_Story_Variance_Order_By = {
-  age?: Maybe<Order_By>;
-};
 
 export type EmailFragment = (
   { __typename?: 'Email' }
@@ -2114,19 +2239,25 @@ export type PostFragment = (
   )>> }
 );
 
-export type SentEmailFragment = (
-  { __typename?: 'SentEmail' }
-  & Pick<SentEmail, 'calendarType' | 'flagid' | 'folderId' | 'fromAddress' | 'hasAttachment' | 'hasInline' | 'messageId' | 'priority' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'size' | 'status' | 'status2' | 'subject' | 'summary' | 'toAddress'>
+export type SendEmailFragment = (
+  { __typename?: 'SendEmailResponse' }
+  & { data?: Maybe<(
+    { __typename?: 'SendEmailData' }
+    & Pick<SendEmailData, 'content' | 'fromAddress' | 'subject' | 'messageId' | 'toAddress'>
+  )>, status?: Maybe<(
+    { __typename?: 'ResponseStatus' }
+    & Pick<ResponseStatus, 'description' | 'code'>
+  )> }
 );
 
 export type UserFragment = (
   { __typename?: 'users' }
-  & Pick<Users, 'id' | 'name' | 'email_id' | 'admin' | 'auth0_id'>
+  & Pick<Users, 'name' | 'email_id' | 'admin' | 'auth0_id' | 'picture'>
 );
 
 export type YourStoryFragment = (
   { __typename?: 'your_story' }
-  & Pick<Your_Story, 'advise' | 'age' | 'city' | 'email' | 'id' | 'inspiration' | 'name' | 'need' | 'observedEffects' | 'occupation' | 'pictures' | 'projectIdea' | 'read_status'>
+  & Pick<Your_Story, 'about' | 'advise' | 'blog' | 'comments' | 'email' | 'id' | 'inspiration' | 'instagram' | 'name' | 'observedEffects' | 'pictures' | 'projectIdea' | 'read_status' | 'featured'>
   & { assigned_to?: Maybe<(
     { __typename?: 'assigned_status_lookup' }
     & Pick<Assigned_Status_Lookup, 'id' | 'user_id'>
@@ -2163,6 +2294,32 @@ export type DeleteAssignedStatusMutation = (
   )> }
 );
 
+export type FeatureStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type FeatureStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_featured_story_lookup?: Maybe<(
+    { __typename?: 'featured_story_lookup_mutation_response' }
+    & Pick<Featured_Story_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UnfeatureStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type UnfeatureStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_featured_story_lookup?: Maybe<(
+    { __typename?: 'featured_story_lookup_mutation_response' }
+    & Pick<Featured_Story_Lookup_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type ReadStatusMutationVariables = Exact<{
   id: Scalars['uuid'];
   user_id: Scalars['String'];
@@ -2186,10 +2343,10 @@ export type SendEmailMutationVariables = Exact<{
 
 export type SendEmailMutation = (
   { __typename?: 'mutation_root' }
-  & { sendEmail?: Maybe<Array<Maybe<(
-    { __typename?: 'Email' }
-    & EmailFragment
-  )>>> }
+  & { sendEmail?: Maybe<(
+    { __typename?: 'SendEmailResponse' }
+    & SendEmailFragment
+  )> }
 );
 
 export type SendInquiriesMutationVariables = Exact<{
@@ -2208,15 +2365,15 @@ export type SendInquiriesMutation = (
 );
 
 export type SendYourStoryMutationVariables = Exact<{
+  about?: Maybe<Scalars['String']>;
   advise?: Maybe<Scalars['String']>;
-  age?: Maybe<Scalars['Int']>;
-  city?: Maybe<Scalars['String']>;
+  blog?: Maybe<Scalars['String']>;
+  comments?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   inspiration?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  need?: Maybe<Scalars['String']>;
   observedEffects?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   pictures?: Maybe<Scalars['String']>;
   projectIdea?: Maybe<Scalars['String']>;
 }>;
@@ -2337,8 +2494,8 @@ export type GetSentEmailsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetSentEmailsQuery = (
   { __typename?: 'query_root' }
   & { sentEmails: Array<Maybe<(
-    { __typename?: 'SentEmail' }
-    & SentEmailFragment
+    { __typename?: 'Email' }
+    & EmailFragment
   )>> }
 );
 
@@ -2427,48 +2584,42 @@ export const PostFragmentDoc = gql`
   permalink
 }
     `;
-export const SentEmailFragmentDoc = gql`
-    fragment SentEmail on SentEmail {
-  calendarType
-  flagid
-  folderId
-  fromAddress
-  hasAttachment
-  hasInline
-  messageId
-  priority
-  receivedTime
-  sender
-  sentDateInGMT
-  size
-  status
-  status2
-  subject
-  summary
-  toAddress
+export const SendEmailFragmentDoc = gql`
+    fragment SendEmail on SendEmailResponse {
+  data {
+    content
+    fromAddress
+    subject
+    messageId
+    toAddress
+  }
+  status {
+    description
+    code
+  }
 }
     `;
 export const UserFragmentDoc = gql`
     fragment User on users {
-  id
   name
   email_id
   admin
   auth0_id
+  picture
 }
     `;
 export const YourStoryFragmentDoc = gql`
     fragment YourStory on your_story {
+  about
   advise
-  age
-  city
+  blog
+  comments
   email
   id
   inspiration
+  instagram
   name
-  need
   observedEffects
-  occupation
   pictures
   projectIdea
   read_status
@@ -2481,6 +2632,7 @@ export const YourStoryFragmentDoc = gql`
     story
     ready
   }
+  featured
 }
     `;
 export const SetAssignedStatusDocument = gql`
@@ -2548,6 +2700,70 @@ export function useDeleteAssignedStatusMutation(baseOptions?: Apollo.MutationHoo
 export type DeleteAssignedStatusMutationHookResult = ReturnType<typeof useDeleteAssignedStatusMutation>;
 export type DeleteAssignedStatusMutationResult = Apollo.MutationResult<DeleteAssignedStatusMutation>;
 export type DeleteAssignedStatusMutationOptions = Apollo.BaseMutationOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
+export const FeatureStoryDocument = gql`
+    mutation featureStory($id: uuid!) {
+  insert_featured_story_lookup(objects: {id: $id}) {
+    affected_rows
+  }
+}
+    `;
+export type FeatureStoryMutationFn = Apollo.MutationFunction<FeatureStoryMutation, FeatureStoryMutationVariables>;
+
+/**
+ * __useFeatureStoryMutation__
+ *
+ * To run a mutation, you first call `useFeatureStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useFeatureStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [featureStoryMutation, { data, loading, error }] = useFeatureStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFeatureStoryMutation(baseOptions?: Apollo.MutationHookOptions<FeatureStoryMutation, FeatureStoryMutationVariables>) {
+        return Apollo.useMutation<FeatureStoryMutation, FeatureStoryMutationVariables>(FeatureStoryDocument, baseOptions);
+      }
+export type FeatureStoryMutationHookResult = ReturnType<typeof useFeatureStoryMutation>;
+export type FeatureStoryMutationResult = Apollo.MutationResult<FeatureStoryMutation>;
+export type FeatureStoryMutationOptions = Apollo.BaseMutationOptions<FeatureStoryMutation, FeatureStoryMutationVariables>;
+export const UnfeatureStoryDocument = gql`
+    mutation unfeatureStory($id: uuid!) {
+  delete_featured_story_lookup(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+export type UnfeatureStoryMutationFn = Apollo.MutationFunction<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>;
+
+/**
+ * __useUnfeatureStoryMutation__
+ *
+ * To run a mutation, you first call `useUnfeatureStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnfeatureStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unfeatureStoryMutation, { data, loading, error }] = useUnfeatureStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUnfeatureStoryMutation(baseOptions?: Apollo.MutationHookOptions<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>) {
+        return Apollo.useMutation<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>(UnfeatureStoryDocument, baseOptions);
+      }
+export type UnfeatureStoryMutationHookResult = ReturnType<typeof useUnfeatureStoryMutation>;
+export type UnfeatureStoryMutationResult = Apollo.MutationResult<UnfeatureStoryMutation>;
+export type UnfeatureStoryMutationOptions = Apollo.BaseMutationOptions<UnfeatureStoryMutation, UnfeatureStoryMutationVariables>;
 export const ReadStatusDocument = gql`
     mutation readStatus($id: uuid!, $user_id: String!) {
   setReadStatus(objects: {id: $id, user_id: $user_id}) {
@@ -2584,10 +2800,10 @@ export type ReadStatusMutationOptions = Apollo.BaseMutationOptions<ReadStatusMut
 export const SendEmailDocument = gql`
     mutation sendEmail($toAddress: String!, $subject: String!, $message: String!) {
   sendEmail(toAddress: $toAddress, subject: $subject, message: $message) {
-    ...Email
+    ...SendEmail
   }
 }
-    ${EmailFragmentDoc}`;
+    ${SendEmailFragmentDoc}`;
 export type SendEmailMutationFn = Apollo.MutationFunction<SendEmailMutation, SendEmailMutationVariables>;
 
 /**
@@ -2650,9 +2866,9 @@ export type SendInquiriesMutationHookResult = ReturnType<typeof useSendInquiries
 export type SendInquiriesMutationResult = Apollo.MutationResult<SendInquiriesMutation>;
 export type SendInquiriesMutationOptions = Apollo.BaseMutationOptions<SendInquiriesMutation, SendInquiriesMutationVariables>;
 export const SendYourStoryDocument = gql`
-    mutation sendYourStory($advise: String, $age: Int, $city: String, $email: String, $inspiration: String, $name: String, $need: String, $observedEffects: String, $occupation: String, $pictures: String, $projectIdea: String) {
+    mutation sendYourStory($about: String, $advise: String, $blog: String, $comments: String, $email: String, $inspiration: String, $instagram: String, $name: String, $observedEffects: String, $pictures: String, $projectIdea: String) {
   insert_your_story(
-    objects: [{advise: $advise, age: $age, city: $city, email: $email, inspiration: $inspiration, name: $name, need: $need, observedEffects: $observedEffects, occupation: $occupation, pictures: $pictures, projectIdea: $projectIdea}]
+    objects: [{about: $about, advise: $advise, blog: $blog, comments: $comments, email: $email, inspiration: $inspiration, instagram: $instagram, name: $name, observedEffects: $observedEffects, pictures: $pictures, projectIdea: $projectIdea}]
   ) {
     affected_rows
   }
@@ -2673,15 +2889,15 @@ export type SendYourStoryMutationFn = Apollo.MutationFunction<SendYourStoryMutat
  * @example
  * const [sendYourStoryMutation, { data, loading, error }] = useSendYourStoryMutation({
  *   variables: {
+ *      about: // value for 'about'
  *      advise: // value for 'advise'
- *      age: // value for 'age'
- *      city: // value for 'city'
+ *      blog: // value for 'blog'
+ *      comments: // value for 'comments'
  *      email: // value for 'email'
  *      inspiration: // value for 'inspiration'
+ *      instagram: // value for 'instagram'
  *      name: // value for 'name'
- *      need: // value for 'need'
  *      observedEffects: // value for 'observedEffects'
- *      occupation: // value for 'occupation'
  *      pictures: // value for 'pictures'
  *      projectIdea: // value for 'projectIdea'
  *   },
@@ -2964,10 +3180,10 @@ export type GetAllPostsQueryResult = Apollo.QueryResult<GetAllPostsQuery, GetAll
 export const GetSentEmailsDocument = gql`
     query GetSentEmails {
   sentEmails {
-    ...SentEmail
+    ...Email
   }
 }
-    ${SentEmailFragmentDoc}`;
+    ${EmailFragmentDoc}`;
 
 /**
  * __useGetSentEmailsQuery__
@@ -3106,6 +3322,8 @@ export const namedOperations = {
   Mutation: {
     setAssignedStatus: 'setAssignedStatus',
     deleteAssignedStatus: 'deleteAssignedStatus',
+    featureStory: 'featureStory',
+    unfeatureStory: 'unfeatureStory',
     readStatus: 'readStatus',
     sendEmail: 'sendEmail',
     sendInquiries: 'sendInquiries',
@@ -3118,7 +3336,7 @@ export const namedOperations = {
     EmailContent: 'EmailContent',
     Inquiry: 'Inquiry',
     Post: 'Post',
-    SentEmail: 'SentEmail',
+    SendEmail: 'SendEmail',
     User: 'User',
     YourStory: 'YourStory'
   }

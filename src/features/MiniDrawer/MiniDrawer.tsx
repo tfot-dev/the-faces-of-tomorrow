@@ -4,7 +4,6 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -84,7 +83,6 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
             <Drawer
                 variant="permanent"
                 className={clsx(classes.drawer, {
@@ -105,9 +103,9 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
                         <ListItem
                             button
                             key={label}
-                            selected={currentRoute === route}
+                            selected={currentRoute === route.replace('/', '')}
                             component={Link}
-                            to={`${url}/${route}`}
+                            to={`${url}${route}`}
                         >
                             <ListItemIcon>
                                 <LabelIcon />
@@ -125,7 +123,7 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
             </Drawer>
             {isAuthenticated && (
                 <main className={classes.content}>
-                    <Route exact path={path} render={() => <Redirect to={`${url}/${tabs[0].route}`} />} />
+                    <Route exact path={path} render={() => <Redirect to={`${url}${tabs[0].route}`} />} />
                     <Route path={`${path}/:tabId`}>
                         <MiniDrawerContent tabs={tabs} routeSelected={setCurrentRoute} />
                     </Route>

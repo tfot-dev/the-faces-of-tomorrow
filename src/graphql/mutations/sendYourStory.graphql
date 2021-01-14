@@ -1,15 +1,17 @@
-mutation sendYourStory($advise: String,
-    $age: Int,
-    $city: String,
+mutation sendYourStory(
+    $about: String,
+    $advise: String,
+    $blog: String,
+    $comments: String,
     $email: String,
     $inspiration: String,
+    $instagram: String,
     $name: String,
-    $need: String,
     $observedEffects: String,
-    $occupation: String,
     $pictures: String,
-    $projectIdea: String) {
-    insert_your_story(objects: [{advise: $advise, age: $age, city: $city, email: $email, inspiration: $inspiration, name: $name, need: $need, observedEffects: $observedEffects, occupation: $occupation, pictures: $pictures, projectIdea: $projectIdea}]) {
+    $projectIdea: String
+) {
+    insert_your_story(objects: [{about: $about, advise: $advise, blog: $blog, comments: $comments, email: $email, inspiration: $inspiration, instagram: $instagram name: $name, observedEffects: $observedEffects, pictures: $pictures, projectIdea: $projectIdea}]) {
         affected_rows
     }
 }

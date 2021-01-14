@@ -1,7 +1,7 @@
-#import "../fragments/email.graphql"
+#import "../fragments/sendEmail.graphql"
 
 mutation sendEmail($toAddress: String!, $subject: String!, $message: String!) {
     sendEmail(toAddress: $toAddress, subject: $subject, message: $message) {
-        ...Email
+        ...SendEmail
     }
 }

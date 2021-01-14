@@ -1,0 +1,13 @@
+fragment SendEmail on SendEmailResponse {
+    data {
+        content
+        fromAddress
+        subject
+        messageId
+        toAddress
+    }
+    status {
+        description
+        code
+    }
+}

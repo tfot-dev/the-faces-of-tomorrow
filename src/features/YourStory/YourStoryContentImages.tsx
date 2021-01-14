@@ -31,9 +31,7 @@ export const YourStoryContentImages = ({ yourStory }: YourStoryContentImagesType
     return (
         <>
             <Grid item xs={12}>
-                <Typography variant="h6" color="textSecondary">
-                    Attachments
-                </Typography>
+                <Typography variant="h6">Images</Typography>
             </Grid>
             <Grid item>
                 <div className={classes.root}>

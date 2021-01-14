@@ -1,10 +1,10 @@
 import React from 'react';
 import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
-import { Email, SentEmail } from '../../generated/graphql';
+import { Email } from '../../generated/graphql';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 interface EmailListItemProps {
-    email: Email | SentEmail;
+    email: Email;
 }
 
 export const EmailListItem = ({ email }: EmailListItemProps) => {

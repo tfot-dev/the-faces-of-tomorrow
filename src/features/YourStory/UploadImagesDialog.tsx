@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropzoneDialogBase, FileObject } from 'material-ui-dropzone';
-import { Button, CircularProgress, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Grid, Typography } from '@material-ui/core';
 import axios from 'axios';
 import { Cloudinary } from '../../constants/Cloudinary';
 
@@ -41,7 +41,7 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
         axios.all(fileUploads).then((uploads) => {
             setUploading(false);
 
-            const fileNames = uploads.map((upload) => `${upload.original_filename}.${upload.original_extension}`);
+            const fileNames = uploads.map((upload) => `${upload.original_filename}.${upload.format}`);
             const pIds = uploads.map((upload) => upload.public_id);
 
             setUploadedFileNames(fileNames);
@@ -70,15 +70,24 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
                 showPreviews={true}
                 showFileNamesInPreview={true}
             />
-
-            {uploading ? (
-                <CircularProgress />
-            ) : (
-                <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
-                    Upload Images
-                </Button>
-            )}
-            {uploadedFileNames.length !== 0 && <Typography>{uploadedFileNames.join(', ')}</Typography>}
+            <Grid container spacing={2} alignItems="center">
+                <Grid item>
+                    {uploading ? (
+                        <CircularProgress />
+                    ) : (
+                        <Button variant="outlined" color="primary" onClick={() => setOpen(true)}>
+                            Upload Images
+                        </Button>
+                    )}
+                </Grid>
+                <Grid item>
+                    {uploadedFileNames.length !== 0 && (
+                        <Typography variant="caption" color="textPrimary">
+                            {uploadedFileNames.join(', ')}
+                        </Typography>
+                    )}
+                </Grid>
+            </Grid>
         </>
     );
 };

@@ -18,12 +18,12 @@ import { useForm } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-build-classic-email/build/ckeditor';
 import { useSnackbar } from 'notistack';
-import { useSendEmailMutation } from '../../generated/graphql';
+import { namedOperations, useSendEmailMutation } from '../../generated/graphql';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         fab: {
-            position: 'absolute',
+            position: 'fixed',
             bottom: theme.spacing(3),
             right: theme.spacing(3),
         },
@@ -38,7 +38,7 @@ interface ICreateEmailForm {
 
 export const CreateEmailDialog = () => {
     const { enqueueSnackbar } = useSnackbar();
-    const [sendEmail] = useSendEmailMutation({ refetchQueries: ['sentEmails'] });
+    const [sendEmail] = useSendEmailMutation({ refetchQueries: [namedOperations.Query.GetSentEmails] });
     const { register, handleSubmit, setValue } = useForm();
     const [open, setOpen] = useState(false);
     const classes = useStyles();

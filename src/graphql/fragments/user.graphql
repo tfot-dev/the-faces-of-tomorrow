@@ -1,7 +1,7 @@
 fragment User on users {
-    id
     name
     email_id
     admin
     auth0_id
+    picture
 }
