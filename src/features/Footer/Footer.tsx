@@ -9,7 +9,7 @@ import { Routes } from '../../constants/Routes';
 
 export const Footer = () => (
     <BottomNavigation>
-        <Grid container alignItems="center" justify="center" spacing={1}>
+        <Grid container alignItems="center" justify="center" spacing={1} style={{ width: '100%' }}>
             <Grid item>
                 <IconButton onClick={() => openLinkInNewTab(SocialMediaLinks.Instagram)}>
                     <InstagramIcon />
