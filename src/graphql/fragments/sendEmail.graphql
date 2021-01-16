@@ -1,9 +1,11 @@
-fragment SendEmail on SendEmailResponse {
+fragment SendEmail on EmailResponse {
     data {
+        action
+        askReceipt
         content
         fromAddress
-        subject
         messageId
+        subject
         toAddress
     }
     status {

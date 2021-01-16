@@ -63,6 +63,23 @@ export type EmailContent = {
   messageId: Scalars['Float'];
 };
 
+export type EmailResponse = {
+  __typename?: 'EmailResponse';
+  data?: Maybe<EmailResponseData>;
+  status?: Maybe<ResponseStatus>;
+};
+
+export type EmailResponseData = {
+  __typename?: 'EmailResponseData';
+  action?: Maybe<Scalars['String']>;
+  askReceipt?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  fromAddress?: Maybe<Scalars['String']>;
+  messageId?: Maybe<Scalars['String']>;
+  subject?: Maybe<Scalars['String']>;
+  toAddress?: Maybe<Scalars['String']>;
+};
+
 export type GetPostsOutput = {
   __typename?: 'GetPostsOutput';
   caption: Scalars['String'];
@@ -81,13 +98,21 @@ export type Media = {
 export type Mutation = {
   __typename?: 'Mutation';
   deleteEmail?: Maybe<ResponseStatus>;
-  sendEmail?: Maybe<SendEmailResponse>;
+  replyEmail?: Maybe<EmailResponse>;
+  sendEmail?: Maybe<EmailResponse>;
 };
 
 
 export type MutationDeleteEmailArgs = {
   folderId: Scalars['String'];
   messageId: Scalars['String'];
+};
+
+
+export type MutationReplyEmailArgs = {
+  message: Scalars['String'];
+  messageId: Scalars['String'];
+  toAddress: Scalars['String'];
 };
 
 
@@ -134,21 +159,6 @@ export type ResponseStatus = {
   __typename?: 'ResponseStatus';
   code?: Maybe<Scalars['Int']>;
   description?: Maybe<Scalars['String']>;
-};
-
-export type SendEmailData = {
-  __typename?: 'SendEmailData';
-  content?: Maybe<Scalars['String']>;
-  fromAddress?: Maybe<Scalars['String']>;
-  messageId?: Maybe<Scalars['String']>;
-  subject?: Maybe<Scalars['String']>;
-  toAddress?: Maybe<Scalars['String']>;
-};
-
-export type SendEmailResponse = {
-  __typename?: 'SendEmailResponse';
-  data?: Maybe<SendEmailData>;
-  status?: Maybe<ResponseStatus>;
 };
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -697,7 +707,8 @@ export type Mutation_Root = {
   insert_your_story?: Maybe<Your_Story_Mutation_Response>;
   /** insert a single row into the table: "your_story" */
   insert_your_story_one?: Maybe<Your_Story>;
-  sendEmail?: Maybe<SendEmailResponse>;
+  replyEmail?: Maybe<EmailResponse>;
+  sendEmail?: Maybe<EmailResponse>;
   /** insert data into the table: "inquiries" */
   sendInquiries?: Maybe<Inquiries_Mutation_Response>;
   /** insert data into the table: "read_status_lookup" */
@@ -880,6 +891,14 @@ export type Mutation_RootInsert_Your_StoryArgs = {
 export type Mutation_RootInsert_Your_Story_OneArgs = {
   object: Your_Story_Insert_Input;
   on_conflict?: Maybe<Your_Story_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootReplyEmailArgs = {
+  message: Scalars['String'];
+  messageId: Scalars['String'];
+  toAddress: Scalars['String'];
 };
 
 
@@ -2240,10 +2259,10 @@ export type PostFragment = (
 );
 
 export type SendEmailFragment = (
-  { __typename?: 'SendEmailResponse' }
+  { __typename?: 'EmailResponse' }
   & { data?: Maybe<(
-    { __typename?: 'SendEmailData' }
-    & Pick<SendEmailData, 'content' | 'fromAddress' | 'subject' | 'messageId' | 'toAddress'>
+    { __typename?: 'EmailResponseData' }
+    & Pick<EmailResponseData, 'action' | 'askReceipt' | 'content' | 'fromAddress' | 'messageId' | 'subject' | 'toAddress'>
   )>, status?: Maybe<(
     { __typename?: 'ResponseStatus' }
     & Pick<ResponseStatus, 'description' | 'code'>
@@ -2344,7 +2363,7 @@ export type SendEmailMutationVariables = Exact<{
 export type SendEmailMutation = (
   { __typename?: 'mutation_root' }
   & { sendEmail?: Maybe<(
-    { __typename?: 'SendEmailResponse' }
+    { __typename?: 'EmailResponse' }
     & SendEmailFragment
   )> }
 );
@@ -2585,12 +2604,14 @@ export const PostFragmentDoc = gql`
 }
     `;
 export const SendEmailFragmentDoc = gql`
-    fragment SendEmail on SendEmailResponse {
+    fragment SendEmail on EmailResponse {
   data {
+    action
+    askReceipt
     content
     fromAddress
-    subject
     messageId
+    subject
     toAddress
   }
   status {
