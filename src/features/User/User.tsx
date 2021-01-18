@@ -36,7 +36,7 @@ export const User: React.FC = () => {
                         Admin
                     </MenuItem>
                 )}
-                <MenuItem onClick={() => logout()}>Logout</MenuItem>
+                <MenuItem onClick={() => logout({ returnTo: window.location.origin })}>Logout</MenuItem>
             </Menu>
         </div>
     );
