@@ -1,9 +1,10 @@
 import React from 'react';
 import { Your_Story } from '../../generated/graphql';
-import { Grid, GridList, GridListTile, GridListTileBar, IconButton, Typography } from '@material-ui/core';
+import { Grid, GridList, GridListTile, GridListTileBar, IconButton, Link, Typography } from '@material-ui/core';
 import { CloudDownload } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { common } from '@material-ui/core/colors';
+import { Cloudinary } from '../../constants/Cloudinary';
 
 type YourStoryContentImagesType = {
     yourStory: Your_Story;
@@ -45,16 +46,15 @@ export const YourStoryContentImages = ({ yourStory }: YourStoryContentImagesType
                     <GridList className={classes.gridList} cols={0}>
                         {pictureUrls.map((picture) => (
                             <GridListTile key={picture}>
-                                <img
-                                    className={classes.gridItem}
-                                    src={`https://res.cloudinary.com/thefacesoftomorrow/image/upload/v26789735/${picture}`}
-                                />
+                                <img className={classes.gridItem} src={Cloudinary.ThumbnailUrl(picture)} />
                                 <GridListTileBar
                                     title="Download"
                                     className={classes.gridTileBar}
                                     actionIcon={
-                                        <IconButton color="inherit">
-                                            <CloudDownload />
+                                        <IconButton>
+                                            <Link href={Cloudinary.DownloadUrl(picture)}>
+                                                <CloudDownload />
+                                            </Link>
                                         </IconButton>
                                     }
                                 />
