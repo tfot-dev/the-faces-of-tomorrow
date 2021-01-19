@@ -3,6 +3,7 @@ import { Your_Story } from '../../generated/graphql';
 import { Grid, GridList, GridListTile, GridListTileBar, IconButton, Typography } from '@material-ui/core';
 import { CloudDownload } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
+import { common } from '@material-ui/core/colors';
 
 type YourStoryContentImagesType = {
     yourStory: Your_Story;
@@ -11,14 +12,20 @@ type YourStoryContentImagesType = {
 const useStyles = makeStyles({
     root: {
         display: 'flex',
+        justifyContent: 'space-around',
         flexWrap: 'wrap',
         overflow: 'hidden',
     },
     gridList: {
         flexWrap: 'nowrap',
+        width: '100%',
     },
     gridItem: {
-        width: 200,
+        height: '100%',
+        width: 'initial',
+    },
+    gridTileBar: {
+        color: common.white,
     },
 });
 
@@ -33,9 +40,9 @@ export const YourStoryContentImages = ({ yourStory }: YourStoryContentImagesType
             <Grid item xs={12}>
                 <Typography variant="h6">Images</Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
                 <div className={classes.root}>
-                    <GridList className={classes.gridList} cols={4}>
+                    <GridList className={classes.gridList} cols={0}>
                         {pictureUrls.map((picture) => (
                             <GridListTile key={picture}>
                                 <img
@@ -44,8 +51,9 @@ export const YourStoryContentImages = ({ yourStory }: YourStoryContentImagesType
                                 />
                                 <GridListTileBar
                                     title="Download"
+                                    className={classes.gridTileBar}
                                     actionIcon={
-                                        <IconButton>
+                                        <IconButton color="inherit">
                                             <CloudDownload />
                                         </IconButton>
                                     }
