@@ -24,7 +24,7 @@ export const PostViewContainer = () => {
     }
 
     return (
-        <Grid container>
+        <Grid container spacing={2}>
             <Grid item md={6}>
                 <PostView caption={caption} media={media} />
             </Grid>

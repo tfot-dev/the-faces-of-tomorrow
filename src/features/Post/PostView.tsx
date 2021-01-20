@@ -10,7 +10,6 @@ import { useCallback } from 'react';
 const useStyles = makeStyles(() =>
     createStyles({
         card: {
-            width: 600,
             position: 'sticky',
         },
     }),
