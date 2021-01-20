@@ -12,13 +12,11 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        maxHeight: '1350px',
-        overflow: 'scroll',
     },
     gridList: {
         justifyContent: 'center',
-        // height: 2000,
         fontStretch: 'default',
+        width: 550,
     },
 });
 

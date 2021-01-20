@@ -25,10 +25,10 @@ export const PostViewContainer = () => {
 
     return (
         <Grid container>
-            <Grid item xs={6}>
+            <Grid item md={6}>
                 <PostView caption={caption} media={media} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6}>
                 <MoreStoriesContainer />
             </Grid>
         </Grid>
