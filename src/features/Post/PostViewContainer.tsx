@@ -5,7 +5,6 @@ import { Grid, LinearProgress } from '@material-ui/core';
 import { Error } from '../Error/Error';
 import { PostView } from './PostView';
 import { MoreStoriesContainer } from './MoreStoriesContainer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 export const PostViewContainer = () => {
     const { params } = useRouteMatch<{ postId: string }>();
@@ -26,7 +25,6 @@ export const PostViewContainer = () => {
 
     return (
         <Grid container>
-            <CssBaseline />
             <Grid item xs={6}>
                 <PostView caption={caption} media={media} />
             </Grid>
