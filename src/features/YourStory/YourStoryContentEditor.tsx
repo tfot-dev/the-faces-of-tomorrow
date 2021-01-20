@@ -19,7 +19,7 @@ export const YourStoryContentEditor = ({ yourStory }: YourStoryContentEditorType
 
     const handleSaveWrittenStory = (story: string) => {
         return insert_written_story({ variables: { id, writtenStory: story } }).then(() =>
-            enqueueSnackbar('Story Updated!', { variant: 'success' }),
+            enqueueSnackbar('Story Updated!', { variant: 'success', persist: false }),
         );
     };
 

@@ -183,6 +183,21 @@ type EmailContent {
   messageId: Float!
 }
 
+type EmailResponse {
+  data: EmailResponseData
+  status: ResponseStatus
+}
+
+type EmailResponseData {
+  action: String
+  askReceipt: String
+  content: String
+  fromAddress: String
+  messageId: String
+  subject: String
+  toAddress: String
+}
+
 # columns and relationships of "featured_story_lookup"
 type featured_story_lookup {
   id: uuid!
@@ -514,7 +529,8 @@ type Media {
 
 type Mutation {
   deleteEmail(folderId: String!, messageId: String!): ResponseStatus
-  sendEmail(message: String!, subject: String!, toAddress: String!): SendEmailResponse
+  replyEmail(message: String!, messageId: String!, toAddress: String!): EmailResponse
+  sendEmail(message: String!, subject: String!, toAddress: String!): EmailResponse
 }
 
 # mutation root
@@ -679,7 +695,8 @@ type mutation_root {
     # on conflict condition
     on_conflict: your_story_on_conflict
   ): your_story
-  sendEmail(message: String!, subject: String!, toAddress: String!): SendEmailResponse
+  replyEmail(message: String!, messageId: String!, toAddress: String!): EmailResponse
+  sendEmail(message: String!, subject: String!, toAddress: String!): EmailResponse
 
   # insert data into the table: "inquiries"
   sendInquiries(
@@ -1212,19 +1229,6 @@ input read_status_lookup_set_input {
 type ResponseStatus {
   code: Int
   description: String
-}
-
-type SendEmailData {
-  content: String
-  fromAddress: String
-  messageId: String
-  subject: String
-  toAddress: String
-}
-
-type SendEmailResponse {
-  data: SendEmailData
-  status: ResponseStatus
 }
 
 # expression to compare columns of type String. All fields are combined with logical 'AND'.
