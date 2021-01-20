@@ -9,6 +9,8 @@ const useStyles = makeStyles(() =>
     createStyles({
         card: {
             width: 600,
+            position: 'sticky',
+            top: '-100px',
         },
     }),
 );
