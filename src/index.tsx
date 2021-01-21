@@ -7,6 +7,8 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { Auth } from './constants/Auth';
 import { AppState } from '@auth0/auth0-react/dist/auth0-provider';
 import { history } from './utils/history';
+// import i18n (needs to be bundled)
+import './i18n';
 
 const onRedirectCallback = (appState: AppState) => {
     history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);

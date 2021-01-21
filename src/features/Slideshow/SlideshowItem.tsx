@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { common } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
 import { Routes } from '../../constants/Routes';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
     root: {
@@ -29,6 +30,8 @@ export const SlideshowItem = (props: SlideshowItem) => {
     const { name } = props;
     const classes = useStyles(props);
 
+    const { t } = useTranslation();
+
     return (
         <Box className={classes.root}>
             <Grid container spacing={4} justify="center" direction="column">
@@ -45,7 +48,7 @@ export const SlideshowItem = (props: SlideshowItem) => {
                 <Grid item>
                     <Box display="flex" justifyContent="center">
                         <Button variant="contained" color="secondary" component={Link} to={Routes.YourStory}>
-                            Post Your Own Story!
+                            {t('buttons.postYourOwnStory')}
                         </Button>
                     </Box>
                 </Grid>
