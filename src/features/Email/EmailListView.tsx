@@ -30,10 +30,10 @@ export const EmailListView = ({ emails, emailContent }: EmailListViewProps) => {
                         {emails.map(
                             (email, index: number) =>
                                 email !== null && (
-                                    <>
+                                    <React.Fragment key={email.messageId}>
                                         <EmailListItem email={email} />
                                         {index !== emails.length - 1 && <Divider component="li" />}
-                                    </>
+                                    </React.Fragment>
                                 ),
                         )}
                     </List>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
@@ -20,42 +20,48 @@ export const App: React.FC = () => {
     const [darkMode, setDarkMode] = React.useState<boolean>();
 
     return (
-        <ThemeProvider theme={theme(!!darkMode)}>
-            <SnackbarProvider>
-                <AuthenticatedApi>
-                    <Router>
-                        <Switch>
-                            <MainLayoutRoute
-                                path={Routes.Post}
-                                component={PostViewContainer}
-                                onThemeToggle={setDarkMode}
-                            />
-                            <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
-                            <MainLayoutRoute
-                                path={Routes.YourStoryPosted}
-                                component={YourStoryPosted}
-                                onThemeToggle={setDarkMode}
-                            />
-                            {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
-                                <MainLayoutRoute path={Routes.Admin} component={Admin} onThemeToggle={setDarkMode} />
-                            )}
-                            <MainLayoutRoute
-                                exact
-                                path={Routes.Privacy}
-                                component={PrivacyPolicy}
-                                onThemeToggle={setDarkMode}
-                            />
-                            <MainLayoutRoute
-                                exact
-                                path={Routes.TermsAndConditions}
-                                component={TermsAndConditions}
-                                onThemeToggle={setDarkMode}
-                            />
-                            <HomeLayoutRoute exact path="/" component={Home} onThemeToggle={setDarkMode} />
-                        </Switch>
-                    </Router>
-                </AuthenticatedApi>
-            </SnackbarProvider>
-        </ThemeProvider>
+        <Suspense fallback="loading">
+            <ThemeProvider theme={theme(!!darkMode)}>
+                <SnackbarProvider>
+                    <AuthenticatedApi>
+                        <Router>
+                            <Switch>
+                                <MainLayoutRoute
+                                    path={Routes.Post}
+                                    component={PostViewContainer}
+                                    onThemeToggle={setDarkMode}
+                                />
+                                <MainLayoutRoute path="/yourstory" component={YourStory} onThemeToggle={setDarkMode} />
+                                <MainLayoutRoute
+                                    path={Routes.YourStoryPosted}
+                                    component={YourStoryPosted}
+                                    onThemeToggle={setDarkMode}
+                                />
+                                {process.env.REACT_APP_BUILD_TYPE === 'admin' && (
+                                    <MainLayoutRoute
+                                        path={Routes.Admin}
+                                        component={Admin}
+                                        onThemeToggle={setDarkMode}
+                                    />
+                                )}
+                                <MainLayoutRoute
+                                    exact
+                                    path={Routes.Privacy}
+                                    component={PrivacyPolicy}
+                                    onThemeToggle={setDarkMode}
+                                />
+                                <MainLayoutRoute
+                                    exact
+                                    path={Routes.TermsAndConditions}
+                                    component={TermsAndConditions}
+                                    onThemeToggle={setDarkMode}
+                                />
+                                <HomeLayoutRoute exact path="/" component={Home} onThemeToggle={setDarkMode} />
+                            </Switch>
+                        </Router>
+                    </AuthenticatedApi>
+                </SnackbarProvider>
+            </ThemeProvider>
+        </Suspense>
     );
 };

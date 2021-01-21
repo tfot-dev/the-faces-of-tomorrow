@@ -30,11 +30,11 @@ export const InquiriesListView = ({ inquiries, inquiryContent }: InquiriesListVi
                         {inquiries.map(
                             (inquiry, index: number) =>
                                 inquiry !== null && (
-                                    <>
+                                    <React.Fragment key={inquiry.id}>
                                         <InquiriesListItem inquiries={inquiry} />
 
                                         {index !== inquiries.length - 1 && <Divider component="li" />}
-                                    </>
+                                    </React.Fragment>
                                 ),
                         )}
                     </List>

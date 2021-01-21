@@ -32,8 +32,8 @@ export const PostContainer = () => {
     return (
         <div className={classes.root}>
             <GridList className={classes.gridList} spacing={6}>
-                {posts.map((post) => {
-                    return loading ? <PostSkeleton /> : post !== null && <Post post={post} key={post.id} />;
+                {posts.map((post, index) => {
+                    return loading ? <PostSkeleton key={index} /> : post !== null && <Post post={post} key={post.id} />;
                 })}
             </GridList>
         </div>

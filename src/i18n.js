@@ -8,6 +8,7 @@ i18n
     // pass the i18n instance to react-i18next.
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
+        lng: 'en',
         fallbackLng: 'en',
         debug: true,
 
