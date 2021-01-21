@@ -57,7 +57,7 @@ export const Post = ({ post }: IPostProps) => {
     return (
         <GridListTile className={classes.tileRoot} classes={{ tile: classes.tile }}>
             <Card className={classes.root}>
-                <CardActionArea component={Link} target="_blank" to={`post/${id}`}>
+                <CardActionArea component={Link} to={`post/${id}`}>
                     <CardMedia component="img" height={150} image={media_url} />
                     <CardContent>
                         <Typography variant="caption" color="textPrimary" ref={captionElement}>

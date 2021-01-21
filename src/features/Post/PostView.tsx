@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() =>
     createStyles({
         card: {
-            width: 600,
+            position: 'sticky',
         },
     }),
 );
@@ -21,8 +21,17 @@ type PostViewType = {
 export const PostView = ({ caption, media }: PostViewType) => {
     const classes = useStyles();
 
+    const [actualCardHeight, setActualCardHeight] = React.useState(0);
+    const postViewCard = React.useCallback((node) => {
+        if (node !== null) {
+            setActualCardHeight(node.getBoundingClientRect().height);
+        }
+    }, []);
+
+    const calculatedTop = window.innerHeight - actualCardHeight;
+
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} ref={postViewCard} style={{ top: calculatedTop }}>
             {media !== null && (
                 <Carousel autoPlay={false}>
                     {media.map(
