@@ -10,6 +10,9 @@ const useStyles = makeStyles(() =>
         card: {
             position: 'sticky',
         },
+        caption: {
+            whiteSpace: 'pre-line',
+        },
     }),
 );
 
@@ -41,7 +44,7 @@ export const PostView = ({ caption, media }: PostViewType) => {
                 </Carousel>
             )}
             <CardContent>
-                <Typography variant="caption" color="textPrimary">
+                <Typography variant="caption" color="textPrimary" className={classes.caption}>
                     {caption}
                 </Typography>
             </CardContent>
