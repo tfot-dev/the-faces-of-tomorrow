@@ -1,5 +1,52 @@
 {
   "buttons": {
     "postYourOwnStory": "Post Your Own Story!"
+  },
+  "privacyPolicy": {
+    "about": "Privacy Policy",
+    "about1": "Your privacy is important to us. It is The Faces of Tomorrow's policy to respect your privacy regarding any information we may collect from you across our website, https://www.thefacesoftomorrow.com, and other sites we own and operate.",
+    "about2": "We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.,",
+    "about3": "We want to be as open as possible about what information we gather from you and what we use it for. If you have any questions you are always more than welcome to send us an email to admin@thefacesoftomorrow.com,",
+    "personalInformation": "What personal information do we collect?",
+    "personalInformation1": "We do not collect any information whatsoever unless you either write to us (contact us) or you choose to send your details in post your own story. If you choose to-",
+    "personalInformation2": "We ask for your-",
+    "personalInformation3": "so that we know how to address you.",
+    "personalInformation4": "so that we can revert back to you.",
+    "personalInformation5": "to mention you when we post the story.",
+    "personalInformation6": "to mention this in your story for possible outreach you are looking for.",
+    "personalInformation7": "to share your story with your pictures and along with pictures of your project/idea/sustainable practice.",
+    "personalInformation8": "to write it up in a story format.",
+    "personalInformation9": "Also, we will only post your story once we have shown you the final version and you have approved of it.",
+    "googleAnalytics": "Use of Google (Universal) Analytics for website analysis and performance\nThis website uses third party analytics (Google Universal Analytics) to help create reports and statistics on the performance of our services. The information collected by this may include your IP address, the website from which you visited us, or the type of device you use. If you want to opt-out from the use of Google Analytics, you can download and install Google Analytics Opt-out Browser Add On. All data collected will be automatically deleted once we stop using Google Analytics.",
+    "protectData": "How do we protect your data?",
+    "protectData1": "We take protection of your data very seriously. The data is stored by Hasura. With that said, we rely on Hasura to ensure that your data is safe. This is also the reason we can't guarantee full protection of your data. But we believe Hasura does a way better job at protection than we could ever provide. Furthermore, what data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.",
+    "deletePersonalInformation": "How to delete your personal information?",
+    "deletePersonalInformation1": "Send us an email at admin@thefacesoftomorrow.com and tell us that you want to delete your information (all of these or some specific)-",
+    "deletePersonalInformation2": "we used to write your story.",
+    "deletePersonalInformation3": "we used to contact you.",
+    "deletePersonalInformation4": "your story from instagram/website.",
+    "deletePersonalInformation5": "We will delete your information as per your request.",
+    "informationDisclose": "Do we disclose any of your information to outside parties?",
+    "informationDisclose1": "No, we do not sell, trade or in any way transfer any of your information to outside parties, except when required to by law.",
+    "informationDisclose2": "We only share any personally identifying information publicly as a story which has been accepted/approved by you to display on two mediums, Instagram and www.thefacesoftomorrow.com.",
+    "disclaimer": "Disclaimer",
+    "disclaimer1": "Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.",
+    "disclaimer2": "You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.",
+    "disclaimer3": "Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.",
+    "changes": "Changes to our Privacy Policy",
+    "changes1": "From time to time, we may change our Privacy Policy. For example, as we update and improve our services, new features may require modifications to the privacy statement. Accordingly, please check back periodically.",
+    "changes2": "This policy is updated and effective as of 24 January 2021."
+  },
+  "postYourOwnStory": {
+    "title": "Post Your Own Story",
+    "name": "Name",
+    "email": "Email",
+    "insta": "Instagram Handle (Optional)",
+    "blog": "Blog / Website (Optional)",
+    "pictures": "Pictures",
+    "otherInfo": "Other Information (Questions)"
+  },
+  "contactUs": {
+    "title": "Contact Us"
   }
 }

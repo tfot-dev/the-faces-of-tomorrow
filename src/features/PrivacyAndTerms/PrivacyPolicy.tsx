@@ -1,65 +1,170 @@
 import React from 'react';
-import { Grid, Link, Typography } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
+import { Grid, Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 export const PrivacyPolicy = () => {
+    const { t } = useTranslation();
+
     return (
         <Grid container spacing={4} direction="column">
+            {/* About */}
+
             <Grid item>
-                <Typography variant="h3">Privacy Policy</Typography>
+                <Typography variant="h3">{t('privacyPolicy.about')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`Your privacy is important to us. It is The Faces of Tomorrow's policy to respect your privacy
-                    regarding any information we may collect from you across our website, `}
-                    <Link component={RouterLink} to="/" variant="body1">
-                        {`https://www.thefacesoftomorrow.com`}
-                    </Link>
-                    {`, and other sites we own and operate.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.about1')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`We only ask for personal information when we truly need it to provide a service to you. We collect
-                    it by fair and lawful means, with your knowledge and consent. We also let you know why we’re
-                    collecting it and how it will be used.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.about2')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`We only retain collected information for as long as necessary to provide you with your requested
-                    service. What data we store, we’ll protect within commercially acceptable means to prevent loss and
-                    theft, as well as unauthorized access, disclosure, copying, use or modification.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.about3')}</Typography>
+            </Grid>
+
+            {/* Personal Information */}
+            <Grid item>
+                <Typography variant="h4">{t('privacyPolicy.personalInformation')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`We don’t share any personally identifying information publicly or with third-parties, except when
-                    required to by law.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.personalInformation1')}</Typography>
+            </Grid>
+            <ol type="a">
+                <li>
+                    <Typography variant="body1">
+                        <strong>{`${t('postYourOwnStory.title')}: `}</strong>
+                        {t('privacyPolicy.personalInformation2')}
+                    </Typography>
+                    <ol type="i">
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.name')}: `}</strong>
+                                {t('privacyPolicy.personalInformation3')}
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.email')}: `}</strong>
+                                {t('privacyPolicy.personalInformation4')}
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.insta')}: `}</strong>
+                                {t('privacyPolicy.personalInformation5')}
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.blog')}: `}</strong>
+                                {t('privacyPolicy.personalInformation6')}
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.pictures')}: `}</strong>
+                                {t('privacyPolicy.personalInformation7')}
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.otherInfo')}: `}</strong>
+                                {t('privacyPolicy.personalInformation8')}
+                            </Typography>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <Typography variant="body1">
+                        <strong>{`${t('contactUs.title')}: `}</strong>
+                        {t('privacyPolicy.personalInformation2')}
+                    </Typography>
+                    <ol type="i">
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.name')}: `}</strong>
+                                {t('privacyPolicy.personalInformation3')}
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">
+                                <strong>{`${t('postYourOwnStory.email')}: `}</strong>
+                                {t('privacyPolicy.personalInformation4')}
+                            </Typography>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <Grid item>
+                <Typography variant="body1">{t('privacyPolicy.personalInformation9')}</Typography>
+            </Grid>
+
+            {/* Protect Your Data */}
+            <Grid item>
+                <Typography variant="h4">{t('privacyPolicy.protectData')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`Our website may link to external sites that are not operated by us. Please be aware that we have no
-                    control over the content and practices of these sites, and cannot accept responsibility or liability
-                    for their respective privacy policies.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.protectData1')}</Typography>
+            </Grid>
+
+            {/* Delete Your Data */}
+            <Grid item>
+                <Typography variant="h4">{t('privacyPolicy.deletePersonalInformation')}</Typography>
+            </Grid>
+            <ol type="1">
+                <li>
+                    <Typography variant="body1">{t('privacyPolicy.deletePersonalInformation1')}</Typography>
+                    <ol type="a">
+                        <li>
+                            <Typography variant="body1">{t('privacyPolicy.deletePersonalInformation2')}</Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">{t('privacyPolicy.deletePersonalInformation3')}</Typography>
+                        </li>
+                        <li>
+                            <Typography variant="body1">{t('privacyPolicy.deletePersonalInformation4')}</Typography>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <Typography variant="body1">{t('privacyPolicy.deletePersonalInformation5')}</Typography>
+                </li>
+            </ol>
+
+            {/* Information Disclose */}
+            <Grid item>
+                <Typography variant="h4">{t('privacyPolicy.informationDisclose')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`You are free to refuse our request for your personal information, with the understanding that we may
-                    be unable to provide you with some of your desired services.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.informationDisclose1')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">
-                    {`Your continued use of our website will be regarded as acceptance of our practices around privacy and
-                    personal information. If you have any questions about how we handle user data and personal
-                    information, feel free to contact us.`}
-                </Typography>
+                <Typography variant="body1">{t('privacyPolicy.informationDisclose2')}</Typography>
+            </Grid>
+
+            {/* Disclaimer */}
+            <Grid item>
+                <Typography variant="h4">{t('privacyPolicy.disclaimer')}</Typography>
             </Grid>
             <Grid item>
-                <Typography variant="body1">{`This policy is effective as of 27 December 2020.`}</Typography>
+                <Typography variant="body1">{t('privacyPolicy.disclaimer1')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant="body1">{t('privacyPolicy.disclaimer2')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant="body1">{t('privacyPolicy.disclaimer3')}</Typography>
+            </Grid>
+
+            {/* Changes to Policy */}
+            <Grid item>
+                <Typography variant="h4">{t('privacyPolicy.changes')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant="body1">{t('privacyPolicy.changes1')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant="body1">{t('privacyPolicy.changes2')}</Typography>
             </Grid>
         </Grid>
     );
