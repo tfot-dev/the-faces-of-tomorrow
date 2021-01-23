@@ -87,7 +87,6 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
                                     <TextField
-                                        autoFocus
                                         variant="outlined"
                                         label="Name"
                                         fullWidth
