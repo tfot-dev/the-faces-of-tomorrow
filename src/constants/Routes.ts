@@ -2,7 +2,7 @@ export const Routes = {
     YourStory: '/yourstory',
     YourStoryPosted: '/yourstoryposted',
     Admin: '/admin',
-    Post: '/post/:postId',
+    Post: '/post',
     Messages: '/messages',
     Contacted: '/contacted',
     Unassigned: '/unassigned',

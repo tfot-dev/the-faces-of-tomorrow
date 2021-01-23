@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useGetPostQuery } from '../../generated/graphql';
 import { Grid, LinearProgress } from '@material-ui/core';
 import { Error } from '../Error/Error';
@@ -7,9 +7,9 @@ import { PostView } from './PostView';
 import { MoreStoriesContainer } from './MoreStoriesContainer';
 
 export const PostViewContainer = () => {
-    const { params } = useRouteMatch<{ postId: string }>();
+    const { search } = useLocation();
 
-    const { loading, error, data } = useGetPostQuery({ variables: { id: params.postId } });
+    const { loading, error, data } = useGetPostQuery({ variables: { id: search.replace('?', '') } });
 
     if (loading) return <LinearProgress color="secondary" />;
     if (error) return <Error />;
