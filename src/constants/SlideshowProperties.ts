@@ -1,5 +1,5 @@
 import DroneForest from '../assets/slideshow/DroneForest.jpg';
-import Faces from '../assets/slideshow/Facesv2.jpg';
+import Faces from '../assets/slideshow/Facesv2.png';
 import Icebergs from '../assets/slideshow/Icebergs.jpg';
 import { SlideshowItem } from '../features/Slideshow/SlideshowItem';
 
