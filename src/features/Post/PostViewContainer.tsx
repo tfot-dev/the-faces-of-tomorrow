@@ -17,10 +17,10 @@ export const PostViewContainer = () => {
         return null;
     }
 
-    const { caption, media, media_url } = data.post;
+    const { caption, media, media_url, id } = data.post;
 
     if (media === undefined) {
-        return <PostView caption={caption} media={[{ media_url }]} />;
+        return <PostView caption={caption} media={[{ media_url, id }]} />;
     }
 
     return (

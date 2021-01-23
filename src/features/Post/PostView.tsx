@@ -18,7 +18,7 @@ const useStyles = makeStyles(() =>
 
 type PostViewType = {
     caption: string;
-    media: (Pick<Media, 'media_url'> | null)[];
+    media: (Media | null)[];
 };
 
 export const PostView = ({ caption, media }: PostViewType) => {
@@ -39,7 +39,9 @@ export const PostView = ({ caption, media }: PostViewType) => {
                 <Carousel autoPlay={false}>
                     {media.map(
                         (mediaInfo, index) =>
-                            mediaInfo !== null && <PostViewImage key={index} src={mediaInfo.media_url} />,
+                            mediaInfo !== null && (
+                                <PostViewImage key={index} src={mediaInfo.thumbnail_url || mediaInfo.media_url} />
+                            ),
                     )}
                 </Carousel>
             )}

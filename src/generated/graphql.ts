@@ -2254,7 +2254,7 @@ export type PostFragment = (
   & Pick<Post, 'id' | 'caption' | 'media_url' | 'media_type' | 'timestamp' | 'permalink'>
   & { media: Array<Maybe<(
     { __typename?: 'Media' }
-    & Pick<Media, 'media_url' | 'thumbnail_url'>
+    & Pick<Media, 'id' | 'media_url' | 'thumbnail_url'>
   )>> }
 );
 
@@ -2594,6 +2594,7 @@ export const PostFragmentDoc = gql`
   id
   caption
   media {
+    id
     media_url
     thumbnail_url
   }

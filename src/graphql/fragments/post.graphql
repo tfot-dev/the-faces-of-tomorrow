@@ -2,6 +2,7 @@ fragment Post on Post {
     id
     caption
     media {
+        id
         media_url
         thumbnail_url
     }
