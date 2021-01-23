@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Avatar, createStyles, Slide, Toolbar, useScrollTrigger } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo/logo.png';
 import { ThemeButton } from '../ThemeButton';
 import { Authentication } from '../Authentication/Authentication';
 import { Link } from 'react-router-dom';

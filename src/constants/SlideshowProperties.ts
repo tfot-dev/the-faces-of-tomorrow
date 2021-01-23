@@ -1,6 +1,6 @@
-import DroneForest from '../assets/DroneForest.jpg';
-import Faces from '../assets/Facesv2.jpg';
-import Icebergs from '../assets/Icebergs.jpg';
+import DroneForest from '../assets/slideshow/DroneForest.jpg';
+import Faces from '../assets/slideshow/Facesv2.jpg';
+import Icebergs from '../assets/slideshow/Icebergs.jpg';
 import { SlideshowItem } from '../features/Slideshow/SlideshowItem';
 
 export const SlideshowProperties: SlideshowItem[] = [

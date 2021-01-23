@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Avatar, createStyles, Theme, Toolbar, Typography } from '@material-ui/core';
 import { Authentication } from '../Authentication/Authentication';
 import { makeStyles } from '@material-ui/core/styles';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/logo/logo.png';
 import { ThemeButton } from '../ThemeButton';
 import { Link } from 'react-router-dom';
 

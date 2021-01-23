@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box, createStyles, Grid, Theme, Typography } from '@material-ui/core';
 import { ProfileInfo } from './ProfileInfo';
-import KaranPicture from '../../assets/Karan.jpeg';
-import DeepikaPicture from '../../assets/Deepika.jpg';
-import JuliaPicture from '../../assets/Julia.jpeg';
-import GiorgiaPicture from '../../assets/Giorgia.jpeg';
-import DianaPicture from '../../assets/Diana.jpg';
+import KaranPicture from '../../assets/us/Karan.jpg';
+import DeepikaPicture from '../../assets/us/Deepika.jpg';
+import JuliaPicture from '../../assets/us/Julia.jpg';
+import GiorgiaPicture from '../../assets/us/Giorgia.jpeg';
+import DianaPicture from '../../assets/us/Diana.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
