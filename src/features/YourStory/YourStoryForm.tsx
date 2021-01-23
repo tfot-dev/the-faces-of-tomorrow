@@ -221,6 +221,15 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                                 <Link
                                                     component={RouterLink}
                                                     target="_blank"
+                                                    to={Routes.Privacy}
+                                                    variant="caption"
+                                                >
+                                                    Privacy Policy
+                                                </Link>
+                                                {' and '}
+                                                <Link
+                                                    component={RouterLink}
+                                                    target="_blank"
                                                     to={Routes.TermsAndConditions}
                                                     variant="caption"
                                                 >
