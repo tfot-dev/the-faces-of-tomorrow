@@ -48,7 +48,7 @@ export const AuthenticatedApi = ({ children }: IApiProps) => {
             }
         };
 
-        getToken();
+        process.env.REACT_APP_BUILD_TYPE === 'admin' && getToken();
     }, [getAccessTokenSilently]);
 
     return <ApolloProvider client={client}>{children}</ApolloProvider>;
