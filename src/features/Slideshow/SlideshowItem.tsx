@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, Button, Grid, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Theme, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { common } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
 import { Routes } from '../../constants/Routes';
 import { useTranslation } from 'react-i18next';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         display: 'flex',
         height: 1000,
@@ -16,10 +16,9 @@ const useStyles = makeStyles({
         color: common.white,
     },
     text: {
-        margin: 'auto',
-        maxWidth: 1000,
+        padding: `0 ${theme.spacing(1)}px`,
     },
-});
+}));
 
 export type SlideshowItem = {
     name: string;
@@ -36,12 +35,12 @@ export const SlideshowItem = (props: SlideshowItem) => {
         <Box className={classes.root}>
             <Grid container spacing={4} justify="center" direction="column">
                 <Grid item>
-                    <Typography align="center" variant="h1" color="inherit">
+                    <Typography className={classes.text} align="center" variant="h1" color="inherit">
                         The Faces of Tomorrow
                     </Typography>
                 </Grid>
                 <Grid item>
-                    <Typography align="center" variant="h5" color="inherit">
+                    <Typography className={classes.text} align="center" variant="h5" color="inherit">
                         {name}
                     </Typography>
                 </Grid>
