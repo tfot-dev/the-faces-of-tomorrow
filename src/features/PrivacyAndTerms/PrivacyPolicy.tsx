@@ -143,18 +143,18 @@ export const PrivacyPolicy = () => {
             </Grid>
 
             {/* Google Analytics */}
-            <Grid item>
-                <Typography variant="h4">{t('privacyPolicy.googleAnalytics')}</Typography>
-            </Grid>
-            <Grid item>
-                <Typography variant="body1">{t('privacyPolicy.googleAnalytics1')}</Typography>
-            </Grid>
-            <Grid item>
-                <Typography variant="body1">{t('privacyPolicy.googleAnalytics2')}</Typography>
-            </Grid>
-            <Grid item>
-                <Typography variant="body1">{t('privacyPolicy.googleAnalytics3')}</Typography>
-            </Grid>
+            {/*<Grid item>*/}
+            {/*    <Typography variant="h4">{t('privacyPolicy.googleAnalytics')}</Typography>*/}
+            {/*</Grid>*/}
+            {/*<Grid item>*/}
+            {/*    <Typography variant="body1">{t('privacyPolicy.googleAnalytics1')}</Typography>*/}
+            {/*</Grid>*/}
+            {/*<Grid item>*/}
+            {/*    <Typography variant="body1">{t('privacyPolicy.googleAnalytics2')}</Typography>*/}
+            {/*</Grid>*/}
+            {/*<Grid item>*/}
+            {/*    <Typography variant="body1">{t('privacyPolicy.googleAnalytics3')}</Typography>*/}
+            {/*</Grid>*/}
 
             {/* Disclaimer */}
             <Grid item>
