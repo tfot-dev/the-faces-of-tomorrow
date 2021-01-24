@@ -118,81 +118,115 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         variant="outlined"
-                                        label="Blog/Website (if any)"
+                                        label="Blog / Website"
                                         fullWidth
                                         name="blog"
                                         inputRef={register}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <Typography variant="caption">
+                                        Tell us briefly about yourself (e.g. age, the city you are currently based at,
+                                        and current occupation)
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
-                                        label="Tell us briefly about yourself (e.g. age, the city you are currently based at, and current occupation)"
                                         fullWidth
                                         name="about"
                                         inputRef={register}
                                         multiline
                                         rows={10}
                                         required
+                                        placeholder="Type your answer here"
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="caption">
+                                        How do you engage in environmental activism? (e.g. tell us about your project /
+                                        idea / sustainable practice)
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
-                                        label="How do you engage in environmental activism? (e.g. tell us about your project / idea / sustainable practice)"
                                         fullWidth
                                         name="projectIdea"
                                         inputRef={register}
                                         multiline
                                         rows={10}
                                         required
+                                        placeholder="Type your answer here"
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="caption">
+                                        What gave you the inspiration to work on that specific topic? (e.g. if you have
+                                        a personal motivation, please share how it evolved and when/why you decided to
+                                        take action)
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
-                                        label="What gave you the inspiration to work on that specific topic? (e.g. if you have a personal motivation, please share how it evolved and when/why you decided to take action)"
                                         fullWidth
                                         name="inspiration"
                                         inputRef={register}
                                         multiline
                                         rows={10}
                                         required
+                                        placeholder="Type your answer here"
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="caption">
+                                        Could you observe changes since you started your project / idea / sustainable
+                                        practice? (e.g. feedback and responses from friends, family, community etc.)
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
-                                        label="Could you observe changes since you started your project / idea / sustainable practice? (e.g. feedback and responses from friends, family, community etc.)"
                                         fullWidth
                                         name="observedEffects"
                                         inputRef={register}
                                         multiline
                                         rows={10}
                                         required
+                                        placeholder="Type your answer here"
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="caption">
+                                        What would be your piece of advice for people who are thinking of changing their
+                                        lifestyle, or want to start something similar like you?
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
-                                        label="What would be your piece of advice for people who are thinking of changing their lifestyle, or want to start something similar like you?"
                                         fullWidth
                                         name="advise"
                                         inputRef={register}
                                         multiline
                                         rows={10}
                                         required
+                                        placeholder="Type your answer here"
                                     />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="caption">Any other comments or personal request?</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
-                                        label="Any other comments or personal request?"
                                         fullWidth
                                         name="comments"
                                         inputRef={register}
                                         multiline
                                         rows={10}
+                                        placeholder="Type your comments or request here"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
