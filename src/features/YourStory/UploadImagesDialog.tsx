@@ -57,7 +57,7 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
                 acceptedFiles={['image/*']}
                 fileObjects={files}
                 cancelButtonText={'cancel'}
-                submitButtonText={'submit'}
+                submitButtonText={'upload'}
                 maxFileSize={5000000}
                 filesLimit={10}
                 open={open}
@@ -68,7 +68,7 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
                 onClose={() => setOpen(false)}
                 onSave={handleOnSave}
                 showPreviews={true}
-                showFileNamesInPreview={true}
+                showFileNamesInPreview={false}
             />
             <Grid container spacing={2} alignItems="center">
                 <Grid item>
