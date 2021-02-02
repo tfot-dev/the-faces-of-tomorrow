@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useGetPostQuery } from '../../generated/graphql';
-import { Grid, LinearProgress } from '@material-ui/core';
+import { Box, Card, Grid, GridList, LinearProgress, Typography } from '@material-ui/core';
 import { Error } from '../Error/Error';
 import { PostView } from './PostView';
 import { MoreStoriesContainer } from './MoreStoriesContainer';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 export const PostViewContainer = () => {
     const { search } = useLocation();
@@ -29,6 +30,11 @@ export const PostViewContainer = () => {
                 <PostView caption={caption} media={media} />
             </Grid>
             <Grid item md={6}>
+                <Typography align="center" color="primary">
+                    <Box fontWeight="fontWeightBold" fontSize="large">
+                        More Stories
+                    </Box>
+                </Typography>
                 <MoreStoriesContainer />
             </Grid>
         </Grid>
