@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useGetPostQuery } from '../../generated/graphql';
-import { Grid, LinearProgress } from '@material-ui/core';
+import { Box, Grid, LinearProgress, Typography } from '@material-ui/core';
 import { Error } from '../Error/Error';
 import { PostView } from './PostView';
 import { MoreStoriesContainer } from './MoreStoriesContainer';
@@ -29,6 +29,9 @@ export const PostViewContainer = () => {
                 <PostView caption={caption} media={media} />
             </Grid>
             <Grid item md={6}>
+                <Typography align="center" color="primary">
+                    <Box fontWeight="fontWeightBold">More Stories</Box>
+                </Typography>
                 <MoreStoriesContainer />
             </Grid>
         </Grid>
