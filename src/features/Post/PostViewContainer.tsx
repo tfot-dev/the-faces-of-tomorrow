@@ -29,9 +29,12 @@ export const PostViewContainer = () => {
                 <PostView caption={caption} media={media} />
             </Grid>
             <Grid item md={6}>
-                <Typography align="center" color="primary">
-                    <Box fontWeight="fontWeightBold">More Stories</Box>
+                <Typography variant="h4" align="center" color="secondary">
+                    <Box fontWeight="fontWeightBold" mb={2}>
+                        <u> More Stories</u>
+                    </Box>
                 </Typography>
+
                 <MoreStoriesContainer />
             </Grid>
         </Grid>
