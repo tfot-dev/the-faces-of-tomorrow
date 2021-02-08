@@ -19,6 +19,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-build-classic-email/build/ckeditor';
 import { useSnackbar } from 'notistack';
 import { namedOperations, useSendEmailMutation } from '../../generated/graphql';
+import { SmartSuggestions } from '../SmartSuggestions/SmartSuggestions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,6 +42,7 @@ export const CreateEmailDialog = () => {
     const [sendEmail] = useSendEmailMutation({ refetchQueries: [namedOperations.Query.GetSentEmails] });
     const { register, handleSubmit, setValue } = useForm();
     const [open, setOpen] = useState(false);
+    const [template, setTemplate] = useState('');
     const classes = useStyles();
 
     React.useEffect(() => {
@@ -90,6 +92,9 @@ export const CreateEmailDialog = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <SmartSuggestions onSelect={setTemplate} />
+                            </Grid>
+                            <Grid item xs={12}>
                                 <CKEditor
                                     editor={Editor}
                                     onChange={(event: unknown, editor: { getData: () => unknown }) => {
@@ -97,6 +102,7 @@ export const CreateEmailDialog = () => {
 
                                         setValue('message', data);
                                     }}
+                                    data={template}
                                 />
                             </Grid>
                         </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Link, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import { MiniDrawerContent } from './MiniDrawerContent';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useMediaQuery, useTheme } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -74,8 +75,14 @@ export const MiniDrawer = ({ tabs }: MiniDrawerProps) => {
     const { isAuthenticated } = useAuth0();
     const { url, path } = useRouteMatch<{ tabId: string }>();
     const classes = useStyles();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const [open, setOpen] = React.useState(false);
     const [currentRoute, setCurrentRoute] = React.useState<string>();
+
+    useEffect(() => {
+        setOpen(!matches);
+    }, [matches]);
 
     const handleDrawerClick = () => {
         setOpen(!open);
