@@ -10,7 +10,7 @@ export const Home = () => {
     return (
         <>
             <Helmet>
-                <title> The Faces of Tomorrow | TFOT </title>
+                <title>The Faces of Tomorrow | TFOT</title>
             </Helmet>
             <Slideshow />
             <AboutUs />
