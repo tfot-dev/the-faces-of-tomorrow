@@ -45,7 +45,7 @@ export const getName = (caption: string): string | undefined => {
 };
 
 export const getInstaHandle = (caption: string): string | undefined => {
-    const regex = /(@\w+\b)(?!.*\1\b)/gim;
+    const regex = /(@\S+\b)(?!.*\1\b)/gim;
 
     const matchResults = caption.match(regex);
 
