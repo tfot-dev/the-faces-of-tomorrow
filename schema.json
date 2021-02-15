@@ -192,6 +192,46 @@
       },
       {
         "kind": "OBJECT",
+        "name": "Cursors",
+        "description": null,
+        "fields": [
+          {
+            "name": "after",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "before",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null,
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null,
+        "__typename": "__Type"
+      },
+      {
+        "kind": "OBJECT",
         "name": "Email",
         "description": null,
         "fields": [
@@ -1302,6 +1342,61 @@
       },
       {
         "kind": "OBJECT",
+        "name": "PostsResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "cursors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Cursors",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
+            "name": "posts",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Post",
+                  "ofType": null,
+                  "__typename": "__Type"
+                },
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null,
+        "__typename": "__Type"
+      },
+      {
+        "kind": "OBJECT",
         "name": "Query",
         "description": null,
         "fields": [
@@ -1379,6 +1474,43 @@
             "__typename": "__Field"
           },
           {
+            "name": "getMorePosts",
+            "description": null,
+            "args": [
+              {
+                "name": "nextCursor",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null,
+                    "__typename": "__Type"
+                  },
+                  "__typename": "__Type"
+                },
+                "defaultValue": null,
+                "__typename": "__InputValue"
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PostsResponse",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "post",
             "description": null,
             "args": [
@@ -1418,14 +1550,9 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Post",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
+                "kind": "OBJECT",
+                "name": "PostsResponse",
+                "ofType": null,
                 "__typename": "__Type"
               },
               "__typename": "__Type"
@@ -8229,6 +8356,43 @@
             "__typename": "__Field"
           },
           {
+            "name": "getMorePosts",
+            "description": null,
+            "args": [
+              {
+                "name": "nextCursor",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null,
+                    "__typename": "__Type"
+                  },
+                  "__typename": "__Type"
+                },
+                "defaultValue": null,
+                "__typename": "__InputValue"
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PostsResponse",
+                "ofType": null,
+                "__typename": "__Type"
+              },
+              "__typename": "__Type"
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "__typename": "__Field"
+          },
+          {
             "name": "inquiries_aggregate",
             "description": "fetch aggregated fields from the table: \"inquiries\"",
             "args": [
@@ -8400,14 +8564,9 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Post",
-                  "ofType": null,
-                  "__typename": "__Type"
-                },
+                "kind": "OBJECT",
+                "name": "PostsResponse",
+                "ofType": null,
                 "__typename": "__Type"
               },
               "__typename": "__Type"

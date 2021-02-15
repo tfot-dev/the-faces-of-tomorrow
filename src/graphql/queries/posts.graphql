@@ -2,6 +2,11 @@
 
 query GetAllPosts {
     posts {
-        ...Post
+        posts {
+            ...Post
+        }
+        cursors {
+            ...Cursors
+        }
     }
 }

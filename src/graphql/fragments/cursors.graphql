@@ -1,0 +1,4 @@
+fragment Cursors on Cursors {
+    before
+    after
+}
