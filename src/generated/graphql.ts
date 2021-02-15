@@ -2489,6 +2489,25 @@ export type GetEmailQuery = (
   )> }
 );
 
+export type GetMorePostsQueryVariables = Exact<{
+  nextCursor: Scalars['String'];
+}>;
+
+
+export type GetMorePostsQuery = (
+  { __typename?: 'query_root' }
+  & { getMorePosts: (
+    { __typename?: 'PostsResponse' }
+    & { posts: Array<Maybe<(
+      { __typename?: 'Post' }
+      & PostFragment
+    )>>, cursors: (
+      { __typename?: 'Cursors' }
+      & CursorsFragment
+    ) }
+  ) }
+);
+
 export type GetAllInquiriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3111,6 +3130,45 @@ export function useGetEmailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetEmailQueryHookResult = ReturnType<typeof useGetEmailQuery>;
 export type GetEmailLazyQueryHookResult = ReturnType<typeof useGetEmailLazyQuery>;
 export type GetEmailQueryResult = Apollo.QueryResult<GetEmailQuery, GetEmailQueryVariables>;
+export const GetMorePostsDocument = gql`
+    query GetMorePosts($nextCursor: String!) {
+  getMorePosts(nextCursor: $nextCursor) {
+    posts {
+      ...Post
+    }
+    cursors {
+      ...Cursors
+    }
+  }
+}
+    ${PostFragmentDoc}
+${CursorsFragmentDoc}`;
+
+/**
+ * __useGetMorePostsQuery__
+ *
+ * To run a query within a React component, call `useGetMorePostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMorePostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMorePostsQuery({
+ *   variables: {
+ *      nextCursor: // value for 'nextCursor'
+ *   },
+ * });
+ */
+export function useGetMorePostsQuery(baseOptions: Apollo.QueryHookOptions<GetMorePostsQuery, GetMorePostsQueryVariables>) {
+        return Apollo.useQuery<GetMorePostsQuery, GetMorePostsQueryVariables>(GetMorePostsDocument, baseOptions);
+      }
+export function useGetMorePostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMorePostsQuery, GetMorePostsQueryVariables>) {
+          return Apollo.useLazyQuery<GetMorePostsQuery, GetMorePostsQueryVariables>(GetMorePostsDocument, baseOptions);
+        }
+export type GetMorePostsQueryHookResult = ReturnType<typeof useGetMorePostsQuery>;
+export type GetMorePostsLazyQueryHookResult = ReturnType<typeof useGetMorePostsLazyQuery>;
+export type GetMorePostsQueryResult = Apollo.QueryResult<GetMorePostsQuery, GetMorePostsQueryVariables>;
 export const GetAllInquiriesDocument = gql`
     query GetAllInquiries {
   getInquiries {
@@ -3380,6 +3438,7 @@ export const namedOperations = {
   Query: {
     GetAllEmails: 'GetAllEmails',
     GetEmail: 'GetEmail',
+    GetMorePosts: 'GetMorePosts',
     GetAllInquiries: 'GetAllInquiries',
     GetInquiry: 'GetInquiry',
     GetPost: 'GetPost',
