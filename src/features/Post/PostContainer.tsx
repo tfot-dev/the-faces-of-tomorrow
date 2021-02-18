@@ -26,7 +26,7 @@ export const PostContainer = () => {
 
     if (error) return <Error />;
     if (data?.posts) {
-        posts = [...data.posts];
+        posts = [...data.posts.posts];
     }
 
     return (

@@ -1,6 +1,7 @@
 {
   "buttons": {
-    "postYourOwnStory": "Post Your Own Story!"
+    "postYourOwnStory": "Post Your Own Story!",
+    "send": "Send"
   },
   "privacyPolicy": {
     "about": "Privacy Policy",
@@ -74,13 +75,26 @@
     "modifications1": "The Faces of Tomorrow may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service."
   },
   "postYourOwnStory": {
-    "title": "Post Your Own Story",
+    "title": "Post Your Own Story!",
     "name": "Name",
     "email": "Email",
     "insta": "Instagram Handle (Optional)",
     "blog": "Blog / Website (Optional)",
     "pictures": "Pictures",
-    "otherInfo": "Other Information (Questions)"
+    "otherInfo": "Other Information (Questions)",
+    "yourAnswer": "Type your answer here",
+    "yourComments": "Type your comments or request here",
+    "welcome1": "Hey There!",
+    "welcome2": "Thank you for having an interest in sharing your story with us!",
+    "welcome3": "We are certain that sharing your stories could bring hope to others and inspire them to take actions!",
+    "welcome4": "Please submit your responses in the form below (to be answered briefly). Once we have your responses, we will get back to you with a final version of your story for your approval.",
+    "about": "Tell us briefly about yourself (e.g. age, the city you are currently based at, and current occupation)",
+    "projectIdea": "How do you engage in environmental activism? (e.g. tell us about your project / idea / sustainable practice)",
+    "inspiration": "What gave you the inspiration to work on that specific topic? (e.g. if you have a personal motivation, please share how it evolved and when/why you decided to take action)",
+    "observedEffects": "Could you observe changes since you started your project / idea / sustainable practice? (e.g. feedback and responses from friends, family, community etc.)",
+    "advise": "What would be your piece of advice for people who are thinking of changing their lifestyle, or want to start something similar like you?",
+    "comments": "Any other comments or personal request?",
+    "note": "Very important: We need one portrait picture of you, and a few more about your work / project / sustainable practice (maximum 10 photos). You can also check out our Instagram or Website for reference."
   },
   "contactUs": {
     "title": "Contact Us"

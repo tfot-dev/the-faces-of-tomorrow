@@ -21,7 +21,7 @@ export const MoreStoriesContainer = () => {
 
     if (error) return <Error />;
     if (data?.posts) {
-        posts = [...data.posts].slice(0, 24);
+        posts = [...data.posts.posts];
     }
 
     return (

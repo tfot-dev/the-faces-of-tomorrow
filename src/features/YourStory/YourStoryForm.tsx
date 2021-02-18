@@ -21,6 +21,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Routes } from '../../constants/Routes';
 import { makeStyles } from '@material-ui/core/styles';
 import { common } from '@material-ui/core/colors';
+import { useTranslation } from 'react-i18next';
 
 type YourStoryFormType = {
     onSubmit: (data: Your_Story) => void;
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
+    const { t } = useTranslation();
     const classes = useStyles();
     const { register, handleSubmit, setValue } = useForm();
     const [acceptTerms, setAcceptTerms] = React.useState<boolean>(false);
@@ -48,7 +50,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
         <Grid container spacing={2} justify="center">
             <Grid item>
                 <Typography variant="h4" align="center" color="textSecondary">
-                    <b>Post Your Own Story!</b>
+                    <b>{t('postYourOwnStory.title')}</b>
                 </Typography>
             </Grid>
             <Grid item>
@@ -56,24 +58,21 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Typography variant="body1">Hey There!</Typography>
+                                <Typography variant="body1">{t('postYourOwnStory.welcome1')}</Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="body1" component="p">
-                                    Thank you for having an interest in sharing your story with us!
+                                    {t('postYourOwnStory.welcome2')}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="body1" component="p">
-                                    We are certain that sharing your stories could bring hope to others and inspire them
-                                    to take actions!
+                                    {t('postYourOwnStory.welcome3')}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="body1" component="p">
-                                    Please submit your responses in the form below (to be answered briefly). Once we
-                                    have your responses, we will get back to you with a final version of your story for
-                                    your approval.
+                                    {t('postYourOwnStory.welcome4')}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -88,7 +87,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         variant="outlined"
-                                        label="Name"
+                                        label={t('postYourOwnStory.name')}
                                         fullWidth
                                         name="name"
                                         inputRef={register}
@@ -98,7 +97,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         variant="outlined"
-                                        label="Email"
+                                        label={t('postYourOwnStory.email')}
                                         type="email"
                                         fullWidth
                                         name="email"
@@ -109,7 +108,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         variant="outlined"
-                                        label="Instagram Handle"
+                                        label={t('postYourOwnStory.insta')}
                                         fullWidth
                                         name="instagram"
                                         inputRef={register}
@@ -118,17 +117,14 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 <Grid item xs={6}>
                                     <TextField
                                         variant="outlined"
-                                        label="Blog / Website"
+                                        label={t('postYourOwnStory.blog')}
                                         fullWidth
                                         name="blog"
                                         inputRef={register}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption">
-                                        Tell us briefly about yourself (e.g. age, the city you are currently based at,
-                                        and current occupation)
-                                    </Typography>
+                                    <Typography variant="caption">{t('postYourOwnStory.about')}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -139,14 +135,11 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         multiline
                                         rows={10}
                                         required
-                                        placeholder="Type your answer here"
+                                        placeholder={t('postYourOwnStory.yourAnswer')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption">
-                                        How do you engage in environmental activism? (e.g. tell us about your project /
-                                        idea / sustainable practice)
-                                    </Typography>
+                                    <Typography variant="caption">{t('postYourOwnStory.projectIdea')}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -157,15 +150,11 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         multiline
                                         rows={10}
                                         required
-                                        placeholder="Type your answer here"
+                                        placeholder={t('postYourOwnStory.yourAnswer')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption">
-                                        What gave you the inspiration to work on that specific topic? (e.g. if you have
-                                        a personal motivation, please share how it evolved and when/why you decided to
-                                        take action)
-                                    </Typography>
+                                    <Typography variant="caption">{t('postYourOwnStory.inspiration')}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -176,14 +165,11 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         multiline
                                         rows={10}
                                         required
-                                        placeholder="Type your answer here"
+                                        placeholder={t('postYourOwnStory.yourAnswer')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption">
-                                        Could you observe changes since you started your project / idea / sustainable
-                                        practice? (e.g. feedback and responses from friends, family, community etc.)
-                                    </Typography>
+                                    <Typography variant="caption">{t('postYourOwnStory.observedEffects')}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -194,14 +180,11 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         multiline
                                         rows={10}
                                         required
-                                        placeholder="Type your answer here"
+                                        placeholder={t('postYourOwnStory.yourStory')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption">
-                                        What would be your piece of advice for people who are thinking of changing their
-                                        lifestyle, or want to start something similar like you?
-                                    </Typography>
+                                    <Typography variant="caption">{t('postYourOwnStory.advise')}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -212,11 +195,11 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         multiline
                                         rows={10}
                                         required
-                                        placeholder="Type your answer here"
+                                        placeholder={t('postYourOwnStory.yourAnswer')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="caption">Any other comments or personal request?</Typography>
+                                    <Typography variant="caption">{t('postYourOwnStory.comments')}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -226,7 +209,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         inputRef={register}
                                         multiline
                                         rows={10}
-                                        placeholder="Type your comments or request here"
+                                        placeholder={t('postYourOwnStory.yourComments')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -234,11 +217,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Box fontWeight="fontWeightBold">
-                                        <Typography variant="body2">
-                                            Very important: We need one portrait picture of you, and a few more about
-                                            your work / project / sustainable practice (maximum 10 photos). You can also
-                                            check out our Instagram or Website for reference.
-                                        </Typography>
+                                        <Typography variant="body2">{t('postYourOwnStory.note')}</Typography>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12}>
@@ -258,7 +237,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                                     to={Routes.Privacy}
                                                     variant="caption"
                                                 >
-                                                    Privacy Policy
+                                                    {t('privacyPolicy.about')}
                                                 </Link>
                                                 {' and '}
                                                 <Link
@@ -267,7 +246,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                                     to={Routes.TermsAndConditions}
                                                     variant="caption"
                                                 >
-                                                    Terms and Conditions
+                                                    {t('termsAndConditions.about')}
                                                 </Link>
                                             </Typography>
                                         }
@@ -275,7 +254,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button type="submit" color="secondary" variant="contained" disabled={!acceptTerms}>
-                                        Send
+                                        {t('buttons.send')}
                                     </Button>
                                 </Grid>
                             </Grid>
