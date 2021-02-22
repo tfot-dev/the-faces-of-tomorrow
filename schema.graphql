@@ -157,6 +157,11 @@ enum CacheControlScope {
   PUBLIC
 }
 
+type Cursors {
+  after: String
+  before: String
+}
+
 type Email {
   calendarType: Int!
   ccAddress: String!
@@ -838,11 +843,17 @@ type Post {
   username: String!
 }
 
+type PostsResponse {
+  cursors: Cursors!
+  posts: [Post]!
+}
+
 type Query {
   emails: [Email]!
   getEmail(folderId: String!, messageId: String!): EmailContent
+  getMorePosts(nextCursor: String!): PostsResponse!
   post(id: String!): Post
-  posts: [Post]!
+  posts: PostsResponse!
   sentEmails: [Email]!
 }
 
@@ -945,6 +956,7 @@ type query_root {
     # filter the rows returned
     where: inquiries_bool_exp
   ): [inquiries!]!
+  getMorePosts(nextCursor: String!): PostsResponse!
 
   # fetch aggregated fields from the table: "inquiries"
   inquiries_aggregate(
@@ -967,7 +979,7 @@ type query_root {
   # fetch data from the table: "inquiries" using primary key columns
   inquiries_by_pk(id: uuid!): inquiries
   post(id: String!): Post
-  posts: [Post]!
+  posts: PostsResponse!
 
   # fetch data from the table: "read_status_lookup"
   read_status_lookup(

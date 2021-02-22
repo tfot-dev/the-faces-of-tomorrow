@@ -1,8 +1,8 @@
 #import "../fragments/post.graphql"
 #import "../fragments/cursors.graphql"
 
-query GetAllPosts {
-    posts {
+query GetMorePosts($nextCursor: String!) {
+    getMorePosts(nextCursor: $nextCursor) {
         posts {
             ...Post
         }

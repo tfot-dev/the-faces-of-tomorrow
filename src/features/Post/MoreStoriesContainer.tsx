@@ -20,7 +20,7 @@ export const MoreStoriesContainer = () => {
 
     if (error) return <Error />;
     if (data?.posts) {
-        posts = [...data.posts];
+        posts = [...data.posts.posts];
     }
 
     return (

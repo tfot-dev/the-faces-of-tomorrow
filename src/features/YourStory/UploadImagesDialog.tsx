@@ -58,7 +58,7 @@ export const UploadImagesDialog = ({ onChange }: UploadImagesDialogType) => {
                 fileObjects={files}
                 cancelButtonText={'cancel'}
                 submitButtonText={'upload'}
-                maxFileSize={5000000}
+                maxFileSize={10485760}
                 filesLimit={10}
                 open={open}
                 onAdd={(fileObjs) => setFiles(files.concat(fileObjs))}

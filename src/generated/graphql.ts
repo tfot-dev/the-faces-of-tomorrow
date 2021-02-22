@@ -35,6 +35,12 @@ export enum CacheControlScope {
   Public = 'PUBLIC'
 }
 
+export type Cursors = {
+  __typename?: 'Cursors';
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+};
+
 export type Email = {
   __typename?: 'Email';
   calendarType: Scalars['Int'];
@@ -135,12 +141,19 @@ export type Post = {
   username: Scalars['String'];
 };
 
+export type PostsResponse = {
+  __typename?: 'PostsResponse';
+  cursors: Cursors;
+  posts: Array<Maybe<Post>>;
+};
+
 export type Query = {
   __typename?: 'Query';
   emails: Array<Maybe<Email>>;
   getEmail?: Maybe<EmailContent>;
+  getMorePosts: PostsResponse;
   post?: Maybe<Post>;
-  posts: Array<Maybe<Post>>;
+  posts: PostsResponse;
   sentEmails: Array<Maybe<Email>>;
 };
 
@@ -148,6 +161,11 @@ export type Query = {
 export type QueryGetEmailArgs = {
   folderId: Scalars['String'];
   messageId: Scalars['String'];
+};
+
+
+export type QueryGetMorePostsArgs = {
+  nextCursor: Scalars['String'];
 };
 
 
@@ -1034,12 +1052,13 @@ export type Query_Root = {
   getEmail?: Maybe<EmailContent>;
   /** fetch data from the table: "inquiries" */
   getInquiries: Array<Inquiries>;
+  getMorePosts: PostsResponse;
   /** fetch aggregated fields from the table: "inquiries" */
   inquiries_aggregate: Inquiries_Aggregate;
   /** fetch data from the table: "inquiries" using primary key columns */
   inquiries_by_pk?: Maybe<Inquiries>;
   post?: Maybe<Post>;
-  posts: Array<Maybe<Post>>;
+  posts: PostsResponse;
   /** fetch data from the table: "read_status_lookup" */
   read_status_lookup: Array<Read_Status_Lookup>;
   /** fetch aggregated fields from the table: "read_status_lookup" */
@@ -1124,6 +1143,12 @@ export type Query_RootGetInquiriesArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Inquiries_Order_By>>;
   where?: Maybe<Inquiries_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootGetMorePostsArgs = {
+  nextCursor: Scalars['String'];
 };
 
 
@@ -2234,6 +2259,11 @@ export enum Your_Story_Update_Column {
   ProjectIdea = 'projectIdea'
 }
 
+export type CursorsFragment = (
+  { __typename?: 'Cursors' }
+  & Pick<Cursors, 'before' | 'after'>
+);
+
 export type EmailFragment = (
   { __typename?: 'Email' }
   & Pick<Email, 'calendarType' | 'ccAddress' | 'flagid' | 'folderId' | 'fromAddress' | 'hasAttachment' | 'hasInline' | 'messageId' | 'priority' | 'receivedTime' | 'sender' | 'sentDateInGMT' | 'size' | 'status2' | 'subject' | 'summary' | 'toAddress'>
@@ -2459,6 +2489,25 @@ export type GetEmailQuery = (
   )> }
 );
 
+export type GetMorePostsQueryVariables = Exact<{
+  nextCursor: Scalars['String'];
+}>;
+
+
+export type GetMorePostsQuery = (
+  { __typename?: 'query_root' }
+  & { getMorePosts: (
+    { __typename?: 'PostsResponse' }
+    & { posts: Array<Maybe<(
+      { __typename?: 'Post' }
+      & PostFragment
+    )>>, cursors: (
+      { __typename?: 'Cursors' }
+      & CursorsFragment
+    ) }
+  ) }
+);
+
 export type GetAllInquiriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2501,10 +2550,16 @@ export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllPostsQuery = (
   { __typename?: 'query_root' }
-  & { posts: Array<Maybe<(
-    { __typename?: 'Post' }
-    & PostFragment
-  )>> }
+  & { posts: (
+    { __typename?: 'PostsResponse' }
+    & { posts: Array<Maybe<(
+      { __typename?: 'Post' }
+      & PostFragment
+    )>>, cursors: (
+      { __typename?: 'Cursors' }
+      & CursorsFragment
+    ) }
+  ) }
 );
 
 export type GetSentEmailsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -2553,6 +2608,12 @@ export type GetYourStoryQuery = (
   )> }
 );
 
+export const CursorsFragmentDoc = gql`
+    fragment Cursors on Cursors {
+  before
+  after
+}
+    `;
 export const EmailFragmentDoc = gql`
     fragment Email on Email {
   calendarType
@@ -3069,6 +3130,45 @@ export function useGetEmailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetEmailQueryHookResult = ReturnType<typeof useGetEmailQuery>;
 export type GetEmailLazyQueryHookResult = ReturnType<typeof useGetEmailLazyQuery>;
 export type GetEmailQueryResult = Apollo.QueryResult<GetEmailQuery, GetEmailQueryVariables>;
+export const GetMorePostsDocument = gql`
+    query GetMorePosts($nextCursor: String!) {
+  getMorePosts(nextCursor: $nextCursor) {
+    posts {
+      ...Post
+    }
+    cursors {
+      ...Cursors
+    }
+  }
+}
+    ${PostFragmentDoc}
+${CursorsFragmentDoc}`;
+
+/**
+ * __useGetMorePostsQuery__
+ *
+ * To run a query within a React component, call `useGetMorePostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMorePostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMorePostsQuery({
+ *   variables: {
+ *      nextCursor: // value for 'nextCursor'
+ *   },
+ * });
+ */
+export function useGetMorePostsQuery(baseOptions: Apollo.QueryHookOptions<GetMorePostsQuery, GetMorePostsQueryVariables>) {
+        return Apollo.useQuery<GetMorePostsQuery, GetMorePostsQueryVariables>(GetMorePostsDocument, baseOptions);
+      }
+export function useGetMorePostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMorePostsQuery, GetMorePostsQueryVariables>) {
+          return Apollo.useLazyQuery<GetMorePostsQuery, GetMorePostsQueryVariables>(GetMorePostsDocument, baseOptions);
+        }
+export type GetMorePostsQueryHookResult = ReturnType<typeof useGetMorePostsQuery>;
+export type GetMorePostsLazyQueryHookResult = ReturnType<typeof useGetMorePostsLazyQuery>;
+export type GetMorePostsQueryResult = Apollo.QueryResult<GetMorePostsQuery, GetMorePostsQueryVariables>;
 export const GetAllInquiriesDocument = gql`
     query GetAllInquiries {
   getInquiries {
@@ -3170,10 +3270,16 @@ export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVa
 export const GetAllPostsDocument = gql`
     query GetAllPosts {
   posts {
-    ...Post
+    posts {
+      ...Post
+    }
+    cursors {
+      ...Cursors
+    }
   }
 }
-    ${PostFragmentDoc}`;
+    ${PostFragmentDoc}
+${CursorsFragmentDoc}`;
 
 /**
  * __useGetAllPostsQuery__
@@ -3332,6 +3438,7 @@ export const namedOperations = {
   Query: {
     GetAllEmails: 'GetAllEmails',
     GetEmail: 'GetEmail',
+    GetMorePosts: 'GetMorePosts',
     GetAllInquiries: 'GetAllInquiries',
     GetInquiry: 'GetInquiry',
     GetPost: 'GetPost',
@@ -3354,6 +3461,7 @@ export const namedOperations = {
     updateStoryStatus: 'updateStoryStatus'
   },
   Fragment: {
+    Cursors: 'Cursors',
     Email: 'Email',
     EmailContent: 'EmailContent',
     Inquiry: 'Inquiry',
