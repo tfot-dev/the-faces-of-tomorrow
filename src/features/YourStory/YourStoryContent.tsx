@@ -12,7 +12,10 @@ import { YourStoryContentAction } from './YourStoryContentAction';
 export const YourStoryContent = () => {
     const { params } = useRouteMatch<{ yourStoryId: string }>();
     const { user } = useAuth0();
-    const { loading, error, data } = useGetYourStoryQuery({ variables: { id: params.yourStoryId } });
+    const { loading, error, data } = useGetYourStoryQuery({
+        variables: { id: params.yourStoryId },
+        fetchPolicy: 'cache-and-network',
+    });
     const [setReadStatus] = useReadStatusMutation({ refetchQueries: [namedOperations.Query.GetAllYourStories] });
 
     if (loading) return <LinearProgress color="secondary" />;
