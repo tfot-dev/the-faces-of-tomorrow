@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 
 export const MoreStoriesContent = ({ posts }: MoreStoriesContentType) => {
     const classes = useStyles();
+    const [seeMoreButtonEnabled, setSeeMoreButtonEnabled] = useState<boolean>(true);
     const [getMorePosts, { loading, error, data, called }] = useGetMorePostsLazyQuery();
     const [morePosts, setMorePosts] = useState<PostsResponse>({ posts: [], cursors: posts.cursors });
 
@@ -25,6 +26,13 @@ export const MoreStoriesContent = ({ posts }: MoreStoriesContentType) => {
                 posts: [...(morePosts?.posts || []), ...data.getMorePosts.posts],
                 cursors: data.getMorePosts.cursors,
             });
+
+            const lastPost = data.getMorePosts.posts[data.getMorePosts.posts.length - 1];
+
+            // TODO(karanhudia): Until better solution, hardcoded this to know when all posts have been fetched
+            if (lastPost && lastPost.id === '17855896562131601') {
+                setSeeMoreButtonEnabled(false);
+            }
         }
     }, [loading]);
 
@@ -46,7 +54,7 @@ export const MoreStoriesContent = ({ posts }: MoreStoriesContentType) => {
                 {loading ? (
                     <CircularProgress />
                 ) : (
-                    morePosts?.cursors.after !== undefined && (
+                    seeMoreButtonEnabled && (
                         <Button
                             size="small"
                             type="submit"
