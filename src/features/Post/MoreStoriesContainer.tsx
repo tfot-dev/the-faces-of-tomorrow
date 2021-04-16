@@ -1,10 +1,10 @@
 import React from 'react';
 import { GridList } from '@material-ui/core';
-import { Post } from './Post';
 import { useGetAllPostsQuery } from '../../generated/graphql';
-import { Error } from '../Error/Error';
 import { PostSkeleton } from './PostSkeleton';
 import { makeStyles } from '@material-ui/core/styles';
+import { Error } from '../Error/Error';
+import { MoreStoriesContent } from './MoreStoriesContent';
 
 const useStyles = makeStyles({
     gridList: {
@@ -16,18 +16,15 @@ export const MoreStoriesContainer = () => {
     const classes = useStyles();
     const { loading, error, data } = useGetAllPostsQuery();
 
-    let posts = Array(10).fill({});
-
     if (error) return <Error />;
-    if (data?.posts) {
-        posts = [...data.posts.posts];
-    }
 
-    return (
+    return loading || !data?.posts ? (
         <GridList className={classes.gridList}>
-            {posts.map((post, index) => {
-                return loading ? <PostSkeleton key={index} /> : post !== null && <Post post={post} key={post.id} />;
-            })}
+            {[...Array(12)].map((_, index) => (
+                <PostSkeleton key={index} />
+            ))}
         </GridList>
+    ) : (
+        <MoreStoriesContent posts={data?.posts} />
     );
 };
