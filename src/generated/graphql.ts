@@ -2281,7 +2281,7 @@ export type InquiryFragment = (
 
 export type PostFragment = (
   { __typename?: 'Post' }
-  & Pick<Post, 'id' | 'caption' | 'media_url' | 'media_type' | 'timestamp' | 'permalink'>
+  & Pick<Post, 'id' | 'caption' | 'media_url' | 'media_type' | 'timestamp' | 'permalink' | 'username'>
   & { media: Array<Maybe<(
     { __typename?: 'Media' }
     & Pick<Media, 'id' | 'media_url' | 'thumbnail_url'>
@@ -2682,6 +2682,7 @@ export const PostFragmentDoc = gql`
   media_type
   timestamp
   permalink
+  username
 }
     `;
 export const SendEmailFragmentDoc = gql`
