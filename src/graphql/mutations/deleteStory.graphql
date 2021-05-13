@@ -1,0 +1,11 @@
+mutation deleteStory($id: uuid!) {
+    delete_assigned_status_lookup(where: {id: {_eq: $id}}) {
+        affected_rows
+    }
+    delete_written_story(where: {id: {_eq: $id}}) {
+        affected_rows
+    }
+    delete_your_story(where: {id: {_eq: $id}}) {
+        affected_rows
+    }
+}

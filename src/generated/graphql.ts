@@ -2343,6 +2343,25 @@ export type DeleteAssignedStatusMutation = (
   )> }
 );
 
+export type DeleteStoryMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteStoryMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_assigned_status_lookup?: Maybe<(
+    { __typename?: 'assigned_status_lookup_mutation_response' }
+    & Pick<Assigned_Status_Lookup_Mutation_Response, 'affected_rows'>
+  )>, delete_written_story?: Maybe<(
+    { __typename?: 'written_story_mutation_response' }
+    & Pick<Written_Story_Mutation_Response, 'affected_rows'>
+  )>, delete_your_story?: Maybe<(
+    { __typename?: 'your_story_mutation_response' }
+    & Pick<Your_Story_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type FeatureStoryMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -2783,6 +2802,44 @@ export function useDeleteAssignedStatusMutation(baseOptions?: Apollo.MutationHoo
 export type DeleteAssignedStatusMutationHookResult = ReturnType<typeof useDeleteAssignedStatusMutation>;
 export type DeleteAssignedStatusMutationResult = Apollo.MutationResult<DeleteAssignedStatusMutation>;
 export type DeleteAssignedStatusMutationOptions = Apollo.BaseMutationOptions<DeleteAssignedStatusMutation, DeleteAssignedStatusMutationVariables>;
+export const DeleteStoryDocument = gql`
+    mutation deleteStory($id: uuid!) {
+  delete_assigned_status_lookup(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+  delete_written_story(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+  delete_your_story(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteStoryMutationFn = Apollo.MutationFunction<DeleteStoryMutation, DeleteStoryMutationVariables>;
+
+/**
+ * __useDeleteStoryMutation__
+ *
+ * To run a mutation, you first call `useDeleteStoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteStoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteStoryMutation, { data, loading, error }] = useDeleteStoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteStoryMutation(baseOptions?: Apollo.MutationHookOptions<DeleteStoryMutation, DeleteStoryMutationVariables>) {
+        return Apollo.useMutation<DeleteStoryMutation, DeleteStoryMutationVariables>(DeleteStoryDocument, baseOptions);
+      }
+export type DeleteStoryMutationHookResult = ReturnType<typeof useDeleteStoryMutation>;
+export type DeleteStoryMutationResult = Apollo.MutationResult<DeleteStoryMutation>;
+export type DeleteStoryMutationOptions = Apollo.BaseMutationOptions<DeleteStoryMutation, DeleteStoryMutationVariables>;
 export const FeatureStoryDocument = gql`
     mutation featureStory($id: uuid!) {
   insert_featured_story_lookup(objects: {id: $id}) {
@@ -3451,6 +3508,7 @@ export const namedOperations = {
   Mutation: {
     setAssignedStatus: 'setAssignedStatus',
     deleteAssignedStatus: 'deleteAssignedStatus',
+    deleteStory: 'deleteStory',
     featureStory: 'featureStory',
     unfeatureStory: 'unfeatureStory',
     readStatus: 'readStatus',

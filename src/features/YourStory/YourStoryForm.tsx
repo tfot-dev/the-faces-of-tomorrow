@@ -180,7 +180,7 @@ export const YourStoryForm = ({ onSubmit }: YourStoryFormType) => {
                                         multiline
                                         rows={10}
                                         required
-                                        placeholder={t('postYourOwnStory.yourStory')}
+                                        placeholder={t('postYourOwnStory.yourAnswer')}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>

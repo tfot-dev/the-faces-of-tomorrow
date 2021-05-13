@@ -1,6 +1,12 @@
 import React from 'react';
 import {
     Avatar,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
     Grid,
     IconButton,
     ListItem,
@@ -16,6 +22,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import {
     namedOperations,
     useDeleteAssignedStatusMutation,
+    useDeleteStoryMutation,
     useFeatureStoryMutation,
     useGetAllUsersQuery,
     useSetAssignedStatusMutation,
@@ -25,6 +32,7 @@ import {
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSnackbar } from 'notistack';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 type YourStoryListItemType = {
     yourStory: Your_Story;
@@ -36,6 +44,8 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
     const { enqueueSnackbar } = useSnackbar();
     const { user } = useAuth0();
 
+    const [open, setOpen] = React.useState(false);
+
     const [insert_assigned_status_lookup] = useSetAssignedStatusMutation({
         refetchQueries: [namedOperations.Query.GetAllYourStories],
     });
@@ -46,6 +56,9 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
         refetchQueries: [namedOperations.Query.GetAllYourStories],
     });
     const [delete_featured_story_lookup] = useUnfeatureStoryMutation({
+        refetchQueries: [namedOperations.Query.GetAllYourStories],
+    });
+    const [delete_story] = useDeleteStoryMutation({
         refetchQueries: [namedOperations.Query.GetAllYourStories],
     });
 
@@ -84,6 +97,22 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
         }).then(() => enqueueSnackbar('Story has been un-featured!', { variant: 'success' }));
     };
 
+    const handleConfirmDialogOpen = () => {
+        setOpen(true);
+    };
+
+    const handleConfirmDialogClose = () => {
+        setOpen(false);
+    };
+
+    const handleDeleteClick = () => {
+        delete_story({
+            variables: {
+                id,
+            },
+        }).then(() => enqueueSnackbar('Story has been deleted!', { variant: 'success' }));
+    };
+
     const assignedUser = data?.users ? data.users.find((u) => u.auth0_id === assigned_to?.user_id) : null;
 
     return (
@@ -103,6 +132,29 @@ export const YourStoryListItem = ({ yourStory }: YourStoryListItemType) => {
             />
             <ListItemSecondaryAction>
                 <Grid container>
+                    <Grid item>
+                        <IconButton edge="end" aria-label="assign" onClick={handleConfirmDialogOpen}>
+                            <DeleteForeverIcon />
+                        </IconButton>
+                    </Grid>
+                    {/* Confirm Dialog for deleting the story*/}
+                    <Dialog open={open} onClose={handleConfirmDialogClose}>
+                        <DialogTitle>Confirm Delete Story?</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                Are you sure you want to delete this story? FYI: This action is unforgivable and you
+                                won't be able to get your story back :D
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button autoFocus onClick={handleConfirmDialogClose} color="primary" variant="contained">
+                                Aah, the guilt!
+                            </Button>
+                            <Button onClick={handleDeleteClick} color="secondary" variant="contained" autoFocus>
+                                Yes, do it.
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                     {assigned_to === null && (
                         <Grid item>
                             <IconButton edge="end" aria-label="assign" onClick={handleAssignToMeClick}>
